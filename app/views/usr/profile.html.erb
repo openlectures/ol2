@@ -10,19 +10,19 @@
 </ul>
 </nav><!--span3-->
 <div class="span8 offset1">
-  <%if current_user.role = "user"%>
+  <%if current_user.role == "user"%>
     <h1><%=current_user.fullname%></h1>
     <p class="lead"><%=current_user.school%></a></p>
-  <%elsif current_user.role = "admin"%>
+  <%elsif current_user.role == "admin"%>
     <h1><%=current_user.fullname%></h1>
     <hr>
     <h3>Important Information</h3>
     <h6 class="muted">Y'know, the boyfriend/girlfriend's birthday, the place that sells the cheapest tequila shots, and the people who will attempt to hit on you. All this, neatly compiled and tabulated.</h6>
     <dl class="dl-horizontal">
       <dt>Official Title:</dt>
-      <dd><%=current_staff.title%></dd>
+      <dd><%=current_user.title%></dd>
       <dt>Email:</dt>
-      <dd><%=current_staff.email%> <a href="#">(Configuration)</a></dd>
+      <dd><%=current_user.email%> <a href="#">(Configuration)</a></dd>
       <dt>Office Address:</dt>
       <dd>NYC Academy, <a href="http://gothere.sg/maps#q:nyc%20academy">113 Somerset Road, Singapore 238165</a></dd>
     </dl>
