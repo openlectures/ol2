@@ -11,5 +11,5 @@ class Lesson < ActiveRecord::Base
   friendly_id :lesson, use: :slugged
 
   #Listing
-  acts_as_list, scope: :topic
+  acts_as_list scope: :topic
 end
