@@ -1,4 +1,7 @@
 Ol2::Application.routes.draw do
+  resources :lessons
+
+  resources :topics
   resources :subjects
 
   root to: "pages#index"

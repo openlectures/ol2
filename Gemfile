@@ -13,19 +13,22 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
+  gem 'select2-rails'
 end
 
 #Oauth
 gem 'omniauth-facebook'
 
 #For sanity
+group :development do
+  gem 'quiet_assets'  
+end
+
 gem 'thin'
 gem 'devise'
 gem 'cancan'
 gem 'jquery-rails'
-gem 'quiet_assets'
 gem 'simple_form'
-gem 'select2-rails'
 gem 'acts_as_list'
 
 gem 'friendly_id'

@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112134906) do
+ActiveRecord::Schema.define(:version => 20121113055734) do
+
+  create_table "lessons", :force => true do |t|
+    t.string   "lesson"
+    t.integer  "topic_id"
+    t.boolean  "is_sublesson", :default => false
+    t.integer  "position"
+    t.integer  "user_id"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
+    t.string   "slug"
+  end
+
+  add_index "lessons", ["slug"], :name => "index_lessons_on_slug", :unique => true
 
   create_table "subjects", :force => true do |t|
     t.string   "subject"
@@ -21,5 +34,17 @@ ActiveRecord::Schema.define(:version => 20121112134906) do
   end
 
   add_index "subjects", ["slug"], :name => "index_subjects_on_slug", :unique => true
+
+  create_table "topics", :force => true do |t|
+    t.string   "topic"
+    t.integer  "subject_id"
+    t.integer  "position"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "slug"
+  end
+
+  add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
 
 end
