@@ -1,4 +1,6 @@
 Ol2::Application.routes.draw do
+  resources :checkpoints
+
   resources :lessons
 
   resources :topics

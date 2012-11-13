@@ -11,7 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113055734) do
+ActiveRecord::Schema.define(:version => 20121113175047) do
+
+  create_table "checkpoints", :force => true do |t|
+    t.string   "checkpoint"
+    t.integer  "lesson_id"
+    t.text     "description"
+    t.string   "videourl"
+    t.text     "objective"
+    t.integer  "position"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "slug"
+  end
+
+  add_index "checkpoints", ["slug"], :name => "index_checkpoints_on_slug", :unique => true
 
   create_table "lessons", :force => true do |t|
     t.string   "lesson"

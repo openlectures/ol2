@@ -5,7 +5,7 @@ class Topic < ActiveRecord::Base
 
   #Relations
   belongs_to :subject
-  has_many :lessons, order: position
+  has_many :lessons, order: :position
   
   #Friendly ID
   extend FriendlyId
