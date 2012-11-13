@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  question: MyText
+  answer: MyText
+  checkpoint_id: 1
+
+two:
+  question: MyText
+  answer: MyText
+  checkpoint_id: 1

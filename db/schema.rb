@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121113175047) do
+ActiveRecord::Schema.define(:version => 20121113185032) do
 
   create_table "checkpoints", :force => true do |t|
     t.string   "checkpoint"
@@ -40,6 +40,18 @@ ActiveRecord::Schema.define(:version => 20121113175047) do
 
   add_index "lessons", ["slug"], :name => "index_lessons_on_slug", :unique => true
 
+  create_table "questionanswers", :force => true do |t|
+    t.text     "question"
+    t.text     "answer"
+    t.integer  "position"
+    t.integer  "checkpoint_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "slug"
+  end
+
+  add_index "questionanswers", ["slug"], :name => "index_questionanswers_on_slug", :unique => true
+
   create_table "subjects", :force => true do |t|
     t.string   "subject"
     t.datetime "created_at", :null => false
@@ -48,6 +60,17 @@ ActiveRecord::Schema.define(:version => 20121113175047) do
   end
 
   add_index "subjects", ["slug"], :name => "index_subjects_on_slug", :unique => true
+
+  create_table "summaries", :force => true do |t|
+    t.string   "summary"
+    t.integer  "position"
+    t.integer  "lesson_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "slug"
+  end
+
+  add_index "summaries", ["slug"], :name => "index_summaries_on_slug", :unique => true
 
   create_table "topics", :force => true do |t|
     t.string   "topic"
@@ -60,5 +83,33 @@ ActiveRecord::Schema.define(:version => 20121113175047) do
   end
 
   add_index "topics", ["slug"], :name => "index_topics_on_slug", :unique => true
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                  :default => "",     :null => false
+    t.string   "encrypted_password",     :default => "",     :null => false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.string   "role",                   :default => "user"
+    t.string   "given_name"
+    t.string   "surname"
+    t.string   "school_email"
+    t.integer  "grad_year"
+    t.string   "school"
+    t.string   "title"
+    t.integer  "phone"
+    t.string   "provider"
+    t.string   "uid"
+  end
+
+  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

@@ -6,6 +6,7 @@ class Lesson < ActiveRecord::Base
   #Relations
   belongs_to :topic
   has_many :checkpoints
+  has_many :summaries
   
   #Friendly ID
   extend FriendlyId

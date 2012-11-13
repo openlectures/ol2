@@ -1,13 +1,20 @@
 Ol2::Application.routes.draw do
-  resources :checkpoints
-
-  resources :lessons
-
-  resources :topics
-  resources :subjects
-
+  #Root Page
   root to: "pages#index"
   
+  #User Authentication Solution
+  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+                   controllers: {omniauth_callbacks: "omniauth_callbacks"}
+
+  #Resources
+  resources :questionanswers
+  resources :summaries
+  resources :checkpoints
+  resources :lessons
+  resources :topics
+  resources :subjects
+  
+  #Pages Controller
   get "pages/index"
   get "pages/contact"
   get "pages/opportunities"

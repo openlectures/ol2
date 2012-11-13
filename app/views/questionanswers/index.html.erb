@@ -1,0 +1,27 @@
+<h1>Listing questionanswers</h1>
+
+<table>
+  <tr>
+    <th>Question</th>
+    <th>Answer</th>
+    <th>Checkpoint</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @questionanswers.each do |questionanswer| %>
+  <tr>
+    <td><%= questionanswer.question %></td>
+    <td><%= questionanswer.answer %></td>
+    <td><%= questionanswer.checkpoint_id %></td>
+    <td><%= link_to 'Show', questionanswer %></td>
+    <td><%= link_to 'Edit', edit_questionanswer_path(questionanswer) %></td>
+    <td><%= link_to 'Destroy', questionanswer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Questionanswer', new_questionanswer_path %>

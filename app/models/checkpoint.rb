@@ -5,6 +5,7 @@ class Checkpoint < ActiveRecord::Base
   
   #Relations
   belongs_to :lesson
+  has_many :questionanswers
   
   #Friendly ID
   extend FriendlyId
