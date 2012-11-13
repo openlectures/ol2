@@ -1,6 +1,41 @@
-<h1>Editing subject</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @subject %> |
-<%= link_to 'Back', subjects_path %>
+<% title "Edit #{@subject}"%>
+<div class="row">
+<nav class="span3">
+<%=render 'shared/logo'%>
+<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
+  <%=render 'shared/search'%>
+  <%=render 'shared/start'%>
+  <%=render partial: "shared/navmanage"%>
+  <%=render 'shared/last'%>
+</ul>
+</nav><!--span3-->
+  <div class="span8 offset1">
+  <h1><%=@subject.subject%></h1>
+  <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
+  <hr>
+    <%=render partial: "shared/manage"%>
+  <hr>
+  <%@subject.topics.each do |topic|%>
+    <h3><%=topic.topic%> <small><a href=<%=edit_topic_path(topic)%> class="salmon">(EDIT)</a><%=link_to "(DELETE)", topic_path(topic), method: :delete, class: "salmon"%></small></h3>
+    <h6><small><%=topic.description%></small></h6>
+    <ol class="sortable" data-update-url="<%= sort_lessons_url %>">
+      <%topic.lessons.each do |lesson|%>
+        <%=content_tag_for :li, lesson do%>
+        <span class="handle" style="cursor:move">[drag]</span>
+        <%=lesson.lesson%><small><a href=<%=edit_lesson_path(lesson)%> class="salmon">(EDIT)<%=link_to "(DELETE)", lesson_path(lesson), method: :delete, class: "salmon"%></a>
+        <%if lesson.is_sublesson%>
+          [sublesson]
+        <%end%>
+        </small>
+      <%end%>
+    <%end%>   
+    </ol>
+    <hr>
+  <%end%>
+  <%=render partial: "shared/manage"%>
+  </div><!--span8-->
+  </div><!--row-->
+ <%-content_for  :javascripts do%>
+  <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
+  <%=javascript_include_tag "sortable.js"%>
+  <%-end%>

@@ -16,7 +16,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html {render layout: "reveal"}
       format.json { render json: @lesson }
     end
   end
@@ -79,5 +79,12 @@ class LessonsController < ApplicationController
       format.html { redirect_to lessons_url }
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    params[:lesson].each_with_index do |id, index|
+    Lesson.update_all({position: index+1}, {id: id})
+  end
+    render nothing: true
   end
 end

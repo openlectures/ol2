@@ -1,4 +1,10 @@
 Ol2::Application.routes.draw do
+  #Usr Controller
+  get "usr/manage"
+  get "usr/profile"
+  get "usr/staff"
+  match "usr/manage/:id" => "subjects#edit"
+  
   #Root Page
   root to: "pages#index"
   
@@ -10,7 +16,9 @@ Ol2::Application.routes.draw do
   resources :questionanswers
   resources :summaries
   resources :checkpoints
-  resources :lessons
+  resources :lessons do 
+    collection {post :sort}
+  end
   resources :topics
   resources :subjects
   

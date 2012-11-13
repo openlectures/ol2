@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   def index
+    @subjects = Subject.all
   end
 
   def contact
@@ -15,5 +16,6 @@ class PagesController < ApplicationController
   end
 
   def team
+    @thumbs = Dir.glob('app/assets/images/profile/*')
   end
 end

@@ -1,2 +1,60 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
+<%- title "Welcome" %>
+<%content_for :fbog do%>
+<%= tag :meta, property: "og:description", content: "" %>
+<%end%>
+<div class="row">
+  <div class="span12">
+  <%=render 'shared/logo'%>
+  <div class="row aligncenter">
+  <p>picture here behind text</p>
+  <h2>1099 ways to learn</h2>
+  <ul class="span4 nav nav-tabs nav-stacked">
+    <li><a href="#" class="hidden-phone" rel="popover" data-placement="bottom" data-trigger="click" data-html="true" data-content="<%=render :text => render('shared/navsubjects')%>" title="Choose Your Poison!">Subjects</a></li>
+  </ul>
+  <ul class="span4 nav nav-tabs nav-stacked">
+    <li><%= link_to('Start', new_user_registration_path)%></li>
+  </ul>
+  <ul class="span4 nav nav-tabs nav-stacked">
+    <li><a href="#" class="hidden-phone" rel="popover" data-placement="bottom" data-trigger="click" data-html="true" data-content="<%=render :text => render('shared/login')%>" title="Continue Your Adventure!">Log In</a></li>
+  </ul>
+  </div><!--row-->
+  <div class="row">
+  <div class="span8">
+  <h3>Free, online lectures for the Singapore Syllabus</h3>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices congue convallis. Curabitur tellus felis, viverra a pharetra a, scelerisque a mi. Etiam viverra dui sed nibh condimentum sit amet mattis risus aliquet. Nulla eu sem arcu, non consequat dui.</p>
+  </div><!--span8-->
+  </div><!--row-->
+  <hr>
+  <div class="row">
+    <div class="span8 offset2 aligncenter">
+      <%=render 'shared/search'%>
+    </div><!--span8-->
+  </div><!--row-->
+  <div class="row">
+    <div class="span4">
+      <h5>Newest Lectures</h5>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#">Tequila</a></li>
+        <li><a href="#">Vodka</a></li>
+        <li><a href="#">Jagermeister</a></li>
+      </ul>
+    </div><!--span4-->
+    <div class="span4">
+      <h5>Hot and Trending</h5>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#">Linan and the Mad Hatter</a></li>
+        <li><a href="#">Gary and the Zhang Family</a></li>
+        <li><a href="#">Pas de boire du vin</a></li>
+      </ul>
+    </div><!--span4-->
+    <div class="span4">
+      <h5>Announcements</h5>
+      <ul class="nav nav-pills nav-stacked">
+        <li><a href="#">Party today</a></li>
+        <li><a href="#">Party tomorrow</a></li>
+        <li><a href="#">Party next Friday</a></li>
+      </ul>
+    </div><!--span4-->
+  </div><!--row-->
+  </div><!--span12-->
+</div><!--row-->

@@ -1,0 +1,40 @@
+<%title "Manage Subjects"%>
+<div class="row">
+<nav class="span3">
+<%=render 'shared/logo'%>
+<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
+  <%=render 'shared/search'%>
+  <%=render 'shared/start'%>
+  <%=render partial: "shared/navmanage"%>
+  <%=render 'shared/last'%>
+</ul>
+</nav><!--span3-->
+<div class="span8 offset1">
+<h1>Subjects</h1>
+<p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
+<hr>
+<div class="row">
+  <%Subject.all.each do |subject|%>
+    <div class="span4">
+    <h3><%=link_to subject.subject, "/usr/manage/"+subject.subject.downcase%></h3>
+    <dl class="dl-horizontal hidden-phone">
+    <span class="muted">
+    <dt>Published Lessons:</dt>
+    <dd><%=subject.lessons.count%></dd>
+    <dt>Checkpoints:</dt>
+    <dd><%=subject.checkpoints.count%></dd>
+    <dt>Date of Last Update:</dt>
+    <%if subject.checkpoints.count != 0%>
+    <dd><%=subject.checkpoints.last.created_at.to_date%></dd>
+    <%else%>
+    <dd>N/A</dd>
+    <%end%>
+    </span><!--muted-->
+  </dl>
+  </div><!--span4-->
+  <%end%>
+  <div class="span4">
+    <a href=<%=new_subject_path%>><h3><i class="icon-plus"></i> New Subject</h3></a> 
+  </div>
+</div><!--row-->
+</div><!--row-->

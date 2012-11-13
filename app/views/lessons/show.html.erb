@@ -1,30 +1,158 @@
-<p id="notice"><%= notice %></p>
+<%title @lesson.lesson%>
+<div class="reveal">
+  <div class="state-background"></div>
+  <div class="slides">
+    <section class="alignleft">
+      <div class="row">
+      <nav class="span3">
+        <%=render 'shared/logo'%>
+        <ul data-spy="affix" class="nav nav-pills nav-stacked hidden-phone">
+          <%=render 'shared/start'%>
+          <%=render 'shared/navsubjects'%>
+          <%=render 'shared/last'%>
+        </ul>
+        </nav><!--span3-->
+      <div class="span8 offset1">
+      <h1><%=@lesson.lesson%></h1>
+      <p class="lead"><small>by</small><%=link_to @lesson.user.fullname, "mailto:#{@lesson.user.email}"%></p>
+      <hr>
+      <div class="row">
+        <div class="span6">
+      <h3>Checkpoints</h3>
+      <ol>
+        <%@lesson.checkpoints.order("position desc"). each_with_index do |checkpoint,index|%>
+          <li><a href="#" onclick=<%="Reveal.navigateTo(" + (index+1).to_s + ",0)"%>><%=checkpoint.checkpoint%></a></li>
+        <%end%>
+        <li><a href="#/summary" class="salmon">Summary</a></li>
+      </ol>
+    </div><!--span6-->
+    <div class="span2 aligncenter hidden-phone">
+      <h3>6 min</h3>
+      <h1><a href="#" onclick="Reveal.navigateNext()">Start</a></h1>
+    </div><!--span2-->
+      </div><!--span8-->
+      </div><!--row-->
+    </section>
+    <%@lesson.checkpoints.each do |checkpoint|%>
+    <%content_for :fbog do%>
+      <%= tag :meta, property: "og:type", content: "video.episode" %>
+      <%= tag :meta, property: "og:image", content: "http://img.youtube.com/vi/" + checkpoint.videourl + "/maxresdefault.jpg" %>
+      <%= tag :meta, property: "og:video", content: "http://youtube.com/" + checkpoint.videourl %>
+      <%= tag :meta, property: "og:video:actor", content: @lesson.staff.givenname + " " + @lesson.staff.surname %>
+      <%= tag :meta, property: "og:video:actor:role", content: "Lecturer" %>
+      <%= tag :meta, property: "og:video:director", content: "openlectures" %>
+      <%= tag :meta, property: "og:video:type", content: "video/youtube" %>
+      <%= tag :meta, property: "og:video:series", content: @lesson.lesson %>
+    <%end%>
+      <section id=<%=checkpoint.checkpoint.gsub(' ', '').downcase%>>
+        <section>
+        <div class="row-fluid alignleft">
+        <div class="span4">
+          <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
+            <li><a href="#" onclick="Reveal.navigateTo(0,0);return false">Back to Start</a></li>
+          </ul>
+          <h5 class="muted"><%=checkpoint.position%></h5>
+          <h2><%=checkpoint.checkpoint%></h2>
+          <hr>
+          <p><%=checkpoint.description%></p>
+          <div class="row-fluid margintop20p hidden-phone">
+            <div class="span4">
+              <ul class="nav nav-pills nav-stacked aligncenter">
+                <li><a href="#" onclick="Reveal.navigateLeft();return false">Back</a></li>
+              </ul>
+            </div><!--span4-->
+            <div class="span4">
+              <ul class="nav nav-pills nav-stacked aligncenter">
+                <li><a href="#" onclick="Reveal.navigateNext();return false">Question</a></li>
+              </ul>
+            </div><!--span4-->
+            <div class="span4">
+              <ul class="nav nav-pills nav-stacked aligncenter">
+                <li><a href="#" onclick="Reveal.navigateRight();return false">Next</a></li>
+              </ul>
+            </div><!--span4-->
+          </div><!--row-->
+        </div><!--span4-->
+        <div class="span8">
+          <div class="videoWrapper">
+            <iframe src=<%="http://www.youtube.com/embed/"+checkpoint.videourl+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080"%> frameborder="0" allowfullscreen seamless></iframe>
+          </div><!--videoWrapper-->
+        </div><!--span8-->
+        </div><!--row-->
+      </section>        
+      
+      <%checkpoint.questionanswers.each do |qa|%>
+        <section class="alignleft">
+          <div class="row-fluid">
+            <div class="span4">
+              <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
+                <li><a href="#" onclick="Reveal.navigateUp();return false">Back to Lecture</a></li>
+              </ul>
+              <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
+              <h2>Question</h2>
+              <hr>
+              <p><%=qa.question%></p>
+              <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
+                <li><a href="#" onclick="Reveal.navigateNext();return false">Next</a></li>
+              </ul>
+            </div><!--span4-->
+            <div class="span7 offset1">
+              <p class="lead"><%=qa.answer%></p>
+            </div><!--span7-->
+          </div><!--row-->
+        </section>
+      <%end%>
+      </section>
+    <%end%>
+  </section>
+    <section class="alignleft" id="summary">
+      <div class="row-fluid alignleft">
+        <div class="span4">
+          <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
+            <li><a href="#" onclick="Reveal.navigateTo(0,0);return false">Back to Syllabus Outline</a></li>
+          </ul>
+          <h2>Summary</h2>
+          <hr>
+          <p>Congratulations, you're done! You now know everything listed on the right. If you're still fuzzy, go back and give it another go!</p>
+          <div class="row-fluid margintop20p hidden-phone">
+            <div class="span6">
+              <ul class="nav nav-pills nav-stacked aligncenter">
+                <li><a href="#" onclick="Reveal.navigateLeft();return false">Back</a></li>
+              </ul>
+            </div><!--span4-->
+            <div class="span6">
+              <ul class="nav nav-pills nav-stacked aligncenter">
+                <li><a href="#" onclick="Reveal.navigateRight();return false">Next Lesson</a></li>
+              </ul>
+            </div><!--span-->
+          </div><!--row-->
+        </div><!--span4-->
+        <div class="span7 offset1">
+          <ul class="icons">
+            <%@lesson.summaries.each do |l|%>
+            <li><i class="icon-check"></i> <%=l.summary%></li>
+            <%end%>
+          </ul>
+        </div><!--span7-->
+      </div><!--row-->
+    </section>
+  </div><!--slides-->
+  <!-- The navigational controls UI -->
+  <aside class="controls">
+    <a class="left" href="#"><i class="icon-caret-left icon-large"></i></a>
+    <a class="right" href="#"><i class="icon-caret-right icon-large"></i></a>
+    <a class="up" href="#"><i class="icon-caret-up icon-large"></i></a>
+    <a class="down" href="#"><i class="icon-caret-down icon-large"></i></a>
+  </aside>
 
-<p>
-  <b>Lesson:</b>
-  <%= @lesson.lesson %>
-</p>
-
-<p>
-  <b>Topic:</b>
-  <%= @lesson.topic_id %>
-</p>
-
-<p>
-  <b>Is sublesson:</b>
-  <%= @lesson.is_sublesson %>
-</p>
-
-<p>
-  <b>Position:</b>
-  <%= @lesson.position %>
-</p>
-
-<p>
-  <b>User:</b>
-  <%= @lesson.user_id %>
-</p>
-
-
-<%= link_to 'Edit', edit_lesson_path(@lesson) %> |
-<%= link_to 'Back', lessons_path %>
+  </div><!--reveal-->
+<%content_for :javascripts do%>
+  <script>
+    Reveal.initialize({
+      history: true,
+      rollingLinks: false,
+      transition: 'linear',
+      mouseWheel: false
+    });
+  </script>
+<% end %>

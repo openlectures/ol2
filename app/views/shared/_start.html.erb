@@ -1,0 +1,16 @@
+<hr>
+<% if user_signed_in? %>
+  <% if current_user.role = "admin" ||current_user.role = "lecturer"%>
+  <li><%= link_to(current_user.fullname, "#")%></li>
+  <li><%= link_to('Manage Subjects', "#")%></li>
+  <li><%=link_to "Staff Database", "#"%></li>
+  <%else%>
+    <li><%= link_to(current_user.fullname, "#")%></li>
+  <%end%>
+<% else %>
+  <li><a href="#" class="hidden-phone" rel="popover" data-placement="right" data-trigger="click" data-html="true" data-content="<%=render :text => render('shared/login')%>" title="Continue Your Adventure!">Log In</a></li>
+  <li><%= link_to('Get Started', new_user_registration_path)%></li>
+  <li><a href="#" class="hidden-phone" rel="popover" data-placement="right" data-trigger="click" data-html="true" data-content="<%=render :text => render('shared/navsubjects')%>" title="Pick One!">Subjects</a></li>
+<% end %>
+  <li><%= link_to('About Us', pages_team_path)%></li>
+<hr>

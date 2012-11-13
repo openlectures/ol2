@@ -1,23 +1,24 @@
-<h1>Listing subjects</h1>
-
-<table>
-  <tr>
-    <th>Subject</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @subjects.each do |subject| %>
-  <tr>
-    <td><%= subject.subject %></td>
-    <td><%= link_to 'Show', subject %></td>
-    <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
-    <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Subject', new_subject_path %>
+<%title "Subjects" %>
+<div class="row">
+<nav class="span3">
+<%=render 'shared/logo'%>
+<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
+  <%=render 'shared/search'%>
+  <%=render 'shared/start'%>
+  <%=render partial: "shared/pages"%>
+  <%=render 'shared/last'%>
+</ul>
+</nav><!--span3-->
+<div class="span8 offset1">
+<h1>Subjects</h1>
+<p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
+<hr>
+<div class="row">
+  <% @subjects.each do |subject|%>
+    <div class="span4">
+      <h3><%=link_to subject.subject, subject %></h3>
+    </div><!--span4-->
+  <%end%>
+</div><!--row-->
+</div><!--span8-->
+</div><!--row-->

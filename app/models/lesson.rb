@@ -5,6 +5,7 @@ class Lesson < ActiveRecord::Base
   
   #Relations
   belongs_to :topic
+  belongs_to :user
   has_many :checkpoints
   has_many :summaries
   

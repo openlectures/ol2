@@ -5,10 +5,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   ROLES = %w[admin lecturer user]
-  # Setup accessible (or protected) attributes for your model
+  
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :given_name, :surname, :school_email, :grad_year, :school, :title, :phone
-  # attr_accessible :title, :body
-
+  
+  #Relations
+  has_many :lessons
+  
+  #Methods and Overrides
+  def fullname 
+    return given_name + " " + surname
+  end
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider

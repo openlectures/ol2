@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Ol2</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
+<%=render 'shared/head'%>
 <body>
-  <%= yield %>
+  <div id="wrap">
+    <div class="container">
+      <div class="page-alert">
+        <%= bootstrap_flash %>
+        <!--[if lt IE 7]>
+          You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
+        <![endif]-->
+      </div><!--page-alert-->
+      <%= yield %>
+    </div><!--container-->
+    <div id="push"></div>
+  </div><!--wrap-->
+  <%=render 'shared/footer'%>
+  <%= jquery_include_tag :google %>
+  <%= javascript_include_tag "application"%>
+  <%= javascript_include_tag "tinynav"%>
+  <%= yield :javascripts %>
+  <script>
+    $('#navbar').tinyNav();
+    $("a[rel=popover]").popover();
+  </script>
 </body>
 </html>
