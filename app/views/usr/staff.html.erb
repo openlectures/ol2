@@ -1,2 +1,47 @@
-<h1>Usr#staff</h1>
-<p>Find me in app/views/usr/staff.html.erb</p>
+<%title "Staff"%>
+<div class="row">
+<nav class="span3">
+<%=render 'shared/logo'%>
+<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
+  <%=render 'shared/search'%>
+  <%=render 'shared/start'%>
+  <%=render partial: "shared/navmanage"%>
+  <%=render 'shared/last'%>
+</ul>
+</nav><!--span3-->
+<div class="span8 offset1" id="staff-list">
+<h1>Staff Database</h1>
+<hr>
+<input type="search" class="search input-block-level" placeholder="Filter List">
+<table class="table table-hover table-condensed">
+<thead>
+  <tr>
+  <th>Name</th>
+  <th>Email Address</th>
+  <th>Phone Number</th>
+  <th>Title</th>  
+  </tr>
+</thead>
+<tbody class="list">
+<%@staff.each do |s|%>
+  <tr>
+  <td class="name"><%=s.fullname%></td>
+  <td class="email"><%= mail_to(s.email, nil, :encode => "javascript") %></td>
+  <td class="phone"><a href="callto:<%=s.phone%>"><%=s.phone%></a></td>
+  <td class="title"><%=s.title%></td>
+  </tr>
+<%end%>
+</tbody>
+</table>
+</div><!--span8-->
+</div><!--row-->
+<%content_for :javascripts do%>
+<%=javascript_include_tag "list.min"%>
+<script>
+var options = {
+    valueNames: [ 'name', 'email', 'phone', 'title' ]
+};
+
+var staffList = new List('staff-list', options);
+</script>
+<%end%>

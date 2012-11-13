@@ -1,9 +1,9 @@
 <hr>
 <% if user_signed_in? %>
   <% if current_user.role = "admin" ||current_user.role = "lecturer"%>
-  <li><%= link_to(current_user.fullname, "#")%></li>
-  <li><%= link_to('Manage Subjects', "#")%></li>
-  <li><%=link_to "Staff Database", "#"%></li>
+  <li><%= link_to(current_user.fullname, usr_profile_path)%></li>
+  <li><%= link_to('Manage Subjects', usr_manage_path)%></li>
+  <li><%=link_to "Staff Database", usr_staff_path%></li>
   <%else%>
     <li><%= link_to(current_user.fullname, "#")%></li>
   <%end%>
