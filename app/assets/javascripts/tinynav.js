@@ -4,7 +4,7 @@
 
     // Default settings
     var settings = $.extend({
-      'active' : 'selected', // String: Set the "active" class
+      'active' : 'active', // String: Set the "active" class
       'header' : '' // String: Specify text for "header" and show header instead of the active item
     }, options);
 
