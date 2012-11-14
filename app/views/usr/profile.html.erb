@@ -10,11 +10,16 @@
 </ul>
 </nav><!--span3-->
 <div class="span8 offset1">
-  <%if current_user.role == "user"%>
-    <h1><%=current_user.fullname%></h1>
-    <p class="lead"><%=current_user.school%></a></p>
-  <%elsif current_user.role == "admin"%>
-    <h1><%=current_user.fullname%></h1>
+  <div class="row-fluid">
+    <div class="span3">
+      <%= image_tag current_user.avatar.url %>
+    </div>
+    <div class="span9">
+      <h1><%=current_user.fullname%></h1>    
+    </div>
+  </div>
+  <p class="lead"><%=current_user.school%></a></p>
+  <%if current_user.role == "admin"%>
     <hr>
     <h3>Important Information</h3>
     <h6 class="muted">Y'know, the boyfriend/girlfriend's birthday, the place that sells the cheapest tequila shots, and the people who will attempt to hit on you. All this, neatly compiled and tabulated.</h6>

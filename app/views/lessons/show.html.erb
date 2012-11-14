@@ -146,7 +146,9 @@
   </aside>
 
   </div><!--reveal-->
-
+<%content_for :styles do %>
+<%=stylesheet_link_tag "reveal"%>
+<%end%>
 <%content_for :javascripts do%>
   <%=javascript_include_tag "head.min"%>
   <%=javascript_include_tag "reveal.min"%>

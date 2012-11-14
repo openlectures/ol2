@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 
 group :production do
 gem 'pg'
@@ -23,6 +23,9 @@ gem 'omniauth-facebook'
 group :development do
   gem 'quiet_assets'  
 end
+
+#User avatar
+gem "paperclip"
 
 gem 'thin'
 gem 'devise'
