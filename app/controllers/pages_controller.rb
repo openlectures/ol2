@@ -15,6 +15,9 @@ class PagesController < ApplicationController
   def presskit
   end
 
+  def privacy
+  end
+
   def team
     @thumbs = Dir.glob('app/assets/images/profile/*')
   end

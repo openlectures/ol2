@@ -15,4 +15,5 @@
 /tmp
 
 *.sublime-workspace
-.DS_Store
+*.DS_Store
+*.sublime-project

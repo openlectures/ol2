@@ -29,4 +29,5 @@ Ol2::Application.routes.draw do
   get "pages/partners"
   get "pages/presskit"
   get "pages/team"
+  get "pages/privacy"
 end
