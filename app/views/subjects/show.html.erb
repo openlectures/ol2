@@ -2,16 +2,11 @@
 <%content_for :fbog do%>
 <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
+<%end%>
+
   <div class="span8 offset1">
   <h1><%=@subject.subject%></h1>
   <ul class="nav nav-pills" id="myTab">

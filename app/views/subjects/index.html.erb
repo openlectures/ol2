@@ -1,15 +1,9 @@
 <%title "Subjects" %>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1">
+<%end%>
+
 <h1>Subjects</h1>
 <p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
 <hr>
@@ -19,6 +13,4 @@
       <h3><%=link_to subject.subject, subject %></h3>
     </div><!--span4-->
   <%end%>
-</div><!--row-->
-</div><!--span8-->
 </div><!--row-->

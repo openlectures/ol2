@@ -1,15 +1,9 @@
 <% title "Edit #{@subject}"%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/navmanage"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-  <div class="span8 offset1">
+<%end%>
+
   <h1><%=@subject.subject%></h1>
   <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
   <hr>
@@ -33,8 +27,6 @@
     <hr>
   <%end%>
   <%=render partial: "shared/manage"%>
-  </div><!--span8-->
-  </div><!--row-->
  <%-content_for  :javascripts do%>
   <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
   <%=javascript_include_tag "sortable.js"%>

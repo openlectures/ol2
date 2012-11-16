@@ -1,15 +1,9 @@
 <%title "Manage Subjects"%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/navmanage"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1">
+<%end%>
+
 <h1>Subjects</h1>
 <p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
 <hr>
@@ -36,5 +30,4 @@
   <div class="span4">
     <a href=<%=new_subject_path%>><h3><i class="icon-plus"></i> New Subject</h3></a> 
   </div>
-</div><!--row-->
 </div><!--row-->

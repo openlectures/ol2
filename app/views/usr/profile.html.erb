@@ -1,15 +1,9 @@
 <%title "Profile"%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/navmanage"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1">
+<%end%>
+
   <div class="row-fluid">
     <div class="span3">
       <%= image_tag current_user.avatar.url %>
@@ -83,6 +77,3 @@
       <dd><a href="http://www.github.com/jethrokuan/ol">http://www.github.com/jethrokuan/ol</a></dd>
     </dl>
   <%end%>
-
-</div><!--span8-->
-</div><!--row-->
