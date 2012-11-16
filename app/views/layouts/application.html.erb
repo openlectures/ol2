@@ -5,7 +5,9 @@
       <div class="page-alert">
         <%= bootstrap_flash %>
         <!--[if lt IE 7]>
+          <div class="alert">
           You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
+          </div>
         <![endif]-->
       </div><!--page-alert-->
       <%= yield %>
@@ -15,9 +17,9 @@
   <%=render 'shared/footer'%>
   <%= jquery_include_tag :google %>
   <%= javascript_include_tag "application"%>
-  <%= javascript_include_tag "tinynav"%>
   <%= yield :javascripts %>
   <script>
+    $.webshims.polyfill();
     $('#navbar').tinyNav();
     $("a[rel=popover]").popover();
   </script>
