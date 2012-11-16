@@ -14,13 +14,13 @@
 <div class="controls controls-row">
     <%= f.text_field :school, id: "autocomplete_school", class: "input-block-level aligncenter", placeholder: "School", 'data-provide' => 'typeahead', :items => "4", :minLength => "3"%>
 </div><!--controls-->
-<%= f.submit "Sign Up", class: "btn btn-block", 'data-loading-state' => 'Working Magic'%>
+<%= f.submit "Sign Up", id: "submit", class: "btn btn-block"%>
 <% end %>
 <hr>
 <%content_for :javascripts do%>
 <script>
-$(document).ready(function() {
-        $('#autocomplete_school').typeahead({source: <%= File.read('app/assets/json/schools.json').html_safe %>});
-    });
+  $(document).ready(function() {
+    $('#autocomplete_school').typeahead({source: <%=File.read('app/assets/json/schools.json').html_safe%>});
+  });
 </script>
 <%end%>

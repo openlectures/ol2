@@ -18,5 +18,8 @@
   <%=javascript_include_tag "head.min"%>
   <%=javascript_include_tag "reveal"%>
   <%=yield :javascripts%>
+  <script>
+  $.webshims.polyfill();
+  </script>
 </body>
 </html>

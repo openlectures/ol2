@@ -1,18 +1,12 @@
 <%- title "Opportunities" %>
 <%content_for :fbog do%>
-<%= tag :meta, property: "og:description", content: "" %>
+  <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1">
+<%end%>
+
 <%=image_tag "work.jpg", :class => "img-rounded top-square"%>
 <h1>We can't pay you, but we can give you <span class="salmon">the experience of a lifetime</span></h1>
 <hr>
@@ -97,5 +91,5 @@
 </div><!--row-->
 <hr>
 <p>We've filled out our share of forms, and we know it isn't easy. We'll be in touch, regardless of the outcome of your application. </p>
-</div><!--span8-->
+</div><!--span7-->
 </div><!--row-->

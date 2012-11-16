@@ -1,7 +1,7 @@
 <%=render 'shared/head'%>
 <body>
   <div id="wrap">
-    <div class="container">
+    <div class="container-fluid">
       <div class="page-alert">
         <%= bootstrap_flash %>
         <!--[if lt IE 7]>
@@ -10,8 +10,24 @@
           </div>
         <![endif]-->
       </div><!--page-alert-->
-      <%= yield %>
-    </div><!--container-->
+      <div class="row-fluid">
+      <nav class="span3 dim">
+        <%=render 'shared/logo'%>
+        <ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
+        <%=render 'shared/search'%>
+        <%=render 'shared/start'%>
+        <% if content_for?(:sidebar) %>
+        <hr>
+        <%=yield :sidebar %>
+        <%end%>
+        <%=render 'shared/last'%>
+        </ul>
+      </nav><!--span3-->
+      <div class="span7 offset1">
+      <%=yield%>
+      </div><!--span7-->
+      </div><!--rowfluid-->
+    </div><!--containerfluid-->
     <div id="push"></div>
   </div><!--wrap-->
   <%=render 'shared/footer'%>

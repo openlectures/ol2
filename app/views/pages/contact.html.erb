@@ -1,18 +1,12 @@
 <%- title "Contact Us" %>
 <%content_for :fbog do%>
-<%= tag :meta, property: "og:description", content: "" %>
+  <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1 vcard" itemscope itemtype="http://data-vocabulary.org/Organization">
+<%end%>
+<div class="vcard" itemscope itemtype="http://data-vocabulary.org/Organization">
 <h1 class="fn org" itemprop="name">openlectures</h1>
 <h1 class="adr" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
   Location: <a href="http://en.wikipedia.org/wiki/The_Hitchhiker's_Guide_to_the_Galaxy" class="locality" target="_blank" itemprop="locality">ZZ9 Plural Z Alpha</a>
@@ -38,5 +32,3 @@
   <dt>Twitter</dt>
   <dd><a href="http://twitter.com/openlecturessg">@openlecturessg</a></dd>
 </dl>
-</div><!--span8-->
-</div><!--row-->

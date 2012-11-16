@@ -1,25 +1,20 @@
 <%title "Staff"%>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/navmanage"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1" id="staff-list">
+<%end%>
+
+<div id="staff-list">
 <h1>Staff Database</h1>
 <hr>
 <input type="search" class="search input-block-level" placeholder="Filter List">
 <table class="table table-hover table-condensed">
 <thead>
   <tr>
-  <th>Name</th>
-  <th>Email Address</th>
-  <th>Phone Number</th>
-  <th>Title</th>  
+  <th><a href="#" data-sort="name">Name</a></th>
+  <th><a href="#" data-sort="email">Email Address</a></th>
+  <th><a href="#" data-sort="phone">Phone Number</a></th>
+  <th><a href="#" data-sort="location">Location</a></th>
   </tr>
 </thead>
 <tbody class="list">
@@ -28,18 +23,17 @@
   <td class="name"><%=s.fullname%></td>
   <td class="email"><%= mail_to(s.email, nil, :encode => "javascript") %></td>
   <td class="phone"><a href="callto:<%=s.phone%>"><%=s.phone%></a></td>
-  <td class="title"><%=s.title%></td>
+  <td class="location"></td>
   </tr>
 <%end%>
 </tbody>
 </table>
-</div><!--span8-->
-</div><!--row-->
+
 <%content_for :javascripts do%>
 <%=javascript_include_tag "list.min"%>
 <script>
 var options = {
-    valueNames: [ 'name', 'email', 'phone', 'title' ]
+    valueNames: [ 'name', 'email', 'phone', 'location' ]
 };
 
 var staffList = new List('staff-list', options);

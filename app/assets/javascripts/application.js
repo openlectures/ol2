@@ -9,7 +9,7 @@
 //= require twitter/bootstrap/bootstrap-popover
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-typeahead
-//= require twitter/bootstrap/bootstrap-button
+//= require twitter/bootstrap/bootstrap-dropdown
 //= require garlic
 //= require modernizr
 //= require polyfiller

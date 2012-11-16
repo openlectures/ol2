@@ -1,15 +1,12 @@
 <%- title "Privacy Policy" %>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+<%content_for :fbog do%>
+  <%= tag :meta, property: "og:description", content: "" %>
+<%end%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1">
+<%end%>
+
 <h1>Privacy Policy</h1>
 <p class="lead">openlectures collects some personal data from its Users.</p>
 

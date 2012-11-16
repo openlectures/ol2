@@ -16,6 +16,21 @@
 .clean, .clean:hover {
   color: inherit;
 }
+.dim {
+  opacity:0.6;
+  -webkit-transition: opacity 0.5s ease;
+     -moz-transition: opacity 0.5s ease;
+       -o-transition: opacity 0.5s ease;
+          transition: opacity 0.5s ease;
+}
+.dim:hover {
+  opacity:1;
+
+  -webkit-transition: opacity 0.5s ease;
+     -moz-transition: opacity 0.5s ease;
+       -o-transition: opacity 0.5s ease;
+          transition: opacity 0.5s ease;
+}
 
 /* Remove top rounded borders */
 .top-square {
@@ -30,7 +45,7 @@
 }
 
 .element-center * {
-  display:inline-block;
+  /*display:inline-block;*/
 }
 
 /* Responsive Video Hack */

@@ -1,33 +1,8 @@
 <%- title "Press" %>
-<div class="row">
-<nav class="span3">
-<%=render 'shared/logo'%>
-<ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-  <%=render 'shared/search'%>
-  <%=render 'shared/start'%>
+<%content_for :fbog do%>
+  <%= tag :meta, property: "og:description", content: "" %>
+<%end%>
+
+<%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
-  <%=render 'shared/last'%>
-</ul>
-</nav><!--span3-->
-<div class="span8 offset1">
-  
-<div id="timeline-embed"></div>
-</div><!--span8-->
-</div><!--row-->
-<%content_for :javascripts do%>
-<%=stylesheet_link_tag "timeline"%>
-<%=javascript_include_tag "storyjs-embed"%>
-<%=javascript_include_tag "timeline-min"%>
-  
-<script type="text/javascript">
-  $(document).ready(function() {
-      createStoryJS({
-          type:       'timeline',
-          width:      '100%',
-          height:     '600',
-          source:     'https://docs.google.com/spreadsheet/pub?key=0Ahlne8dbHhEXdGRMZlVZU3RodnVvY2pfaWFYZjR4dWc&output=html',
-          embed_id:   'timeline-embed'
-      });
-  });
-</script>
 <%end%>
