@@ -6,28 +6,51 @@
 
   <h1><%=@subject.subject%></h1>
   <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
+  <ul class="nav nav-pills" id="myTab">
+    <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
+    <li><a href="#all" data-toggle="tab">Browse All</a></li>
+  </ul>
   <hr>
-    <%=render partial: "shared/manage"%>
-  <hr>
+  <div class="tab-content">
+  <div class="tab-pane active fade in" id="seab">
   <%@subject.topics.each do |topic|%>
-    <h3><%=topic.topic%> <small><a href=<%=edit_topic_path(topic)%> class="salmon">(EDIT)</a><%=link_to "(DELETE)", topic_path(topic), method: :delete, class: "salmon"%></small></h3>
+    <h3><%=topic.topic%>
+      <div class="btn-group pull-right">
+        <%=link_to("Edit Topic",edit_topic_path(topic), class: "btn btn-small")%>
+        <%=link_to("Delete", topic_path(topic), method: :delete, class: "btn btn-small btn-danger")%>
+      </div>
+    </h3>
     <h6><small><%=topic.description%></small></h6>
     <ol class="sortable" data-update-url="<%= sort_lessons_url %>">
       <%topic.lessons.each do |lesson|%>
-        <%=content_tag_for :li, lesson do%>
-        <span class="handle" style="cursor:move">[drag]</span>
-        <%=lesson.lesson%><small><a href=<%=edit_lesson_path(lesson)%> class="salmon">(EDIT)<%=link_to "(DELETE)", lesson_path(lesson), method: :delete, class: "salmon"%></a>
         <%if lesson.is_sublesson%>
-          [sublesson]
+          <ul class="unstyled">
         <%end%>
-        </small>
+        <%=content_tag_for :li, lesson do%>
+        <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
+        <%=link_to(lesson.lesson,lesson_path(lesson))%>
+        <div class="btn-group pull-right">
+          <%=link_to("Edit Lesson",edit_lesson_path(lesson), class: "btn btn-mini")%>
+          <%=link_to("Delete", lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
+        </div>
+        <%if lesson.is_sublesson%>
+        </ul>
+        <%end%>
       <%end%>
     <%end%>   
     </ol>
     <hr>
   <%end%>
-  <%=render partial: "shared/manage"%>
- <%-content_for  :javascripts do%>
+  </div><!--tabpane-->
+  <div class="tab-pane fade" id="all">
+    <ul class="unstyled list">
+      <%@subject.checkpoints.each do |checkpoint|%>
+      <li><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.gsub(' ', '').downcase%></li>
+      <%end%>
+    </ul><!--unstyled-->
+  </div><!--tabpane-->
+  </div><!--tabcontent-->
+<%-content_for  :javascripts do%>
   <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
   <%=javascript_include_tag "sortable.js"%>
-  <%-end%>
+<%-end%>

@@ -1,5 +1,10 @@
-<h1>New lesson</h1>
+<%title "Create Lesson" %>
 
+<%content_for :sidebar do%>
+  <%=render partial: "shared/navmanage"%>
+<%end%>
+
+<h1>Create Lesson</h1>
 <%= render 'form' %>
 
 <%= link_to 'Back', lessons_path %>

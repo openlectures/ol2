@@ -1,13 +1,8 @@
 <%title @subject.subject%>
-<%content_for :fbog do%>
-<%= tag :meta, property: "og:description", content: "" %>
-<%end%>
-
 <%content_for :sidebar do%>
   <%=render partial: "shared/pages"%>
 <%end%>
 
-  <div class="span8 offset1">
   <h1><%=@subject.subject%></h1>
   <ul class="nav nav-pills" id="myTab">
     <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
@@ -48,5 +43,3 @@
   </div><!--row-fluid-->
   </div><!--tabpane-->
   </div><!--tabcontent-->
-  </div><!--span8-->
-</div><!--row-->
