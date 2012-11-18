@@ -15,4 +15,12 @@ class Lesson < ActiveRecord::Base
 
   #Listing
   acts_as_list scope: :topic
+
+  def self.search(search)
+  if search
+    where('lesson LIKE ?', "%#{search}%")
+  else
+    all
+  end
+end
 end

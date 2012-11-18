@@ -5,7 +5,6 @@
     <th>Lesson</th>
     <th>Topic</th>
     <th>Is sublesson</th>
-    <th>Position</th>
     <th>User</th>
     <th></th>
     <th></th>
@@ -15,9 +14,8 @@
 <% @lessons.each do |lesson| %>
   <tr>
     <td><%= lesson.lesson %></td>
-    <td><%= lesson.topic_id %></td>
+    <td><%= lesson.topic.topic %></td>
     <td><%= lesson.is_sublesson %></td>
-    <td><%= lesson.position %></td>
     <td><%= lesson.user_id %></td>
     <td><%= link_to 'Show', lesson %></td>
     <td><%= link_to 'Edit', edit_lesson_path(lesson) %></td>

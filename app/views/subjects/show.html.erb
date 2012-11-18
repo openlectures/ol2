@@ -3,6 +3,7 @@
   <h1><%=@subject.subject%></h1>
   <ul class="nav nav-pills" id="myTab">
     <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
+    <li class="disabled"><a href="#subway" data-toggle="tab">Subway Map</a></li>
     <li><a href="#all" data-toggle="tab">Browse All</a></li>
   </ul>
   <div class="tab-content">
@@ -13,11 +14,21 @@
       <ol>
       <%topic.lessons.each do |lesson|%>
         <%if lesson.is_sublesson%>
-        <ul class="unstyled"><li><%=link_to lesson.lesson, lesson%></li></ul>
-        <%else%>
-        <li><%=link_to lesson.lesson, lesson%></li>
+          <ul class="unstyled">
         <%end%>
-      <%end%>
+
+        <%=content_tag_for :li, lesson do%>
+          <%if lesson.is_sublesson%>
+          <%=link_to(lesson.lesson,lesson_path(lesson))%>
+          <%else%>
+          <%=lesson.lesson%>
+          <%end%>
+
+          <%if lesson.is_sublesson%>
+          </ul>
+          <%end%>
+        <%end%>
+      <%end%> 
       </ol>
     <%end%>
   </div><!--tabpane-->
