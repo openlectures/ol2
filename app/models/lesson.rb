@@ -16,11 +16,15 @@ class Lesson < ActiveRecord::Base
   #Listing
   acts_as_list scope: :topic
 
-  def self.search(search)
-  if search
-    where('lesson LIKE ?', "%#{search}%")
+  include PgSearch
+  pg_search_scope :search, against: [:lesson],
+  using: {tsearch: {dictionary: "english"}}
+
+  def self.text_search(query)
+  if query.present?
+    search(query)
   else
-    all
+    scoped
   end
 end
 end

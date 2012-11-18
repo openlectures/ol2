@@ -35,6 +35,7 @@ gem 'simple_form'
 gem 'acts_as_list'
 
 gem 'friendly_id'
+gem 'pg_search'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails-cdn'
