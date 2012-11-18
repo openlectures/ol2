@@ -4,6 +4,7 @@
   <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
   <ul class="nav nav-pills" id="myTab">
     <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
+    <li class="disabled"><a href="#all" data-toggle="tab">Subway Map</a></li>
     <li><a href="#all" data-toggle="tab">Browse All</a></li>
   </ul>
   <hr>
@@ -24,7 +25,11 @@
         <%end%>
         <%=content_tag_for :li, lesson do%>
         <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
+        <%if lesson.is_sublesson%>
         <%=link_to(lesson.lesson,lesson_path(lesson))%>
+        <%else%>
+        <%=lesson.lesson%>
+        <%end%>
         <div class="btn-group pull-right">
           <%=link_to("Edit Lesson",edit_lesson_path(lesson), class: "btn btn-mini")%>
           <%=link_to("Delete", lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
