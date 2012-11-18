@@ -40,4 +40,7 @@ Ol2::Application.routes.draw do
   get "pages/presskit"
   get "pages/team"
   get "pages/privacy"
+
+  #Catching 404 Errors
+  match "*path" => 'error#handle404'
 end
