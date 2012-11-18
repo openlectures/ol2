@@ -1,9 +1,5 @@
 <% title "Edit #{@subject}"%>
 
-<%content_for :sidebar do%>
-  <%=render partial: "shared/navmanage"%>
-<%end%>
-
   <h1><%=@subject.subject%></h1>
   <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
   <ul class="nav nav-pills" id="myTab">

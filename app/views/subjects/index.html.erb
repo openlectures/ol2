@@ -1,9 +1,5 @@
 <%title "Subjects" %>
 
-<%content_for :sidebar do%>
-  <%=render partial: "shared/pages"%>
-<%end%>
-
 <h1>Subjects</h1>
 <p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
 <hr>

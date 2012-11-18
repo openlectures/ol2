@@ -16,22 +16,24 @@
 .clean, .clean:hover {
   color: inherit;
 }
+@media (min-width: 767px) {
 .dim {
-  opacity:0.6;
-  -webkit-transition: opacity 0.5s ease;
-     -moz-transition: opacity 0.5s ease;
-       -o-transition: opacity 0.5s ease;
-          transition: opacity 0.5s ease;
+  opacity:0.4;
+  -webkit-transform: scale(0.75);
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+          transition: all 0.5s ease;
 }
 .dim:hover {
   opacity:1;
-
-  -webkit-transition: opacity 0.5s ease;
-     -moz-transition: opacity 0.5s ease;
-       -o-transition: opacity 0.5s ease;
-          transition: opacity 0.5s ease;
+  -webkit-transform: scale(1);
+  -webkit-transition: all 0.5s ease;
+     -moz-transition: all 0.5s ease;
+       -o-transition: all 0.5s ease;
+          transition: all 0.5s ease;
 }
-
+}
 /* Remove top rounded borders */
 .top-square {
   border-top-left-radius: 0;

@@ -1,9 +1,5 @@
 <%title @lesson.lesson%>
 
-<%content_for :sidebar do%>
-  <%=render partial: "shared/navsubjects"%>
-<%end%>
-
       <h1><%=@lesson.lesson%></h1>
       <p class="lead"><small>by</small><%=link_to @lesson.user.fullname, "mailto:#{@lesson.user.email}"%></p>
       <hr>

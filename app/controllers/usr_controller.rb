@@ -8,4 +8,5 @@ class UsrController < ApplicationController
   def staff
     @staff = User.where("role = ? OR role = ?", "admin", "lecturer")
   end
+
 end

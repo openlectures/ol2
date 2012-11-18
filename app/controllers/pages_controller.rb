@@ -21,4 +21,5 @@ class PagesController < ApplicationController
   def team
     @thumbs = Dir.glob('app/assets/images/profile/*')
   end
+
 end

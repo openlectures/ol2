@@ -1,9 +1,5 @@
 <%title "Profile"%>
 
-<%content_for :sidebar do%>
-  <%=render partial: "shared/navmanage"%>
-<%end%>
-
   <div class="row-fluid">
     <div class="span3">
       <%= image_tag current_user.avatar.url %>

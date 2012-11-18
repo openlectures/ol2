@@ -1,16 +1,26 @@
 Ol2::Application.routes.draw do
   #Usr Controller
-  get "usr/manage"
-  get "usr/profile"
-  get "usr/staff"
+  get   "usr/manage"
+  get   "usr/profile"
+  get   "usr/staff"
   match "usr/manage/:id" => "subjects#edit"
   
   #Root Page
+  authenticated :user do
+    root to: "usr#manage"
+  end
   root to: "pages#index"
   
   #User Authentication Solution
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
-                   controllers: {omniauth_callbacks: "omniauth_callbacks"}
+             controllers: {omniauth_callbacks: "omniauth_callbacks"}
+  devise_for :users, :skip => [:sessions]
+  as :user do
+    get   'login'   => 'devise/sessions#new',     :as => :new_user_session
+    post  'login'   => 'devise/sessions#create',  :as => :user_session
+    match 'logout'  => 'devise/sessions#destroy', :as => :destroy_user_session,
+    :via => Devise.mappings[:user].sign_out_via
+  end
 
   #Resources
   resources :questionanswers
