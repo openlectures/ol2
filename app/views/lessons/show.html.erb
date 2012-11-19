@@ -125,17 +125,9 @@
     </section>
   </div><!--slides-->
   <!-- The navigational controls UI -->
-  <aside class="controls">
-    <a class="left" href="#"><i class="icon-caret-left icon-large"></i></a>
-    <a class="right" href="#"><i class="icon-caret-right icon-large"></i></a>
-    <a class="up" href="#"><i class="icon-caret-up icon-large"></i></a>
-    <a class="down" href="#"><i class="icon-caret-down icon-large"></i></a>
-  </aside>
-
+  <div class="progress" style="display: block;"><span></span></div>
+  <aside class="controls" style="display: block;"><div class="navigate-left enabled"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside>
   </div><!--reveal-->
-<%content_for :styles do %>
-<%=stylesheet_link_tag "reveal"%>
-<%end%>
 <%content_for :javascripts do%>
   <script>
     Reveal.initialize({

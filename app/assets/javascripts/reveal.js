@@ -22,7 +22,7 @@ var Reveal = (function(){
 			progress: true,
 
 			// Push each slide change to the browser history
-			history: true,
+			history: false,
 
 			// Enable keyboard shortcuts for navigation
 			keyboard: true,
@@ -36,22 +36,25 @@ var Reveal = (function(){
 			// Loop the presentation
 			loop: false,
 
+			// Experimental support for RTL
+			rtl: false,
+
 			// Number of milliseconds between automatically proceeding to the
 			// next slide, disabled when set to 0, this value can be overwritten
 			// by using a data-autoslide attribute on your slides
 			autoSlide: 0,
 
 			// Enable slide navigation via mouse wheel
-			mouseWheel: true,
+			mouseWheel: false,
 
 			// Apply a 3D roll to links on hover
-			rollingLinks: false,
+			rollingLinks: true,
 
 			// Transition style (see /css/theme)
 			theme: null,
 
 			// Transition style
-			transition: 'linear', // default/cube/page/concave/zoom/linear/none
+			transition: 'default', // default/cube/page/concave/zoom/linear/none
 
 			// Script dependencies to load
 			dependencies: []
@@ -141,6 +144,7 @@ var Reveal = (function(){
 		// Cache references to key DOM elements
 		dom.theme = document.querySelector( '#theme' );
 		dom.wrapper = document.querySelector( '.reveal' );
+		dom.slides = document.querySelector( '.reveal .slides' );
 
 		// Progress bar
 		if( !dom.wrapper.querySelector( '.progress' ) && config.progress ) {
@@ -311,6 +315,10 @@ var Reveal = (function(){
 
 		if( config.transition !== 'default' ) {
 			dom.wrapper.classList.add( config.transition );
+		}
+
+		if( config.rtl ) {
+			dom.wrapper.classList.add( 'rtl' );
 		}
 
 		if( config.center ) {
