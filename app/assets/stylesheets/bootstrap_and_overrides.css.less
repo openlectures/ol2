@@ -111,6 +111,8 @@ footer {
   padding-bottom:20px;
 }
 
+/* Fade the Logo on Hover */
+
 .logo {
   opacity:1;
   -webkit-transition: opacity 0.5s ease;
@@ -125,6 +127,12 @@ footer {
      -moz-transition: opacity 0.5s ease;
        -o-transition: opacity 0.5s ease;
           transition: opacity 0.5s ease;
+}
+
+/* Unfuck the line-height of Checkboxes and Radios. Who invented those things anyway?! */
+
+input[type="radio"], input[type="checkbox"] {
+  margin: 10px 0 0;
 }
 
 /* Font Size Overrides (Uses Golden Ratio) 

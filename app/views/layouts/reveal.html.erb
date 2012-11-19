@@ -11,8 +11,12 @@
       </div>
     <![endif]-->
   </div><!--page-alert-->
-  <%=yield%>
-
+  <div class="reveal">
+      <div class="state-background"></div>
+      <div class="slides">
+      <%=yield%>
+      </div><!--slides-->
+  </div><!--reveal-->
   <%= jquery_include_tag :google %>
   <%=javascript_include_tag "application"%>
   <%=javascript_include_tag "head.min"%>
@@ -20,6 +24,7 @@
   <%=yield :javascripts%>
   <script>
   $.webshims.polyfill();
+  Reveal.initialize();
   </script>
 </body>
 </html>

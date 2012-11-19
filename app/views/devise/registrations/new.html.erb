@@ -1,26 +1,25 @@
-<%- title "Sign Up" %>
+<% title "Sign Up" %>
 <h1>Start Your Adventure</h1>
 <hr>
 <%=form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:data => {:persist => "garlic"}}) do |f| %>
 <div class="page-alert">
-    <%= devise_error_messages! %>
+  <%= devise_error_messages! %>
 </div><!--pagealert-->
-<div class="controls controls-row">
-    <%= f.email_field :email, class: "input-block-level aligncenter", placeholder: "Email", required: "required"%>
-</div><!--controls-->
-<div class="controls controls-row">
-    <%= f.password_field :password, class: "input-block-level aligncenter", placeholder: "Password", required: "required"%>
-</div><!--controls-->
-<div class="controls controls-row">
-    <%= f.text_field :school, id: "autocomplete_school", class: "input-block-level aligncenter", placeholder: "School", 'data-provide' => 'typeahead', 'data-items' => '4', 'data-minlength' => '3'%>
-</div><!--controls-->
-<%= f.submit "Sign Up", id: "submit", class: "btn btn-block"%>
+<fieldset>
+  <%= f.text_field :given_name, class: "input-block-level aligncenter", placeholder: "Given Name", required: "required"%>
+  <%= f.text_field :surname, class: "input-block-level aligncenter", placeholder: "Surname", required: "required"%>
+  <%= f.email_field :email, class: "input-block-level aligncenter", placeholder: "Email", required: "required"%>
+  <%= f.password_field :password, class: "input-block-level aligncenter", placeholder: "Password", required: "required"%>
+  <%= f.text_field :school, id: "autocomplete_school", class: "input-block-level aligncenter", placeholder: "School", 'data-provide' => 'typeahead', 'data-items' => '4', 'data-minlength' => '3'%>
+  <%= f.submit "Sign Up", id: "submit", class: "btn btn-block"%>
+</fieldset>
 <% end %>
 <hr>
 <%content_for :javascripts do%>
-<script>
-  $(document).ready(function() {
-    $('#autocomplete_school').typeahead({source: <%=File.read('app/assets/json/schools.json').html_safe%>});
-  });
-</script>
+<%= javascript_include_tag "showpassword"%>
+  <script>
+    $(document).ready(function() {
+      $('#autocomplete_school').typeahead({source: <%=File.read('app/assets/json/schools.json').html_safe%>});
+    });
+  </script>
 <%end%>
