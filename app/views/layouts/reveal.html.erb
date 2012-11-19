@@ -1,10 +1,10 @@
 <%=render 'shared/head'%>
 <%content_for :styles do%>
-<%= stylesheet_link_tag "reveal", :media => "all" %>
+<%=stylesheet_link_tag "reveal", :media => "all"%>
 <%end%>
 <body>
 	<div class="page-alert">
-    <%= bootstrap_flash %>
+    <%=bootstrap_flash%>
     <!--[if lt IE 7]>
       <div class="alert">
       You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
@@ -24,7 +24,12 @@
   <%=yield :javascripts%>
   <script>
   $.webshims.polyfill();
-  Reveal.initialize();
+  Reveal.initialize({
+    dependencies: [
+        // { src: '<%=asset_path('classList.js')%>', condition: function() { return !document.body.classList; } },
+        { src: '<%=asset_path('zoom.js')%>', async: true, condition: function() { return !!document.body.classList; } },
+    ]
+  });
   </script>
 </body>
 </html>

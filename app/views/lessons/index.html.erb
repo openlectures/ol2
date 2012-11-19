@@ -18,7 +18,7 @@
       <tr>
         <td class="title"><%=link_to(lesson.lesson,lesson)%></td>
         <td class="topic"><%= lesson.topic.topic %></td>
-        <td class="lecturer"><%= lesson.user_id %></td>
+        <td class="lecturer"><%= lesson.user.fullname %></td>
         <td>
           <div class="btn-group">
           <%=link_to("Edit",edit_lesson_path(lesson), class: "btn btn-mini")%>
@@ -31,7 +31,7 @@
   </tbody>
 </table>
 </div><!--lessonlist-->
-
+<hr>
 <%= link_to 'New Lesson', new_lesson_path %>
 
 <%content_for :javascripts do%>
