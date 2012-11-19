@@ -18,7 +18,6 @@
 <hr>
 <%= render "devise/shared/links" %>
 <%content_for :javascripts do%>
-<%= javascript_include_tag "showpassword"%>
   <script>
     $(document).ready(function() {
       $('#autocomplete_school').typeahead({source: <%=File.read('app/assets/json/schools.json').html_safe%>});

@@ -1,16 +1,6 @@
 <%=render 'shared/head'%>
-<%content_for :styles do%>
 <%=stylesheet_link_tag "reveal", :media => "all"%>
-<%end%>
 <body>
-	<div class="page-alert">
-    <%=bootstrap_flash%>
-    <!--[if lt IE 7]>
-      <div class="alert">
-      You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
-      </div>
-    <![endif]-->
-  </div><!--page-alert-->
   <div class="reveal">
       <div class="state-background"></div>
       <div class="slides">
@@ -25,6 +15,10 @@
   <script>
   $.webshims.polyfill();
   Reveal.initialize({
+    controls: true,
+        progress: true,
+        history: true,
+        center: true,
     dependencies: [
         // { src: '<%=asset_path('classList.js')%>', condition: function() { return !document.body.classList; } },
         { src: '<%=asset_path('zoom.js')%>', async: true, condition: function() { return !!document.body.classList; } },

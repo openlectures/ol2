@@ -37,27 +37,27 @@
       </div><!--span8-->
       </div><!--row-->
     </section>
-  
-  <%checkpoint.questionanswers.each do |qa|%>
-    <section class="alignleft">
-      <div class="row-fluid">
-        <div class="span4">
-          <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-            <li><a href="#" onclick="Reveal.navigateUp();return false">Back to Lecture</a></li>
-          </ul>
-          <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
-          <h2>Question</h2>
-          <hr>
-          <p><%=qa.question%></p>
-          <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
-            <li><a href="#" onclick="Reveal.navigateNext();return false">Next</a></li>
-          </ul>
-        </div><!--span4-->
-        <div class="span7 offset1">
-          <p class="lead"><%=qa.answer%></p>
-        </div><!--span7-->
-      </div><!--row-->
-    </section>
-  <%end%>
+
+    <%checkpoint.questionanswers.each do |qa|%>
+      <section class="alignleft">
+        <div class="row-fluid">
+          <div class="span4">
+            <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
+              <li><a href="#" onclick="Reveal.navigateUp();return false">Back to Lecture</a></li>
+            </ul>
+            <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
+            <h2>Question</h2>
+            <hr>
+            <p><%=qa.question%></p>
+            <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
+              <li><a href="#" onclick="Reveal.navigateNext();return false">Next</a></li>
+            </ul>
+          </div><!--span4-->
+          <div class="span7 offset1">
+            <p class="lead"><%=qa.answer%></p>
+          </div><!--span7-->
+        </div><!--row-->
+      </section>
+    <%end%>
   </section>
-<%end%>
+  <%end%>
