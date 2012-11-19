@@ -43,3 +43,21 @@ Lesson.create(  lesson: "Firms and How They Operate",
         topic_id: "1",
         user_id: "1",
   )
+#Example checkpoint with lesson id 1: (First lesson created)
+Checkpoint.create( checkpoint: "CHECKPOINT NAME HERE",
+                   lesson_id: "1",
+                   description: "DESCRIPTION HERE",
+                   videourl: "VIDEOURL HERE",
+                   objective: "OBJECTIVE HERE",
+                 )
+
+#Example QnA
+Questionanswer.create(  question: "QUESTION HERE",
+                        answer: "ANSWER HERE",
+                        checkpoint_id: "1",
+                     )
+
+#Example Summary
+Summary.create( summary: "SUMMARY HERE",
+                lesson_id: "1",
+              )
