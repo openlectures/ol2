@@ -1,15 +1,13 @@
-<h2>Forgot your password?</h2>
-
-<%= simple_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :email, :required => true %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit, "Send me reset password instructions" %>
-  </div>
+<h2>Halp!</h2>
+<hr>
+<p>Oh look who we have here. Forgotten something have you? Don't worry my dear, we'll get you fixed up in no time. Surely you remember the email address you used? Or would you prefer to <%= mail_to("hello@openlectures.org", "talk to someone?", :encode => "javascript") %></p>
+<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+  <div class="page-alert">
+    <%= devise_error_messages! %>
+  </div><!--pagealert-->
+  <fieldset>
+  <%= f.email_field :email, class: "input-block-level aligncenter", placeholder: "Email", required: "required"%>
+  <%= f.submit "Go Fetch!", id: "submit", class: "btn btn-block"%>
 <% end %>
-
+<hr>
 <%= render "devise/shared/links" %>

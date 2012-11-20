@@ -22,7 +22,7 @@ var Reveal = (function(){
 			progress: true,
 
 			// Push each slide change to the browser history
-			history: false,
+			history: true,
 
 			// Enable keyboard shortcuts for navigation
 			keyboard: true,
@@ -48,13 +48,13 @@ var Reveal = (function(){
 			mouseWheel: false,
 
 			// Apply a 3D roll to links on hover
-			rollingLinks: true,
+			rollingLinks: false,
 
 			// Transition style (see /css/theme)
 			theme: null,
 
 			// Transition style
-			transition: 'default', // default/cube/page/concave/zoom/linear/none
+			transition: 'linear', // default/cube/page/concave/zoom/linear/none
 
 			// Script dependencies to load
 			dependencies: []

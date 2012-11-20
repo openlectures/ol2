@@ -1,140 +1,63 @@
 <%title @lesson.lesson%>
-
-      <h1><%=@lesson.lesson%></h1>
-      <p class="lead"><small>by</small><%=link_to @lesson.user.fullname, "mailto:#{@lesson.user.email}"%></p>
-      <hr>
-      <div class="row">
-        <div class="span6">
-      <h3>Checkpoints</h3>
-      <ol>
-        <%@lesson.checkpoints.order("position desc"). each_with_index do |checkpoint,index|%>
-          <li><a href="#" onclick=<%="Reveal.navigateTo(" + (index+1).to_s + ",0)"%>><%=checkpoint.checkpoint%></a></li>
-        <%end%>
-        <li><a href="#/summary" class="salmon">Summary</a></li>
-      </ol>
-    </div><!--span6-->
-    <div class="span2 aligncenter hidden-phone">
-      <h3>6 min</h3>
-      <h1><a href="#" onclick="Reveal.navigateNext()">Start</a></h1>
-    </div><!--span2-->
+  <%@lesson.checkpoints.each do |checkpoint|%>
+  <section>
+    <section>
+      <div class="row-fluid alignleft">
+      <div class="span4">
+        <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
+          <li><a href="#/">Back to Start</a></li>
+        </ul>
+        <h5 class="muted"><%=checkpoint.position%></h5>
+        <h2><%=checkpoint.checkpoint%></h2>
+        <hr>
+        <p><%=checkpoint.description%></p>
+        <div class="row-fluid margintop20p hidden-phone">
+          <div class="span4">
+            <ul class="nav nav-pills nav-stacked aligncenter">
+              <li><a href="#" class="navigate-left">Back</a></li>
+            </ul>
+          </div><!--span4-->
+          <div class="span4">
+            <ul class="nav nav-pills nav-stacked aligncenter">
+              <li><a href="#" class="navigate-down">Question</a></li>
+            </ul>
+          </div><!--span4-->
+          <div class="span4">
+            <ul class="nav nav-pills nav-stacked aligncenter">
+              <li><a href="#" class="navigate-right">Next</a></li>
+            </ul>
+          </div><!--span4-->
+        </div><!--row-->
+      </div><!--span4-->
+      <div class="span8">
+        <div class="videoWrapper">
+          <iframe seamless src=<%="http://www.youtube.com/embed/"+checkpoint.videourl+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080"%> frameborder="0" allowfullscreen >
+          </iframe>
+        </div><!--videoWrapper-->
       </div><!--span8-->
       </div><!--row-->
     </section>
-    <%@lesson.checkpoints.each do |checkpoint|%>
-    <%content_for :fbog do%>
-      <%= tag :meta, property: "og:type", content: "video.episode" %>
-      <%= tag :meta, property: "og:image", content: "http://img.youtube.com/vi/" + checkpoint.videourl + "/maxresdefault.jpg" %>
-      <%= tag :meta, property: "og:video", content: "http://youtube.com/" + checkpoint.videourl %>
-      <%= tag :meta, property: "og:video:actor", content: @lesson.staff.givenname + " " + @lesson.staff.surname %>
-      <%= tag :meta, property: "og:video:actor:role", content: "Lecturer" %>
-      <%= tag :meta, property: "og:video:director", content: "openlectures" %>
-      <%= tag :meta, property: "og:video:type", content: "video/youtube" %>
-      <%= tag :meta, property: "og:video:series", content: @lesson.lesson %>
-    <%end%>
-      <section id=<%=checkpoint.checkpoint.gsub(' ', '').downcase%>>
-        <section>
-        <div class="row-fluid alignleft">
+  
+  <%checkpoint.questionanswers.each do |qa|%>
+    <section class="alignleft">
+      <div class="row-fluid">
         <div class="span4">
           <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-            <li><a href="#" onclick="Reveal.navigateTo(0,0);return false">Back to Start</a></li>
+            <li><a href="#" onclick="Reveal.navigateUp();return false">Back to Lecture</a></li>
           </ul>
-          <h5 class="muted"><%=checkpoint.position%></h5>
-          <h2><%=checkpoint.checkpoint%></h2>
+          <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
+          <h2>Question</h2>
           <hr>
-          <p><%=checkpoint.description%></p>
-          <div class="row-fluid margintop20p hidden-phone">
-            <div class="span4">
-              <ul class="nav nav-pills nav-stacked aligncenter">
-                <li><a href="#" onclick="Reveal.navigateLeft();return false">Back</a></li>
-              </ul>
-            </div><!--span4-->
-            <div class="span4">
-              <ul class="nav nav-pills nav-stacked aligncenter">
-                <li><a href="#" onclick="Reveal.navigateNext();return false">Question</a></li>
-              </ul>
-            </div><!--span4-->
-            <div class="span4">
-              <ul class="nav nav-pills nav-stacked aligncenter">
-                <li><a href="#" onclick="Reveal.navigateRight();return false">Next</a></li>
-              </ul>
-            </div><!--span4-->
-          </div><!--row-->
-        </div><!--span4-->
-        <div class="span8">
-          <div class="videoWrapper">
-            <iframe src=<%="http://www.youtube.com/embed/"+checkpoint.videourl+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080"%> frameborder="0" allowfullscreen seamless></iframe>
-          </div><!--videoWrapper-->
-        </div><!--span8-->
-        </div><!--row-->
-      </section>        
-      
-      <%checkpoint.questionanswers.each do |qa|%>
-        <section class="alignleft">
-          <div class="row-fluid">
-            <div class="span4">
-              <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-                <li><a href="#" onclick="Reveal.navigateUp();return false">Back to Lecture</a></li>
-              </ul>
-              <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
-              <h2>Question</h2>
-              <hr>
-              <p><%=qa.question%></p>
-              <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
-                <li><a href="#" onclick="Reveal.navigateNext();return false">Next</a></li>
-              </ul>
-            </div><!--span4-->
-            <div class="span7 offset1">
-              <p class="lead"><%=qa.answer%></p>
-            </div><!--span7-->
-          </div><!--row-->
-        </section>
-      <%end%>
-      </section>
-    <%end%>
-  </section>
-    <section class="alignleft" id="summary">
-      <div class="row-fluid alignleft">
-        <div class="span4">
-          <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-            <li><a href="#" onclick="Reveal.navigateTo(0,0);return false">Back to Syllabus Outline</a></li>
+          <p><%=qa.question%></p>
+          <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
+            <li><a href="#" onclick="Reveal.navigateNext();return false">Next</a></li>
           </ul>
-          <h2>Summary</h2>
-          <hr>
-          <p>Congratulations, you're done! You now know everything listed on the right. If you're still fuzzy, go back and give it another go!</p>
-          <div class="row-fluid margintop20p hidden-phone">
-            <div class="span6">
-              <ul class="nav nav-pills nav-stacked aligncenter">
-                <li><a href="#" onclick="Reveal.navigateLeft();return false">Back</a></li>
-              </ul>
-            </div><!--span4-->
-            <div class="span6">
-              <ul class="nav nav-pills nav-stacked aligncenter">
-                <li><a href="#" onclick="Reveal.navigateRight();return false">Next Lesson</a></li>
-              </ul>
-            </div><!--span-->
-          </div><!--row-->
         </div><!--span4-->
         <div class="span7 offset1">
-          <ul class="icons">
-            <%@lesson.summaries.each do |l|%>
-            <li><i class="icon-check"></i> <%=l.summary%></li>
-            <%end%>
-          </ul>
+          <p class="lead"><%=qa.answer%></p>
         </div><!--span7-->
       </div><!--row-->
     </section>
-  </div><!--slides-->
-  <!-- The navigational controls UI -->
-  <div class="progress" style="display: block;"><span></span></div>
-  <aside class="controls" style="display: block;"><div class="navigate-left enabled"></div><div class="navigate-right enabled"></div><div class="navigate-up"></div><div class="navigate-down"></div></aside>
-  </div><!--reveal-->
-<%content_for :javascripts do%>
-  <script>
-    Reveal.initialize({
-      history: true,
-      rollingLinks: false,
-      transition: 'linear',
-      mouseWheel: false
-    });
-  </script>
-<% end %>
+  <%end%>
+  </section>
+<%end%>

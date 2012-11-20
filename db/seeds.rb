@@ -1,10 +1,10 @@
-Subject.create(subject: "Chemistry")
-Subject.create(subject: "Economics")
-Subject.create(subject: "Mathematics")
-Subject.create(subject: "Literature")
-Subject.create(subject: "Physics")
-Subject.create(subject: "Biology")
-Subject.create(subject: "Life")
+Subject.create(subject: "Chemistry")    #subject_id:1
+Subject.create(subject: "Economics")    #subject_id:2
+Subject.create(subject: "Mathematics")  #subject_id:3
+Subject.create(subject: "Literature")   #subject_id:4
+Subject.create(subject: "Physics")      #subject_id:5
+Subject.create(subject: "Biology")      #subject_id:6
+Subject.create(subject: "Life")         #subject_id:7
 
 #Economics - Topics
 Topic.create( topic: "Market System",
