@@ -9,4 +9,7 @@ class UsrController < ApplicationController
     @staff = User.where("role = ? OR role = ?", "admin", "lecturer")
   end
 
+  def manage_users
+    @users = User.where("role = ?", "user")
+  end
 end

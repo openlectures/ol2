@@ -2,8 +2,9 @@ Ol2::Application.routes.draw do
   #Usr Controller
   match  "/manage" => "usr#manage", as: :manage
   match   "/profile" => "usr#profile", as: :profile
-  get   "/staff" => "usr#staff", as: :staff
+  match   "/staff" => "usr#staff", as: :staff
   match "manage/:id" => "subjects#edit", as: :edit_subject
+  match "/manage_users" => "usr#manage_users", as: :manage_users
 
   #Root Page
   root to: "pages#index"
