@@ -1,29 +1,43 @@
 <%title "Manage Subjects"%>
-
 <h1>Subjects</h1>
 <p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
 <hr>
-<div class="row">
+<div id="subject-list">
+<input type="search" class="search input-block-level" placeholder="Filter List">
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><a href="#" data-sort="subject">Subject</a></th>
+      <th><a href="#" data-sort="lessons">Lessons</a></th>
+      <th><a href="#" data-sort="checkpoints">Checkpoints</a></th>
+      <th><a href="#" data-sort="date">Last Updated</a></th>
+    </tr>
+  </thead>
+  <tbody>
   <%Subject.all.each do |subject|%>
-    <div class="span4">
-    <h3><%=link_to subject.subject, edit_subject_path(subject)%></h3>
-    <dl class="dl-horizontal hidden-phone">
-    <span class="muted">
-    <dt>Published Lessons:</dt>
-    <dd><%=subject.lessons.count%></dd>
-    <dt>Checkpoints:</dt>
-    <dd><%=subject.checkpoints.count%></dd>
-    <dt>Last Update:</dt>
-    <%if subject.checkpoints.count != 0%>
-    <dd><%=subject.checkpoints.last.created_at.to_date%></dd>
-    <%else%>
-    <dd>N/A</dd>
-    <%end%>
-    </span><!--muted-->
-  </dl>
-  </div><!--span4-->
+    <tr>
+      <td class="subject"><%=link_to subject.subject, edit_subject_path(subject)%></td>
+      <td class="lessons"><%=subject.lessons.count%></td>
+      <td class="checkpoints"><%=subject.checkpoints.count%></td>
+      <td class="date">
+        <%if subject.checkpoints.count != 0%>
+          <%=subject.checkpoints.last.created_at.to_date%>
+        <%else%>
+          N/A
+        <%end%>
+        </td>
+    </tr>
   <%end%>
-  <div class="span4">
-    <a href=<%=new_subject_path%>><h3><i class="icon-plus"></i> New Subject</h3></a> 
-  </div>
-</div><!--row-->
+  </tbody>
+</table>
+
+<%content_for :javascripts do%>
+<%=javascript_include_tag "list.min"%>
+<script>
+var options = {
+    valueNames: ['subject','lessons','checkpoints','date']
+};
+
+var subjectList = new List('subject-list', options);
+</script>
+<%end%>
