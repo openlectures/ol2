@@ -13,7 +13,7 @@
     <dd><%=subject.lessons.count%></dd>
     <dt>Checkpoints:</dt>
     <dd><%=subject.checkpoints.count%></dd>
-    <dt>Date of Last Update:</dt>
+    <dt>Last Update:</dt>
     <%if subject.checkpoints.count != 0%>
     <dd><%=subject.checkpoints.last.created_at.to_date%></dd>
     <%else%>

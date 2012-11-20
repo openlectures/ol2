@@ -12,18 +12,13 @@
       <h3><%=topic.topic%></h3>
       <h6><small><%=topic.description%></small></h6>
       <ol>
-      <%topic.lessons.each do |lesson|%>
+        <%topic.lessons.order("position").each do |lesson|%>
         <%if lesson.is_sublesson%>
           <ul class="unstyled">
         <%end%>
 
         <%=content_tag_for :li, lesson do%>
-          <%if lesson.is_sublesson%>
           <%=link_to(lesson.lesson,lesson_path(lesson))%>
-          <%else%>
-          <%=lesson.lesson%>
-          <%end%>
-
           <%if lesson.is_sublesson%>
           </ul>
           <%end%>

@@ -1,7 +1,8 @@
-<%=render 'shared/head'%>
 <%content_for :styles do%>
-<%=stylesheet_link_tag "reveal", :media => "all"%>
+  <%= stylesheet_link_tag "reveal"%>
 <%end%>
+
+<%=render 'shared/head'%>
 <body>
 	<div class="page-alert">
     <%=bootstrap_flash%>
