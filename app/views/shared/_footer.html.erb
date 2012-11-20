@@ -3,11 +3,11 @@
     <div class="element-center">
     <ul class="nav nav-pills marginbot0">
       <%=render 'shared/pages'%>
-      <li class="<%= current_page?(pages_privacy_path) ? "active" : "" %>">
-        <%=link_to('Privacy Policy', pages_privacy_path)%>
+      <li class="<%= current_page?(privacy_path) ? "active" : "" %>">
+        <%=link_to('Privacy Policy', privacy_path)%>
       </li>
-      <li class="<%= current_page?(pages_privacy_path) ? "active" : "" %>">
-        <%=link_to('Terms and Conditions', pages_privacy_path)%>
+      <li class="<%= current_page?(privacy_path) ? "active" : "" %>">
+        <%=link_to('Terms and Conditions', privacy_path)%>
       </li>
       <li><a class="reView" href="<%=root_path%>">Switch View</a></li>
     </ul>

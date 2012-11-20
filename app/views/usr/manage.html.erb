@@ -6,7 +6,7 @@
 <div class="row">
   <%Subject.all.each do |subject|%>
     <div class="span4">
-    <h3><%=link_to subject.subject, "/usr/manage/"+subject.subject.downcase%></h3>
+    <h3><%=link_to subject.subject, edit_subject_path(subject)%></h3>
     <dl class="dl-horizontal hidden-phone">
     <span class="muted">
     <dt>Published Lessons:</dt>
