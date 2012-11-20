@@ -15,6 +15,7 @@
 </fieldset>
 <% end %>
 <hr>
+Or..<%=link_to "Sign in with FB", user_omniauth_authorize_path(:facebook)%>
 <%= render "devise/shared/links" %>
 <%content_for :javascripts do%>
 <%= javascript_include_tag "showpassword"%>
