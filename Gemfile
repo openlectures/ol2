@@ -43,3 +43,5 @@ gem 'pg_search'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails-cdn'
+
+gem 'secretive'
