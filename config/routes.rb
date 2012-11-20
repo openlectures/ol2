@@ -4,13 +4,10 @@ Ol2::Application.routes.draw do
   match   "/profile" => "usr#profile", as: :profile
   get   "/staff" => "usr#staff", as: :staff
   match "manage/:id" => "subjects#edit", as: :edit_subject
-  match "/profile/edit" => "devise/registrations#edit", as: :profile_edit
+
   #Root Page
-  authenticated :user do
-    root to: "usr#manage"
-  end
   root to: "pages#index"
-  
+
   #User Authentication Solution
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
              controllers: {omniauth_callbacks: "omniauth_callbacks"}
