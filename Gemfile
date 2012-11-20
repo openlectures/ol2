@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 
+group :development, :test do
+  gem 'sqlite3'
+end
+
 group :production do
 gem 'pg'
 end
@@ -21,7 +25,7 @@ gem 'omniauth-facebook'
 
 #For sanity
 group :development do
-  gem 'quiet_assets'  
+  gem 'quiet_assets'
 end
 
 #User avatar
@@ -39,3 +43,5 @@ gem 'pg_search'
 gem 'turbolinks'
 gem 'jquery-turbolinks'
 gem 'jquery-rails-cdn'
+
+gem 'secretive'

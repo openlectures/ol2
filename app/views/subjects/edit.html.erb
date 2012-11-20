@@ -1,4 +1,4 @@
-<% title "Edit #{@subject}"%>
+<% title "Edit #{@subject.subject}"%>
 
   <h1><%=@subject.subject%></h1>
   <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
@@ -25,11 +25,8 @@
         <%end%>
         <%=content_tag_for :li, lesson do%>
         <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
-        <%if lesson.is_sublesson%>
         <%=link_to(lesson.lesson,lesson_path(lesson))%>
-        <%else%>
-        <%=lesson.lesson%>
-        <%end%>
+
         <div class="btn-group pull-right">
           <%=link_to("Edit Lesson",edit_lesson_path(lesson), class: "btn btn-mini")%>
           <%=link_to("Delete", lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>

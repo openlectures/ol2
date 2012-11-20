@@ -1,7 +1,7 @@
 <hr>
 <% if user_signed_in? %>
   <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-    <li><%=link_to(current_user.fullname, usr_profile_path)%></li>
+    <li><%=link_to(current_user.fullname, profile_path)%></li>
   <%else%>
     <li><%=link_to(current_user.fullname, "#")%></li>
   <%end%>
@@ -10,7 +10,7 @@
   <li><%=link_to('Get Started', new_user_registration_path)%></li>
 <% end %>
 <% if controller.controller_name != 'pages'%>
-  <li><%=link_to('About Us', pages_team_path)%></li>
+  <li><%=link_to('About Us', team_path)%></li>
 <%end%>
 <% if controller.controller_name != 'subjects'%>
   <li><%=link_to('Subjects',subjects_path)%></li>
