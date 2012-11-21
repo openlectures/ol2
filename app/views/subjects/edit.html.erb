@@ -5,7 +5,7 @@
   <ul class="nav nav-pills" id="myTab">
     <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
     <li class="disabled"><a href="#subway" data-toggle="tab">Subway Map</a></li>
-    <li><a href="#all" data-toggle="tab">Browse All</a></li>
+    <li><a href="#all" data-toggle="tab">Browse All Checkpoints</a></li>
   </ul>
   <hr>
   <div class="tab-content">
@@ -24,31 +24,57 @@
           <ul class="unstyled">
         <%end%>
         <%=content_tag_for :li, lesson do%>
-        <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
-        <%=link_to(lesson.lesson,lesson_path(lesson))%>
-
+          <%if lesson.is_sublesson%>
+            <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
+            <%=link_to(lesson.lesson,lesson_path(lesson))%>
+          <%else%>
+            <%=lesson.lesson%>
+          <%end%>
         <div class="btn-group pull-right">
           <%=link_to("Edit Lesson",edit_lesson_path(lesson), class: "btn btn-mini")%>
           <%=link_to("Delete", lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
         </div>
-        <%if lesson.is_sublesson%>
-        </ul>
         <%end%>
-      <%end%>
+        <%if lesson.is_sublesson%>
+          </ul>
+        <%end%>
     <%end%>   
     </ol>
     <hr>
   <%end%>
   </div><!--tabpane-->
   <div class="tab-pane fade" id="all">
-    <ul class="unstyled list">
-      <%@subject.checkpoints.each do |checkpoint|%>
-      <li><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.gsub(' ', '').downcase%></li>
-      <%end%>
-    </ul><!--unstyled-->
+    <div id="subject-list">
+      <input type="search" class="search input-block-level" placeholder="Filter List">
+      <table class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th><a href="#" data-sort="checkpoints">Checkpoints</a></th>
+            <th><a href="#" data-sort="lessons">Lesson</a></th>
+            <th><a href="#" data-sort="date">Last Updated</a></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%@subject.checkpoints.each do |checkpoint|%>
+          <tr>
+            <td class="checkpoints"><%=link_to checkpoint.checkpoint,lesson_path(checkpoint.lesson)%></td>
+            <td class="lessons"><%=checkpoint.lesson.lesson%></td>
+            <td class="date"><%#=checkpoint.checkpoint.last.created_at.to_date%></td>
+          </tr>
+          <%end%>
+        </tbody>
+      </table>
   </div><!--tabpane-->
   </div><!--tabcontent-->
 <%-content_for  :javascripts do%>
   <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
   <%=javascript_include_tag "sortable.js"%>
+  <%=javascript_include_tag "list.min"%>
+  <script>
+  var options = {
+      valueNames: ['subject','lessons','checkpoints','date']
+  };
+
+  var subjectList = new List('subject-list', options);
+  </script>
 <%-end%>
