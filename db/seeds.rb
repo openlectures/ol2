@@ -149,3 +149,29 @@ u = User.new( email: "suhangdageek@gmail.com",
               phone: "82227051",
             )
 u.save!(validate: false)
+
+u = User.new( email: "cjmg2006@gmail.com",
+              password: "openlectures",
+              password_confirmation: "openlectures",
+              title: "Chief Outreach Officer",
+              given_name: "Gloria",
+              surname: "Chua",
+              grad_year: "2012",
+              school: "NUS High School of Math and Science (NUSHS)",
+              role: "admin",
+              phone: "",
+            )
+u.save!(validate: false)
+
+u = User.new( email: "samantha.ting@gmail.com",
+              password: "openlectures",
+              password_confirmation: "openlectures",
+              title: "Chief Communications Officer",
+              given_name: "Samantha",
+              surname: "Ting",
+              grad_year: "2012",
+              school: "NUS High School of Math and Science (NUSHS)",
+              role: "admin",
+              phone: "",
+            )
+u.save!(validate: false)
