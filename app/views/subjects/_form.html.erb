@@ -2,7 +2,6 @@
   <% if @subject.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-
       <ul>
       <% @subject.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,12 +9,6 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :subject %><br />
-    <%= f.text_field :subject %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :subject, class: "input-block-level", placeholder: "Subject"%>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>

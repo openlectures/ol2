@@ -1,4 +1,4 @@
-<%= form_for(@checkpoint) do |f| %>
+<%= simple_form_for(@checkpoint) do |f| %>
   <% if @checkpoint.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@checkpoint.errors.count, "error") %> prohibited this checkpoint from being saved:</h2>
@@ -10,32 +10,21 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :checkpoint %><br />
-    <%= f.text_field :checkpoint %>
-  </div>
-  <div class="field">
-    <%= f.label :lesson_id %><br />
-    <%= f.number_field :lesson_id %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_area :description %>
-  </div>
-  <div class="field">
-    <%= f.label :videourl %><br />
-    <%= f.text_field :videourl %>
-  </div>
-  <div class="field">
-    <%= f.label :objective %><br />
-    <%= f.text_area :objective %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
-    <%= f.number_field :position %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :checkpoint, class: "input-block-level", placeholder: "Checkpoint"%>
+  <%= f.association :lesson, label_method: :lesson, input_html: {class: "input-block-level el", placeholder: "Lesson"}, label: false%>
+  <%= f.text_area :description, class: "input-block-level", placeholder: "Description", rows: "4" %>
+  <%= f.text_field :videourl, class: "input-block-level", placeholder: "Video URL"%>
+  <%= f.text_area :objective, class: "input-block-level", placeholder: "Objective", rows: "4" %>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
+
+<%-content_for :javascripts do%>
+  <%=javascript_include_tag "select2"%>
+    <script>
+        $(document).ready(function() { $(".el").select2(); });
+    </script>
+  <%-end%>
+
+<%-content_for :styles do%>
+  <%=stylesheet_link_tag "select2"%>
+<%-end%>

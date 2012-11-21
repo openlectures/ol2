@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   ROLES = %w[admin lecturer user]
   
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :given_name, :surname, :school_email, :grad_year, :school, :title, :phone, :avatar
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :given_name, :surname, :school_email, :grad_year, :school, :title, :phone, :avatar, :provider, :uid
 
   #Avatar  
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
@@ -19,6 +19,11 @@ class User < ActiveRecord::Base
   def fullname 
     return given_name + " " + surname
   end
+
+  def add_omniauth(auth)
+    update_attributes(provider: auth.provider, uid: auth.uid)
+  end
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_create do |user|
       user.provider = auth.provider

@@ -1,4 +1,4 @@
-<%= form_for(@summary) do |f| %>
+<%= simple_form_for(@summary) do |f| %>
   <% if @summary.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@summary.errors.count, "error") %> prohibited this summary from being saved:</h2>
@@ -11,19 +11,18 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :summary %><br />
-    <%= f.text_field :summary %>
-  </div>
-  <div class="field">
-    <%= f.label :position %><br />
-    <%= f.number_field :position %>
-  </div>
-  <div class="field">
-    <%= f.label :lesson_id %><br />
-    <%= f.number_field :lesson_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :summary, placeholder: "Summary", class: "input-block-level" %>
+  <%= f.association :lesson, label_method: :lesson, placeholder: "Lesson", input_html: {class: "input-block-level el"}, label: false%>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
+
+<%-content_for :javascripts do%>
+  <%=javascript_include_tag "select2"%>
+    <script>
+        $(document).ready(function() { $(".el").select2(); });
+    </script>
+  <%-end%>
+
+<%-content_for :styles do%>
+  <%=stylesheet_link_tag "select2"%>
+<%-end%>
