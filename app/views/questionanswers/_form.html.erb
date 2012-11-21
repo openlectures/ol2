@@ -1,4 +1,4 @@
-<%= form_for(@questionanswer) do |f| %>
+<%= simple_form_for(@questionanswer) do |f| %>
   <% if @questionanswer.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@questionanswer.errors.count, "error") %> prohibited this questionanswer from being saved:</h2>
@@ -10,20 +10,19 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :question %><br />
-    <%= f.text_area :question %>
-  </div>
-  <div class="field">
-    <%= f.label :answer %><br />
-    <%= f.text_area :answer %>
-  </div>
-  <div class="field">
-    <%= f.label :checkpoint_id %><br />
-    <%= f.number_field :checkpoint_id %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_area :question, class: "input-block-level", placeholder: "Question", rows: "4"%>
+  <%= f.text_area :answer, class: "input-block-level", placeholder: "Answer", rows: "4"%>
+  <%= f.association :checkpoint, label_method: :checkpoint, placeholder: "Checkpoint", input_html:{class: "input-block-level el"}, label: false%>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
+
+<%-content_for :javascripts do%>
+  <%=javascript_include_tag "select2"%>
+    <script>
+        $(document).ready(function() { $(".el").select2(); });
+    </script>
+  <%-end%>
+
+<%-content_for :styles do%>
+  <%=stylesheet_link_tag "select2"%>
+<%-end%>

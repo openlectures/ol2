@@ -1,4 +1,4 @@
-<%= form_for(@lesson) do |f| %>
+<%= simple_form_for(@lesson) do |f| %>
   <% if @lesson.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@lesson.errors.count, "error") %> prohibited this lesson from being saved:</h2>
@@ -10,11 +10,21 @@
       </ul>
     </div>
   <% end %>
-<%= f.text_field :lesson, class: "input-block-level", placeholder: "Lesson Name"%>
-    <%= f.number_field :topic_id %>
-    <%= f.check_box :is_sublesson %>
-    <%= f.number_field :position %>
-    <%= f.number_field :user_id %>
-    <hr>
-    <%= f.submit "Create", id: "submit", class: "btn btn-block"%>
+  <%= f.text_field :lesson, class: "input-block-level", placeholder: "Lesson Name"%>
+  <%= f.association :topic, label_method: :topic, input_html: {class: "input-block-level el", placeholder: "Topic"}, label: false%>
+  <%= f.association :user, label_method: :given_name, input_html: {class: "input-block-level el", placeholder: "User"}, label: false%>
+  <%= f.check_box :is_sublesson %>
+  <hr>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
+
+<%-content_for :javascripts do%>
+  <%=javascript_include_tag "select2"%>
+    <script>
+        $(document).ready(function() { $(".el").select2(); });
+    </script>
+  <%-end%>
+
+<%-content_for :styles do%>
+  <%=stylesheet_link_tag "select2"%>
+<%-end%>

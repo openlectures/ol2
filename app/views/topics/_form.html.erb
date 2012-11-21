@@ -1,8 +1,7 @@
-<%= form_for(@topic) do |f| %>
+<%= simple_form_for(@topic) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
-
       <ul>
       <% @topic.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,9 +9,20 @@
       </ul>
     </div>
   <% end %>
-    <%= f.text_field :topic, class: "input-block-level", placeholder: "Topic Name"%>
-    <%= f.number_field :subject_id, class: "input-block-level", placeholder: "Subject" %>
-    <%= f.text_area :description, class: "editor input-block-level", :rows => '10', placeholder: "Description" %>
-    <hr>
-    <%= f.submit "Create", id: "submit", class: "btn btn-block"%>
+  <%= f.text_field :topic, class: "input-block-level", placeholder: "Topic Name"%>
+  <%=f.association :subject, label_method: :subject, value_method: :id, input_html: {class: "input-block-level el"}, label: false%>
+  <%= f.text_area :description, class: "editor input-block-level", :rows => '10', placeholder: "Description" %>
+  <hr>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
+
+<%-content_for :javascripts do%>
+  <%=javascript_include_tag "select2"%>
+    <script>
+        $(document).ready(function() { $(".el").select2(); });
+    </script>
+  <%-end%>
+
+<%-content_for :styles do%>
+  <%=stylesheet_link_tag "select2"%>
+<%-end%>
