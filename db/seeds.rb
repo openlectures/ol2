@@ -96,3 +96,18 @@ Questionanswer.create(  question: "Is price discrimination possible under perfec
 Summary.create( summary: "SUMMARY HERE",
                 lesson_id: "1",
               )
+
+#User Creation
+#Jethro
+u = User.new( email: "jethrokuan95@gmail.com",
+              password: "openlectures",
+              password_confirmation: "openlectures",
+              title: "Chief Technology Officer",
+              given_name: "Jethro",
+              surname: "Kuan",
+              grad_year: "2013",
+              school: "RJC",
+              role: "admin",
+              phone: "82925511",
+            )
+u.save!(validate: false)

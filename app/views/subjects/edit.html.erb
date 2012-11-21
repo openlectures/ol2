@@ -7,14 +7,14 @@
     <li class="disabled"><a href="#subway" data-toggle="tab">Subway Map</a></li>
     <li><a href="#all" data-toggle="tab">Browse All</a></li>
   </ul>
-  <hr>
   <div class="tab-content">
   <div class="tab-pane active fade in" id="seab">
   <%@subject.topics.each do |topic|%>
+    <hr>
     <h3><%=topic.topic%>
       <div class="btn-group pull-right">
-        <%=link_to("Edit Topic",edit_topic_path(topic), class: "btn btn-small")%>
-        <%=link_to("Delete", topic_path(topic), method: :delete, class: "btn btn-small btn-danger")%>
+        <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_topic_path(topic), class: "btn btn-small")%>
+        <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, class: "btn btn-small btn-danger")%>
       </div>
     </h3>
     <h6><small><%=topic.description%></small></h6>
@@ -28,16 +28,16 @@
         <%=link_to(lesson.lesson,lesson_path(lesson))%>
 
         <div class="btn-group pull-right">
-          <%=link_to("Edit Lesson",edit_lesson_path(lesson), class: "btn btn-mini")%>
-          <%=link_to("Delete", lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
+
+          <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_lesson_path(lesson), class: "btn btn-mini")%>
+          <%=link_to('<i class="icon-trash"></i>'.html_safe, lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
         </div>
         <%if lesson.is_sublesson%>
         </ul>
         <%end%>
       <%end%>
-    <%end%>   
+    <%end%>
     </ol>
-    <hr>
   <%end%>
   </div><!--tabpane-->
   <div class="tab-pane fade" id="all">
