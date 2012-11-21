@@ -55,14 +55,14 @@
 <hr>
 <h1>The Application Form</h1>
 <p class="lead">Pick one, submit one.</p>
-<div class="row"> 
-<div class="span4 aligncenter">
+<div class="row-fluid"> 
+<div class="span6 aligncenter">
     <form>
       <legend><a href="http://en.wikipedia.org/wiki/Red_pill_and_blue_pill" target="_blank"><%=image_tag "bluepill.svg"%><p>Blue Pill</a></p></legend>
-      <input type="text" class="span4" placeholder="Name" required>
-      <input type="text" class="span4" placeholder="Current Location" required>
-      <input type="email" class="span4" placeholder="Email Address" required>
-      <select multiple class="span4" required>
+      <input type="text" class="input-block-level" placeholder="Name" required>
+      <input type="text" class="input-block-level" placeholder="Current Location" required>
+      <input type="email" class="input-block-level" placeholder="Email Address" required>
+      <select multiple class="input-block-level" required>
         <option>Cookie Monster</option>
         <option>Octopus</option>
         <option>Slide Ninja</option>
@@ -70,17 +70,17 @@
         <option>Code Monkey</option>
         <option>Galactic Ambassador</option>
       </select>
-      <textarea rows="3" class="span4" placeholder="What are we doing wrong?" required></textarea>
+      <textarea rows="3" class="input-block-level" placeholder="What are we doing wrong?" required></textarea>
       <div class="input-append hidden-phone">
-        <input class="span3 muted" id="appendedInputButton" size="16" type="text" placeholder="For anything else"><button class="btn" type="button">Upload</button>
+        <input class="span9 muted" id="appendedInputButton" size="16" type="text" placeholder="For anything else"><button class="btn" type="button">Upload</button>
       </div>
       <h3 class="aligncenter"><a href="#"><span class="hidden-phone"><i class="icon-ok"></i><br/></span><small>Submit Form A</small></a></h3>
     </form>
   </div><!--span4-->
-  <div class="span4 aligncenter">
+  <div class="span6 aligncenter">
     <form>
       <legend class="aligncenter"><a href="http://en.wikipedia.org/wiki/Red_pill_and_blue_pill" target="_blank"><%=image_tag "redpill.svg"%><p>Red Pill</a></p></legend>
-      <textarea rows="13" class="span4" placeholder="Anything goes" required></textarea>
+      <textarea rows="13" class="input-block-level" placeholder="Anything goes" required></textarea>
       <h3 class="aligncenter"><a href="#"><span class="hidden-phone"><i class="icon-ok"></i><br/></span><small>Submit Form B</small></a></h3>
     </form>
   </div><!--span4-->
