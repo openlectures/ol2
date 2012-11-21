@@ -5,16 +5,16 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   ROLES = %w[admin lecturer user]
-  
+
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :given_name, :surname, :school_email, :grad_year, :school, :title, :phone, :avatar
 
-  #Avatar  
+  #Avatar
   has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100>" }
 
 
   #Relations
   has_many :lessons
-  
+
   #Methods and Overrides
   def fullname 
     return given_name + " " + surname
