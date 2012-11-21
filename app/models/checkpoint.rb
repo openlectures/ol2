@@ -13,4 +13,9 @@ class Checkpoint < ActiveRecord::Base
 
   #Listing
   acts_as_list scope: :lesson
+
+  def parsed_url
+     return videourl.match(/youtube.com.*(?:\/|v=)([^&$]+)/
+)[1]
+  end
 end
