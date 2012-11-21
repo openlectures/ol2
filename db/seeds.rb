@@ -71,7 +71,7 @@ Lesson.create(  lesson: "Firms and How They Operate",
 Checkpoint.create( checkpoint: "Spotting the Price Discrimination",
                    lesson_id: "3",
                    description: "Here you will find out what price discrimination really means and how you can spot it.",
-                   videourl: "0hPGoFUykrE",
+                   videourl: "http://www.youtube.com/watch?v=0hPGoFUykrE",
                    objective: "Define price discrimination precisely",
 )
 
@@ -83,7 +83,7 @@ Questionanswer.create(  question: "Is it price-discrimination when oranges from 
 Checkpoint.create( checkpoint: "Necessary Conditions",
                    lesson_id: "3",
                    description: "Firms aren't always able to engage in price-discrimination. For firms to be able to price-discriminate, these are the market conditions that must be met.",
-                   videourl: "PNdo0oYfSCU",
+                   videourl: "http://www.youtube.com/watch?v=PNdo0oYfSCU",
                    objective: "State market conditions necessary for firms to be able to price-discriminate",
 )
 
