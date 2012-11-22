@@ -13,7 +13,7 @@
       <th><a href="#" data-sort="date">Last Updated</a></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="list">
   <%Subject.all.each do |subject|%>
     <tr>
       <td class="subject"><%=link_to subject.subject, edit_subject_path(subject)%></td>
@@ -21,7 +21,7 @@
       <td class="checkpoints"><%=subject.checkpoints.count%></td>
       <td class="date">
         <%if subject.checkpoints.count != 0%>
-          <%=subject.checkpoints.last.created_at.to_date%>
+          <%=subject.checkpoints.last.created_at.to_formatted_s(:short)%>
         <%else%>
           N/A
         <%end%>
@@ -30,6 +30,7 @@
   <%end%>
   </tbody>
 </table>
+</div><!--subjectlist-->
 
 <%content_for :javascripts do%>
 <%=javascript_include_tag "list.min"%>
