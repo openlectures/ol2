@@ -1,7 +1,7 @@
 class Topic < ActiveRecord::Base
   attr_accessible :description, :position, :subject_id, :topic
   #Validations
-  validates_presence_of :topic, :subject_id, :description
+  validates_presence_of :topic, :subject_id
 
   #Relations
   belongs_to :subject
