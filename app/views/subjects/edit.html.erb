@@ -11,31 +11,35 @@
   <div class="tab-pane active fade in" id="seab">
   <%@subject.topics.each do |topic|%>
     <hr>
-    <h3><%=topic.topic%>
+    <h3>SEAB_Topic.Topic
       <div class="btn-group pull-right">
         <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_topic_path(topic), class: "btn btn-small")%>
         <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, class: "btn btn-small btn-danger")%>
       </div>
     </h3>
-    <h6><small><%=topic.description%></small></h6>
-    <ol class="sortable" data-update-url="<%= sort_lessons_url %>">
-      <%topic.lessons.each do |lesson|%>
-        <%if lesson.is_sublesson%>
-          <ul class="unstyled">
+    <h6><small>SEAB_Topic.Description</small></h6>
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Sort</th>
+          <th>Topic</th>
+          <th>Lessons</th>
+          <th>Modify</th>
+        </tr>
+      </thead>
+      <tbody class="sortable" data-update-url="<%= sort_lessons_url %>">
+        <%@subject.topics.each do |topic|%>
+        <tr>
+          <td><span class="handle" style="cursor:move"><i class="icon-sort"></i></span></td>
+          <td><%=link_to(topic.topic,)%></td>
+          <td><%=topic.lessons.count%></td>
+          <td><div class="btn-group"><%=link_to('<i class="icon-edit"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn btn-mini")%>
+          <%=link_to('<i class="icon-trash"></i> Delete'.html_safe, topic_path(topic), method: :delete, class: "btn btn-mini btn-danger")%></div>
+          </td>
+        </tr>
         <%end%>
-        <%=content_tag_for :li, lesson do%>
-        <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
-        <%=link_to(lesson.lesson,lesson_path(lesson))%>
-        <div class="btn-group pull-right">
-          <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_lesson_path(lesson), class: "btn btn-mini")%>
-          <%=link_to('<i class="icon-trash"></i>'.html_safe, lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
-        </div>
-        <%end%>
-      <%if lesson.is_sublesson%>
-        </ul>
-        <%end%>
-    <%end%>
-    </ol>
+      </tbody>
+    </table>
   <%end%>
   </div><!--tabpane-->
   <div class="tab-pane fade" id="all">
