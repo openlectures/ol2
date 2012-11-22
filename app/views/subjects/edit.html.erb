@@ -2,7 +2,7 @@
 
   <h1><%=@subject.subject%></h1>
   <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
-  <ul class="nav nav-pills" id="myTab">
+  <ul class="nav nav-pills" style="margin-bottom:5px;">
     <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
     <li class="disabled"><a href="#subway" data-toggle="tab">Subway Map</a></li>
     <li><a href="#all" data-toggle="tab">Browse All</a></li>
@@ -30,10 +30,10 @@
           <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_lesson_path(lesson), class: "btn btn-mini")%>
           <%=link_to('<i class="icon-trash"></i>'.html_safe, lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
         </div>
-        <%if lesson.is_sublesson%>
+        <%end%>
+      <%if lesson.is_sublesson%>
         </ul>
         <%end%>
-      <%end%>
     <%end%>
     </ol>
   <%end%>
