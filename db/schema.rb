@@ -30,11 +30,10 @@ ActiveRecord::Schema.define(:version => 20121114050146) do
   create_table "lessons", :force => true do |t|
     t.string   "lesson"
     t.integer  "topic_id"
-    t.boolean  "is_sublesson", :default => false
     t.integer  "position"
     t.integer  "user_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "slug"
   end
 
