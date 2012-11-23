@@ -12,7 +12,7 @@
       <th>Functions</th>
     </tr>
   </thead>
-  <tbody>
+  <tbody class="list">
     <%@lessons.each do |lesson| %>
       <tr>
         <td class="title"><%=link_to(lesson.lesson,lesson)%></td>
@@ -29,8 +29,6 @@
   </tbody>
 </table>
 </div><!--lessonlist-->
-<hr>
-<%= link_to 'New Lesson', new_lesson_path %>
 
 <%content_for :javascripts do%>
 <%=javascript_include_tag "list.min"%>

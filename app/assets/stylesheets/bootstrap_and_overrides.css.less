@@ -53,7 +53,7 @@
 @import "twitter/bootstrap/responsive-767px-max.less"; // Phones to portrait tablets and narrow desktops
 @import "twitter/bootstrap/responsive-768px-979px.less"; // Tablets to regular desktops
 @import "twitter/bootstrap/responsive-1200px-min.less"; // Large desktops
-// @import "responsive-navbar.less";  
+// @import "responsive-navbar.less";
 
 // Utility classes
 @import "twitter/bootstrap/utilities.less";
@@ -61,7 +61,7 @@
 @import "button-groups";
 @import "fontawesome";
 
-/* Sets Font Awesome Path 
+/* Sets Font Awesome Path
 This might be replaced with another icon suite in time */
 @fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
 @fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
@@ -89,6 +89,7 @@ This might be replaced with another icon suite in time */
 @errorBackground:         @cantaloupe;
 
 /* Make colors accessible via CSS selectors */
+
 .olgreen {color:@accent;}
 .salmon {color:@salmon;}
 .cantaloupe {color:@cantaloupe;}
@@ -116,9 +117,18 @@ p a {
     position: relative;
 }
 
-li [class^="icon-"] {
+/* Vertical center all table elements. Why Bootstrap no do this :( */
+
+.table, td {
+  vertical-align: middle !important;
+}
+
+/* Fix icon line-heights */
+
+li [class^="icon-"], .btn [class^="icon-"] {
   line-height:.4em;
 }
+
 /* Fade the Logo on Hover */
 
 .logo {
@@ -143,7 +153,7 @@ input[type="radio"], input[type="checkbox"] {
   margin: 10px 0 0;
 }
 
-/* Font Size Overrides (Uses Golden Ratio) 
+/* Font Size Overrides (Uses Golden Ratio)
 This needs to be fixed bad.
 */
 h1 { font-size: 2.966em; line-height: @baseLineHeight * 2;}
@@ -160,6 +170,7 @@ h6 { font-size: 1em;}
 }
 
 /* Font Rendering Hacks */
+
 p {
   -webkit-hyphens: auto;
   -webkit-hyphenate-limit-after: 1;
@@ -179,6 +190,7 @@ html {
 }
 
 /* Adds a nice fade effect to links */
+
 a {
   -webkit-transition: 0.15s color ease;
      -moz-transition: 0.15s color ease;
@@ -188,8 +200,9 @@ a {
 }
 
 /* Center popover content */
+
 .popover-title, .popover-content { text-align:center; }
-  
+
 /* Screw around with Pacman to make it fit */
 #pacman canvas{
     height: auto;
@@ -197,11 +210,13 @@ a {
 }
 
 /* Fixes iOS textarea fail */
+
 textarea[contenteditable] {
     -webkit-appearance: none;
 }
 
 /* Match form border to color scheme */
+
 textarea,
 input[type="text"],
 input[type="password"],
@@ -233,17 +248,20 @@ input[type="color"],
 }
 
 /* Unfuck skimpy horizontal list */
+
 .dl-horizontal dt {
   margin-right: 20px;
   width: 200px;
 }
 
 /* Fix spacey hr */
+
 hr {
 	margin: 12px 0;
 }
 
 /* Fix Input Block Overflow */
+
 .input-block-level {
   -webkit-box-sizing: border-box !important;
      -moz-box-sizing: border-box !important;
@@ -251,6 +269,7 @@ hr {
 }
 
 /* Fix the arse of the form field */
+
 form > *:last-child {
   margin-bottom: 0;
 }
@@ -264,6 +283,7 @@ form .well > *:last-child {
 }
 
 /* Fix label height problem */
+
 label input[type="image"],
 label input[type="checkbox"],
 label input[type="radio"] {
@@ -271,6 +291,7 @@ label input[type="radio"] {
 }
 
 /* Motherload of Tabs Fixes */
+
 .nav-tabs > li > a,
 .nav-pills > li > a {
   outline: none;

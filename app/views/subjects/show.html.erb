@@ -1,41 +1,15 @@
 <%title @subject.subject%>
 
-  <h1><%=@subject.subject%></h1>
-  <ul class="nav nav-pills" id="myTab">
-    <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
-    <li class="disabled"><a href="#subway" data-toggle="tab">Subway Map</a></li>
-    <li><a href="#all" data-toggle="tab">Browse All</a></li>
-  </ul>
-  <div class="tab-content">
-  <div class="tab-pane active fade in" id="seab">
-    <%@subject.topics.each do |topic|%>
-      <h3><%=topic.topic%></h3>
-      <h6><small><%=topic.description%></small></h6>
-      <ol>
-        <%topic.lessons.order("position").each do |lesson|%>
-        <%=content_tag_for :li, lesson do%>
-          <%=link_to(lesson.lesson,lesson_path(lesson))%>
-        <%end%>
-      <%end%> 
-      </ol>
-    <%end%>
-  </div><!--tabpane-->
-  <div class="tab-pane fade" id="all">
-    <div class="row-fluid">
-    <div class="span8">
-    <ul class="unstyled list">
-      <%@subject.checkpoints.each do |checkpoint|%>
-      <li><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.gsub(' ', '').downcase%></li>
-      <%end%>
-    </ul><!--unstyled-->
-  </div><!--span8-->
-  <div class="span3 offset1 aligncenter hidden-phone">
-    <h1><%=@subject.lessons.count%></h1>
-    <p>lessons</p>
-    <hr>
-    <h1><%=@subject.checkpoints.count%></h1>
-    <p>checkpoints</p>
-  </div><!--span3-->
-  </div><!--row-fluid-->
-  </div><!--tabpane-->
-  </div><!--tabcontent-->
+<h1><%=@subject.subject%></h1>
+<p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
+
+<ul class="nav nav-pills" style="margin-bottom:5px;">
+  <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
+  <li class="disabled"><a>Subway Map</a></li>
+  <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
+</ul>
+
+<div class="tab-content">
+  <%= render 'seab' %>
+  <%= render 'listcheckpoints' %>
+</div><!--tabcontent-->
