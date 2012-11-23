@@ -26,31 +26,26 @@ Topic.create( topic: "Elasticities",
 Lesson.create(  lesson: "Introduction to Price Discrimination",
                 topic_id: "1",
                 user_id: "1",
-                is_sublesson: true,
 ) #lesson_id:1
 
 Lesson.create(  lesson: "First Degree Price Discrimination",
                 topic_id: "1",
                 user_id: "1",
-                is_sublesson: true,
 ) #lesson_id:2
 
 Lesson.create(  lesson: "Second Degree Price Discrimination",
                 topic_id: "1",
                 user_id: "1",
-                is_sublesson: true,
 ) #lesson_id:3
 
 Lesson.create(  lesson: "Third Degree Price Discrimination",
                 topic_id: "1",
                 user_id: "1",
-                is_sublesson: true,
 ) #lesson_id:4
 
 Lesson.create(  lesson: "Applications of Price Discrimination",
                 topic_id: "1",
                 user_id: "1",
-                is_sublesson: true,
 ) #lesson_id:5
 
 Checkpoint.create( checkpoint: "Spotting the Price Discrimination",

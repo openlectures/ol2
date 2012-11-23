@@ -14,7 +14,6 @@
   </thead>
   <tbody>
     <%@lessons.each do |lesson| %>
-    <%if lesson.is_sublesson%>
       <tr>
         <td class="title"><%=link_to(lesson.lesson,lesson)%></td>
         <td class="topic"><%= lesson.topic.topic %></td>
@@ -26,7 +25,6 @@
           </div>
         </td>
       </tr>
-    <%end%>
     <%end%>
   </tbody>
 </table>

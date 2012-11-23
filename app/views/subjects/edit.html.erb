@@ -20,9 +20,6 @@
     <h6><small><%=topic.description%></small></h6>
     <ol class="sortable" data-update-url="<%= sort_lessons_url %>">
       <%topic.lessons.each do |lesson|%>
-        <%if lesson.is_sublesson%>
-          <ul class="unstyled">
-        <%end%>
         <%=content_tag_for :li, lesson do%>
         <span class="handle" style="cursor:move"><i class="icon-sort"></i></span>
         <%=link_to(lesson.lesson,lesson_path(lesson))%>
@@ -30,9 +27,6 @@
           <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_lesson_path(lesson), class: "btn btn-mini")%>
           <%=link_to('<i class="icon-trash"></i>'.html_safe, lesson_path(lesson), method: :delete, class: "btn btn-mini btn-danger")%>
         </div>
-        <%end%>
-      <%if lesson.is_sublesson%>
-        </ul>
         <%end%>
     <%end%>
     </ol>
