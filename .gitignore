@@ -5,7 +5,7 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 # Populated via http://github.com/gitignore/Rails.gitignore
-
+zeus.json
 *.rbc
 *.sassc
 .sass-cache

@@ -1,11 +1,17 @@
 <%title "Profile"%>
-  <%= image_tag current_user.avatar.url %>
-  <h1><%=current_user.fullname%></h1>
-  <%if current_user.role == "admin"%>
-  <p class="lead"><%=current_user.title%></p>
-  <%else%>
-  <p class="lead"><%=current_user.school%></p>
-  <%end%>
+<div class="row">
+  <div class="span3 hidden-phone">
+    <%= image_tag current_user.avatar.url %>
+  </div>
+  <div class="span9">
+    <h1><%=current_user.fullname%></h1>
+    <%if current_user.role == "admin"%>
+    <p class="lead"><%=current_user.title%></p>
+    <%else%>
+    <p class="lead"><%=current_user.school%></p>
+    <%end%>
+  </div>
+</div>
   <%if current_user.role == "admin"%>
   <hr>
   <h3>Registry</h3>
