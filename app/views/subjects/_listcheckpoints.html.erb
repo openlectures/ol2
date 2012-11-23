@@ -1,0 +1,43 @@
+<div class="tab-pane fade" id="listcheckpoints">
+  <div id="checkpoint-list">
+    <input type="search" class="search input-block-level" placeholder="Filter List">
+    <table class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th>Checkpoint</th>
+          <th>Lesson</th>
+          <th>Released</th>
+          <% if user_signed_in? %>
+          <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+          <th>Modify</th>
+          <%end%>
+          <%end%>
+        </tr>
+      </thead>
+      <tbody class="list">
+      <%@subject.checkpoints.each do |checkpoint|%>
+      <tr>
+        <td class="checkpoint"><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.gsub(' ', '').downcase%></td>
+        <td class="lesson"><%=checkpoint.lesson.lesson%></td>
+        <td class="date"><%=checkpoint.created_at.to_formatted_s(:short)%></td>
+        <% if user_signed_in? %>
+        <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+        <td><div class="btn-group pull-right"><%=link_to('<i class="icon-edit"></i> Edit'.html_safe, edit_checkpoint_path(checkpoint), class: "btn")%>
+          <%=link_to('<i class="icon-trash"></i>'.html_safe, checkpoint_path(checkpoint), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",class: "btn btn-danger")%></div>
+        </td>
+        <%end%>
+        <%end%>
+      <%end%>
+      </tbody>
+    </table>
+</div><!--tabpane-->
+<%-content_for :javascripts do%>
+<%=javascript_include_tag "list.min"%>
+<script>
+var options = {
+    valueNames: ['checkpoint', 'lesson', 'date']
+};
+
+var checkpointList = new List('checkpoint-list', options);
+</script>
+<%end%>

@@ -7,10 +7,10 @@
 .marginbot0   {margin-bottom:0;}
 
 /* Text Alignment */
-.alignright   {text-align:right;}
-.alignleft    {text-align:left;}
-.aligncenter  {text-align:center;}
-.alignjustify {text-align:justify;}
+.alignright   {text-align:right !important;}
+.alignleft    {text-align:left !important;}
+.aligncenter  {text-align:center !important;}
+.alignjustify {text-align:justify !important;}
 
 /* Link Styles */
 .clean, .clean:hover {
@@ -42,7 +42,7 @@
 
 /* Element Centering */
 .element-center {
-  display:table; 
+  display:table;
   margin:0 auto;
 }
 

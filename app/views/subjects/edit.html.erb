@@ -1,55 +1,19 @@
 <% title "Edit #{@subject.subject}"%>
 
-  <h1><%=@subject.subject%></h1>
-  <p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
-  <ul class="nav nav-pills" style="margin-bottom:5px;">
-    <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
-    <li class="disabled"><a>Subway Map</a></li>
-    <li><a href="#all" data-toggle="tab">Browse All Checkpoints</a></li>
-  </ul>
-  <div class="tab-content">
-  <div class="tab-pane active fade in" id="seab">
-  <%@subject.topics.each do |topic|%>
-    <hr>
-    <h3>SEAB_Topic.Topic
-      <div class="btn-group pull-right">
-        <%=link_to('<i class="icon-edit"></i>'.html_safe,edit_topic_path(topic), class: "btn btn-small")%>
-        <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, class: "btn btn-small btn-danger")%>
-      </div>
-    </h3>
-    <h6><small>SEAB_Topic.Description</small></h6>
-    <table class="table table-hover table-condensed">
-      <thead>
-        <tr>
-          <th></th>
-          <th>Topic</th>
-          <th>Lessons</th>
-          <th>Modify</th>
-        </tr>
-      </thead>
-      <tbody class="sortable" data-update-url="<%= sort_lessons_url %>">
-        <%@subject.topics.each do |topic|%>
-        <tr>
-          <td><span class="handle" style="cursor:move"><i class="icon-sort"></i></span></td>
-          <td><%=link_to(topic.topic,)%></td>
-          <td><%=topic.lessons.count%></td>
-          <td><div class="btn-group"><%=link_to('<i class="icon-edit"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn btn-mini")%>
-          <%=link_to('<i class="icon-trash"></i> Delete'.html_safe, topic_path(topic), method: :delete, class: "btn btn-mini btn-danger")%></div>
-          </td>
-        </tr>
-        <%end%>
-      </tbody>
-    </table>
-  <%end%>
-  </div><!--tabpane-->
-  <div class="tab-pane fade" id="all">
-    <ul class="unstyled list">
-      <%@subject.checkpoints.each do |checkpoint|%>
-      <li><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.gsub(' ', '').downcase%></li>
-      <%end%>
-    </ul><!--unstyled-->
-  </div><!--tabpane-->
-  </div><!--tabcontent-->
+<h1><%=@subject.subject%></h1>
+<p class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</p>
+
+<ul class="nav nav-pills" style="margin-bottom:5px;">
+  <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
+  <li class="disabled"><a>Subway Map</a></li>
+  <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
+</ul>
+
+<div class="tab-content">
+  <%= render 'seab' %>
+  <%= render 'listcheckpoints' %>
+</div><!--tabcontent-->
+
 <%-content_for  :javascripts do%>
   <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
   <%=javascript_include_tag "sortable.js"%>

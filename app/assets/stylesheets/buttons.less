@@ -10,7 +10,7 @@
   position: relative;
   padding: 4px 12px;
   margin: 0;
-  
+
   color: #333;
   text-shadow: 0 1px 0 #fff;
   white-space: nowrap;
@@ -51,8 +51,7 @@
 
 .btn:active,
 .btn:focus {
-  /* Blue border on button focus. */
-  border-color: #4D90FE;
+  border-color: @accent;
 }
 .btn.active {
   background: #e8e8e8;
@@ -177,8 +176,8 @@
   background-color: @btnPrimaryBackground;
   #gradient > .vertical(#4d90fe,#4787ed);
 }
-.btn-primary:hover, 
-.btn-primary:focus, 
+.btn-primary:hover,
+.btn-primary:focus,
 .btn-primary:active,
 .btn-primary.active {
   border: 1px solid #2F5BB7;

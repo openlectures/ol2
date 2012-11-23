@@ -5,6 +5,6 @@
  *= require_self
  *= require footer
  *= require fonts
- *= require bootstrap_and_overrides
  *= require utilities
+ *= require bootstrap_and_overrides
 */
