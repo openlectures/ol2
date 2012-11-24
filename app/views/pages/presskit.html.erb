@@ -2,24 +2,3 @@
 <%content_for :fbog do%>
   <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
-
-<%=stylesheet_link_tag "timeline"%>
-
-<div id="timeline-embed"></div>
-
-<%content_for :javascripts do%>
-  <%=javascript_include_tag "storyjs-embed"%>
-  <%=javascript_include_tag "timeline-min"%>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-        createStoryJS({
-            type:       'timeline',
-            width:      '100%',
-            height:     '600',
-            source:     'https://docs.google.com/spreadsheet/pub?key=0Ahlne8dbHhEXdGRMZlVZU3RodnVvY2pfaWFYZjR4dWc&output=html',
-            embed_id:   'timeline-embed'
-        });
-    });
-  </script>
-<%end%>

@@ -10,6 +10,7 @@
 //= require twitter/bootstrap/bootstrap-transition
 //= require twitter/bootstrap/bootstrap-typeahead
 //= require twitter/bootstrap/bootstrap-dropdown
+//= require twitter/bootstrap/bootstrap-collapse
 //= require garlic
 //= require modernizr
 //= require polyfiller

@@ -69,10 +69,10 @@ This might be replaced with another icon suite in time */
 @fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
 
 /* Bootstrap Variables */
-@accent:				#2eb8b8;
-@salmon:				#ff6666;
-@honeydew:			#ccff66;
-@cantaloupe:		#ffcc66;
+@accent:        #2eb8b8;
+@salmon:        #ff6666;
+@honeydew:      #ccff66;
+@cantaloupe:    #ffcc66;
 
 @linkColor:             @accent;
 
@@ -140,7 +140,6 @@ li [class^="icon-"], .btn [class^="icon-"] {
 }
 .logo:hover {
   opacity:0.1;
-
   -webkit-transition: opacity 0.5s ease;
      -moz-transition: opacity 0.5s ease;
        -o-transition: opacity 0.5s ease;
@@ -151,6 +150,13 @@ li [class^="icon-"], .btn [class^="icon-"] {
 
 input[type="radio"], input[type="checkbox"] {
   margin: 10px 0 0;
+}
+
+/* Straighten the corners of header images */
+
+.top-square {
+   border-top-left-radius: 0;
+   border-top-right-radius: 0;
 }
 
 /* Font Size Overrides (Uses Golden Ratio)
@@ -257,7 +263,7 @@ input[type="color"],
 /* Fix spacey hr */
 
 hr {
-	margin: 12px 0;
+  margin: 12px 0;
 }
 
 /* Fix Input Block Overflow */
