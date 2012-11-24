@@ -59,14 +59,7 @@
 @import "twitter/bootstrap/utilities.less";
 @import "buttons";
 @import "button-groups";
-@import "fontawesome";
-
-/* Sets Font Awesome Path
-This might be replaced with another icon suite in time */
-@fontAwesomeEotPath: '/assets/fontawesome-webfont.eot';
-@fontAwesomeWoffPath: '/assets/fontawesome-webfont.woff';
-@fontAwesomeTtfPath: '/assets/fontawesome-webfont.ttf';
-@fontAwesomeSvgPath: '/assets/fontawesome-webfont.svg';
+@import "icons";
 
 /* Bootstrap Variables */
 @accent:        #2eb8b8;
@@ -97,6 +90,7 @@ This might be replaced with another icon suite in time */
 .gray {color:@grayDark;}
 
 /* Hides menu dropdown on large screens and shows on small */
+
 .tinynav { display: none }
 @media screen and (max-width: 768px) {
   .tinynav { display: block; width:100%; }
@@ -123,29 +117,6 @@ p a {
   vertical-align: middle !important;
 }
 
-/* Fix icon line-heights */
-
-li [class^="icon-"], .btn [class^="icon-"] {
-  line-height:.4em;
-}
-
-/* Fade the Logo on Hover */
-
-.logo {
-  opacity:1;
-  -webkit-transition: opacity 0.5s ease;
-     -moz-transition: opacity 0.5s ease;
-       -o-transition: opacity 0.5s ease;
-          transition: opacity 0.5s ease;
-}
-.logo:hover {
-  opacity:0.1;
-  -webkit-transition: opacity 0.5s ease;
-     -moz-transition: opacity 0.5s ease;
-       -o-transition: opacity 0.5s ease;
-          transition: opacity 0.5s ease;
-}
-
 /* Unfuck the line-height of Checkboxes and Radios. Who invented those things anyway?! */
 
 input[type="radio"], input[type="checkbox"] {
@@ -160,8 +131,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 /* Font Size Overrides (Uses Golden Ratio)
-This needs to be fixed bad.
-*/
+This needs to be fixed bad. */
+
 h1 { font-size: 2.966em; line-height: @baseLineHeight * 2;}
 h2 { font-size: 2.618em; line-height: @baseLineHeight * 1.6;}
 h3 { font-size: 1.833em; line-height: @baseLineHeight * 1.2;}
@@ -210,6 +181,7 @@ a {
 .popover-title, .popover-content { text-align:center; }
 
 /* Screw around with Pacman to make it fit */
+
 #pacman canvas{
     height: auto;
     width: 80%;

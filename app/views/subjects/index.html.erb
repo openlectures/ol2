@@ -1,12 +1,30 @@
-<%title "Subjects" %>
-
+<%title "Subjects"%>
 <h1>Subjects</h1>
 <p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
 <hr>
-<div class="row">
-  <% @subjects.each do |subject|%>
-    <div class="span4">
-      <h3><%=link_to subject.subject, subject %></h3>
-    </div><!--span4-->
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><i class="icon-subject"></i> Subject</th>
+      <th><i class="icon-lesson"></i> Lessons</th>
+      <th><i class="icon-checkpoint"></i> Checkpoints</th>
+      <th><i class="icon-calendar-date"></i> Last Updated</th>
+    </tr>
+  </thead>
+  <tbody class="list">
+  <%Subject.all.each do |subject|%>
+    <tr>
+      <td class="subject"><%=link_to subject.subject, subject_path(subject)%></td>
+      <td class="lessons"><%=subject.lessons.count%></td>
+      <td class="checkpoints"><%=subject.checkpoints.count%></td>
+      <td class="date">
+        <%if subject.checkpoints.count != 0%>
+          <%=subject.checkpoints.last.created_at.to_formatted_s(:short)%>
+        <%else%>
+          N/A
+        <%end%>
+        </td>
+    </tr>
   <%end%>
-</div><!--row-->
+  </tbody>
+</table>

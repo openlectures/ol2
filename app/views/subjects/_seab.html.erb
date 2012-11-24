@@ -5,7 +5,7 @@
       <% if user_signed_in? %>
       <% if current_user.role = "admin" || current_user.role = "lecturer"%>
       <div class="btn-group pull-right">
-        <%=link_to('<i class="icon-edit"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn")%>
+        <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn")%>
         <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", class: "btn btn-danger")%>
       </div><!--btngroup-->
       <%end%>
@@ -21,8 +21,8 @@
           <th></th>
           <%end%>
           <%end%>
-          <th>Lesson</th>
-          <th>Checkpoints</th>
+          <th><i class="icon-lesson"></i> Lesson</th>
+          <th><i class="icon-checkpoint"></i> Checkpoints</th>
           <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
           <th class="alignright">Modify</th>
@@ -44,7 +44,7 @@
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
           <td>
             <div class="btn-group pull-right">
-              <%=link_to('<i class="icon-edit"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn")%>
+              <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn")%>
               <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",class: "btn btn-danger")%>
             </div><!--btngroup-->
           </td>

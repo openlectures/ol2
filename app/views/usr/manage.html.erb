@@ -2,15 +2,13 @@
 <h1>Subjects</h1>
 <p class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</p>
 <hr>
-<div id="subject-list">
-<input type="search" class="search input-block-level" placeholder="Filter List">
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
-      <th>Subject</th>
-      <th>Lessons</th>
-      <th>Checkpoints</th>
-      <th><a href="#" data-sort="date">Last Updated</a></th>
+      <th><i class="icon-subject"></i> Subject</th>
+      <th><i class="icon-lesson"></i> Lessons</th>
+      <th><i class="icon-checkpoint"></i> Checkpoints</th>
+      <th><i class="icon-calendar-date"></i> Last Updated</th>
     </tr>
   </thead>
   <tbody class="list">
@@ -30,15 +28,3 @@
   <%end%>
   </tbody>
 </table>
-</div><!--subjectlist-->
-
-<%content_for :javascripts do%>
-<%=javascript_include_tag "list.min"%>
-<script>
-var options = {
-    valueNames: ['subject','lessons','checkpoints','date']
-};
-
-var subjectList = new List('subject-list', options);
-</script>
-<%end%>

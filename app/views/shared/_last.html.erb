@@ -1,4 +1,4 @@
 <% if user_signed_in? %>
 	<hr>
-    <li><%= link_to('<i class="icon-off"></i> Sign Out'.html_safe, destroy_user_session_path, :method => :delete)%></li>
+    <li><%= link_to('<i class="icon-logout"></i> Sign Out'.html_safe, destroy_user_session_path, :method => :delete)%></li>
 <% end %>

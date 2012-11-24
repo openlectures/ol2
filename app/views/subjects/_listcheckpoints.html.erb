@@ -4,9 +4,9 @@
     <table class="table table-hover table-condensed">
       <thead>
         <tr>
-          <th>Checkpoint</th>
-          <th>Lesson</th>
-          <th>Released</th>
+          <th><i class="icon-checkpoint"></i> Checkpoint</th>
+          <th><i class="icon-lesson"></i> Lesson</th>
+          <th><i class="icon-calendar-date"></i> Date</th>
           <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
           <th>Modify</th>
@@ -22,7 +22,7 @@
         <td class="date"><%=checkpoint.created_at.to_formatted_s(:short)%></td>
         <% if user_signed_in? %>
         <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-        <td><div class="btn-group pull-right"><%=link_to('<i class="icon-edit"></i> Edit'.html_safe, edit_checkpoint_path(checkpoint), class: "btn")%>
+        <td><div class="btn-group pull-right"><%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_checkpoint_path(checkpoint), class: "btn")%>
           <%=link_to('<i class="icon-trash"></i>'.html_safe, checkpoint_path(checkpoint), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",class: "btn btn-danger")%></div>
         </td>
         <%end%>
