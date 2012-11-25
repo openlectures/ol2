@@ -4,6 +4,7 @@ class Subject < ActiveRecord::Base
   validates_presence_of :subject, :slug
 
   #Relations
+  has_many :seab_topics
   has_many :topics
   has_many :lessons, through: :topics
   has_many :checkpoints, through: :lessons

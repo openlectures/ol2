@@ -4,6 +4,7 @@ class CreateSeabTopics < ActiveRecord::Migration
       t.text :description
       t.integer :position
       t.string :topic
+      t.integer :subject_id
 
       t.timestamps
     end

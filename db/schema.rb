@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121114050146) do
+ActiveRecord::Schema.define(:version => 20121125130303) do
 
   create_table "checkpoints", :force => true do |t|
     t.string   "checkpoint"
@@ -51,6 +51,23 @@ ActiveRecord::Schema.define(:version => 20121114050146) do
 
   add_index "questionanswers", ["slug"], :name => "index_questionanswers_on_slug", :unique => true
 
+  create_table "seab_sub_topics", :force => true do |t|
+    t.string   "topic"
+    t.integer  "position"
+    t.integer  "seab_topic_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "seab_topics", :force => true do |t|
+    t.text     "description"
+    t.integer  "position"
+    t.string   "topic"
+    t.integer  "subject_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "subjects", :force => true do |t|
     t.string   "subject"
     t.datetime "created_at", :null => false
@@ -74,10 +91,11 @@ ActiveRecord::Schema.define(:version => 20121114050146) do
   create_table "topics", :force => true do |t|
     t.string   "topic"
     t.integer  "subject_id"
+    t.integer  "seab_sub_topic_id"
     t.integer  "position"
     t.text     "description"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.string   "slug"
   end
 

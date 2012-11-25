@@ -1,7 +1,7 @@
 <div class="tab-pane active fade in" id="seab">
-  <%@subject.topics.each do |topic|%>
+  <%@subject.seab_topics.each do |topic|%>
     <hr>
-  <h3>SEAB_Topic.Topic
+    <h3><%=topic.topic%>
     <% if user_signed_in? %>
       <% if current_user.role = "admin" || current_user.role = "lecturer"%>
       <div class="btn-group pull-right">
@@ -11,8 +11,9 @@
       <%end%>
     <%end%>
   </h3>
-  <h6><small>SEAB_Topic.Description</small></h6>
-  <p>SEAB_Topic.Subtopic</p>
+  <h6><small><%=topic.description%></small></h6>
+  <%=topic.seab_sub_topics.each do |sub_topic|%>
+    <p><%=sub_topic.topic%></p>
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -30,16 +31,16 @@
         <%end%>
       </tr>
     </thead>
-    <tbody class="sortable" data-update-url="<%= sort_topics_url %>">
-      <%@subject.topics.order("position").each do |topic|%>
-        <%=content_tag_for :tr, topic do%>
+  <tbody>
+      <%sub_topic.topics.order("position").each do |sub_topic|%>
+        <%=content_tag_for :tr, sub_topic do%>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <td><span class="handle" style="cursor:ns-resize"><i class="icon-sort"></i></span></td>
           <%end%>
         <%end%>
-        <td><%=link_to topic.topic, "#" %></td>
-        <td><%=topic.lessons.count%></td>
+        <td><%=link_to sub_topic.topic, "#" %></td>
+        <td>number</td>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <td>
@@ -54,5 +55,6 @@
     <%end%>
     </tbody>
   </table>
+  <%end%>
 <%end%>
-  </div><!--tabpane-->
+</div><!--tabpane-->

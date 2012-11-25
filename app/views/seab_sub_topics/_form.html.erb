@@ -1,0 +1,25 @@
+<%= form_for(@seab_sub_topic) do |f| %>
+  <% if @seab_sub_topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@seab_sub_topic.errors.count, "error") %> prohibited this seab_sub_topic from being saved:</h2>
+
+      <ul>
+      <% @seab_sub_topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :topic %><br />
+    <%= f.text_field :topic %>
+  </div>
+  <div class="field">
+    <%= f.label :seabtopic_id %><br />
+    <%= f.number_field :seabtopic_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
