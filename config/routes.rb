@@ -20,7 +20,9 @@ Ol2::Application.routes.draw do
   resources :lessons do 
     collection {post :sort}
   end
-  resources :topics
+  resources :topics do
+    collection {post :sort}
+  end
   resources :subjects, except: :edit
 
   #Pages Controller

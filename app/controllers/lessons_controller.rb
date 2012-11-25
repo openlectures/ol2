@@ -84,8 +84,8 @@ class LessonsController < ApplicationController
 
   def sort
     params[:lesson].each_with_index do |id, index|
-    Lesson.update_all({position: index+1}, {id: id})
-  end
+      Lesson.update_all({position: index+1}, {id: id})
+    end
     render nothing: true
   end
 end
