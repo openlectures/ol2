@@ -5,11 +5,11 @@
     <% if user_signed_in? %>
       <% if current_user.role = "admin" || current_user.role = "lecturer"%>
       <div class="btn-group pull-right">
-      <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn")%>
-      <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", class: "btn btn-danger")%>
-    </div><!--btngroup-->
-  <%end%>
-  <%end%>
+        <%=link_to '<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), :class => "btn"%>
+        <%=link_to '<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "btn btn-danger"%>
+      </div><!--btngroup-->
+      <%end%>
+    <%end%>
   </h3>
   <h6><small>SEAB_Topic.Description</small></h6>
   <p>SEAB_Topic.Subtopic</p>
@@ -38,14 +38,14 @@
             <td><span class="handle" style="cursor:ns-resize"><i class="icon-sort"></i></span></td>
           <%end%>
         <%end%>
-        <td><%=link_to(topic.topic,)%></td>
+        <td><%=link_to topic.topic, "#" %></td>
         <td><%=topic.lessons.count%></td>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <td>
             <div class="btn-group pull-right">
-              <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), class: "btn")%>
-              <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",class: "btn btn-danger")%>
+              <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), :class => "btn")%>
+              <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",:class => "btn btn-danger")%>
             </div><!--btngroup-->
           </td>
           <%end%>
