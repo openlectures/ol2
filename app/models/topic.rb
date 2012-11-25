@@ -7,6 +7,7 @@ class Topic < ActiveRecord::Base
   belongs_to :subject
   belongs_to :seab_sub_topic
   has_many :lessons, order: :position
+  has_many :checkpoints, :through => :lessons
 
   #Friendly ID
   extend FriendlyId

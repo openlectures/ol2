@@ -12,7 +12,7 @@
     <%end%>
   </h3>
   <h6><small><%=topic.description%></small></h6>
-  <%=topic.seab_sub_topics.each do |sub_topic|%>
+  <%topic.seab_sub_topics.each do |sub_topic|%>
     <p><%=sub_topic.topic%></p>
   <table class="table table-hover table-condensed">
     <thead>
@@ -40,20 +40,20 @@
           <%end%>
         <%end%>
         <td><%=link_to sub_topic.topic, "#" %></td>
-        <td>number</td>
+        <td><%=sub_topic.checkpoints.count%></td>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <td>
-            <div class="btn-group pull-right">
-              <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), :class => "btn")%>
-              <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",:class => "btn btn-danger")%>
-            </div><!--btngroup-->
-          </td>
+              <div class="btn-group pull-right">
+                <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), :class => "btn")%>
+                <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",:class => "btn btn-danger")%>
+              </div><!--btngroup-->
+            </td>
           <%end%>
         <%end%>
       <%end%>
-    <%end%>
     </tbody>
+    <%end%>
   </table>
   <%end%>
 <%end%>
