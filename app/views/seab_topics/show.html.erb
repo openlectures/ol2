@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Description:</b>
+  <%= @seab_topic.description %>
+</p>
+
+<p>
+  <b>Position:</b>
+  <%= @seab_topic.position %>
+</p>
+
+<p>
+  <b>Topic:</b>
+  <%= @seab_topic.topic %>
+</p>
+
+
+<%= link_to 'Edit', edit_seab_topic_path(@seab_topic) %> |
+<%= link_to 'Back', seab_topics_path %>

@@ -6,11 +6,11 @@ class Topic < ActiveRecord::Base
   #Relations
   belongs_to :subject
   has_many :lessons, order: :position
-  
+
   #Friendly ID
   extend FriendlyId
   friendly_id :topic, use: :slugged
 
   #Listing
-  acts_as_list
+  acts_as_list :scope => :subject
 end

@@ -1,0 +1,2 @@
+module SeabTopicsHelper
+end

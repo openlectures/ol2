@@ -1,4 +1,7 @@
 Ol2::Application.routes.draw do
+  resources :seab_topics
+
+
   #Usr Controller
   match  "/manage" => "usr#manage", as: :manage
   match   "/profile" => "usr#profile", as: :profile

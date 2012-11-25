@@ -1,0 +1,27 @@
+<h1>Listing seab_topics</h1>
+
+<table>
+  <tr>
+    <th>Description</th>
+    <th>Position</th>
+    <th>Topic</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @seab_topics.each do |seab_topic| %>
+  <tr>
+    <td><%= seab_topic.description %></td>
+    <td><%= seab_topic.position %></td>
+    <td><%= seab_topic.topic %></td>
+    <td><%= link_to 'Show', seab_topic %></td>
+    <td><%= link_to 'Edit', edit_seab_topic_path(seab_topic) %></td>
+    <td><%= link_to 'Destroy', seab_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Seab topic', new_seab_topic_path %>
