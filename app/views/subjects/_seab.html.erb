@@ -23,7 +23,7 @@
     <%end%>
     <%end%>
     </p>
-  <table class="table table-hover table-condensed">
+    <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%>>
     <thead>
       <tr>
         <% if user_signed_in? %>
@@ -67,3 +67,15 @@
   <%end%>
 <%end%>
 </div><!--tabpane-->
+
+<%if user_signed_in?%>
+  <%if current_user.role = "admin" || current_user.role = "lecturer"%>
+    <%content_for :javascripts do%>
+      <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
+      <%=javascript_include_tag "sortable.js"%>
+      <script type="text/javascript" charset="utf-8">
+        $('.sortable').sortable();
+      </script>
+    <%end%>
+  <%end%>
+<%end%>

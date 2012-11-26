@@ -12,7 +12,7 @@
 <tbody>
 <%@topic.lessons.each do |lesson|%>
     <tr>
-      <td><%=lesson.lesson%></td>
+      <td><%=link_to lesson.lesson, lesson_path(lesson)%></td>
     </tr>
 <%end%>
 </tbody>
