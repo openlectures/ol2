@@ -30,8 +30,8 @@
             <th></th>
           <%end%>
         <%end%>
-        <th><i class="icon-lesson"></i> Lesson</th>
-        <th><i class="icon-checkpoint"></i> Checkpoints</th>
+        <th><i class="icon-topic"></i> Topic</th>
+        <th><i class="icon-lesson"></i> Lessons</th>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <th class="alignright">Modify</th>
@@ -48,7 +48,7 @@
           <%end%>
         <%end%>
         <td><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
-        <td><%=sub_topic.checkpoints.count%></td>
+        <td><%=sub_topic.lessons.count%></td>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <td>

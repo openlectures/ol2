@@ -167,22 +167,22 @@ Lesson.create(  lesson: "Shifts",
 ) #lesson_id:9
 
 Lesson.create(  lesson: "Introduction to Market Failure",
-                topic_id: "4",
+                topic_id: "9",
                 user_id: "1",
 ) #lesson_id:10
 
 Lesson.create(  lesson: "Externalities",
-                topic_id: "4",
+                topic_id: "9",
                 user_id: "1",
 ) #lesson_id:11
 
 Lesson.create(  lesson: "Merit/Demerit Goods",
-                topic_id: "4",
+                topic_id: "9",
                 user_id: "1",
 ) #lesson_id:12
 
 Lesson.create(  lesson: "Public Goods",
-                topic_id: "4",
+                topic_id: "9",
                 user_id: "1",
 ) #lesson_id:13
 
