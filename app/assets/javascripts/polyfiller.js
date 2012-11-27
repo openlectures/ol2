@@ -1,30 +1,1188 @@
-(function(c){if(window.jQuery)c(jQuery),c=jQuery.noop;"function"===typeof define&&define.amd&&define.amd.jQuery&&define("polyfiller",["jquery"],c)})(function(c){var A=c(document.scripts||"script"),o=c.event.special,B=c([]),g=window.Modernizr,r=window.asyncWebshims,y=g.addTest,z=parseFloat(c.browser.version,10),p=window.Object,D=window.html5||{},u=function(a,b){var e=!0;c.each(a.split(" "),function(a,b){b in g||(d.error("webshims needs Modernizr."+b+" to implement feature."),e=!1)});e&&b&&b()};g.advancedObjectProperties=
-g.objectAccessor=g.ES5=!!("create"in p&&"seal"in p);var d={version:"1.9.3",cfg:{useImportantStyles:!0,waitReady:!0,extendNative:!0,loadStyles:!0,disableShivMethods:!0,basePath:function(){var a=A.filter('[src*="polyfiller.js"]'),a=a[0]||a.end()[a.end().length-1],a=(c.support.hrefNormalized?a.src:a.getAttribute("src",4)).split("?")[0];return a=a.slice(0,a.lastIndexOf("/")+1)+"shims/"}()},bugs:{},browserVersion:z,modules:{},features:{},featureList:[],setOptions:function(a,b){"string"==typeof a&&void 0!==
-b?k[a]=!c.isPlainObject(b)?b:c.extend(!0,k[a]||{},b):"object"==typeof a&&c.extend(!0,k,a)},addPolyfill:function(a,b){var b=b||{},e=b.f||a;if(!n[e])n[e]=[],n[e].delayReady=0,d.featureList.push(e),k[e]={};n[e].push(a);b.options=c.extend(k[e],b.options);v(a,b);b.methodNames&&c.each(b.methodNames,function(a,b){d.addMethodName(b)})},polyfill:function(){var a=function(b){var f=[],h;if(k.disableShivMethods)D.shivMethods=!1;var i=function(){c("html").removeClass("loading-polyfills long-loading-polyfills");
-c(window).unbind(".lP");clearTimeout(h)};c(window).on("load.lP error.lP",i);f.push("loading-polyfills");h=setTimeout(function(){c("html").addClass("long-loading-polyfills")},600);k.waitReady&&c.isReady&&d.warn("Call webshims.polyfill before DOM-Ready or set waitReady to false.");q(b,i);k.useImportantStyles&&f.push("polyfill-important");f[0]&&c("html").addClass(f.join(" "));k.loadStyles&&t.loadCSS("styles/shim.css");a=c.noop},b;return function(e){var f=[],e=e||d.featureList;"string"==typeof e&&(e=
-e.split(" "));b||(b=-1!==c.inArray("forms",e),!b&&-1!==c.inArray("forms-ext",e)&&(e.push("forms"),b=!0));k.waitReady&&(c.readyWait++,q(e,function(){c.ready(!0)}));c.each(e,function(a,b){n[b]?(b!==n[b][0]&&q(n[b],function(){l(b,!0)}),f=f.concat(n[b])):(d.error("could not find webshims-feature (aborted): "+b),l(b,!0))});a(e);w(f)}}(),reTest:function(){var a,b,e=function(e,h){var i=m[h],d=h+"Ready",g;if(i&&!i.loaded&&!(i.test&&c.isFunction(i.test)?i.test([]):i.test)){o[d]&&delete o[d];if((g=n[i.f])&&
-!b)g.delayReady++,q(h,function(){g.delayReady--;l(i.f,g.callReady)});a.push(h)}};return function(f,h){b=h;"string"==typeof f&&(f=f.split(" "));a=[];c.each(f,e);w(a)}}(),isReady:function(a,b){if(n[a]&&0<n[a].delayReady){if(b)n[a].callReady=!0;return!1}a+="Ready";if(b){if(o[a]&&o[a].add)return!0;o[a]=c.extend(o[a]||{},{add:function(b){b.handler.call(this,a)}});c.event.trigger(a)}return!(!o[a]||!o[a].add)||!1},ready:function(a,b,e){"string"==typeof a&&(a=a.split(" "));e||(a=c.map(c.grep(a,function(b){return!l(b)}),
-function(b){return b+"Ready"}));a.length?(e=a.shift(),c(document).one(e,function(){q(a,b,!0)})):b(c,d,window,document)},capturingEvents:function(a,b){document.addEventListener&&("string"==typeof a&&(a=[a]),c.each(a,function(a,f){var h=function(a){a=c.event.fix(a);b&&d.capturingEventPrevented&&d.capturingEventPrevented(a);return c.event.handle.call(this,a)};o[f]=o[f]||{};!o[f].setup&&!o[f].teardown&&c.extend(o[f],{setup:function(){this.addEventListener(f,h,!0)},teardown:function(){this.removeEventListener(f,
-h,!0)}})}))},register:function(a,b){var e=m[a];if(e){if(e.noAutoCallback){var f=function(){b(c,d,window,document,void 0,e.options);l(a,!0)};e.d?q(e.d,f):f()}}else d.warn("can't find module: "+a)},c:{},loader:{addModule:function(a,b){m[a]=b;b.name=b.name||a;if(!b.c)b.c=[];c.each(b.c,function(b,c){d.c[c]||(d.c[c]=[]);d.c[c].push(a)})},loadList:function(){var a=[],b=function(b,e){"string"==typeof e&&(e=[e]);c.merge(a,e);t.loadScript(b,!1,e)},e=function(b,e){if(l(b)||-1!=c.inArray(b,a))return!0;var d=
-m[b];if(d)if(d=d.test&&c.isFunction(d.test)?d.test(e):d.test)l(b,!0);else return!1;return!0},f=function(b,a){if(b.d&&b.d.length){var d=function(b,d){!e(d,a)&&-1==c.inArray(d,a)&&a.push(d)};c.each(b.d,function(b,a){m[a]?d(b,a):n[a]&&(c.each(n[a],d),q(n[a],function(){l(a,!0)}))});if(!b.noAutoCallback)b.noAutoCallback=!0}};return function(h){var i,g=[],j,k,l=function(e,h){k=h;c.each(d.c[h],function(b,e){if(-1==c.inArray(e,g)||-1!=c.inArray(e,a))return k=!1});if(k)return b("combos/"+k,d.c[k]),!1};for(j=
-0;j<h.length;j++)i=m[h[j]],!i||e(i.name,h)?i||d.warn("could not find: "+h[j]):(i.css&&t.loadCSS(i.css),i.loadInit&&i.loadInit(),i.loaded=!0,f(i,h),g.push(i.name));for(j=0,h=g.length;j<h;j++)k=!1,i=g[j],-1==c.inArray(i,a)&&("noCombo"!=d.debug&&c.each(m[i].c,l),k||b(m[i].src||i,i))}}(),makePath:function(a){if(-1!=a.indexOf("//")||0===a.indexOf("/"))return a;-1==a.indexOf(".")&&(a+=".js");k.addCacheBuster&&(a+=k.addCacheBuster);return k.basePath+a},loadCSS:function(){var a,b=[];return function(e){e=
-this.makePath(e);-1==c.inArray(e,b)&&(a=a||c("link, style")[0]||c("script")[0],b.push(e),c('<link rel="stylesheet" />').insertBefore(a).attr({href:e}))}}(),loadScript:function(){var a=[];return function(b,e,d){b=t.makePath(b);if(-1==c.inArray(b,a)){var h=function(){h=null;e&&e();d&&("string"==typeof d&&(d=d.split(" ")),c.each(d,function(b,a){m[a]&&(m[a].afterLoad&&m[a].afterLoad(),l(!m[a].noAutoCallback?a:a+"FileLoaded",!0))}))};a.push(b);window.require?require([b],h):window.sssl?sssl(b,h):window.yepnope?
-yepnope.injectJs(b,h):window.steal&&steal(b).then(h)}}}()}};c.webshims=d;var z=("https:"==location.protocol?"https://":"http://")+"ajax.googleapis.com/ajax/libs/",C=z+"jqueryui/1.8.24/",k=d.cfg,n=d.features,l=d.isReady,q=d.ready,j=d.addPolyfill,m=d.modules,t=d.loader,w=t.loadList,v=t.addModule,s=d.bugs,x=[],E={warn:1,error:1};d.addMethodName=function(a){var a=a.split(":"),b=a[1];1==a.length&&(b=a[0]);a=a[0];c.fn[a]=function(){return this.callProp(b,arguments)}};c.fn.callProp=function(a,b){var e;b||
-(b=[]);this.each(function(){var f=c.prop(this,a);if(f&&f.apply){if(e=f.apply(this,b),void 0!==e)return!1}else d.warn(a+" is not a method of "+this)});return void 0!==e?e:this};d.activeLang=function(){var a=navigator.browserLanguage||navigator.language||"";q("webshimLocalization",function(){d.activeLang(a)});return function(b){if(b)if("string"==typeof b)a=b;else if("object"==typeof b){var c=arguments,f=this;q("webshimLocalization",function(){d.activeLang.apply(f,c)})}return a}}();c.each(["log","error",
-"warn","info"],function(a,b){d[b]=function(a){if((E[b]&&!1!==d.debug||d.debug)&&window.console&&console.log)return console[console[b]?b:"log"](a)}});(function(){c.isDOMReady=c.isReady;if(c.isDOMReady)l("DOM",!0);else{var a=c.ready;c.ready=function(b){if(!0!==b&&!c.isDOMReady)document.body?(c.isDOMReady=!0,l("DOM",!0),c.ready=a):setTimeout(function(){c.ready(b)},13);return a.apply(this,arguments)};c.ready.promise=a.promise}c(function(){c.isDOMReady=!0;l("DOM",!0);setTimeout(function(){l("WINDOWLOAD",
-!0)},9999)});c(window).load(function(){c.isDOMReady=!0;l("DOM",!0);l("WINDOWLOAD",!0)})})();(function(){var a=[];c.extend(d,{addReady:function(b){var c=function(a,c){d.ready("DOM",function(){b(a,c)})};a.push(c);c(document,B)},triggerDomUpdate:function(b){if(!b||!b.nodeType)b&&b.jquery&&b.each(function(){d.triggerDomUpdate(this)});else{var e=b.nodeType;if(!(1!=e&&9!=e)){var f=b!==document?c(b):B;c.each(a,function(a,c){c(b,f)})}}}});c.fn.htmlPolyfill=function(b){b=c.fn.html.call(this,b);b===this&&c.isDOMReady&&
-this.each(function(){1==this.nodeType&&d.triggerDomUpdate(this)});return b};c.each(["after","before","append","prepend","replaceWith"],function(b,a){c.fn[a+"Polyfill"]=function(b){b=c(b);c.fn[a].call(this,b);c.isDOMReady&&b.each(function(){1==this.nodeType&&d.triggerDomUpdate(this)});return this}});c.each(["insertAfter","insertBefore","appendTo","prependTo","replaceAll"],function(b,a){c.fn[a.replace(/[A-Z]/,function(a){return"Polyfill"+a})]=function(){c.fn[a].apply(this,arguments);c.isDOMReady&&d.triggerDomUpdate(this);
-return this}});c.fn.updatePolyfill=function(){c.isDOMReady&&d.triggerDomUpdate(this);return this};c.each(["getNativeElement","getShadowElement","getShadowFocusElement"],function(a,d){c.fn[d]=function(){return this}})})();(function(){var a=p.prototype.hasOwnProperty,b=["configurable","enumerable","writable"],e=function(a){for(var c=0;3>c;c++)if(void 0===a[b[c]]&&("writable"!==b[c]||void 0!==a.value))a[b[c]]=!0},f=function(b){if(b)for(var c in b)a.call(b,c)&&e(b[c])};if(p.create)d.objectCreate=function(a,
-b,d){f(b);a=p.create(a,b);if(d)a.options=c.extend(!0,{},a.options||{},d),d=a.options;a._create&&c.isFunction(a._create)&&a._create(d);return a};p.defineProperty&&(d.defineProperty=function(a,b,c){e(c);return p.defineProperty(a,b,c)});if(p.defineProperties)d.defineProperties=function(a,b){f(b);return p.defineProperties(a,b)};d.getOwnPropertyDescriptor=p.getOwnPropertyDescriptor;d.getPrototypeOf=p.getPrototypeOf})();v("jquery-ui",{src:C+"jquery-ui.min.js",test:function(){return!(!c.widget||!c.Widget)}});
-v("input-widgets",{src:"",test:function(){return!this.src||!(c.widget&&(!c.fn.datepicker||!c.fn.slider))}});v("swfobject",{src:z+"swfobject/2.2/swfobject.js",test:function(){return"swfobject"in window}});j("es5",{test:!(!g.ES5||!Function.prototype.bind),c:[27,10,1,22]});j("dom-extend",{f:"dom-support",noAutoCallback:!0,d:["es5"],c:[27,10,9,12,17,26,16,25,8,1,24,19,11,13]});u("localstorage");j("json-storage",{test:g.localstorage&&"sessionStorage"in window&&"JSON"in window,loadInit:function(){w(["swfobject"])},
-noAutoCallback:!0,c:[14]});u("geolocation");j("geolocation",{test:g.geolocation,options:{destroyWrite:!0},d:["json-storage"],c:[14,15]});u("canvas",function(){var a;j("canvas",{src:"excanvas",test:g.canvas,options:{type:"flash"},noAutoCallback:!0,loadInit:function(){var b=this.options.type;if(b&&-1!==b.indexOf("flash")&&(!window.swfobject||swfobject.hasFlashPlayerVersion("9.0.0")))window.FlashCanvasOptions=window.FlashCanvasOptions||{},a=FlashCanvasOptions,"flash"==b?(c.extend(a,{swfPath:k.basePath+
-"FlashCanvas/"}),this.src="FlashCanvas/flashcanvas"):(c.extend(a,{swfPath:k.basePath+"FlashCanvasPro/"}),this.src="FlashCanvasPro/flashcanvas")},afterLoad:function(){d.addReady(function(a,d){a==document&&window.G_vmlCanvasManager&&G_vmlCanvasManager.init_&&G_vmlCanvasManager.init_(document);c("canvas",a).add(d.filter("canvas")).each(function(){!this.getContext&&window.G_vmlCanvasManager&&G_vmlCanvasManager.initElement(this)});a==document&&l("canvas",!0)})},methodNames:["getContext"],d:["dom-support"]})});
-u("input inputtypes",function(){var a=g.input,b=g.inputtypes,e,f=c('<select required="" name="a"><option disabled="" /></select>')[0];y("formvalidation",function(){return!(!a.required||!a.pattern)});y("fieldsetdisabled",function(){var a=c("<fieldset />")[0];return"elements"in a&&"disabled"in a});if(g.formvalidation)s.bustedValidity=!1===g.formattribute||!g.fieldsetdisabled||!("value"in document.createElement("output"))||!(c('<input type="date" value="1488-12-11" />')[0].validity||{valid:!0}).valid||
-!("required"in f)||(f.validity||{}).valid;y("styleableinputrange",function(){if(!b.range)return!1;var a=document.createElement("input");a.setAttribute("type","range");return void 0!==a.style.WebkitAppearance});d.validationMessages=d.validityMessages=[];d.inputTypes={};j("form-core",{f:"forms",d:["es5"],test:function(){if(e.lightweightDatalist&&!this.datalistLoaded)this.datalistLoaded=!0,m["form-datalist"].f="forms",d.reTest(["form-datalist"]);return!1},options:{placeholderType:"value",langSrc:"i18n/errormessages-",
-lightweightDatalist:!0,availabeLangs:"ar,ch-ZN,el,es,fr,he,hi,hu,it,ja,nl,pt-PT,ru,sv".split(",")},methodNames:["setCustomValidity","checkValidity"],c:[3,2,59,17,26,16,5,4,24,19]});e=k.forms;g.formvalidation&&!s.bustedValidity?(j("form-extend",{f:"forms",src:"form-native-extend",test:function(a){return(m["form-number-date-api"].test()||-1==c.inArray("form-number-date-api",a||[]))&&!e.overrideMessages},d:["form-core","dom-support","form-message"],c:[18,7,59,5]}),x=x.concat([2,3,23,21])):(x=x.concat([18,
-7,4,59,5]),j("form-extend",{f:"forms",src:"form-shim-extend",test:function(){return!1},d:["form-core","dom-support"],c:[3,2,23,21]}));j("form-message",{f:"forms",test:function(a){return!(e.customMessages||!g.formvalidation||!m["form-extend"].test(a)||s.validationMessage||s.bustedValidity)},d:["dom-support"],c:[3,2,23,21,59,17,5,4]});j("form-number-date-api",{f:"forms-ext",uiTest:function(){return b.range&&b.date&&b.time&&b.number},test:function(){return this.uiTest()},d:["forms","dom-support"],c:[18,
-7,6]});j("form-number-date-ui",{f:"forms-ext",test:function(){return m["form-number-date-api"].test()&&!this.options.replaceUI},d:["forms","dom-support","form-number-date-api"],loadInit:function(){w(["jquery-ui"]);m["input-widgets"].src&&w(["input-widgets"])},options:{stepArrows:{number:1,time:1},calculateWidth:!0,slider:{},datepicker:{},langSrc:C+"i18n/jquery.ui.datepicker-",lazyDate:!0},c:[18,7,6]});j("form-datalist",{f:"forms-ext",test:function(){return a.list&&!e.customDatalist},d:["form-core",
-"dom-support"],c:[3,59,18,24,19,11]})});"details"in g||y("details",function(){return"open"in document.createElement("details")});j("details",{test:g.details,d:["dom-support"],options:{text:"Details"},c:[12,13,15]});u("audio video texttrackapi",function(){d.mediaelement={};var a=function(){if(!g.audio||!g.video||d.mediaelement.loadSwf)return!1;var a=this.options,b=a.hasToPlay;return!((!window.swfobject||window.swfobject.hasFlashPlayerVersion("9.0.115"))&&(a.preferFlash||"any"!=b&&!g.video[b]&&!g.audio[b]))},
-b=["swfobject","dom-support"];j("mediaelement-core",{f:"mediaelement",noAutoCallback:!0,options:{hasToPlay:"any",preferFlash:!1,player:"jwplayer",vars:{},params:{},attrs:{},changeSWF:c.noop},methodNames:["play","pause","canPlayType","mediaLoad:load"],d:b,c:[27,10,9,12,17,26,16,25,8,22,23,24,20]});j("mediaelement-swf",{f:"mediaelement",d:b,test:function(){return"jwplayer"!=this.options.player?!0:a.apply(this,arguments)},c:[27,10,9,22,20]});j("mediaelement-jaris",{f:"mediaelement",d:b,test:function(){return"jwplayer"==
-this.options.player?!0:a.apply(this,arguments)}});s.track=g.track&&(!g.texttrackapi||"string"!=typeof(document.createElement("track").track||{}).mode);j("track",{options:{positionDisplay:!0,override:s.track},test:function(){return g.track&&!this.options.override&&!s.track},d:["mediaelement","dom-support"],methodNames:["addTextTrack"],c:[27,26,25]});v("track-ui",{d:["track"]})});j("feature-dummy",{test:!0,loaded:!0,c:x});A.filter("[data-polyfill-cfg]").each(function(){try{d.setOptions(c(this).data("polyfillCfg"))}catch(a){d.warn("error parsing polyfill cfg: "+
-a)}}).end().filter("[data-polyfill]").each(function(){d.polyfill(c.trim(c(this).data("polyfill")||""))});r&&(r.cfg&&d.setOptions(r.cfg),r.lang&&d.activeLang(r.lang),"polyfill"in r&&d.polyfill(r.polyfill))});
+(function (factory) {
+	
+	if(window.jQuery){
+		factory(jQuery);
+		factory = jQuery.noop;
+	}
+	if (typeof define === 'function' && define.amd && define.amd.jQuery) {
+		define('polyfiller', ['jquery'], factory);
+	}
+}(function($){
+	"use strict";
+	var DOMSUPPORT = 'dom-support';
+	var jScripts = $(document.scripts || 'script');
+	var special = $.event.special;
+	var emptyJ = $([]);
+	var Modernizr = window.Modernizr;
+	var asyncWebshims = window.asyncWebshims;
+	var addTest = Modernizr.addTest;
+	var browserVersion = parseFloat($.browser.version, 10);
+	var Object = window.Object;
+	var html5 = window.html5 || {};
+	var needModernizr = function(tests, fn){
+		var run = true;
+		$.each(tests.split(' '), function(i, name){
+			if(!(name in Modernizr)){
+				webshims.error('webshims needs Modernizr.'+name + ' to implement feature.');
+				run = false;
+			}
+		});
+		if(run && fn){
+			fn();
+		}
+	};
+	
+	Modernizr.advancedObjectProperties = Modernizr.objectAccessor = Modernizr.ES5 = !!('create' in Object && 'seal' in Object);
+
+	
+	var webshims = {
+		version: '1.9.4',
+		cfg: {
+			useImportantStyles: true,
+			//addCacheBuster: false,
+			waitReady: true,
+			extendNative: true,
+			loadStyles: true,
+			disableShivMethods: true,
+			basePath: (function(){
+				var script = jScripts.filter('[src*="polyfiller.js"]');
+				var path;
+				script = script[0] || script.end()[script.end().length - 1];
+				path = ( ($.support.hrefNormalized) ? script.src : script.getAttribute("src", 4) ).split('?')[0];
+				path = path.slice(0, path.lastIndexOf("/") + 1) + 'shims/';
+				return path;
+			})()
+		},
+		bugs: {},
+		browserVersion: browserVersion,
+		/*
+		 * some data
+		 */
+		modules: {},
+		features: {},
+		featureList: [],
+		setOptions: function(name, opts){
+			if (typeof name == 'string' && opts !== undefined) {
+				webCFG[name] = (!$.isPlainObject(opts)) ? opts : $.extend(true, webCFG[name] || {}, opts);
+			} else if (typeof name == 'object') {
+				$.extend(true, webCFG, name);
+			}
+		},
+		addPolyfill: function(name, cfg){
+			cfg = cfg || {};
+			var feature = cfg.f || name;
+			if (!webshimsFeatures[feature]) {
+				webshimsFeatures[feature] = [];
+				webshimsFeatures[feature].delayReady = 0;
+				webshims.featureList.push(feature);
+				webCFG[feature] = {};
+			}
+			webshimsFeatures[feature].push(name);
+			cfg.options = $.extend(webCFG[feature], cfg.options);
+			
+			addModule(name, cfg);
+			if (cfg.methodNames) {
+				$.each(cfg.methodNames, function(i, methodName){
+					webshims.addMethodName(methodName);
+				});
+			}
+		},
+		
+		polyfill: (function(){
+			var firstPolyfillCall = function(features){
+				var addClass = [];
+				var onReadyEvts = features;
+				var timer;
+				
+				if(webCFG.disableShivMethods){
+					html5.shivMethods = false;
+				}
+				
+				var removeLoader = function(){
+					$('html').removeClass('loading-polyfills long-loading-polyfills');
+					$(window).unbind('.lP');
+					clearTimeout(timer);
+				};
+				
+				$(window).on('load.lP error.lP', removeLoader);
+				
+				addClass.push('loading-polyfills');
+				timer = setTimeout(function(){
+					$('html').addClass('long-loading-polyfills');
+				}, 600);
+				
+				if (webCFG.waitReady && $.isReady) {
+					webshims.warn('Call webshims.polyfill before DOM-Ready or set waitReady to false.');
+				}
+				onReady(features, removeLoader);
+				if (webCFG.useImportantStyles) {
+					addClass.push('polyfill-important');
+				}
+				if (addClass[0]) {
+					$('html').addClass(addClass.join(' '));
+				}
+				if(webCFG.loadStyles){
+					loader.loadCSS('styles/shim.css');
+				}
+				//remove function
+				firstPolyfillCall = $.noop;
+			};
+			var loadedFormBase;
+			return function(features){
+				
+				var toLoadFeatures = [];
+				
+				features = features || webshims.featureList;
+				
+				if (typeof features == 'string') {
+					features = features.split(' ');
+				}
+				if(!loadedFormBase){
+					loadedFormBase = $.inArray('forms', features) !== -1;
+					if(!loadedFormBase && $.inArray('forms-ext', features) !== -1){
+						features.push('forms');
+						loadedFormBase = true;
+					}
+				}
+				
+				if (webCFG.waitReady) {
+					$.readyWait++;
+					onReady(features, function(){
+						$.ready(true);
+					});
+				}
+				
+				$.each(features, function(i, feature){
+					if(!webshimsFeatures[feature]){
+						webshims.error("could not find webshims-feature (aborted): "+ feature);
+						isReady(feature, true);
+						return;
+					}
+					if (feature !== webshimsFeatures[feature][0]) {
+						onReady(webshimsFeatures[feature], function(){
+							isReady(feature, true);
+						});
+					}
+					toLoadFeatures = toLoadFeatures.concat(webshimsFeatures[feature]);
+				});
+				
+				firstPolyfillCall(features);
+				loadList(toLoadFeatures);
+				
+			};
+		})(),
+		
+		/*
+		 * handle ready modules
+		 */
+		reTest: (function(){
+			var resList;
+			var noDelayReady;
+			var reTest = function(i, name){
+				var module = modules[name];
+				var readyName = name+'Ready';
+				var feature;
+				if(module && !module.loaded && !( (module.test && $.isFunction(module.test) ) ? module.test([]) : module.test )){
+					if(special[readyName]){
+						delete special[readyName];
+					}
+					feature = webshimsFeatures[module.f];
+					if(feature && !noDelayReady){
+						feature.delayReady++;
+						onReady(name, function(){
+							feature.delayReady--;
+							isReady(module.f, feature.callReady);
+						});
+					}
+					resList.push(name);
+				}
+			};
+			return function(moduleNames, _noDelay){
+				noDelayReady = _noDelay;
+				if(typeof moduleNames == 'string'){
+					moduleNames = moduleNames.split(' ');
+				}
+				resList = [];
+				$.each(moduleNames, reTest);
+				loadList(resList);
+			};
+		})(),
+		isReady: function(name, _set){
+			if(webshimsFeatures[name] && webshimsFeatures[name].delayReady > 0){
+				if(_set){
+					webshimsFeatures[name].callReady = true;
+				}
+				return false;
+			}
+			name = name + 'Ready';
+			if (_set) {
+				if (special[name] && special[name].add) {
+					return true;
+				}
+				
+				special[name] = $.extend(special[name] || {}, {
+					add: function(details){
+						details.handler.call(this, name);
+					}
+				});
+				$.event.trigger(name);
+			}
+			return !!(special[name] && special[name].add) || false;
+		},
+		ready: function(events, fn /*, _created*/){
+			var _created = arguments[2];
+			var evt = events;
+			if (typeof events == 'string') {
+				events = events.split(' ');
+			}
+			
+			if (!_created) {
+				events = $.map($.grep(events, function(evt){
+					return !isReady(evt);
+				}), function(evt){
+					return evt + 'Ready';
+				});
+			}
+			if (!events.length) {
+				fn($, webshims, window, document);
+				return;
+			}
+			var readyEv = events.shift(), readyFn = function(){
+				onReady(events, fn, true);
+			};
+			
+			$(document).one(readyEv, readyFn);
+		},
+		
+		/*
+		 * basic DOM-/jQuery-Helpers
+		 */
+		
+		
+		capturingEvents: function(names, _maybePrevented){
+			if (!document.addEventListener) {
+				return;
+			}
+			if (typeof names == 'string') {
+				names = [names];
+			}
+			$.each(names, function(i, name){
+				var handler = function(e){
+					e = $.event.fix(e);
+					if (_maybePrevented && webshims.capturingEventPrevented) {
+						webshims.capturingEventPrevented(e);
+					}
+					return $.event.handle.call(this, e);
+				};
+				special[name] = special[name] || {};
+				if (special[name].setup || special[name].teardown) {
+					return;
+				}
+				$.extend(special[name], {
+					setup: function(){
+						this.addEventListener(name, handler, true);
+					},
+					teardown: function(){
+						this.removeEventListener(name, handler, true);
+					}
+				});
+			});
+		},
+		register: function(name, fn){
+			var module = modules[name];
+			if (!module) {
+				webshims.error("can't find module: " + name);
+				return;
+			}
+			if (module.noAutoCallback) {
+				var ready = function(){
+					fn($, webshims, window, document, undefined, module.options);
+					isReady(name, true);
+				};
+				if (module.d) {
+					onReady(module.d, ready);
+				}
+				else {
+					ready();
+				}
+			}
+		},
+		c: {},
+		/*
+		 * loader
+		 */
+		loader: {
+		
+			addModule: function(name, ext){
+				modules[name] = ext;
+				ext.name = ext.name || name;
+				if(!ext.c){
+					ext.c = [];
+				}
+				$.each(ext.c, function(i, comboname){
+					if(!webshims.c[comboname]){
+						webshims.c[comboname] = [];
+					}
+					webshims.c[comboname].push(name);
+				});
+			},
+			loadList: (function(){
+			
+				var loadedModules = [];
+				var loadScript = function(src, names){
+					if (typeof names == 'string') {
+						names = [names];
+					}
+					$.merge(loadedModules, names);
+					loader.loadScript(src, false, names);
+				};
+				
+				var noNeedToLoad = function(name, list){
+					if (isReady(name) || $.inArray(name, loadedModules) != -1) {
+						return true;
+					}
+					var module = modules[name];
+					var cfg = webCFG[module.f || name] || {};
+					var supported;
+					if (module) {
+						supported = (module.test && $.isFunction(module.test)) ? module.test(list) : module.test;
+						if (supported) {
+							isReady(name, true);
+							return true;
+						} else {
+							return false;
+						}
+					}
+					return true;
+				};
+				
+				var setDependencies = function(module, list){
+					if (module.d && module.d.length) {
+						var addDependency = function(i, dependency){
+							if (!noNeedToLoad(dependency, list) && $.inArray(dependency, list) == -1) {
+								list.push(dependency);
+							}
+						};
+						$.each(module.d, function(i, dependency){
+							if (modules[dependency]) {
+								addDependency(i, dependency);
+							}
+							else 
+								if (webshimsFeatures[dependency]) {
+									$.each(webshimsFeatures[dependency], addDependency);
+									onReady(webshimsFeatures[dependency], function(){
+										isReady(dependency, true);
+									});
+								}
+						});
+						if (!module.noAutoCallback) {
+							module.noAutoCallback = true;
+						}
+					}
+				};
+				
+				return function(list, combo){
+					var module;
+					var loadCombos = [];
+					var i;
+					var len;
+					var foundCombo;
+					var loadCombo = function(j, combo){
+						foundCombo = combo;
+						$.each(webshims.c[combo], function(i, moduleName){
+							if($.inArray(moduleName, loadCombos) == -1 || $.inArray(moduleName, loadedModules) != -1){
+								foundCombo = false;
+								return false;
+							}
+						});
+						if(foundCombo){
+							loadScript('combos/'+foundCombo, webshims.c[foundCombo]);
+							return false;
+						}
+					};
+					
+					//length of list is dynamically
+					for (i = 0; i < list.length; i++) {
+						module = modules[list[i]];
+						if (!module || noNeedToLoad(module.name, list)) {
+							if (!module) {
+								webshims.warn('could not find: ' + list[i]);
+							}
+							continue;
+						}
+						if (module.css) {
+							loader.loadCSS(module.css);
+						}
+						
+						if (module.loadInit) {
+							module.loadInit();
+						}
+						
+						module.loaded = true;
+						setDependencies(module, list);
+						loadCombos.push(module.name);
+					}
+					
+					for(i = 0, len = loadCombos.length; i < len; i++){
+						foundCombo = false;
+						
+						module = loadCombos[i];
+						
+						if($.inArray(module, loadedModules) == -1){
+							if(webshims.debug != 'noCombo'){
+								$.each(modules[module].c, loadCombo);
+							}
+							if(!foundCombo){
+								loadScript(modules[module].src || module, module);
+							}
+						}
+					}
+				};
+			})(),
+			
+			makePath: function(src){
+				if (src.indexOf('//') != -1 || src.indexOf('/') === 0) {
+					return src;
+				}
+				
+				if (src.indexOf('.') == -1) {
+					src += '.js';
+				}
+				if (webCFG.addCacheBuster) {
+					src += webCFG.addCacheBuster;
+				}
+				return webCFG.basePath + src;
+			},
+			
+			loadCSS: (function(){
+				var parent, loadedSrcs = [];
+				return function(src){
+					src = this.makePath(src);
+					if ($.inArray(src, loadedSrcs) != -1) {
+						return;
+					}
+					parent = parent || $('link, style')[0] || $('script')[0];
+					loadedSrcs.push(src);
+					$('<link rel="stylesheet" />').insertBefore(parent).attr({
+						href: src
+					});
+				};
+			})(),
+			
+			loadScript: (function(){
+				var loadedSrcs = [];
+				var scriptLoader;
+				return function(src, callback, name){
+				
+					src = loader.makePath(src);
+					if ($.inArray(src, loadedSrcs) != -1) {return;}
+					var complete = function(){
+						
+						complete = null;
+						if (callback) {
+							callback();
+						}
+						
+						if (name) {
+							if (typeof name == 'string') {
+								name = name.split(' ');
+							}
+							$.each(name, function(i, name){
+								if (!modules[name]) {
+									return;
+								}
+								if (modules[name].afterLoad) {
+									modules[name].afterLoad();
+								}
+								isReady(!modules[name].noAutoCallback ? name : name + 'FileLoaded', true);
+							});
+							
+						}
+					};
+					
+					loadedSrcs.push(src);
+					if(window.require){
+						require([src], complete);
+					} else if (window.sssl) {
+						sssl(src, complete);
+					} else if (window.yepnope) {
+						yepnope.injectJs(src, complete);
+					} else if (window.steal) {
+						steal(src).then(complete);
+					} 
+				};
+			})()
+		}
+	};
+	
+	/*
+	 * shortcuts
+	 */
+	$.webshims = webshims;
+	var protocol = (location.protocol == 'https:') ? 'https://' : 'http://';
+	var googleAPIs = protocol + 'ajax.googleapis.com/ajax/libs/';
+	var uiLib = googleAPIs + 'jqueryui/1.8.24/';
+	var webCFG = webshims.cfg;
+	var webshimsFeatures = webshims.features;
+	var isReady = webshims.isReady;
+	var onReady = webshims.ready;
+	var addPolyfill = webshims.addPolyfill;
+	var modules = webshims.modules;
+	var loader = webshims.loader;
+	var loadList = loader.loadList;
+	var addModule = loader.addModule;
+	var bugs = webshims.bugs;
+	var removeCombos = [];
+	var importantLogs = {
+		warn: 1,
+		error: 1
+	};
+	
+	webshims.addMethodName = function(name){
+		name = name.split(':');
+		var prop = name[1];
+		if (name.length == 1) {
+			prop = name[0];
+			name = name[0];
+		} else {
+			name = name[0];
+		}
+		
+		$.fn[name] = function(){
+			return this.callProp(prop, arguments);
+		};
+	};
+	$.fn.callProp = function(prop, args){
+		var ret;
+		if(!args){
+			args = []; 
+		}
+		this.each(function(){
+			var fn = $.prop(this, prop);
+			
+			if (fn && fn.apply) {
+				ret = fn.apply(this, args);
+				if (ret !== undefined) {
+					return false;
+				}
+			} else {
+				webshims.warn(prop+ " is not a method of "+ this);
+			}
+		});
+		return (ret !== undefined) ? ret : this;
+	};
+	
+	//activeLang will be overridden
+
+	
+	//	set current Lang:
+	//		- webshims.activeLang(lang:string);
+	//	get current lang
+	//		- webshims.activeLang();
+	//		- webshims.activeLang({
+	//			module: moduleName:string,
+	//			callback: callback:function,
+	//			langObj: languageObj:array/object
+	//		});
+
+	webshims.activeLang = (function(){
+		var curLang = navigator.browserLanguage || navigator.language || '';
+		onReady('webshimLocalization', function(){
+			webshims.activeLang(curLang);
+			
+		});
+		return function(lang){
+			if(lang){
+				if (typeof lang == 'string' ) {
+					curLang = lang;
+				} else if(typeof lang == 'object'){
+					var args = arguments;
+					var that = this;
+					onReady('webshimLocalization', function(){
+						webshims.activeLang.apply(that, args);
+					});
+				}
+			}
+			return curLang;
+		};
+	})();
+	
+	$.each(['log', 'error', 'warn', 'info'], function(i, fn){
+		webshims[fn] = function(message){
+			if(( (importantLogs[fn] && webshims.debug !== false) || webshims.debug) && window.console && console.log){
+				return console[(console[fn]) ? fn : 'log'](message);
+			}
+		};
+	});
+		
+	
+	//Overwrite DOM-Ready and implement a new ready-method
+	(function(){
+		$.isDOMReady = $.isReady;
+		if(!$.isDOMReady){
+			var $Ready = $.ready;
+			$.ready = function(unwait){
+				if(unwait !== true && !$.isDOMReady){
+					if(document.body){
+						$.isDOMReady = true;
+						isReady('DOM', true);
+						$.ready = $Ready;
+					} else {
+						setTimeout(function(){
+							$.ready(unwait);
+						}, 13);
+					}
+				}
+				return $Ready.apply(this, arguments);
+			};
+			$.ready.promise = $Ready.promise;
+		} else {
+			isReady('DOM', true);
+		}
+		$(function(){
+			$.isDOMReady = true;
+			isReady('DOM', true);
+			setTimeout(function(){
+				isReady('WINDOWLOAD', true);
+			}, 9999);
+		});
+		$(window).load(function(){
+			$.isDOMReady = true;
+			isReady('DOM', true);
+			isReady('WINDOWLOAD', true);
+		});
+	})();
+	
+	/*
+	 * jQuery-plugins for triggering dom updates can be also very usefull in conjunction with non-HTML5 DOM-Changes (AJAX)
+	 * Example:
+	 * $.webshims.addReady(function(context, insertedElement){
+	 * 		$('div.tabs', context).add(insertedElement.filter('div.tabs')).tabs();
+	 * });
+	 * 
+	 * $.ajax({
+	 * 		success: function(html){
+	 * 			$('#main').htmlPolyfill(html);
+	 * 		}
+	 * });
+	 */
+	
+	(function(){
+		var readyFns = [];
+		$.extend(webshims, {
+			addReady: function(fn){
+				var readyFn = function(context, elem){
+					webshims.ready('DOM', function(){fn(context, elem);});
+				};
+				readyFns.push(readyFn);
+				readyFn(document, emptyJ);
+			},
+			triggerDomUpdate: function(context){
+				if(!context || !context.nodeType){
+					if(context && context.jquery){
+						context.each(function(){
+							webshims.triggerDomUpdate(this);
+						});
+					}
+					return;
+				}
+				var type = context.nodeType;
+				if(type != 1 && type != 9){return;}
+				var elem = (context !== document) ? $(context) : emptyJ;
+				$.each(readyFns, function(i, fn){
+					fn(context, elem);
+				});
+			}
+		});
+		
+		$.fn.htmlPolyfill = function(a){
+			var ret = $.fn.html.call(this,  a);
+			if(ret === this && $.isDOMReady){
+				this.each(function(){
+					if(this.nodeType == 1){
+						webshims.triggerDomUpdate(this);
+					}
+				});
+			}
+			return ret;
+		};
+		
+		
+		$.each(['after', 'before', 'append', 'prepend', 'replaceWith'], function(i, name){
+			$.fn[name+'Polyfill'] = function(a){
+				a = $(a);
+				$.fn[name].call(this, a);
+				if($.isDOMReady){
+					a.each(function(){
+						if (this.nodeType == 1) {
+							webshims.triggerDomUpdate(this);
+						}
+					});
+				}
+				return this;
+			};
+			
+		});
+		
+		$.each(['insertAfter', 'insertBefore', 'appendTo', 'prependTo', 'replaceAll'], function(i, name){
+			$.fn[name.replace(/[A-Z]/, function(c){return "Polyfill"+c;})] = function(){
+				$.fn[name].apply(this, arguments);
+				if($.isDOMReady){
+					webshims.triggerDomUpdate(this);
+				}
+				return this;
+			};
+		});
+		
+		$.fn.updatePolyfill = function(){
+			if($.isDOMReady){
+				webshims.triggerDomUpdate(this);
+			}
+			return this;
+		};
+		
+		$.each(['getNativeElement', 'getShadowElement', 'getShadowFocusElement'], function(i, name){
+			$.fn[name] = function(){
+				return this;
+			};
+		});
+		
+	})();
+	
+	//this might be extended by ES5 shim feature
+	(function(){
+		var defineProperty = 'defineProperty';
+		var has = Object.prototype.hasOwnProperty;
+		var descProps = ['configurable', 'enumerable', 'writable'];
+		var extendUndefined = function(prop){
+			for(var i = 0; i < 3; i++){
+				if(prop[descProps[i]] === undefined && (descProps[i] !== 'writable' || prop.value !== undefined)){
+					prop[descProps[i]] = true;
+				}
+			}
+		};
+		var extendProps = function(props){
+			if(props){
+				for(var i in props){
+					if(has.call(props, i)){
+						extendUndefined(props[i]);
+					}
+				}
+			}
+		};
+		if(Object.create){
+			webshims.objectCreate = function(proto, props, opts){
+				extendProps(props);
+				var o = Object.create(proto, props);
+				if(opts){
+					o.options = $.extend(true, {}, o.options  || {}, opts);
+					opts = o.options;
+				}
+				if(o._create && $.isFunction(o._create)){
+					o._create(opts);
+				}
+				return o;
+			};
+		}
+		if(Object[defineProperty]){
+			webshims[defineProperty] = function(obj, prop, desc){
+				extendUndefined(desc);
+				return Object[defineProperty](obj, prop, desc);
+			};
+		}
+		if(Object.defineProperties){
+			webshims.defineProperties = function(obj, props){
+				extendProps(props);
+				return Object.defineProperties(obj, props);
+			};
+		}
+		webshims.getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+		
+		webshims.getPrototypeOf = Object.getPrototypeOf;
+	})();
+	
+	
+
+	
+	/*
+	 * Start Features 
+	 */
+	
+	/* general modules */
+	/* change path $.webshims.modules[moduleName].src */
+	
+	addModule('jquery-ui', {
+		src: uiLib+'jquery-ui.min.js',
+		test: function(){return !!($.widget && $.Widget);}
+	});
+	
+	addModule('input-widgets', {
+		src: '',
+		test: function(){
+			return !this.src || !($.widget && !($.fn.datepicker && $.fn.slider));
+		}
+	});
+	
+	addModule('swfobject', {
+		src: googleAPIs+'swfobject/2.2/swfobject.js',
+		test: function(){return ('swfobject' in window);}
+	});
+	
+		
+	/* 
+	 * polyfill-Modules 
+	 */
+	
+	// webshims lib uses a of http://github.com/kriskowal/es5-shim/ to implement
+	addPolyfill('es5', {
+		test: !!(Modernizr.ES5 && Function.prototype.bind),
+		c: [27, 10, 1, 22]
+	});
+	
+	addPolyfill('dom-extend', {
+		f: DOMSUPPORT,
+		noAutoCallback: true,
+		d: ['es5'],
+		c: [27, 10, 9, 12, 17, 26, 16, 25, 8, 1, 24, 19, 11, 13]
+	});
+		
+	
+	//<json-storage
+	needModernizr('localstorage');
+	addPolyfill('json-storage', {
+		test: Modernizr.localstorage && 'sessionStorage' in window && 'JSON' in window,
+		loadInit: function(){
+			loadList(['swfobject']);
+		},
+		noAutoCallback: true,
+		c: [14]
+	});
+	//>json-storage
+	
+	
+	//<geolocation
+	needModernizr('geolocation');
+	addPolyfill('geolocation', {
+		test: Modernizr.geolocation,
+		options: {
+			destroyWrite: true
+//			,confirmText: ''
+		},
+		d: ['json-storage'],
+		c: [14, 15]
+	});
+	//>
+	
+	//<canvas
+	needModernizr('canvas', function(){
+		var flashCanvas;
+		addPolyfill('canvas', {
+			src: 'excanvas',
+			test: Modernizr.canvas,
+			options: {type: 'flash'}, //excanvas | flash | flashpro
+			noAutoCallback: true,
+			loadInit: function(){
+				var type = this.options.type;
+				var src;
+				if(type && type.indexOf('flash') !== -1 && (!window.swfobject || swfobject.hasFlashPlayerVersion('9.0.0'))){
+					window.FlashCanvasOptions = window.FlashCanvasOptions || {};
+					flashCanvas = FlashCanvasOptions;
+					if(type == 'flash'){
+						$.extend(flashCanvas, {
+							swfPath: webCFG.basePath + 'FlashCanvas/'
+						});
+						this.src = 'FlashCanvas/flashcanvas';
+						src = flashCanvas.swfPath + 'flashcanvas.swf';
+					} else {
+						$.extend(flashCanvas, {swfPath: webCFG.basePath + 'FlashCanvasPro/'});
+						this.src = 'FlashCanvasPro/flashcanvas';
+						//assume, that the user has flash10+
+						src = flashCanvas.swfPath + 'flash10canvas.swf';
+					}
+					//todo: implement cachbuster for flashcanvas
+//					if(webCFG.addCacheBuster){
+//						src += webCFG.addCacheBuster;
+//					}
+				}
+			},
+			afterLoad: function(){
+				webshims.addReady(function(context, elem){
+					if(context == document){
+						if(window.G_vmlCanvasManager && G_vmlCanvasManager.init_ ){
+							G_vmlCanvasManager.init_(document);
+						}
+					}
+					$('canvas', context).add(elem.filter('canvas')).each(function(){
+						var hasContext = this.getContext;
+						if(!hasContext && window.G_vmlCanvasManager){
+							G_vmlCanvasManager.initElement(this);
+						}
+					});
+					if(context == document){
+						isReady('canvas', true);
+					}
+				});
+			},
+			methodNames: ['getContext'],
+			d: [DOMSUPPORT]
+		});
+	});
+	//>
+	
+	
+	//<forms
+	needModernizr('input inputtypes', function(){
+		var modernizrInputAttrs = Modernizr.input;
+		var modernizrInputTypes = Modernizr.inputtypes;
+		var formvalidation = 'formvalidation';
+		var select = $('<select required="" name="a"><option disabled="" /></select>')[0];
+		var bustedValidity = false;
+		var formExtend, formOptions;
+		
+		
+		addTest(formvalidation, function(){
+			return !!(modernizrInputAttrs.required && modernizrInputAttrs.pattern);
+		});
+		addTest('fieldsetdisabled', function(){
+			var fieldset = $('<fieldset />')[0];
+			return 'elements' in fieldset && 'disabled' in fieldset;
+		});
+		
+		if(Modernizr[formvalidation]){
+			bugs.bustedValidity = bustedValidity = Modernizr.formattribute === false || !Modernizr.fieldsetdisabled || !('value' in document.createElement('output')) || !($('<input type="date" value="1488-12-11" />')[0].validity || {valid: true}).valid || !('required' in select) || (select.validity || {}).valid;
+		}
+		
+		formExtend = Modernizr[formvalidation] && !bustedValidity ? 'form-native-extend' : 'form-extend';
+		
+		addTest('styleableinputrange', function(){
+			if(!modernizrInputTypes.range){
+				return false;
+			}
+			var input = document.createElement('input');
+			input.setAttribute('type', 'range');
+			return input.style.WebkitAppearance !== undefined;
+		});
+		
+		
+		webshims.validationMessages = webshims.validityMessages = [];
+		webshims.inputTypes = {};
+				
+		addPolyfill('form-core', {
+			f: 'forms',
+			d: ['es5'],
+			test: function(toLoad){
+				if(formOptions.lightweightDatalist && !this.datalistLoaded){
+					this.datalistLoaded = true;
+					modules['form-datalist'].f = 'forms';
+					webshims.reTest(['form-datalist']);
+				}
+				return false;
+			},
+			options: {
+				placeholderType: 'value',
+				langSrc: 'i18n/errormessages-',
+				lightweightDatalist: true,
+				availabeLangs: ['ar', 'ch-ZN', 'el', 'es', 'fr', 'he', 'hi', 'hu', 'it', 'ja', 'nl', 'pt-PT', 'ru', 'sv'] //en and de are directly implemented in core
+	//			,customMessages: false,
+	//			overrideMessages: false,
+	//			replaceValidationUI: false
+			},
+			methodNames: ['setCustomValidity','checkValidity'],
+			c: [3, 2, 59, 17, 26, 16, 5, 4, 24, 19]
+		});
+		
+		formOptions = webCFG.forms;
+				
+		addPolyfill('form-native-extend', {
+			f: 'forms',
+			test: function(toLoad){
+				return (!Modernizr[formvalidation] || bustedValidity) || ((modules['form-number-date-api'].test() || $.inArray('form-number-date-api', toLoad  || []) == -1) && !formOptions.overrideMessages );
+			},
+			d: ['form-core', DOMSUPPORT, 'form-message'],
+			c: [18, 7, 59, 5]
+		});
+		
+		addPolyfill('form-shim-extend', {
+			f: 'forms',
+			test: function(){
+				return Modernizr[formvalidation] && !bustedValidity;
+			},
+			d: ['form-core', DOMSUPPORT],
+			c: [3, 2, 23, 21]
+		});
+		
+		addPolyfill('form-message', {
+			f: 'forms',
+			test: function(toLoad){
+				return !( formOptions.customMessages || !Modernizr[formvalidation] || bugs.validationMessage || bustedValidity || !modules[formExtend].test(toLoad) );
+			},
+			d: [DOMSUPPORT],
+			c: [3, 2, 23, 21, 59, 17, 5, 4]
+		});
+		
+		addPolyfill('form-number-date-api', {
+			f: 'forms-ext',
+			uiTest: function(){return (modernizrInputTypes.range && modernizrInputTypes.date && modernizrInputTypes.time && modernizrInputTypes.number);},
+			test: function(toLoad){
+				return this.uiTest();
+			},
+			d: ['forms', DOMSUPPORT],
+			c: [18, 7, 6]
+		});
+		
+		addPolyfill('form-number-date-ui', {
+			f: 'forms-ext',
+			test: function(){return modules['form-number-date-api'].test() && !this.options.replaceUI;},
+			d: ['forms', DOMSUPPORT, 'form-number-date-api'],
+			loadInit: function(){
+				loadList(['jquery-ui']);
+				if(modules['input-widgets'].src){
+					loadList(['input-widgets']);
+				}
+			},
+			options: {
+				stepArrows: {number: 1, time: 1}, 
+				calculateWidth: true,
+				slider: {},
+				datepicker: {},
+				langSrc: uiLib+'i18n/jquery.ui.datepicker-',
+				lazyDate: true
+	//			,replaceUI: false
+			},
+			c: [18, 7, 6]
+		});
+		
+		addPolyfill('form-datalist', {
+			f: 'forms-ext',
+			test: function(){
+				return modernizrInputAttrs.list && !formOptions.customDatalist;
+			},
+			d: ['form-core', DOMSUPPORT],
+			c: [3, 59, 18, 24, 19, 11]
+		});
+	});
+	//>
+	
+	//<details
+	if(!('details' in Modernizr)){
+		addTest('details', function(){
+			return ('open' in document.createElement('details'));
+		});
+	}
+	addPolyfill('details', {
+		test: Modernizr.details,
+		d: [DOMSUPPORT],
+		options: {
+//			animate: false,
+			text: 'Details'
+		},
+		c: [12, 13, 15]
+	});
+	//>
+	
+	//<mediaelement
+	needModernizr('audio video texttrackapi', function(){
+		webshims.mediaelement = {};
+		var swfTest = function(){
+			if(!Modernizr.audio || !Modernizr.video){
+				return false;
+			}
+			if(webshims.mediaelement.loadSwf){
+				return false;
+			}
+			var options = this.options;
+			var hasToPlay = options.hasToPlay;
+			return !( (!window.swfobject || window.swfobject.hasFlashPlayerVersion('9.0.115')) && (options.preferFlash || (hasToPlay != 'any' && !Modernizr.video[hasToPlay] && !Modernizr.audio[hasToPlay])));
+		};
+		var deps = ['swfobject', DOMSUPPORT];
+		
+		addPolyfill('mediaelement-core', {
+			f: 'mediaelement',
+			noAutoCallback: true,
+			options: {
+				hasToPlay: 'any',
+				preferFlash: false,
+				player: 'jwplayer',
+				vars: {},
+				params: {},
+				attrs: {},
+				changeSWF: $.noop
+			},
+			methodNames: ['play', 'pause', 'canPlayType', 'mediaLoad:load'],
+			d: deps,
+			c: [27, 10, 9, 12, 17, 26, 16, 25, 8, 22, 23, 24, 20]
+		});
+		addPolyfill('mediaelement-swf', {
+			f: 'mediaelement',
+			d: deps,
+			test: function(){
+				return this.options.player != 'jwplayer' ? true : swfTest.apply(this, arguments);
+			},
+			c: [27, 10, 9, 22, 20]
+		});
+		
+		addPolyfill('mediaelement-jaris', {
+			f: 'mediaelement',
+			d: deps,
+			test: function(){
+				return this.options.player == 'jwplayer' ? true : swfTest.apply(this, arguments);
+			}
+		});
+		
+		bugs.track = (Modernizr.track && (!Modernizr.texttrackapi || typeof (document.createElement('track').track || {}).mode != 'string'));
+		
+		addPolyfill('track', {
+			options: {
+				positionDisplay: true,
+				override: bugs.track
+			},
+			test: function(){
+				return Modernizr.track && !this.options.override && !bugs.track;
+			},
+			d: ['mediaelement', DOMSUPPORT],
+			methodNames: ['addTextTrack'],
+			c: [27, 26, 25]
+		});
+		
+		addModule('track-ui', {
+			d: ['track']
+		});
+	});
+	//>
+	
+	
+	//>removeCombos<
+	addPolyfill('feature-dummy', {
+		test: true,
+		loaded: true,
+		c: removeCombos
+	});
+	
+	
+	jScripts
+		.filter('[data-polyfill-cfg]')
+		.each(function(){
+			try {
+				webshims.setOptions( $(this).data('polyfillCfg') );
+			} catch(e){
+				webshims.warn('error parsing polyfill cfg: '+e);
+			}
+		})
+		.end()
+		.filter('[data-polyfill]')
+		.each(function(){
+			webshims.polyfill( $.trim( $(this).data('polyfill') || '' ) );
+		})
+	;
+	if(asyncWebshims){
+		if(asyncWebshims.cfg){
+			webshims.setOptions(asyncWebshims.cfg);
+		}
+		if(asyncWebshims.lang){
+			webshims.activeLang(asyncWebshims.lang);
+		}
+		if('polyfill' in asyncWebshims){
+			webshims.polyfill(asyncWebshims.polyfill);
+		}
+	}
+}));

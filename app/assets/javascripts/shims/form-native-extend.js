@@ -1,7 +1,256 @@
-jQuery.webshims.register("form-extend",function(c,b,k,i,j,g){k=k.Modernizr;j=k.inputtypes;if(k.formvalidation&&!b.bugs.bustedValidity){var l=b.inputTypes,t={};b.addInputType=function(a,b){l[a]=b};b.addValidityRule=function(a,b){t[a]=b};b.addValidityRule("typeMismatch",function(a,b,d,c){if(""===b)return!1;c=c.typeMismatch;if(!("type"in d))d.type=(a[0].getAttribute("type")||"").toLowerCase();l[d.type]&&l[d.type].mismatch&&(c=l[d.type].mismatch(b,a));return c});var f=g.overrideMessages,n=!j.number||
-!j.time||!j.range||f,v="customError,typeMismatch,rangeUnderflow,rangeOverflow,stepMismatch,tooLong,patternMismatch,valueMissing,valid".split(","),g=f?["value","checked"]:["value"],h=[],m=function(a,b){if(a){var d=(a.getAttribute&&a.getAttribute("type")||a.type||"").toLowerCase();if(f||l[d])f&&!b&&"radio"==d&&a.name?c(i.getElementsByName(a.name)).each(function(){c.prop(this,"validity")}):c.prop(a,"validity")}},o={};["input","textarea","select"].forEach(function(a){var p=b.defineNodeNameProperty(a,
-"setCustomValidity",{prop:{value:function(d){var d=d+"",f="input"==a?c(this).getNativeElement()[0]:this;p.prop._supvalue.call(f,d);b.bugs.validationMessage&&b.data(f,"customvalidationMessage",d);n&&(b.data(f,"hasCustomError",!!d),m(f))}}});o[a]=p.prop._supvalue});if(n||f)g.push("min"),g.push("max"),g.push("step"),h.push("input");f&&(g.push("required"),g.push("pattern"),h.push("select"),h.push("textarea"));if(n){var q;h.forEach(function(a){var p=b.defineNodeNameProperty(a,"validity",{prop:{get:function(){if(!q){var d=
-"input"==a?c(this).getNativeElement()[0]:this,g=p.prop._supget.call(d);if(!g)return g;var e={};v.forEach(function(a){e[a]=g[a]});if(!c.prop(d,"willValidate"))return e;q=!0;var i=c(d),h={type:(d.getAttribute&&d.getAttribute("type")||"").toLowerCase(),nodeName:(d.nodeName||"").toLowerCase()},m=i.val(),k=!!b.data(d,"hasCustomError"),j;q=!1;e.customError=k;if(e.valid&&e.customError)e.valid=!1;else if(!e.valid){var n=!0;c.each(e,function(a,b){if(b)return n=!1});if(n)e.valid=!0}c.each(t,function(c,g){e[c]=
-g(i,m,h,e);if(e[c]&&(e.valid||!j)&&(f||l[h.type]&&l[h.type].mismatch))o[a].call(d,b.createValidationMessage(d,c)),e.valid=!1,j=!0});e.valid?(o[a].call(d,""),b.data(d,"hasCustomError",!1)):f&&!j&&!k&&c.each(e,function(c,e){if("valid"!==c&&e)return o[a].call(d,b.createValidationMessage(d,c)),!1});return e}},writeable:!1}})});g.forEach(function(a){b.onNodeNamesPropertyModify(h,a,function(){m(this)})});if(i.addEventListener){var r,s=function(a){if("form"in a.target){var b=a.target.form;clearTimeout(r);
-m(a.target);b&&f&&c("input",b).each(function(){"password"==this.type&&m(this)})}};i.addEventListener("change",s,!0);f&&(i.addEventListener("blur",s,!0),i.addEventListener("keydown",function(a){13==a.keyCode&&s(a)},!0));i.addEventListener("input",function(a){clearTimeout(r);r=setTimeout(function(){m(a.target)},290)},!0)}var u=h.join(",");b.addReady(function(a,b){c(u,a).add(b.filter(u)).each(function(){c.prop(this,"validity")})});f&&b.ready("DOM form-message",function(){b.activeLang({register:"form-core",
-callback:function(){c("input, select, textarea").getNativeElement().each(function(){if(!b.data(this,"hasCustomError")){var a=this,f=c.prop(a,"validity")||{valid:!0},d;f.valid||(d=(a.nodeName||"").toLowerCase(),c.each(f,function(c,e){if("valid"!==c&&e)return o[d].call(a,b.createValidationMessage(a,c)),!1}))}})}})})}b.defineNodeNameProperty("input","type",{prop:{get:function(){var a=(this.getAttribute("type")||"").toLowerCase();return b.inputTypes[a]?a:this.type}}})}});
+jQuery.webshims.register('form-native-extend', function($, webshims, window, doc, undefined, options){
+	"use strict";
+	var Modernizr = window.Modernizr;
+	var modernizrInputTypes = Modernizr.inputtypes;
+	if(!Modernizr.formvalidation || webshims.bugs.bustedValidity){return;}
+	var typeModels = webshims.inputTypes;
+	var validityRules = {};
+	
+	webshims.addInputType = function(type, obj){
+		typeModels[type] = obj;
+	};
+	
+	webshims.addValidityRule = function(type, fn){
+		validityRules[type] = fn;
+	};
+	
+	webshims.addValidityRule('typeMismatch',function (input, val, cache, validityState){
+		if(val === ''){return false;}
+		var ret = validityState.typeMismatch;
+		if(!('type' in cache)){
+			cache.type = (input[0].getAttribute('type') || '').toLowerCase();
+		}
+		
+		if(typeModels[cache.type] && typeModels[cache.type].mismatch){
+			ret = typeModels[cache.type].mismatch(val, input);
+		}
+		return ret;
+	});
+	
+	var overrideNativeMessages = options.overrideMessages;	
+	
+	var overrideValidity = (!modernizrInputTypes.number || !modernizrInputTypes.time || !modernizrInputTypes.range || overrideNativeMessages);
+	var validityProps = ['customError','typeMismatch','rangeUnderflow','rangeOverflow','stepMismatch','tooLong','patternMismatch','valueMissing','valid'];
+	
+	var validityChanger = (overrideNativeMessages)? ['value', 'checked'] : ['value'];
+	var validityElements = [];
+	var testValidity = function(elem, init){
+		if(!elem){return;}
+		var type = (elem.getAttribute && elem.getAttribute('type') || elem.type || '').toLowerCase();
+		
+		if(!overrideNativeMessages && !typeModels[type]){
+			return;
+		}
+		
+		if(overrideNativeMessages && !init && type == 'radio' && elem.name){
+			$(doc.getElementsByName( elem.name )).each(function(){
+				$.prop(this, 'validity');
+			});
+		} else {
+			$.prop(elem, 'validity');
+		}
+	};
+	
+	var oldSetCustomValidity = {};
+	['input', 'textarea', 'select'].forEach(function(name){
+		var desc = webshims.defineNodeNameProperty(name, 'setCustomValidity', {
+			prop: {
+				value: function(error){
+					error = error+'';
+					var elem = (name == 'input') ? $(this).getNativeElement()[0] : this;
+					desc.prop._supvalue.call(elem, error);
+					
+					if(webshims.bugs.validationMessage){
+						webshims.data(elem, 'customvalidationMessage', error);
+					}
+					if(overrideValidity){
+						webshims.data(elem, 'hasCustomError', !!(error));
+						testValidity(elem);
+					}
+				}
+			}
+		});
+		oldSetCustomValidity[name] = desc.prop._supvalue;
+	});
+		
+	
+	if(overrideValidity || overrideNativeMessages){
+		validityChanger.push('min');
+		validityChanger.push('max');
+		validityChanger.push('step');
+		validityElements.push('input');
+	}
+	if(overrideNativeMessages){
+		validityChanger.push('required');
+		validityChanger.push('pattern');
+		validityElements.push('select');
+		validityElements.push('textarea');
+	}
+	
+	if(overrideValidity){
+		var stopValidity;
+		validityElements.forEach(function(nodeName){
+			
+			var oldDesc = webshims.defineNodeNameProperty(nodeName, 'validity', {
+				prop: {
+					get: function(){
+						if(stopValidity){return;}
+						var elem = (nodeName == 'input') ? $(this).getNativeElement()[0] : this;
+						
+						var validity = oldDesc.prop._supget.call(elem);
+						
+						if(!validity){
+							return validity;
+						}
+						var validityState = {};
+						validityProps.forEach(function(prop){
+							validityState[prop] = validity[prop];
+						});
+						
+						if( !$.prop(elem, 'willValidate') ){
+							return validityState;
+						}
+						stopValidity = true;
+						var jElm 			= $(elem),
+							cache 			= {type: (elem.getAttribute && elem.getAttribute('type') || '').toLowerCase(), nodeName: (elem.nodeName || '').toLowerCase()},
+							val				= jElm.val(),
+							customError 	= !!(webshims.data(elem, 'hasCustomError')),
+							setCustomMessage
+						;
+						stopValidity = false;
+						validityState.customError = customError;
+						
+						if( validityState.valid && validityState.customError ){
+							validityState.valid = false;
+						} else if(!validityState.valid) {
+							var allFalse = true;
+							$.each(validityState, function(name, prop){
+								if(prop){
+									allFalse = false;
+									return false;
+								}
+							});
+							
+							if(allFalse){
+								validityState.valid = true;
+							}
+							
+						}
+						
+						$.each(validityRules, function(rule, fn){
+							validityState[rule] = fn(jElm, val, cache, validityState);
+							if( validityState[rule] && (validityState.valid || !setCustomMessage) && (overrideNativeMessages || (typeModels[cache.type] && typeModels[cache.type].mismatch)) ) {
+								oldSetCustomValidity[nodeName].call(elem, webshims.createValidationMessage(elem, rule));
+								validityState.valid = false;
+								setCustomMessage = true;
+							}
+						});
+						if(validityState.valid){
+							oldSetCustomValidity[nodeName].call(elem, '');
+							webshims.data(elem, 'hasCustomError', false);
+						} else if(overrideNativeMessages && !setCustomMessage && !customError){
+							$.each(validityState, function(name, prop){
+								if(name !== 'valid' && prop){
+									oldSetCustomValidity[nodeName].call(elem, webshims.createValidationMessage(elem, name));
+									return false;
+								}
+							});
+						}
+						return validityState;
+					},
+					writeable: false
+					
+				}
+			});
+		});
+
+		validityChanger.forEach(function(prop){
+			webshims.onNodeNamesPropertyModify(validityElements, prop, function(s){
+				testValidity(this);
+			});
+		});
+		
+		if(doc.addEventListener){
+			var inputThrottle;
+			var testPassValidity = function(e){
+				if(!('form' in e.target)){return;}
+				var form = e.target.form;
+				clearTimeout(inputThrottle);
+				testValidity(e.target);
+				if(form && overrideNativeMessages){
+					$('input', form).each(function(){
+						if(this.type == 'password'){
+							testValidity(this);
+						}
+					});
+				}
+			};
+			
+			doc.addEventListener('change', testPassValidity, true);
+			
+			if(overrideNativeMessages){
+				doc.addEventListener('blur', testPassValidity, true);
+				doc.addEventListener('keydown', function(e){
+					if(e.keyCode != 13){return;}
+					testPassValidity(e);
+				}, true);
+			}
+			
+			doc.addEventListener('input', function(e){
+				clearTimeout(inputThrottle);
+				inputThrottle = setTimeout(function(){
+					testValidity(e.target);
+				}, 290);
+			}, true);
+		}
+		
+		var validityElementsSel = validityElements.join(',');	
+		
+		webshims.addReady(function(context, elem){
+			$(validityElementsSel, context).add(elem.filter(validityElementsSel)).each(function(){
+				$.prop(this, 'validity');
+			});
+		});
+		
+		
+		if(overrideNativeMessages){
+			webshims.ready('DOM form-message', function(){
+				webshims.activeLang({
+					register: 'form-core',
+					callback: function(){
+						$('input, select, textarea')
+							.getNativeElement()
+							.each(function(){
+								if(webshims.data(this, 'hasCustomError')){return;}
+								var elem = this;
+								var validity = $.prop(elem, 'validity') || {valid: true};
+								var nodeName;
+								if(validity.valid){return;}
+								nodeName = (elem.nodeName || '').toLowerCase();
+								$.each(validity, function(name, prop){
+									if(name !== 'valid' && prop){
+										oldSetCustomValidity[nodeName].call(elem, webshims.createValidationMessage(elem, name));
+										return false;
+									}
+								});
+							})
+						;
+					}
+				});
+			});
+		}
+		
+	} //end: overrideValidity
+	
+	webshims.defineNodeNameProperty('input', 'type', {
+		prop: {
+			get: function(){
+				var elem = this;
+				var type = (elem.getAttribute('type') || '').toLowerCase();
+				return (webshims.inputTypes[type]) ? type : elem.type;
+			}
+		}
+	});
+	
+	
+});

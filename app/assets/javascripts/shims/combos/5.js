@@ -1,34 +1,1028 @@
-jQuery.webshims.register("form-extend",function(a,b,d,f,n,l){d=d.Modernizr;n=d.inputtypes;if(d.formvalidation&&!b.bugs.bustedValidity){var g=b.inputTypes,o={};b.addInputType=function(a,e){g[a]=e};b.addValidityRule=function(a,e){o[a]=e};b.addValidityRule("typeMismatch",function(a,e,b,i){if(""===e)return!1;i=i.typeMismatch;if(!("type"in b))b.type=(a[0].getAttribute("type")||"").toLowerCase();g[b.type]&&g[b.type].mismatch&&(i=g[b.type].mismatch(e,a));return i});var e=l.overrideMessages,j=!n.number||
-!n.time||!n.range||e,i="customError,typeMismatch,rangeUnderflow,rangeOverflow,stepMismatch,tooLong,patternMismatch,valueMissing,valid".split(","),l=e?["value","checked"]:["value"],h=[],k=function(b,i){if(b){var s=(b.getAttribute&&b.getAttribute("type")||b.type||"").toLowerCase();if(e||g[s])e&&!i&&"radio"==s&&b.name?a(f.getElementsByName(b.name)).each(function(){a.prop(this,"validity")}):a.prop(b,"validity")}},q={};["input","textarea","select"].forEach(function(e){var i=b.defineNodeNameProperty(e,
-"setCustomValidity",{prop:{value:function(g){var g=g+"",f="input"==e?a(this).getNativeElement()[0]:this;i.prop._supvalue.call(f,g);b.bugs.validationMessage&&b.data(f,"customvalidationMessage",g);j&&(b.data(f,"hasCustomError",!!g),k(f))}}});q[e]=i.prop._supvalue});if(j||e)l.push("min"),l.push("max"),l.push("step"),h.push("input");e&&(l.push("required"),l.push("pattern"),h.push("select"),h.push("textarea"));if(j){var p;h.forEach(function(f){var h=b.defineNodeNameProperty(f,"validity",{prop:{get:function(){if(!p){var d=
-"input"==f?a(this).getNativeElement()[0]:this,j=h.prop._supget.call(d);if(!j)return j;var c={};i.forEach(function(a){c[a]=j[a]});if(!a.prop(d,"willValidate"))return c;p=!0;var m=a(d),w={type:(d.getAttribute&&d.getAttribute("type")||"").toLowerCase(),nodeName:(d.nodeName||"").toLowerCase()},C=m.val(),y=!!b.data(d,"hasCustomError"),x;p=!1;c.customError=y;if(c.valid&&c.customError)c.valid=!1;else if(!c.valid){var z=!0;a.each(c,function(a,c){if(c)return z=!1});if(z)c.valid=!0}a.each(o,function(a,i){c[a]=
-i(m,C,w,c);if(c[a]&&(c.valid||!x)&&(e||g[w.type]&&g[w.type].mismatch))q[f].call(d,b.createValidationMessage(d,a)),c.valid=!1,x=!0});c.valid?(q[f].call(d,""),b.data(d,"hasCustomError",!1)):e&&!x&&!y&&a.each(c,function(a,c){if("valid"!==a&&c)return q[f].call(d,b.createValidationMessage(d,a)),!1});return c}},writeable:!1}})});l.forEach(function(a){b.onNodeNamesPropertyModify(h,a,function(){k(this)})});if(f.addEventListener){var r,u=function(b){if("form"in b.target){var i=b.target.form;clearTimeout(r);
-k(b.target);i&&e&&a("input",i).each(function(){"password"==this.type&&k(this)})}};f.addEventListener("change",u,!0);e&&(f.addEventListener("blur",u,!0),f.addEventListener("keydown",function(a){13==a.keyCode&&u(a)},!0));f.addEventListener("input",function(a){clearTimeout(r);r=setTimeout(function(){k(a.target)},290)},!0)}var v=h.join(",");b.addReady(function(b,e){a(v,b).add(e.filter(v)).each(function(){a.prop(this,"validity")})});e&&b.ready("DOM form-message",function(){b.activeLang({register:"form-core",
-callback:function(){a("input, select, textarea").getNativeElement().each(function(){if(!b.data(this,"hasCustomError")){var e=this,i=a.prop(e,"validity")||{valid:!0},d;i.valid||(d=(e.nodeName||"").toLowerCase(),a.each(i,function(a,c){if("valid"!==a&&c)return q[d].call(e,b.createValidationMessage(e,a)),!1}))}})}})})}b.defineNodeNameProperty("input","type",{prop:{get:function(){var a=(this.getAttribute("type")||"").toLowerCase();return b.inputTypes[a]?a:this.type}}})}});
-(function(a){var b=window.Modernizr,d=a.webshims,f=d.bugs,n=a('<form action="#" style="width: 1px; height: 1px; overflow: hidden;"><select name="b" required="" /><input required="" name="a" /></form>'),l=function(){if(n[0].querySelector)try{f.findRequired=!n[0].querySelector("select:required")}catch(a){f.findRequired=!1}},g=a("input",n).eq(0),o=function(a){d.loader.loadList(["dom-extend"]);d.ready("dom-extend",a)};f.findRequired=!1;f.validationMessage=!1;d.capturingEventPrevented=function(b){if(!b._isPolyfilled){var d=
-b.isDefaultPrevented,i=b.preventDefault;b.preventDefault=function(){clearTimeout(a.data(b.target,b.type+"DefaultPrevented"));a.data(b.target,b.type+"DefaultPrevented",setTimeout(function(){a.removeData(b.target,b.type+"DefaultPrevented")},30));return i.apply(this,arguments)};b.isDefaultPrevented=function(){return!(!d.apply(this,arguments)&&!a.data(b.target,b.type+"DefaultPrevented"))};b._isPolyfilled=!0}};if(!b.formvalidation||f.bustedValidity)l();else{d.capturingEvents(["input"]);d.capturingEvents(["invalid"],
-!0);if(window.opera||window.testGoodWithFix)n.appendTo("head"),l(),f.validationMessage=!g.prop("validationMessage"),d.reTest(["form-extend","form-message"]),n.remove(),a(function(){o(function(){var b=function(a){a.preventDefault()};["form","input","textarea","select"].forEach(function(f){var i=d.defineNodeNameProperty(f,"checkValidity",{prop:{value:function(){if(!d.fromSubmit)a(this).on("invalid.checkvalidity",b);d.fromCheckValidity=!0;var f=i.prop._supvalue.apply(this,arguments);d.fromSubmit||a(this).unbind("invalid.checkvalidity",
-b);d.fromCheckValidity=!1;return f}}})})})});a.browser.webkit&&!d.bugs.bustedValidity&&function(){var b=/^(?:textarea|input)$/i,d=!1;document.addEventListener("contextmenu",function(a){b.test(a.target.nodeName||"")&&(d=a.target.form)&&setTimeout(function(){d=!1},1)},!1);a(window).on("invalid",function(a){if(a.originalEvent&&d&&d==a.target.form)a.wrongWebkitInvalid=!0,a.stopImmediatePropagation()})}()}})(jQuery);
-jQuery.webshims.register("form-core",function(a,b,d,f,n,l){var g={radio:1},o={checkbox:1,radio:1},e=a([]),j=b.bugs,i=function(c){var c=a(c),b,d;b=e;if(g[c[0].type])d=c.prop("form"),b=(b=c[0].name)?d?a(d[b]):a(f.getElementsByName(b)).filter(function(){return!a.prop(this,"form")}):c,b=b.filter('[type="radio"]');return b},h=b.getContentValidationMessage=function(c,b,e){var d=a(c).data("errormessage")||c.getAttribute("x-moz-errormessage")||"";e&&d[e]&&(d=d[e]);"object"==typeof d&&(b=b||a.prop(c,"validity")||
-{valid:1},b.valid||a.each(b,function(a,c){if(c&&"valid"!=a&&d[a])return d=d[a],!1}));if("object"==typeof d)d=d.defaultMessage;return d||""},k={number:1,range:1,date:1},q=function(c){var b=!1;a(a.prop(c,"elements")).each(function(){if(b=a(this).is(":invalid"))return!1});return b};a.extend(a.expr[":"],{"valid-element":function(c){return a.nodeName(c,"form")?!q(c):!(!a.prop(c,"willValidate")||!r(c))},"invalid-element":function(c){return a.nodeName(c,"form")?q(c):!(!a.prop(c,"willValidate")||r(c))},"required-element":function(c){return!(!a.prop(c,
-"willValidate")||!a.prop(c,"required"))},"user-error":function(c){return a.prop(c,"willValidate")&&a(c).hasClass("user-error")},"optional-element":function(c){return!!(a.prop(c,"willValidate")&&!1===a.prop(c,"required"))},"in-range":function(c){if(!k[a.prop(c,"type")]||!a.prop(c,"willValidate"))return!1;c=a.prop(c,"validity");return!(!c||c.rangeOverflow||c.rangeUnderflow)},"out-of-range":function(c){if(!k[a.prop(c,"type")]||!a.prop(c,"willValidate"))return!1;c=a.prop(c,"validity");return!(!c||!c.rangeOverflow&&
-!c.rangeUnderflow)}});["valid","invalid","required","optional"].forEach(function(c){a.expr[":"][c]=a.expr.filters[c+"-element"]});a.expr[":"].focus=function(a){try{var b=a.ownerDocument;return a===b.activeElement&&(!b.hasFocus||b.hasFocus())}catch(d){}return!1};var p=a.event.customEvent||{},r=function(c){return(a.prop(c,"validity")||{valid:1}).valid};(j.bustedValidity||j.findRequired)&&function(){var c=a.find,b=a.find.matchesSelector,d=/(\:valid|\:invalid|\:optional|\:required|\:in-range|\:out-of-range)(?=[\s\[\~\.\+\>\:\#*]|$)/ig,
-e=function(a){return a+"-element"};a.find=function(){var a=Array.prototype.slice,b=function(b){var m=arguments,m=a.call(m,1,m.length);m.unshift(b.replace(d,e));return c.apply(this,m)},m;for(m in c)c.hasOwnProperty(m)&&(b[m]=c[m]);return b}();if(!Modernizr.prefixed||Modernizr.prefixed("matchesSelector",f.documentElement))a.find.matchesSelector=function(a,c){c=c.replace(d,e);return b.call(this,a,c)}}();var u=a.prop,v={selectedIndex:1,value:1,checked:1,disabled:1,readonly:1};a.prop=function(c,b,d){var e=
-u.apply(this,arguments);c&&"form"in c&&v[b]&&d!==n&&a(c).hasClass(s)&&r(c)&&(a(c).getShadowElement().removeClass(t),"checked"==b&&d&&i(c).not(c).removeClass(t).removeAttr("aria-invalid"));return e};var A=function(c,b){var d;a.each(c,function(c,e){if(e)return d="customError"==c?a.prop(b,"validationMessage"):c,!1});return d},B=function(a){var b;try{b=f.activeElement.name===a}catch(d){}return b},s="user-error",t="user-error form-ui-invalid";a(f).on(l.validityUIEvents||"focusout change refreshvalidityui",
-function(c){var b,d;if(c.target&&(b=a(c.target).getNativeElement()[0],"submit"!=b.type&&a.prop(b,"willValidate"))){d=a.data(b,"webshimsswitchvalidityclass");var e=function(){if(!("focusout"==c.type&&"radio"==b.type&&B(b.name))){var d=a.prop(b,"validity"),e=a(b).getShadowElement(),f,g,h,k;a(b).trigger("refreshCustomValidityRules");d.valid?e.hasClass("user-success")||(f="user-success form-ui-valid",g=t,k="changedvaliditystate",h="changedvalid",o[b.type]&&b.checked&&i(b).not(b).removeClass(g).addClass(f).removeAttr("aria-invalid"),
-a.removeData(b,"webshimsinvalidcause")):(d=A(d,b),a.data(b,"webshimsinvalidcause")!=d&&(a.data(b,"webshimsinvalidcause",d),k="changedvaliditystate"),e.hasClass(s)||(f=t,g="user-success form-ui-valid",o[b.type]&&!b.checked&&i(b).not(b).removeClass(g).addClass(f),h="changedinvalid"));f&&(e.addClass(f).removeClass(g),setTimeout(function(){a(b).trigger(h)},0));k&&setTimeout(function(){a(b).trigger(k)},0);a.removeData(c.target,"webshimsswitchvalidityclass")}};d&&clearTimeout(d);"refreshvalidityui"==c.type?
-e():a.data(b,"webshimsswitchvalidityclass",setTimeout(e,9))}});p.changedvaliditystate=!0;p.refreshCustomValidityRules=!0;p.changedvalid=!0;p.changedinvalid=!0;p.refreshvalidityui=!0;b.triggerInlineForm=function(b,d){a(b).trigger(d)};b.modules["form-core"].getGroupElements=i;j=function(){b.scrollRoot=a.browser.webkit||"BackCompat"==f.compatMode?a(f.body):a(f.documentElement)};j();b.ready("DOM",j);b.getRelOffset=function(b,d){var b=a(b),e=a(d).offset(),f;a.swap(a(b)[0],{visibility:"hidden",display:"inline-block",
-left:0,top:0},function(){f=b.offset()});e.top-=f.top;e.left-=f.left;return e};b.validityAlert=function(){var c=!a.browser.msie||7<parseInt(a.browser.version,10)?"span":"label",e,i=!1,g=!1,k,j={hideDelay:5E3,showFor:function(b,c,e,f){j._create();var b=a(b),h=a(b).getShadowElement(),m=j.getOffsetFromBody(h);j.clear();f?this.hide():(this.getMessage(b,c),this.position(h,m),this.show(),this.hideDelay&&(i=setTimeout(k,this.hideDelay)),a(d).on("resize.validityalert",function(){clearTimeout(g);g=setTimeout(function(){j.position(h)},
-9)}));e||this.setFocus(h,m)},getOffsetFromBody:function(a){return b.getRelOffset(e,a)},setFocus:function(d,i){var g=a(d).getShadowFocusElement(),h=b.scrollRoot.scrollTop(),j=(i||g.offset()).top-30,l;b.getID&&"label"==c&&e.attr("for",b.getID(g));h>j&&(b.scrollRoot.animate({scrollTop:j-5},{queue:!1,duration:Math.max(Math.min(600,1.5*(h-j)),80)}),l=!0);try{g[0].focus()}catch(n){}l&&(b.scrollRoot.scrollTop(h),setTimeout(function(){b.scrollRoot.scrollTop(h)},0));setTimeout(function(){a(f).on("focusout.validityalert",
-k)},10)},getMessage:function(b,c){c||(c=h(b[0])||b.prop("validationMessage"));c?a("span.va-box",e).text(c):this.hide()},position:function(b,c){c=c?a.extend({},c):j.getOffsetFromBody(b);c.top+=b.outerHeight();e.css(c)},show:function(){"none"===e.css("display")&&e.css({opacity:0}).show();e.addClass("va-visible").fadeTo(400,1)},hide:function(){e.removeClass("va-visible").fadeOut()},clear:function(){clearTimeout(!1);clearTimeout(i);a(f).unbind(".validityalert");a(d).unbind(".validityalert");e.stop().removeAttr("for")},
-_create:function(){if(!e)e=j.errorBubble=a("<"+c+' class="validity-alert-wrapper" role="alert"><span  class="validity-alert"><span class="va-arrow"><span class="va-arrow-box"></span></span><span class="va-box"></span></span></'+c+">").css({position:"absolute",display:"none"}),b.ready("DOM",function(){e.appendTo("body");a.fn.bgIframe&&a.browser.msie&&7>parseInt(a.browser.version,10)&&e.bgIframe()})}};k=a.proxy(j,"hide");return j}();(function(){var b,e=[],d;a(f).on("invalid",function(g){if(!g.wrongWebkitInvalid){var i=
-a(g.target),h=i.getShadowElement();h.hasClass(s)||(h.addClass(t).removeClass("user-success form-ui-valid"),setTimeout(function(){a(g.target).trigger("changedinvalid").trigger("changedvaliditystate")},0));if(!b)b=a.Event("firstinvalid"),b.isInvalidUIPrevented=g.isDefaultPrevented,h=a.Event("firstinvalidsystem"),a(f).triggerHandler(h,{element:g.target,form:g.target.form,isInvalidUIPrevented:g.isDefaultPrevented}),i.trigger(b);b&&b.isDefaultPrevented()&&g.preventDefault();e.push(g.target);g.extraData=
-"fix";clearTimeout(d);d=setTimeout(function(){var d={type:"lastinvalid",cancelable:!1,invalidlist:a(e)};b=!1;e=[];a(g.target).trigger(d,d)},9);h=i=null}})})();a.fn.getErrorMessage=function(){var b="",d=this[0];d&&(b=h(d)||a.prop(d,"customValidationMessage")||a.prop(d,"validationMessage"));return b};l.replaceValidationUI&&b.ready("DOM forms",function(){a(f).on("firstinvalid",function(b){b.isInvalidUIPrevented()||(b.preventDefault(),a.webshims.validityAlert.showFor(b.target,a(b.target).prop("customValidationMessage")))})})});
-jQuery.webshims.register("form-message",function(a,b,d,f,n,l){var g=b.validityMessages,d=l.overrideMessages||l.customMessages?["customValidationMessage"]:[];g.en=a.extend(!0,{typeMismatch:{email:"Please enter an email address.",url:"Please enter a URL.",number:"Please enter a number.",date:"Please enter a date.",time:"Please enter a time.",range:"Invalid input.","datetime-local":"Please enter a datetime."},rangeUnderflow:{defaultMessage:"Value must be greater than or equal to {%min}."},rangeOverflow:{defaultMessage:"Value must be less than or equal to {%max}."},
-stepMismatch:"Invalid input.",tooLong:"Please enter at most {%maxlength} character(s). You entered {%valueLen}.",patternMismatch:"Invalid input. {%title}",valueMissing:{defaultMessage:"Please fill out this field.",checkbox:"Please check this box if you want to proceed."}},g.en||g["en-US"]||{});["select","radio"].forEach(function(a){g.en.valueMissing[a]="Please select an option."});["date","time","datetime-local"].forEach(function(a){g.en.rangeUnderflow[a]="Value must be at or after {%min}."});["date",
-"time","datetime-local"].forEach(function(a){g.en.rangeOverflow[a]="Value must be at or before {%max}."});g["en-US"]=g["en-US"]||g.en;g[""]=g[""]||g["en-US"];g.de=a.extend(!0,{typeMismatch:{email:"{%value} ist keine zul\u00e4ssige E-Mail-Adresse",url:"{%value} ist keine zul\u00e4ssige Webadresse",number:"{%value} ist keine Nummer!",date:"{%value} ist kein Datum",time:"{%value} ist keine Uhrzeit",range:"{%value} ist keine Nummer!","datetime-local":"{%value} ist kein Datum-Uhrzeit Format."},rangeUnderflow:{defaultMessage:"{%value} ist zu niedrig. {%min} ist der unterste Wert, den Sie benutzen k\u00f6nnen."},
-rangeOverflow:{defaultMessage:"{%value} ist zu hoch. {%max} ist der oberste Wert, den Sie benutzen k\u00f6nnen."},stepMismatch:"Der Wert {%value} ist in diesem Feld nicht zul\u00e4ssig. Hier sind nur bestimmte Werte zul\u00e4ssig. {%title}",tooLong:"Der eingegebene Text ist zu lang! Sie haben {%valueLen} Zeichen eingegeben, dabei sind {%maxlength} das Maximum.",patternMismatch:"{%value} hat f\u00fcr dieses Eingabefeld ein falsches Format! {%title}",valueMissing:{defaultMessage:"Bitte geben Sie einen Wert ein",
-checkbox:"Bitte aktivieren Sie das K\u00e4stchen"}},g.de||{});["select","radio"].forEach(function(a){g.de.valueMissing[a]="Bitte w\u00e4hlen Sie eine Option aus"});["date","time","datetime-local"].forEach(function(a){g.de.rangeUnderflow[a]="{%value} ist zu fr\u00fch. {%min} ist die fr\u00fcheste Zeit, die Sie benutzen k\u00f6nnen."});["date","time","datetime-local"].forEach(function(a){g.de.rangeOverflow[a]="{%value} ist zu sp\u00e4t. {%max} ist die sp\u00e4teste Zeit, die Sie benutzen k\u00f6nnen."});
-var o=g[""];b.createValidationMessage=function(d,g){var f=o[g];f&&"string"!==typeof f&&(f=f[a.prop(d,"type")]||f[(d.nodeName||"").toLowerCase()]||f.defaultMessage);f&&"value,min,max,title,maxlength,label".split(",").forEach(function(h){if(-1!==f.indexOf("{%"+h)){var k=("label"==h?a.trim(a('label[for="'+d.id+'"]',d.form).text()).replace(/\*$|:$/,""):a.attr(d,h))||"";"patternMismatch"==g&&"title"==h&&!k&&b.error("no title for patternMismatch provided. Always add a title attribute.");f=f.replace("{%"+
-h+"}",k);"value"==h&&(f=f.replace("{%valueLen}",k.length))}});return f||""};(b.bugs.validationMessage||!Modernizr.formvalidation||b.bugs.bustedValidity)&&d.push("validationMessage");b.activeLang({langObj:g,module:"form-core",callback:function(a){o=a}});d.forEach(function(d){b.defineNodeNamesProperty(["fieldset","output","button"],d,{prop:{value:"",writeable:!1}});["input","select","textarea"].forEach(function(f){var g=b.defineNodeNameProperty(f,d,{prop:{get:function(){var d=this,e="";if(!a.prop(d,
-"willValidate"))return e;var f=a.prop(d,"validity")||{valid:1};if(f.valid||(e=b.getContentValidationMessage(d,f)))return e;if(f.customError&&d.nodeName&&(e=Modernizr.formvalidation&&!b.bugs.bustedValidity&&g.prop._supget?g.prop._supget.call(d):b.data(d,"customvalidationMessage")))return e;a.each(f,function(a,f){if("valid"!=a&&f&&(e=b.createValidationMessage(d,a)))return!1});return e||""},writeable:!1}})})})});
+//additional tests for partial implementation of forms features
+(function($){
+	"use strict";
+	var Modernizr = window.Modernizr;
+	var webshims = $.webshims;
+	var bugs = webshims.bugs;
+	var form = $('<form action="#" style="width: 1px; height: 1px; overflow: hidden;"><select name="b" required="" /><input required="" name="a" /></form>');
+	var testRequiredFind = function(){
+		if(form[0].querySelector){
+			try {
+				bugs.findRequired = !(form[0].querySelector('select:required'));
+			} catch(er){
+				bugs.findRequired = false;
+			}
+		}
+	};
+	var inputElem = $('input', form).eq(0);
+	var onDomextend = function(fn){
+		webshims.loader.loadList(['dom-extend']);
+		webshims.ready('dom-extend', fn);
+	};
+	
+	bugs.findRequired = false;
+	bugs.validationMessage = false;
+	
+	webshims.capturingEventPrevented = function(e){
+		if(!e._isPolyfilled){
+			var isDefaultPrevented = e.isDefaultPrevented;
+			var preventDefault = e.preventDefault;
+			e.preventDefault = function(){
+				clearTimeout($.data(e.target, e.type + 'DefaultPrevented'));
+				$.data(e.target, e.type + 'DefaultPrevented', setTimeout(function(){
+					$.removeData(e.target, e.type + 'DefaultPrevented');
+				}, 30));
+				return preventDefault.apply(this, arguments);
+			};
+			e.isDefaultPrevented = function(){
+				return !!(isDefaultPrevented.apply(this, arguments) || $.data(e.target, e.type + 'DefaultPrevented') || false);
+			};
+			e._isPolyfilled = true;
+		}
+	};
+	
+	if(!Modernizr.formvalidation || bugs.bustedValidity){
+		testRequiredFind();
+		return;
+	}
+	
+	//create delegatable events
+	webshims.capturingEvents(['input']);
+	webshims.capturingEvents(['invalid'], true);
+	
+	if(window.opera || window.testGoodWithFix){
+		
+		form.appendTo('head');
+		
+		testRequiredFind();
+		bugs.validationMessage = !(inputElem.prop('validationMessage'));
+		
+		webshims.reTest(['form-native-extend', 'form-message']);
+		
+		form.remove();
+			
+		$(function(){
+			onDomextend(function(){
+				
+				//Opera shows native validation bubbles in case of input.checkValidity()
+				// Opera 11.6/12 hasn't fixed this issue right, it's buggy
+				var preventDefault = function(e){
+					e.preventDefault();
+				};
+				
+				['form', 'input', 'textarea', 'select'].forEach(function(name){
+					var desc = webshims.defineNodeNameProperty(name, 'checkValidity', {
+						prop: {
+							value: function(){
+								if (!webshims.fromSubmit) {
+									$(this).on('invalid.checkvalidity', preventDefault);
+								}
+								
+								webshims.fromCheckValidity = true;
+								var ret = desc.prop._supvalue.apply(this, arguments);
+								if (!webshims.fromSubmit) {
+									$(this).unbind('invalid.checkvalidity', preventDefault);
+								}
+								webshims.fromCheckValidity = false;
+								return ret;
+							}
+						}
+					});
+				});
+				
+			});
+		});
+	}
+	
+	if($.browser.webkit && !webshims.bugs.bustedValidity){
+		(function(){
+			var elems = /^(?:textarea|input)$/i;
+			var form = false;
+
+			document.addEventListener('contextmenu', function(e){
+				if(elems.test( e.target.nodeName || '') && (form = e.target.form)){
+					setTimeout(function(){
+						form = false;
+					}, 1);
+				}
+			}, false);
+			
+			$(window).on('invalid', function(e){
+				if(e.originalEvent && form && form == e.target.form){
+					e.wrongWebkitInvalid = true;
+					e.stopImmediatePropagation();
+				}
+			});
+		})();
+	}
+})(jQuery);
+
+jQuery.webshims.register('form-core', function($, webshims, window, document, undefined, options){
+	"use strict";
+	
+	var groupTypes = {radio: 1};
+	var checkTypes = {checkbox: 1, radio: 1};
+	var emptyJ = $([]);
+	var bugs = webshims.bugs;
+	var getGroupElements = function(elem){
+		elem = $(elem);
+		var name;
+		var form;
+		var ret = emptyJ;
+		if(groupTypes[elem[0].type]){
+			form = elem.prop('form');
+			name = elem[0].name;
+			if(!name){
+				ret = elem;
+			} else if(form){
+				ret = $(form[name]);
+			} else {
+				ret = $(document.getElementsByName(name)).filter(function(){
+					return !$.prop(this, 'form');
+				});
+			}
+			ret = ret.filter('[type="radio"]');
+		}
+		return ret;
+	};
+	
+	var getContentValidationMessage = webshims.getContentValidationMessage = function(elem, validity, key){
+		var message = $(elem).data('errormessage') || elem.getAttribute('x-moz-errormessage') || '';
+		if(key && message[key]){
+			message = message[key];
+		}
+		if(typeof message == 'object'){
+			validity = validity || $.prop(elem, 'validity') || {valid: 1};
+			if(!validity.valid){
+				$.each(validity, function(name, prop){
+					if(prop && name != 'valid' && message[name]){
+						message = message[name];
+						return false;
+					}
+				});
+			}
+		}
+		
+		if(typeof message == 'object'){
+			message = message.defaultMessage;
+		}
+		return message || '';
+	};
+	
+	/*
+	 * Selectors for all browsers
+	 */
+	var rangeTypes = {number: 1, range: 1, date: 1/*, time: 1, 'datetime-local': 1, datetime: 1, month: 1, week: 1*/};
+	var hasInvalid = function(elem){
+		var ret = false;
+		$($.prop(elem, 'elements')).each(function(){
+			ret = $(this).is(':invalid');
+			if(ret){
+				return false;
+			}
+		});
+		return ret;
+	};
+	$.extend($.expr[":"], {
+		"valid-element": function(elem){
+			return $.nodeName(elem, 'form') ? !hasInvalid(elem) :!!($.prop(elem, 'willValidate') && isValid(elem));
+		},
+		"invalid-element": function(elem){
+			return $.nodeName(elem, 'form') ? hasInvalid(elem) : !!($.prop(elem, 'willValidate') && !isValid(elem));
+		},
+		"required-element": function(elem){
+			return !!($.prop(elem, 'willValidate') && $.prop(elem, 'required'));
+		},
+		"user-error": function(elem){
+			return ($.prop(elem, 'willValidate') && $(elem).hasClass('user-error'));
+		},
+		"optional-element": function(elem){
+			return !!($.prop(elem, 'willValidate') && $.prop(elem, 'required') === false);
+		},
+		"in-range": function(elem){
+			if(!rangeTypes[$.prop(elem, 'type')] || !$.prop(elem, 'willValidate')){
+				return false;
+			}
+			var val = $.prop(elem, 'validity');
+			return !!(val && !val.rangeOverflow && !val.rangeUnderflow);
+		},
+		"out-of-range": function(elem){
+			if(!rangeTypes[$.prop(elem, 'type')] || !$.prop(elem, 'willValidate')){
+				return false;
+			}
+			var val = $.prop(elem, 'validity');
+			return !!(val && (val.rangeOverflow || val.rangeUnderflow));
+		}
+		
+	});
+	
+	['valid', 'invalid', 'required', 'optional'].forEach(function(name){
+		$.expr[":"][name] = $.expr.filters[name+"-element"];
+	});
+	
+	
+	$.expr[":"].focus = function( elem ) {
+		try {
+			var doc = elem.ownerDocument;
+			return elem === doc.activeElement && (!doc.hasFocus || doc.hasFocus());
+		} catch(e){}
+		return false;
+	};
+	
+	var customEvents = $.event.customEvent || {};
+	var isValid = function(elem){
+		return ($.prop(elem, 'validity') || {valid: 1}).valid;
+	};
+	
+	if (bugs.bustedValidity || bugs.findRequired) {
+		(function(){
+			var find = $.find;
+			var matchesSelector = $.find.matchesSelector;
+			
+			var regExp = /(\:valid|\:invalid|\:optional|\:required|\:in-range|\:out-of-range)(?=[\s\[\~\.\+\>\:\#*]|$)/ig;
+			var regFn = function(sel){
+				return sel + '-element';
+			};
+			
+			$.find = (function(){
+				var slice = Array.prototype.slice;
+				var fn = function(sel){
+					var ar = arguments;
+					ar = slice.call(ar, 1, ar.length);
+					ar.unshift(sel.replace(regExp, regFn));
+					return find.apply(this, ar);
+				};
+				for (var i in find) {
+					if(find.hasOwnProperty(i)){
+						fn[i] = find[i];
+					}
+				}
+				return fn;
+			})();
+			if(!Modernizr.prefixed || Modernizr.prefixed("matchesSelector", document.documentElement)){
+				$.find.matchesSelector = function(node, expr){
+					expr = expr.replace(regExp, regFn);
+					return matchesSelector.call(this, node, expr);
+				};
+			}
+			
+		})();
+	}
+	
+	//ToDo needs testing
+	var oldAttr = $.prop;
+	var changeVals = {selectedIndex: 1, value: 1, checked: 1, disabled: 1, readonly: 1};
+	$.prop = function(elem, name, val){
+		var ret = oldAttr.apply(this, arguments);
+		if(elem && 'form' in elem && changeVals[name] && val !== undefined && $(elem).hasClass(invalidClass)){
+			if(isValid(elem)){
+				$(elem).getShadowElement().removeClass(invalidClasses);
+				if(name == 'checked' && val) {
+					getGroupElements(elem).not(elem).removeClass(invalidClasses).removeAttr('aria-invalid');
+				}
+			}
+		}
+		return ret;
+	};
+	
+	var returnValidityCause = function(validity, elem){
+		var ret;
+		$.each(validity, function(name, value){
+			if(value){
+				ret = (name == 'customError') ? $.prop(elem, 'validationMessage') : name;
+				return false;
+			}
+		});
+		return ret;
+	};
+	
+	var isInGroup = function(name){
+		var ret;
+		try {
+			ret = document.activeElement.name === name;
+		} catch(e){}
+		return ret;
+	};
+	/* form-ui-invalid/form-ui-valid are deprecated. use user-error/user-succes instead */
+	var invalidClass = 'user-error';
+	var invalidClasses = 'user-error form-ui-invalid';
+	var validClass = 'user-success';
+	var validClasses = 'user-success form-ui-valid';
+	var switchValidityClass = function(e){
+		var elem, timer;
+		if(!e.target){return;}
+		elem = $(e.target).getNativeElement()[0];
+		if(elem.type == 'submit' || !$.prop(elem, 'willValidate')){return;}
+		timer = $.data(elem, 'webshimsswitchvalidityclass');
+		var switchClass = function(){
+			if(e.type == 'focusout' && elem.type == 'radio' && isInGroup(elem.name)){return;}
+			var validity = $.prop(elem, 'validity');
+			var shadowElem = $(elem).getShadowElement();
+			var addClass, removeClass, trigger, generaltrigger, validityCause;
+			
+			$(elem).trigger('refreshCustomValidityRules');
+			if(validity.valid){
+				if(!shadowElem.hasClass(validClass)){
+					addClass = validClasses;
+					removeClass = invalidClasses;
+					generaltrigger = 'changedvaliditystate';
+					trigger = 'changedvalid';
+					if(checkTypes[elem.type] && elem.checked){
+						getGroupElements(elem).not(elem).removeClass(removeClass).addClass(addClass).removeAttr('aria-invalid');
+					}
+					$.removeData(elem, 'webshimsinvalidcause');
+				}
+			} else {
+				validityCause = returnValidityCause(validity, elem);
+				if($.data(elem, 'webshimsinvalidcause') != validityCause){
+					$.data(elem, 'webshimsinvalidcause', validityCause);
+					generaltrigger = 'changedvaliditystate';
+				}
+				if(!shadowElem.hasClass(invalidClass)){
+					addClass = invalidClasses;
+					removeClass = validClasses;
+					if (checkTypes[elem.type] && !elem.checked) {
+						getGroupElements(elem).not(elem).removeClass(removeClass).addClass(addClass);
+					}
+					trigger = 'changedinvalid';
+				}
+			}
+			if(addClass){
+				shadowElem.addClass(addClass).removeClass(removeClass);
+				//jQuery 1.6.1 IE9 bug (doubble trigger bug)
+				setTimeout(function(){
+					$(elem).trigger(trigger);
+				}, 0);
+			}
+			if(generaltrigger){
+				setTimeout(function(){
+					$(elem).trigger(generaltrigger);
+				}, 0);
+			}
+			$.removeData(e.target, 'webshimsswitchvalidityclass');
+		};
+		
+		if(timer){
+			clearTimeout(timer);
+		}
+		if(e.type == 'refreshvalidityui'){
+			switchClass();
+		} else {
+			$.data(elem, 'webshimsswitchvalidityclass', setTimeout(switchClass, 9));
+		}
+	};
+	
+	$(document).on(options.validityUIEvents || 'focusout change refreshvalidityui', switchValidityClass);
+	customEvents.changedvaliditystate = true;
+	customEvents.refreshCustomValidityRules = true;
+	customEvents.changedvalid = true;
+	customEvents.changedinvalid = true;
+	customEvents.refreshvalidityui = true;
+	
+	
+	webshims.triggerInlineForm = function(elem, event){
+		$(elem).trigger(event);
+	};
+	
+	webshims.modules["form-core"].getGroupElements = getGroupElements;
+	
+	
+	var setRoot = function(){
+		webshims.scrollRoot = ($.browser.webkit || document.compatMode == 'BackCompat') ?
+			$(document.body) : 
+			$(document.documentElement)
+		;
+	};
+	setRoot();
+	webshims.ready('DOM', setRoot);
+	
+	webshims.getRelOffset = function(posElem, relElem){
+		posElem = $(posElem);
+		var offset = $(relElem).offset();
+		var bodyOffset;
+		$.swap($(posElem)[0], {visibility: 'hidden', display: 'inline-block', left: 0, top: 0}, function(){
+			bodyOffset = posElem.offset();
+		});
+		offset.top -= bodyOffset.top;
+		offset.left -= bodyOffset.left;
+		return offset;
+	};
+	
+	/* some extra validation UI */
+	webshims.validityAlert = (function(){
+		var alertElem = (!$.browser.msie || parseInt($.browser.version, 10) > 7) ? 'span' : 'label';
+		var errorBubble;
+		var hideTimer = false;
+		var focusTimer = false;
+		var resizeTimer = false;
+		var boundHide;
+		
+		var api = {
+			hideDelay: 5000,
+			
+			showFor: function(elem, message, noFocusElem, noBubble){
+				api._create();
+				elem = $(elem);
+				var visual = $(elem).getShadowElement();
+				var offset = api.getOffsetFromBody(visual);
+				api.clear();
+				if(noBubble){
+					this.hide();
+				} else {
+					this.getMessage(elem, message);
+					this.position(visual, offset);
+					
+					this.show();
+					if(this.hideDelay){
+						hideTimer = setTimeout(boundHide, this.hideDelay);
+					}
+					$(window)
+						.on('resize.validityalert', function(){
+							clearTimeout(resizeTimer);
+							resizeTimer = setTimeout(function(){
+								api.position(visual);
+							}, 9);
+						})
+					;
+				}
+				
+				if(!noFocusElem){
+					this.setFocus(visual, offset);
+				}
+			},
+			getOffsetFromBody: function(elem){
+				return webshims.getRelOffset(errorBubble, elem);
+			},
+			setFocus: function(visual, offset){
+				var focusElem = $(visual).getShadowFocusElement();
+				var scrollTop = webshims.scrollRoot.scrollTop();
+				var elemTop = ((offset || focusElem.offset()).top) - 30;
+				var smooth;
+				
+				if(webshims.getID && alertElem == 'label'){
+					errorBubble.attr('for', webshims.getID(focusElem));
+				}
+				
+				if(scrollTop > elemTop){
+					webshims.scrollRoot.animate(
+						{scrollTop: elemTop - 5}, 
+						{
+							queue: false, 
+							duration: Math.max( Math.min( 600, (scrollTop - elemTop) * 1.5 ), 80 )
+						}
+					);
+					smooth = true;
+				}
+				try {
+					focusElem[0].focus();
+				} catch(e){}
+				if(smooth){
+					webshims.scrollRoot.scrollTop(scrollTop);
+					setTimeout(function(){
+						webshims.scrollRoot.scrollTop(scrollTop);
+					}, 0);
+				}
+				setTimeout(function(){
+					$(document).on('focusout.validityalert', boundHide);
+				}, 10);
+			},
+			getMessage: function(elem, message){
+				if (!message) {
+					message = getContentValidationMessage(elem[0]) || elem.prop('validationMessage');
+				}
+				if (message) {
+					$('span.va-box', errorBubble).text(message);
+				}
+				else {
+					this.hide();
+				}
+			},
+			position: function(elem, offset){
+				offset = offset ? $.extend({}, offset) : api.getOffsetFromBody(elem);
+				offset.top += elem.outerHeight();
+				errorBubble.css(offset);
+			},
+			show: function(){
+				if(errorBubble.css('display') === 'none'){
+					errorBubble.css({opacity: 0}).show();
+				}
+				errorBubble.addClass('va-visible').fadeTo(400, 1);
+			},
+			hide: function(){
+				errorBubble.removeClass('va-visible').fadeOut();
+			},
+			clear: function(){
+				clearTimeout(focusTimer);
+				clearTimeout(hideTimer);
+				$(document).unbind('.validityalert');
+				$(window).unbind('.validityalert');
+				errorBubble.stop().removeAttr('for');
+			},
+			_create: function(){
+				if(errorBubble){return;}
+				errorBubble = api.errorBubble = $('<'+alertElem+' class="validity-alert-wrapper" role="alert"><span  class="validity-alert"><span class="va-arrow"><span class="va-arrow-box"></span></span><span class="va-box"></span></span></'+alertElem+'>').css({position: 'absolute', display: 'none'});
+				webshims.ready('DOM', function(){
+					errorBubble.appendTo('body');
+					if($.fn.bgIframe && $.browser.msie && parseInt($.browser.version, 10) < 7){
+						errorBubble.bgIframe();
+					}
+				});
+			}
+		};
+		
+		
+		boundHide = $.proxy(api, 'hide');
+		
+		return api;
+	})();
+	
+	
+	/* extension, but also used to fix native implementation workaround/bugfixes */
+	(function(){
+		var firstEvent,
+			invalids = [],
+			stopSubmitTimer,
+			form
+		;
+		
+		$(document).on('invalid', function(e){
+			if(e.wrongWebkitInvalid){return;}
+			var jElm = $(e.target);
+			var shadowElem = jElm.getShadowElement();
+			if(!shadowElem.hasClass(invalidClass)){
+				shadowElem.addClass(invalidClasses).removeClass(validClasses);
+				setTimeout(function(){
+					$(e.target).trigger('changedinvalid').trigger('changedvaliditystate');
+				}, 0);
+			}
+			
+			if(!firstEvent){
+				//trigger firstinvalid
+				firstEvent = $.Event('firstinvalid');
+				firstEvent.isInvalidUIPrevented = e.isDefaultPrevented;
+				var firstSystemInvalid = $.Event('firstinvalidsystem');
+				$(document).triggerHandler(firstSystemInvalid, {element: e.target, form: e.target.form, isInvalidUIPrevented: e.isDefaultPrevented});
+				jElm.trigger(firstEvent);
+			}
+
+			//if firstinvalid was prevented all invalids will be also prevented
+			if( firstEvent && firstEvent.isDefaultPrevented() ){
+				e.preventDefault();
+			}
+			invalids.push(e.target);
+			e.extraData = 'fix'; 
+			clearTimeout(stopSubmitTimer);
+			stopSubmitTimer = setTimeout(function(){
+				var lastEvent = {type: 'lastinvalid', cancelable: false, invalidlist: $(invalids)};
+				//reset firstinvalid
+				firstEvent = false;
+				invalids = [];
+				$(e.target).trigger(lastEvent, lastEvent);
+			}, 9);
+			jElm = null;
+			shadowElem = null;
+		});
+	})();
+	
+	$.fn.getErrorMessage = function(){
+		var message = '';
+		var elem = this[0];
+		if(elem){
+			message = getContentValidationMessage(elem) || $.prop(elem, 'customValidationMessage') || $.prop(elem, 'validationMessage');
+		}
+		return message;
+	};
+	
+	if(options.replaceValidationUI){
+		webshims.ready('DOM forms', function(){
+			$(document).on('firstinvalid', function(e){
+				if(!e.isInvalidUIPrevented()){
+					e.preventDefault();
+					$.webshims.validityAlert.showFor( e.target, $(e.target).prop('customValidationMessage') ); 
+				}
+			});
+		});
+	}
+	
+});
+jQuery.webshims.register('form-native-extend', function($, webshims, window, doc, undefined, options){
+	"use strict";
+	var Modernizr = window.Modernizr;
+	var modernizrInputTypes = Modernizr.inputtypes;
+	if(!Modernizr.formvalidation || webshims.bugs.bustedValidity){return;}
+	var typeModels = webshims.inputTypes;
+	var validityRules = {};
+	
+	webshims.addInputType = function(type, obj){
+		typeModels[type] = obj;
+	};
+	
+	webshims.addValidityRule = function(type, fn){
+		validityRules[type] = fn;
+	};
+	
+	webshims.addValidityRule('typeMismatch',function (input, val, cache, validityState){
+		if(val === ''){return false;}
+		var ret = validityState.typeMismatch;
+		if(!('type' in cache)){
+			cache.type = (input[0].getAttribute('type') || '').toLowerCase();
+		}
+		
+		if(typeModels[cache.type] && typeModels[cache.type].mismatch){
+			ret = typeModels[cache.type].mismatch(val, input);
+		}
+		return ret;
+	});
+	
+	var overrideNativeMessages = options.overrideMessages;	
+	
+	var overrideValidity = (!modernizrInputTypes.number || !modernizrInputTypes.time || !modernizrInputTypes.range || overrideNativeMessages);
+	var validityProps = ['customError','typeMismatch','rangeUnderflow','rangeOverflow','stepMismatch','tooLong','patternMismatch','valueMissing','valid'];
+	
+	var validityChanger = (overrideNativeMessages)? ['value', 'checked'] : ['value'];
+	var validityElements = [];
+	var testValidity = function(elem, init){
+		if(!elem){return;}
+		var type = (elem.getAttribute && elem.getAttribute('type') || elem.type || '').toLowerCase();
+		
+		if(!overrideNativeMessages && !typeModels[type]){
+			return;
+		}
+		
+		if(overrideNativeMessages && !init && type == 'radio' && elem.name){
+			$(doc.getElementsByName( elem.name )).each(function(){
+				$.prop(this, 'validity');
+			});
+		} else {
+			$.prop(elem, 'validity');
+		}
+	};
+	
+	var oldSetCustomValidity = {};
+	['input', 'textarea', 'select'].forEach(function(name){
+		var desc = webshims.defineNodeNameProperty(name, 'setCustomValidity', {
+			prop: {
+				value: function(error){
+					error = error+'';
+					var elem = (name == 'input') ? $(this).getNativeElement()[0] : this;
+					desc.prop._supvalue.call(elem, error);
+					
+					if(webshims.bugs.validationMessage){
+						webshims.data(elem, 'customvalidationMessage', error);
+					}
+					if(overrideValidity){
+						webshims.data(elem, 'hasCustomError', !!(error));
+						testValidity(elem);
+					}
+				}
+			}
+		});
+		oldSetCustomValidity[name] = desc.prop._supvalue;
+	});
+		
+	
+	if(overrideValidity || overrideNativeMessages){
+		validityChanger.push('min');
+		validityChanger.push('max');
+		validityChanger.push('step');
+		validityElements.push('input');
+	}
+	if(overrideNativeMessages){
+		validityChanger.push('required');
+		validityChanger.push('pattern');
+		validityElements.push('select');
+		validityElements.push('textarea');
+	}
+	
+	if(overrideValidity){
+		var stopValidity;
+		validityElements.forEach(function(nodeName){
+			
+			var oldDesc = webshims.defineNodeNameProperty(nodeName, 'validity', {
+				prop: {
+					get: function(){
+						if(stopValidity){return;}
+						var elem = (nodeName == 'input') ? $(this).getNativeElement()[0] : this;
+						
+						var validity = oldDesc.prop._supget.call(elem);
+						
+						if(!validity){
+							return validity;
+						}
+						var validityState = {};
+						validityProps.forEach(function(prop){
+							validityState[prop] = validity[prop];
+						});
+						
+						if( !$.prop(elem, 'willValidate') ){
+							return validityState;
+						}
+						stopValidity = true;
+						var jElm 			= $(elem),
+							cache 			= {type: (elem.getAttribute && elem.getAttribute('type') || '').toLowerCase(), nodeName: (elem.nodeName || '').toLowerCase()},
+							val				= jElm.val(),
+							customError 	= !!(webshims.data(elem, 'hasCustomError')),
+							setCustomMessage
+						;
+						stopValidity = false;
+						validityState.customError = customError;
+						
+						if( validityState.valid && validityState.customError ){
+							validityState.valid = false;
+						} else if(!validityState.valid) {
+							var allFalse = true;
+							$.each(validityState, function(name, prop){
+								if(prop){
+									allFalse = false;
+									return false;
+								}
+							});
+							
+							if(allFalse){
+								validityState.valid = true;
+							}
+							
+						}
+						
+						$.each(validityRules, function(rule, fn){
+							validityState[rule] = fn(jElm, val, cache, validityState);
+							if( validityState[rule] && (validityState.valid || !setCustomMessage) && (overrideNativeMessages || (typeModels[cache.type] && typeModels[cache.type].mismatch)) ) {
+								oldSetCustomValidity[nodeName].call(elem, webshims.createValidationMessage(elem, rule));
+								validityState.valid = false;
+								setCustomMessage = true;
+							}
+						});
+						if(validityState.valid){
+							oldSetCustomValidity[nodeName].call(elem, '');
+							webshims.data(elem, 'hasCustomError', false);
+						} else if(overrideNativeMessages && !setCustomMessage && !customError){
+							$.each(validityState, function(name, prop){
+								if(name !== 'valid' && prop){
+									oldSetCustomValidity[nodeName].call(elem, webshims.createValidationMessage(elem, name));
+									return false;
+								}
+							});
+						}
+						return validityState;
+					},
+					writeable: false
+					
+				}
+			});
+		});
+
+		validityChanger.forEach(function(prop){
+			webshims.onNodeNamesPropertyModify(validityElements, prop, function(s){
+				testValidity(this);
+			});
+		});
+		
+		if(doc.addEventListener){
+			var inputThrottle;
+			var testPassValidity = function(e){
+				if(!('form' in e.target)){return;}
+				var form = e.target.form;
+				clearTimeout(inputThrottle);
+				testValidity(e.target);
+				if(form && overrideNativeMessages){
+					$('input', form).each(function(){
+						if(this.type == 'password'){
+							testValidity(this);
+						}
+					});
+				}
+			};
+			
+			doc.addEventListener('change', testPassValidity, true);
+			
+			if(overrideNativeMessages){
+				doc.addEventListener('blur', testPassValidity, true);
+				doc.addEventListener('keydown', function(e){
+					if(e.keyCode != 13){return;}
+					testPassValidity(e);
+				}, true);
+			}
+			
+			doc.addEventListener('input', function(e){
+				clearTimeout(inputThrottle);
+				inputThrottle = setTimeout(function(){
+					testValidity(e.target);
+				}, 290);
+			}, true);
+		}
+		
+		var validityElementsSel = validityElements.join(',');	
+		
+		webshims.addReady(function(context, elem){
+			$(validityElementsSel, context).add(elem.filter(validityElementsSel)).each(function(){
+				$.prop(this, 'validity');
+			});
+		});
+		
+		
+		if(overrideNativeMessages){
+			webshims.ready('DOM form-message', function(){
+				webshims.activeLang({
+					register: 'form-core',
+					callback: function(){
+						$('input, select, textarea')
+							.getNativeElement()
+							.each(function(){
+								if(webshims.data(this, 'hasCustomError')){return;}
+								var elem = this;
+								var validity = $.prop(elem, 'validity') || {valid: true};
+								var nodeName;
+								if(validity.valid){return;}
+								nodeName = (elem.nodeName || '').toLowerCase();
+								$.each(validity, function(name, prop){
+									if(name !== 'valid' && prop){
+										oldSetCustomValidity[nodeName].call(elem, webshims.createValidationMessage(elem, name));
+										return false;
+									}
+								});
+							})
+						;
+					}
+				});
+			});
+		}
+		
+	} //end: overrideValidity
+	
+	webshims.defineNodeNameProperty('input', 'type', {
+		prop: {
+			get: function(){
+				var elem = this;
+				var type = (elem.getAttribute('type') || '').toLowerCase();
+				return (webshims.inputTypes[type]) ? type : elem.type;
+			}
+		}
+	});
+	
+	
+});
+jQuery.webshims.register('form-message', function($, webshims, window, document, undefined, options){
+	"use strict";
+	var validityMessages = webshims.validityMessages;
+	
+	var implementProperties = (options.overrideMessages || options.customMessages) ? ['customValidationMessage'] : [];
+	
+	validityMessages['en'] = $.extend(true, {
+		typeMismatch: {
+			email: 'Please enter an email address.',
+			url: 'Please enter a URL.',
+			number: 'Please enter a number.',
+			date: 'Please enter a date.',
+			time: 'Please enter a time.',
+			range: 'Invalid input.',
+			"datetime-local": 'Please enter a datetime.'
+		},
+		rangeUnderflow: {
+			defaultMessage: 'Value must be greater than or equal to {%min}.'
+		},
+		rangeOverflow: {
+			defaultMessage: 'Value must be less than or equal to {%max}.'
+		},
+		stepMismatch: 'Invalid input.',
+		tooLong: 'Please enter at most {%maxlength} character(s). You entered {%valueLen}.',
+		
+		patternMismatch: 'Invalid input. {%title}',
+		valueMissing: {
+			defaultMessage: 'Please fill out this field.',
+			checkbox: 'Please check this box if you want to proceed.'
+		}
+	}, (validityMessages['en'] || validityMessages['en-US'] || {}));
+	
+	
+	['select', 'radio'].forEach(function(type){
+		validityMessages['en'].valueMissing[type] = 'Please select an option.';
+	});
+	
+	['date', 'time', 'datetime-local'].forEach(function(type){
+		validityMessages.en.rangeUnderflow[type] = 'Value must be at or after {%min}.';
+	});
+	['date', 'time', 'datetime-local'].forEach(function(type){
+		validityMessages.en.rangeOverflow[type] = 'Value must be at or before {%max}.';
+	});
+	
+	validityMessages['en-US'] = validityMessages['en-US'] || validityMessages['en'];
+	validityMessages[''] = validityMessages[''] || validityMessages['en-US'];
+	
+	validityMessages['de'] = $.extend(true, {
+		typeMismatch: {
+			email: '{%value} ist keine zulässige E-Mail-Adresse',
+			url: '{%value} ist keine zulässige Webadresse',
+			number: '{%value} ist keine Nummer!',
+			date: '{%value} ist kein Datum',
+			time: '{%value} ist keine Uhrzeit',
+			range: '{%value} ist keine Nummer!',
+			"datetime-local": '{%value} ist kein Datum-Uhrzeit Format.'
+		},
+		rangeUnderflow: {
+			defaultMessage: '{%value} ist zu niedrig. {%min} ist der unterste Wert, den Sie benutzen können.'
+		},
+		rangeOverflow: {
+			defaultMessage: '{%value} ist zu hoch. {%max} ist der oberste Wert, den Sie benutzen können.'
+		},
+		stepMismatch: 'Der Wert {%value} ist in diesem Feld nicht zulässig. Hier sind nur bestimmte Werte zulässig. {%title}',
+		tooLong: 'Der eingegebene Text ist zu lang! Sie haben {%valueLen} Zeichen eingegeben, dabei sind {%maxlength} das Maximum.',
+		patternMismatch: '{%value} hat für dieses Eingabefeld ein falsches Format! {%title}',
+		valueMissing: {
+			defaultMessage: 'Bitte geben Sie einen Wert ein',
+			checkbox: 'Bitte aktivieren Sie das Kästchen'
+		}
+	}, (validityMessages['de'] || {}));
+	
+	['select', 'radio'].forEach(function(type){
+		validityMessages['de'].valueMissing[type] = 'Bitte wählen Sie eine Option aus';
+	});
+	
+	['date', 'time', 'datetime-local'].forEach(function(type){
+		validityMessages.de.rangeUnderflow[type] = '{%value} ist zu früh. {%min} ist die früheste Zeit, die Sie benutzen können.';
+	});
+	['date', 'time', 'datetime-local'].forEach(function(type){
+		validityMessages.de.rangeOverflow[type] = '{%value} ist zu spät. {%max} ist die späteste Zeit, die Sie benutzen können.';
+	});
+	
+	var currentValidationMessage =  validityMessages[''];
+	
+	
+	webshims.createValidationMessage = function(elem, name){
+		var message = currentValidationMessage[name];
+		if(message && typeof message !== 'string'){
+			message = message[ $.prop(elem, 'type') ] || message[ (elem.nodeName || '').toLowerCase() ] || message[ 'defaultMessage' ];
+		}
+		if(message){
+			['value', 'min', 'max', 'title', 'maxlength', 'label'].forEach(function(attr){
+				if(message.indexOf('{%'+attr) === -1){return;}
+				var val = ((attr == 'label') ? $.trim($('label[for="'+ elem.id +'"]', elem.form).text()).replace(/\*$|:$/, '') : $.attr(elem, attr)) || '';
+				if(name == 'patternMismatch' && attr == 'title' && !val){
+					webshims.error('no title for patternMismatch provided. Always add a title attribute.');
+				}
+				message = message.replace('{%'+ attr +'}', val);
+				if('value' == attr){
+					message = message.replace('{%valueLen}', val.length);
+				}
+			});
+		}
+		return message || '';
+	};
+	
+	
+	if(webshims.bugs.validationMessage || !Modernizr.formvalidation || webshims.bugs.bustedValidity){
+		implementProperties.push('validationMessage');
+	}
+	
+	webshims.activeLang({
+		langObj: validityMessages, 
+		module: 'form-core', 
+		callback: function(langObj){
+			currentValidationMessage = langObj;
+		}
+	});
+	
+	implementProperties.forEach(function(messageProp){
+		webshims.defineNodeNamesProperty(['fieldset', 'output', 'button'], messageProp, {
+			prop: {
+				value: '',
+				writeable: false
+			}
+		});
+		['input', 'select', 'textarea'].forEach(function(nodeName){
+			var desc = webshims.defineNodeNameProperty(nodeName, messageProp, {
+				prop: {
+					get: function(){
+						var elem = this;
+						var message = '';
+						if(!$.prop(elem, 'willValidate')){
+							return message;
+						}
+						
+						var validity = $.prop(elem, 'validity') || {valid: 1};
+						
+						if(validity.valid){return message;}
+						message = webshims.getContentValidationMessage(elem, validity);
+						
+						if(message){return message;}
+						
+						if(validity.customError && elem.nodeName){
+							message = (Modernizr.formvalidation && !webshims.bugs.bustedValidity && desc.prop._supget) ? desc.prop._supget.call(elem) : webshims.data(elem, 'customvalidationMessage');
+							if(message){return message;}
+						}
+						$.each(validity, function(name, prop){
+							if(name == 'valid' || !prop){return;}
+							
+							message = webshims.createValidationMessage(elem, name);
+							if(message){
+								return false;
+							}
+						});
+						return message || '';
+					},
+					writeable: false
+				}
+			});
+		});
+		
+	});
+});

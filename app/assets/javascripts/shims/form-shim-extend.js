@@ -1,46 +1,1568 @@
-(!Modernizr.formvalidation||jQuery.webshims.bugs.bustedValidity)&&jQuery.webshims.register("form-extend",function(a,c,v,i){c.inputTypes=c.inputTypes||{};var w=c.cfg.forms,p,r=c.inputTypes,A={radio:1,checkbox:1};c.addInputType=function(a,d){r[a]=d};var x={customError:!1,typeMismatch:!1,rangeUnderflow:!1,rangeOverflow:!1,stepMismatch:!1,tooLong:!1,patternMismatch:!1,valueMissing:!1,valid:!0},s={valueMissing:function(b,d,e){if(!b.prop("required"))return!1;var g=!1;if(!("type"in e))e.type=(b[0].getAttribute("type")||
-b[0].type||"").toLowerCase();if("select"==e.nodeName){if(d=!d)if(!(d=0>b[0].selectedIndex))b=b[0],d="select-one"==b.type&&2>b.size?!!a("> option:first-child",b).prop("selected"):!1;b=d}else b=A[e.type]?"checkbox"==e.type?!b.is(":checked"):!c.modules["form-core"].getGroupElements(b).filter(":checked")[0]:!d;return b},tooLong:function(){return!1},typeMismatch:function(a,d,e){if(""===d||"select"==e.nodeName)return!1;var c=!1;if(!("type"in e))e.type=(a[0].getAttribute("type")||a[0].type||"").toLowerCase();
-if(r[e.type]&&r[e.type].mismatch)c=r[e.type].mismatch(d,a);else if("validity"in a[0])c=a[0].validity.typeMismatch;return c},patternMismatch:function(a,d,e){if(""===d||"select"==e.nodeName)return!1;a=a.attr("pattern");if(!a)return!1;try{a=RegExp("^(?:"+a+")$")}catch(g){c.error('invalid pattern value: "'+a+'" | '+g),a=!1}return!a?!1:!a.test(d)}};c.addValidityRule=function(a,d){s[a]=d};a.event.special.invalid={add:function(){a.event.special.invalid.setup.call(this.form||this)},setup:function(){var b=
-this.form||this;if(!a.data(b,"invalidEventShim")&&(a(b).data("invalidEventShim",!0).on("submit",a.event.special.invalid.handler),c.moveToFirstEvent(b,"submit"),c.bugs.bustedValidity&&a.nodeName(b,"form"))){var d=b.getAttribute("novalidate");b.setAttribute("novalidate","novalidate");c.data(b,"bustedNoValidate",null==d?null:d)}},teardown:a.noop,handler:function(b){if(!("submit"!=b.type||b.testedValidity||!b.originalEvent||!a.nodeName(b.target,"form")||a.prop(b.target,"noValidate"))){p=!0;b.testedValidity=
-!0;if(!a(b.target).checkValidity())return b.stopImmediatePropagation(),p=!1;p=!1}}};var y=function(b){if(!a.support.submitBubbles&&b&&"object"==typeof b&&!b._submit_attached)a.event.add(b,"submit._submit",function(a){a._submit_bubble=!0}),b._submit_attached=!0};if(!a.support.submitBubbles&&a.event.special.submit)a.event.special.submit.setup=function(){if(a.nodeName(this,"form"))return!1;a.event.add(this,"click._submit keypress._submit",function(b){b=b.target;b=a.nodeName(b,"input")||a.nodeName(b,
-"button")?a.prop(b,"form"):void 0;y(b)})};a.event.special.submit=a.event.special.submit||{setup:function(){return!1}};var B=a.event.special.submit.setup;a.extend(a.event.special.submit,{setup:function(){if(a.nodeName(this,"form"))a(this).on("invalid",a.noop);else a("form",this).on("invalid",a.noop);return B.apply(this,arguments)}});a(v).on("invalid",a.noop);c.addInputType("email",{mismatch:function(){var a=w.emailReg||/^[a-zA-Z0-9.!#$%&'*+-\/=?\^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;return function(d){return!a.test(d)}}()});
-c.addInputType("url",{mismatch:function(){var a=w.urlReg||/^([a-z]([a-z]|\d|\+|-|\.)*):(\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?((\[(|(v[\da-f]{1,}\.(([a-z]|\d|-|\.|_|~)|[!\$&'\(\)\*\+,;=]|:)+))\])|((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=])*)(:\d*)?)(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*|(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)){0})(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
-return function(d){return!a.test(d)}}()});c.defineNodeNameProperty("input","type",{prop:{get:function(){var a=(this.getAttribute("type")||"").toLowerCase();return c.inputTypes[a]?a:this.type}}});c.defineNodeNamesProperties(["button","fieldset","output"],{checkValidity:{value:function(){return!0}},willValidate:{value:!1},setCustomValidity:{value:a.noop},validity:{writeable:!1,get:function(){return a.extend({},x)}}},"prop");var n=function(b){var d,e=a.prop(b,"validity");if(e)a.data(b,"cachedValidity",
-e);else return!0;if(!e.valid){d=a.Event("invalid");var g=a(b).trigger(d);if(p&&!n.unhandledInvalids&&!d.isDefaultPrevented())c.validityAlert.showFor(g),n.unhandledInvalids=!0}a.removeData(b,"cachedValidity");return e.valid},C=/^(?:select|textarea|input)/i;c.defineNodeNameProperty("form","checkValidity",{prop:{value:function(){var b=!0,d=a(a.prop(this,"elements")).filter(function(){if(!C.test(this.nodeName))return!1;var a=c.data(this,"shadowData");return!a||!a.nativeElement||a.nativeElement===this});
-n.unhandledInvalids=!1;for(var e=0,g=d.length;e<g;e++)n(d[e])||(b=!1);return b}}});c.defineNodeNamesProperties(["input","textarea","select"],{checkValidity:{value:function(){n.unhandledInvalids=!1;return n(a(this).getNativeElement()[0])}},setCustomValidity:{value:function(b){a.removeData(this,"cachedValidity");c.data(this,"customvalidationMessage",""+b)}},willValidate:{writeable:!1,get:function(){var b={button:1,reset:1,hidden:1,image:1};return function(){var d=a(this).getNativeElement()[0];return!(d.disabled||
-d.readOnly||b[d.type])}}()},validity:{writeable:!1,get:function(){var b=a(this).getNativeElement(),d=b[0],e=a.data(d,"cachedValidity");if(e)return e;e=a.extend({},x);if(!a.prop(d,"willValidate")||"submit"==d.type)return e;var g=b.val(),f={nodeName:d.nodeName.toLowerCase()};e.customError=!!c.data(d,"customvalidationMessage");if(e.customError)e.valid=!1;a.each(s,function(a,d){if(d(b,g,f))e[a]=!0,e.valid=!1});a(this).getShadowFocusElement().attr("aria-invalid",e.valid?"false":"true");d=b=null;return e}}},
-"prop");c.defineNodeNamesBooleanProperty(["input","textarea","select"],"required",{set:function(b){a(this).getShadowFocusElement().attr("aria-required",!!b+"")},initAttr:!a.browser.msie||7<c.browserVersion});c.reflectProperties(["input"],["pattern"]);if(!("maxLength"in i.createElement("textarea"))){var o=function(){var b,d=0,e=a([]),c=1E9,f=function(){var a=e.prop("value"),b=a.length;b>d&&b>c&&(b=Math.max(d,c),e.prop("value",a.substr(0,b)));d=b},h=function(){clearTimeout(b);e.unbind(".maxlengthconstraint")};
-return function(q,m){h();if(-1<m)c=m,d=a.prop(q,"value").length,e=a(q),e.on({"keydown.maxlengthconstraint keypress.maxlengthconstraint paste.maxlengthconstraint cut.maxlengthconstraint":function(){setTimeout(f,0)},"keyup.maxlengthconstraint":f,"blur.maxlengthconstraint":h}),b=setInterval(f,200)}}();o.update=function(b,d){a(b).is(":focus")&&(d||(d=a.prop(b,"maxlength")),o(b,d))};a(i).on("focusin",function(b){var d;"TEXTAREA"==b.target.nodeName&&-1<(d=a.prop(b.target,"maxlength"))&&o(b.target,d)});
-c.defineNodeNameProperty("textarea","maxlength",{attr:{set:function(a){this.setAttribute("maxlength",""+a);o.update(this)},get:function(){var a=this.getAttribute("maxlength");return null==a?void 0:a}},prop:{set:function(a){if("number"==typeof a||a&&a==1*a){if(0>a)throw"INDEX_SIZE_ERR";a=parseInt(a,10);this.setAttribute("maxlength",a);o.update(this,a)}else this.setAttribute("maxlength","0"),o.update(this,0)},get:function(){var a=this.getAttribute("maxlength");return("number"==typeof a||a&&a==1*a)&&
-0<=a?parseInt(a,10):-1}}});c.defineNodeNameProperty("textarea","maxLength",{prop:{set:function(b){a.prop(this,"maxlength",b)},get:function(){return a.prop(this,"maxlength")}}})}var D={submit:1,button:1,image:1},k={};[{name:"enctype",limitedTo:{"application/x-www-form-urlencoded":1,"multipart/form-data":1,"text/plain":1},defaultProp:"application/x-www-form-urlencoded",proptype:"enum"},{name:"method",limitedTo:{get:1,post:1},defaultProp:"get",proptype:"enum"},{name:"action",proptype:"url"},{name:"target"},
-{name:"novalidate",propName:"noValidate",proptype:"boolean"}].forEach(function(b){var d="form"+(b.propName||b.name).replace(/^[a-z]/,function(a){return a.toUpperCase()}),e="form"+b.name,c=b.name,f="click.webshimssubmittermutate"+c,h=function(){if("form"in this&&D[this.type]){var h=a.prop(this,"form");if(h){var f=a.attr(this,e);if(null!=f&&(!b.limitedTo||f.toLowerCase()===a.prop(this,d))){var j=a.attr(h,c);a.attr(h,c,f);setTimeout(function(){if(null!=j)a.attr(h,c,j);else try{a(h).removeAttr(c)}catch(b){h.removeAttribute(c)}},
-9)}}}};switch(b.proptype){case "url":var q=i.createElement("form");k[d]={prop:{set:function(b){a.attr(this,e,b)},get:function(){var b=a.attr(this,e);if(null==b)return"";q.setAttribute("action",b);return q.action}}};break;case "boolean":k[d]={prop:{set:function(b){b?a.attr(this,"formnovalidate","formnovalidate"):a(this).removeAttr("formnovalidate")},get:function(){return null!=a.attr(this,"formnovalidate")}}};break;case "enum":k[d]={prop:{set:function(b){a.attr(this,e,b)},get:function(){var d=a.attr(this,
-e);return!d||(d=d.toLowerCase())&&!b.limitedTo[d]?b.defaultProp:d}}};break;default:k[d]={prop:{set:function(b){a.attr(this,e,b)},get:function(){var b=a.attr(this,e);return null!=b?b:""}}}}k[e]||(k[e]={});k[e].attr={set:function(b){k[e].attr._supset.call(this,b);a(this).unbind(f).on(f,h)},get:function(){return k[e].attr._supget.call(this)}};k[e].initAttr=!0;k[e].removeAttr={value:function(){a(this).unbind(f);k[e].removeAttr._supvalue.call(this)}}});c.defineNodeNamesProperties(["input","button"],k);
-!a.support.getSetAttribute&&null==a("<form novalidate></form>").attr("novalidate")?c.defineNodeNameProperty("form","novalidate",{attr:{set:function(a){this.setAttribute("novalidate",""+a)},get:function(){var a=this.getAttribute("novalidate");return null==a?void 0:a}}}):c.bugs.bustedValidity&&(c.defineNodeNameProperty("form","novalidate",{attr:{set:function(a){c.data(this,"bustedNoValidate",""+a)},get:function(){var a=c.data(this,"bustedNoValidate");return null==a?void 0:a}},removeAttr:{value:function(){c.data(this,
-"bustedNoValidate",null)}}}),a.each(["rangeUnderflow","rangeOverflow","stepMismatch"],function(a,d){s[d]=function(a){return(a[0].validity||{})[d]||!1}}));c.defineNodeNameProperty("form","noValidate",{prop:{set:function(b){b?a.attr(this,"novalidate","novalidate"):a(this).removeAttr("novalidate")},get:function(){return null!=a.attr(this,"novalidate")}}});a.browser.webkit&&Modernizr.inputtypes.date&&function(){var b={updateInput:1,input:1},d={date:1,time:1,"datetime-local":1},e={focusout:1,blur:1},g=
-{updateInput:1,change:1},f=function(a){var d,c=!0,f=a.prop("value"),j=f,l=function(d){if(a){var e=a.prop("value");e!==f&&(f=e,(!d||!b[d.type])&&a.trigger("input"));d&&g[d.type]&&(j=e);!c&&e!==j&&a.trigger("change")}},z,u=function(b){clearInterval(d);setTimeout(function(){b&&e[b.type]&&(c=!1);a&&(a.unbind("focusout blur",u).unbind("input change updateInput",l),l());a=null},1)};clearInterval(d);d=setInterval(l,160);clearTimeout(z);z=setTimeout(l,9);a.off({"focusout blur":u,"input change updateInput":l}).on({"focusout blur":u,
-"input updateInput change":l})};if(a.event.customEvent)a.event.customEvent.updateInput=!0;(function(){var b=function(b){var d=1,e,c;if("date"==b.type&&(p||!a(b).is(":focus")))if((c=b.value)&&10>c.length&&(c=c.split("-"))&&3==c.length){for(;3>d;d++)if(1==c[d].length)c[d]="0"+c[d];else if(2!=c[d].length){e=!0;break}if(!e)return c=c.join("-"),a.prop(b,"value",c),c}},d,e,f,j;d=c.defineNodeNameProperty("input","checkValidity",{prop:{value:function(){b(this);return d.prop._supvalue.apply(this,arguments)}}});
-e=c.defineNodeNameProperty("form","checkValidity",{prop:{value:function(){a("input",this).each(function(){b(this)});return e.prop._supvalue.apply(this,arguments)}}});f=c.defineNodeNameProperty("input","value",{prop:{set:function(){return f.prop._supset.apply(this,arguments)},get:function(){return b(this)||f.prop._supget.apply(this,arguments)}}});j=c.defineNodeNameProperty("input","validity",{prop:{writeable:!1,get:function(){b(this);return j.prop._supget.apply(this,arguments)}}});a(i).on("change",
-function(a){isChangeSubmit=!0;b(a.target);isChangeSubmit=!1})})();a(i).on("focusin",function(b){b.target&&d[b.target.type]&&!b.target.readOnly&&!b.target.disabled&&f(a(b.target))})}();c.addReady(function(b,d){var c;a("form",b).add(d.filter("form")).bind("invalid",a.noop);try{if(b==i&&!("form"in(i.activeElement||{})))(c=a("input[autofocus], select[autofocus], textarea[autofocus]",b).eq(0).getShadowFocusElement()[0])&&c.offsetHeight&&c.offsetWidth&&c.focus()}catch(g){}});(!Modernizr.formattribute||
-!Modernizr.fieldsetdisabled)&&function(){(function(b,d){a.prop=function(c,e,g){var j;if(c&&1==c.nodeType&&g===d&&a.nodeName(c,"form")&&c.id){j=i.getElementsByName(e);if(!j||!j.length)j=i.getElementById(e);if(j&&(j=a(j).filter(function(){return a.prop(this,"form")==c}).get(),j.length))return 1==j.length?j[0]:j}return b.apply(this,arguments)}})(a.prop,void 0);var b=function(b){var d=a.data(b,"webshimsAddedElements");d&&(d.remove(),a.removeData(b,"webshimsAddedElements"))},d=/\r?\n/g,e=/^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
-g=/^(?:select|textarea)/i;Modernizr.formattribute||(c.defineNodeNamesProperty(["input","textarea","select","button","fieldset"],"form",{prop:{get:function(){var b=c.contentAttr(this,"form");b&&(b=i.getElementById(b))&&!a.nodeName(b,"form")&&(b=null);return b||this.form},writeable:!1}}),c.defineNodeNamesProperty(["form"],"elements",{prop:{get:function(){var b=this.id,d=a.makeArray(this.elements);b&&(d=a(d).add('input[form="'+b+'"], select[form="'+b+'"], textarea[form="'+b+'"], button[form="'+b+'"], fieldset[form="'+
-b+'"]').not(".webshims-visual-hide > *").get());return d},writeable:!1}}),a(function(){var d=function(a){a.stopPropagation()};a(i).on("submit",function(d){if(!d.isDefaultPrevented()){var c=d.target;if(d=c.id)b(c),d=a('input[form="'+d+'"], select[form="'+d+'"], textarea[form="'+d+'"]').filter(function(){return!this.disabled&&this.name&&this.form!=c}).clone(),d.length&&(a.data(c,"webshimsAddedElements",a('<div class="webshims-visual-hide" />').append(d).appendTo(c)),setTimeout(function(){b(c)},9)),
-d=null}});a(i).on("click",function(b){if(!b.isDefaultPrevented()&&a(b.target).is('input[type="submit"][form], button[form], input[type="button"][form], input[type="image"][form], input[type="reset"][form]')){var c=a.prop(b.target,"form"),e=b.target.form,g;c&&c!=e&&(g=a(b.target).clone().removeAttr("form").addClass("webshims-visual-hide").on("click",d).appendTo(c),e&&b.preventDefault(),y(c),g.trigger("click"),setTimeout(function(){g.remove();g=null},9))}})}));Modernizr.fieldsetdisabled||c.defineNodeNamesProperty(["fieldset"],
-"elements",{prop:{get:function(){return a("input, select, textarea, button, fieldset",this).get()||[]},writeable:!1}});a.fn.serializeArray=function(){return this.map(function(){var b=a.prop(this,"elements");return b?a.makeArray(b):this}).filter(function(){return this.name&&!this.disabled&&(this.checked||g.test(this.nodeName)||e.test(this.type))}).map(function(b,c){var e=a(this).val();return null==e?null:a.isArray(e)?a.map(e,function(a){return{name:c.name,value:a.replace(d,"\r\n")}}):{name:c.name,
-value:e.replace(d,"\r\n")}}).get()}}();try{i.querySelector(":checked")}catch(E){(function(){var b={radio:1,checkbox:1},d=function(){var b=this.options||[],d,c,e;for(d=0,c=b.length;d<c;d++)e=a(b[d]),e[a.prop(b[d],"selected")?"addClass":"removeClass"]("prop-checked")},e=function(){var b=a.prop(this,"checked")?"addClass":"removeClass";if(-1==(this.className||"").indexOf("prop-checked")==("addClass"==b))if(a(this)[b]("prop-checked"),b=this.parentNode)b.className=b.className};c.onNodeNamesPropertyModify("select",
-"value",d);c.onNodeNamesPropertyModify("select","selectedIndex",d);c.onNodeNamesPropertyModify("option","selected",function(){a(this).closest("select").each(d)});c.onNodeNamesPropertyModify("input","checked",function(d,f){var h=this.type;"radio"==h&&f?c.modules["form-core"].getGroupElements(this).each(e):b[h]&&a(this).each(e)});a(i).on("change",function(g){if(b[g.target.type])if("radio"==g.target.type)c.modules["form-core"].getGroupElements(g.target).each(e);else a(g.target)[a.prop(g.target,"checked")?
-"addClass":"removeClass"]("prop-checked");else"select"==g.target.nodeName.toLowerCase()&&a(g.target).each(d)});c.addReady(function(d,c){a("option, input",d).add(c.filter("option, input")).each(function(){var d;b[this.type]?d="checked":"option"==this.nodeName.toLowerCase()&&(d="selected");if(d)a(this)[a.prop(this,d)?"addClass":"removeClass"]("prop-checked")})})})()}(function(){Modernizr.textareaPlaceholder=!!("placeholder"in a("<textarea />")[0]);var b=a.browser.webkit&&Modernizr.textareaPlaceholder&&
-535>c.browserVersion;if(!Modernizr.input.placeholder||!Modernizr.textareaPlaceholder||b){var d="over"==c.cfg.forms.placeholderType,e=c.cfg.forms.responsivePlaceholder,g=["textarea"];Modernizr.input.placeholder||g.push("input");var f=function(a){try{if(a.setSelectionRange)return a.setSelectionRange(0,0),!0;if(a.createTextRange){var b=a.createTextRange();b.collapse(!0);b.moveEnd("character",0);b.moveStart("character",0);b.select();return!0}}catch(d){}},h=function(b,c,e,g){!1===e&&(e=a.prop(b,"value"));
-if(!d&&"password"!=b.type){if(!e&&g&&f(b)){var h=setTimeout(function(){f(b)},9);a(b).off(".placeholderremove").on({"keydown.placeholderremove keypress.placeholderremove paste.placeholderremove input.placeholderremove":function(d){if(!d||!(17==d.keyCode||16==d.keyCode))b.value=a.prop(b,"value"),c.box.removeClass("placeholder-visible"),clearTimeout(h),a(b).unbind(".placeholderremove")},"mousedown.placeholderremove drag.placeholderremove select.placeholderremove":function(){f(b);clearTimeout(h);h=setTimeout(function(){f(b)},
-9)},"blur.placeholderremove":function(){clearTimeout(h);a(b).unbind(".placeholderremove")}});return}b.value=e}else if(!e&&g){a(b).off(".placeholderremove").on({"keydown.placeholderremove keypress.placeholderremove paste.placeholderremove input.placeholderremove":function(d){if(!d||!(17==d.keyCode||16==d.keyCode))c.box.removeClass("placeholder-visible"),a(b).unbind(".placeholderremove")},"blur.placeholderremove":function(){a(b).unbind(".placeholderremove")}});return}c.box.removeClass("placeholder-visible")},
-i=function(b,c,e,f,g){if(!f&&(f=a.data(b,"placeHolder"),!f))return;a(b).unbind(".placeholderremove");if("focus"==g||!g&&a(b).is(":focus"))("password"==b.type||d||a(b).hasClass("placeholder-visible"))&&h(b,f,"",!0);else if(!1===c&&(c=a.prop(b,"value")),c)h(b,f,c);else if(!1===e&&(e=a.attr(b,"placeholder")||""),e&&!c){c=f;!1===e&&(e=a.prop(b,"placeholder"));if(!d&&"password"!=b.type)b.value=e;c.box.addClass("placeholder-visible")}else h(b,f,c)},m=function(b){var b=a(b),d=b.prop("id"),c=!(!b.prop("title")&&
-!b.attr("aria-labelledby"));!c&&d&&(c=!!a('label[for="'+d+'"]',b[0].form)[0]);c||(d||(d=a.webshims.getID(b)),c=!!a("label #"+d)[0]);return a(c?'<span class="placeholder-text"></span>':'<label for="'+d+'" class="placeholder-text"></label>')},t=function(){var b={text:1,search:1,url:1,email:1,password:1,tel:1};return{create:function(b){var c=a.data(b,"placeHolder"),f;if(c)return c;c=a.data(b,"placeHolder",{});a(b).on("focus.placeholder blur.placeholder",function(a){i(this,!1,!1,c,a.type);c.box["focus"==
-a.type?"addClass":"removeClass"]("placeholder-focused")});if(f=a.prop(b,"form"))a(f).on("reset.placeholder",function(a){setTimeout(function(){i(b,!1,!1,c,a.type)},0)});if("password"==b.type||d)c.text=m(b),c.box=e||a(b).is(".responsive-width")||-1!=(b.currentStyle||{width:""}).width.indexOf("%")?c.text:a(b).wrap('<span class="placeholder-box placeholder-box-'+(b.nodeName||"").toLowerCase()+" placeholder-box-"+a.css(b,"float")+'" />').parent(),c.text.insertAfter(b).on("mousedown.placeholder",function(){i(this,
-!1,!1,c,"focus");try{setTimeout(function(){b.focus()},0)}catch(a){}return!1}),a.each(["lineHeight","fontSize","fontFamily","fontWeight"],function(d,e){var f=a.css(b,e);c.text.css(e)!=f&&c.text.css(e,f)}),a.each(["Left","Top"],function(d,e){var f=(parseInt(a.css(b,"padding"+e),10)||0)+Math.max(parseInt(a.css(b,"margin"+e),10)||0,0)+(parseInt(a.css(b,"border"+e+"Width"),10)||0);c.text.css("padding"+e,f)}),a(b).on("updateshadowdom",function(){var d,e;((e=b.offsetWidth)||(d=b.offsetHeight))&&c.text.css({width:e,
-height:d}).css(a(b).position())}).triggerHandler("updateshadowdom");else{var g=function(d){a(b).hasClass("placeholder-visible")&&(h(b,c,""),d&&"submit"==d.type&&setTimeout(function(){d.isDefaultPrevented()&&i(b,!1,!1,c)},9))};a(v).on("beforeunload",g);c.box=a(b);f&&a(f).submit(g)}return c},update:function(d,e){var f=(a.attr(d,"type")||a.prop(d,"type")||"").toLowerCase();!b[f]&&!a.nodeName(d,"textarea")?(c.error('placeholder not allowed on input[type="'+f+'"]'),"date"==f&&c.error('but you can use data-placeholder for input[type="date"]')):
-(f=t.create(d),f.text&&f.text.text(e),i(d,!1,e,f))}}}();a.webshims.publicMethods={pHolder:t};g.forEach(function(a){c.defineNodeNameProperty(a,"placeholder",{attr:{set:function(a){b?(c.data(this,"textareaPlaceholder",a),this.placeholder=""):c.contentAttr(this,"placeholder",a);t.update(this,a)},get:function(){return(b?c.data(this,"textareaPlaceholder"):"")||c.contentAttr(this,"placeholder")}},reflect:!0,initAttr:!0})});g.forEach(function(d){var e={},f;["attr","prop"].forEach(function(d){e[d]={set:function(e){var g;
-b&&(g=c.data(this,"textareaPlaceholder"));g||(g=c.contentAttr(this,"placeholder"));a.removeData(this,"cachedValidity");var h=f[d]._supset.call(this,e);g&&"value"in this&&i(this,e,g);return h},get:function(){return a(this).hasClass("placeholder-visible")?"":f[d]._supget.call(this)}}});f=c.defineNodeNameProperty(d,"value",e)})}})();(function(){if(!("value"in i.createElement("output"))){c.defineNodeNameProperty("output","value",{prop:{set:function(d){var c=a.data(this,"outputShim");c||(c=b(this));c(d)},
-get:function(){return c.contentAttr(this,"value")||a(this).text()||""}}});c.onNodeNamesPropertyModify("input","value",function(b,c,g){"removeAttr"!=g&&(c=a.data(this,"outputShim"))&&c(b)});var b=function(b){if(!b.getAttribute("aria-live")){var b=a(b),e=(b.text()||"").trim(),g=b.attr("id"),f=b.attr("for"),h=a('<input class="output-shim" type="text" disabled name="'+(b.attr("name")||"")+'" value="'+e+'" style="display: none !important;" />').insertAfter(b),k=h[0].form||i,m=function(a){h[0].value=a;
-a=h[0].value;b.text(a);c.contentAttr(b[0],"value",a)};b[0].defaultValue=e;c.contentAttr(b[0],"value",e);b.attr({"aria-live":"polite"});g&&(h.attr("id",g),b.attr("aria-labelledby",c.getID(a('label[for="'+g+'"]',k))));f&&(g=c.getID(b),f.split(" ").forEach(function(a){(a=i.getElementById(a))&&a.setAttribute("aria-controls",g)}));b.data("outputShim",m);h.data("outputShim",m);return m}};c.addReady(function(d,c){a("output",d).add(c.filter("output")).each(function(){b(this)})});(function(){var b={updateInput:1,
-input:1},e={radio:1,checkbox:1,submit:1,button:1,image:1,reset:1,file:1,color:1},g=function(a){var e,g=a.prop("value"),i=function(e){if(a){var h=a.prop("value");h!==g&&(g=h,(!e||!b[e.type])&&c.triggerInlineForm&&c.triggerInlineForm(a[0],"input"))}},k,j=function(){clearTimeout(k);k=setTimeout(i,9)},l=function(){a.unbind("focusout",l).unbind("keyup keypress keydown paste cut",j).unbind("input change updateInput",i);clearInterval(e);setTimeout(function(){i();a=null},1)};clearInterval(e);e=setInterval(i,
-99);j();a.on({"keyup keypress keydown paste cut":j,focusout:l,"input updateInput change":i})};if(a.event.customEvent)a.event.customEvent.updateInput=!0;a(i).on("focusin",function(b){b.target&&b.target.type&&!b.target.readOnly&&!b.target.disabled&&"input"==(b.target.nodeName||"").toLowerCase()&&!e[b.target.type]&&g(a(b.target))})})()}})()});
+if(!Modernizr.formvalidation || jQuery.webshims.bugs.bustedValidity){
+jQuery.webshims.register('form-shim-extend', function($, webshims, window, document){
+"use strict";
+webshims.inputTypes = webshims.inputTypes || {};
+//some helper-functions
+var cfg = webshims.cfg.forms;
+var isSubmit;
+
+var isNumber = function(string){
+		return (typeof string == 'number' || (string && string == string * 1));
+	},
+	typeModels = webshims.inputTypes,
+	checkTypes = {
+		radio: 1,
+		checkbox: 1
+	},
+	getType = function(elem){
+		return (elem.getAttribute('type') || elem.type || '').toLowerCase();
+	}
+;
+
+//API to add new input types
+webshims.addInputType = function(type, obj){
+	typeModels[type] = obj;
+};
+
+//contsrain-validation-api
+var validityPrototype = {
+	customError: false,
+
+	typeMismatch: false,
+	rangeUnderflow: false,
+	rangeOverflow: false,
+	stepMismatch: false,
+	tooLong: false,
+	patternMismatch: false,
+	valueMissing: false,
+	
+	valid: true
+};
+
+var isPlaceholderOptionSelected = function(select){
+	if(select.type == 'select-one' && select.size < 2){
+		var option = $('> option:first-child', select);
+		return !!option.prop('selected');
+	} 
+	return false;
+};
+
+var validityRules = {
+		valueMissing: function(input, val, cache){
+			if(!input.prop('required')){return false;}
+			var ret = false;
+			if(!('type' in cache)){
+				cache.type = getType(input[0]);
+			}
+			if(cache.nodeName == 'select'){
+				ret = (!val && (input[0].selectedIndex < 0 || isPlaceholderOptionSelected(input[0]) ));
+			} else if(checkTypes[cache.type]){
+				ret = (cache.type == 'checkbox') ? !input.is(':checked') : !webshims.modules["form-core"].getGroupElements(input).filter(':checked')[0];
+			} else {
+				ret = !(val);
+			}
+			return ret;
+		},
+		tooLong: function(){
+			return false;
+		},
+		typeMismatch: function (input, val, cache){
+			if(val === '' || cache.nodeName == 'select'){return false;}
+			var ret = false;
+			if(!('type' in cache)){
+				cache.type = getType(input[0]);
+			}
+			
+			if(typeModels[cache.type] && typeModels[cache.type].mismatch){
+				ret = typeModels[cache.type].mismatch(val, input);
+			} else if('validity' in input[0]){
+				ret = input[0].validity.typeMismatch;
+			}
+			return ret;
+		},
+		patternMismatch: function(input, val, cache) {
+			if(val === '' || cache.nodeName == 'select'){return false;}
+			var pattern = input.attr('pattern');
+			if(!pattern){return false;}
+			try {
+				pattern = new RegExp('^(?:' + pattern + ')$');
+			} catch(er){
+				webshims.error('invalid pattern value: "'+ pattern +'" | '+ er);
+				pattern = false;
+			}
+			if(!pattern){return false;}
+			return !(pattern.test(val));
+		}
+	}
+;
+
+webshims.addValidityRule = function(type, fn){
+	validityRules[type] = fn;
+};
+
+$.event.special.invalid = {
+	add: function(){
+		$.event.special.invalid.setup.call(this.form || this);
+	},
+	setup: function(){
+		var form = this.form || this;
+		if( $.data(form, 'invalidEventShim') ){
+			form = null;
+			return;
+		}
+		$(form)
+			.data('invalidEventShim', true)
+			.on('submit', $.event.special.invalid.handler)
+		;
+		webshims.moveToFirstEvent(form, 'submit');
+		if(webshims.bugs.bustedValidity && $.nodeName(form, 'form')){
+			(function(){
+				var noValidate = form.getAttribute('novalidate');
+				form.setAttribute('novalidate', 'novalidate');
+				webshims.data(form, 'bustedNoValidate', (noValidate == null) ? null : noValidate);
+			})();
+		}
+		form = null;
+	},
+	teardown: $.noop,
+	handler: function(e, d){
+		
+		if( e.type != 'submit' || e.testedValidity || !e.originalEvent || !$.nodeName(e.target, 'form') || $.prop(e.target, 'noValidate') ){return;}
+		
+		isSubmit = true;
+		e.testedValidity = true;
+		var notValid = !($(e.target).checkValidity());
+		if(notValid){
+			e.stopImmediatePropagation();
+			isSubmit = false;
+			return false;
+		}
+		isSubmit = false;
+	}
+};
+
+var addSubmitBubbles = function(form){
+	if (!$.support.submitBubbles && form && typeof form == 'object' && !form._submit_attached ) {
+				
+		$.event.add( form, 'submit._submit', function( event ) {
+			event._submit_bubble = true;
+		});
+		
+		form._submit_attached = true;
+	}
+};
+if(!$.support.submitBubbles && $.event.special.submit){
+	$.event.special.submit.setup = function() {
+		// Only need this for delegated form submit events
+		if ( $.nodeName( this, "form" ) ) {
+			return false;
+		}
+
+		// Lazy-add a submit handler when a descendant form may potentially be submitted
+		$.event.add( this, "click._submit keypress._submit", function( e ) {
+			// Node name check avoids a VML-related crash in IE (#9807)
+			var elem = e.target,
+				form = $.nodeName( elem, 'input' ) || $.nodeName( elem, 'button' ) ? $.prop(elem, 'form') : undefined;
+			addSubmitBubbles(form);
+			
+		});
+		// return undefined since we don't need an event listener
+	};
+}
+
+$.event.special.submit = $.event.special.submit || {setup: function(){return false;}};
+var submitSetup = $.event.special.submit.setup;
+$.extend($.event.special.submit, {
+	setup: function(){
+		if($.nodeName(this, 'form')){
+			$(this).on('invalid', $.noop);
+		} else {
+			$('form', this).on('invalid', $.noop);
+		}
+		return submitSetup.apply(this, arguments);
+	}
+});
+
+$(window).on('invalid', $.noop);
+
+
+webshims.addInputType('email', {
+	mismatch: (function(){
+		//taken from http://www.whatwg.org/specs/web-apps/current-work/multipage/states-of-the-type-attribute.html#valid-e-mail-address
+		var test = cfg.emailReg || /^[a-zA-Z0-9.!#$%&'*+-\/=?\^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+		return function(val){
+			return !test.test(val);
+		};
+	})()
+});
+
+webshims.addInputType('url', {
+	mismatch: (function(){
+		//taken from scott gonzales
+		var test = cfg.urlReg || /^([a-z]([a-z]|\d|\+|-|\.)*):(\/\/(((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:)*@)?((\[(|(v[\da-f]{1,}\.(([a-z]|\d|-|\.|_|~)|[!\$&'\(\)\*\+,;=]|:)+))\])|((\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.(\d|[1-9]\d|1\d\d|2[0-4]\d|25[0-5]))|(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=])*)(:\d*)?)(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*|(\/((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)?)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)+(\/(([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)*)*)|((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)){0})(\?((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|[\uE000-\uF8FF]|\/|\?)*)?(\#((([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(%[\da-f]{2})|[!\$&'\(\)\*\+,;=]|:|@)|\/|\?)*)?$/i;
+		return function(val){
+			return !test.test(val);
+		};
+	})()
+});
+
+webshims.defineNodeNameProperty('input', 'type', {
+	prop: {
+		get: function(){
+			var elem = this;
+			var type = (elem.getAttribute('type') || '').toLowerCase();
+			return (webshims.inputTypes[type]) ? type : elem.type;
+		}
+	}
+});
+
+// IDLs for constrain validation API
+//ToDo: add object to this list
+webshims.defineNodeNamesProperties(['button', 'fieldset', 'output'], {
+	checkValidity: {
+		value: function(){return true;}
+	},
+	willValidate: {
+		value: false
+	},
+	setCustomValidity: {
+		value: $.noop
+	},
+	validity: {
+		writeable: false,
+		get: function(){
+			return $.extend({}, validityPrototype);
+		}
+	}
+}, 'prop');
+
+var baseCheckValidity = function(elem){
+	var e,
+		v = $.prop(elem, 'validity')
+	;
+	if(v){
+		$.data(elem, 'cachedValidity', v);
+	} else {
+		return true;
+	}
+	if( !v.valid ){
+		e = $.Event('invalid');
+		var jElm = $(elem).trigger(e);
+		if(isSubmit && !baseCheckValidity.unhandledInvalids && !e.isDefaultPrevented()){
+			webshims.validityAlert.showFor(jElm);
+			baseCheckValidity.unhandledInvalids = true;
+		}
+	}
+	$.removeData(elem, 'cachedValidity');
+	return v.valid;
+};
+var rsubmittable = /^(?:select|textarea|input)/i;
+webshims.defineNodeNameProperty('form', 'checkValidity', {
+	prop: {
+		value: function(){
+			
+			var ret = true,
+				elems = $($.prop(this, 'elements')).filter(function(){
+					if(!rsubmittable.test(this.nodeName)){return false;}
+					var shadowData = webshims.data(this, 'shadowData');
+					return !shadowData || !shadowData.nativeElement || shadowData.nativeElement === this;
+				})
+			;
+			
+			baseCheckValidity.unhandledInvalids = false;
+			for(var i = 0, len = elems.length; i < len; i++){
+				if( !baseCheckValidity(elems[i]) ){
+					ret = false;
+				}
+			}
+			return ret;
+		}
+	}
+});
+
+webshims.defineNodeNamesProperties(['input', 'textarea', 'select'], {
+	checkValidity: {
+		value: function(){
+			baseCheckValidity.unhandledInvalids = false;
+			return baseCheckValidity($(this).getNativeElement()[0]);
+		}
+	},
+	setCustomValidity: {
+		value: function(error){
+			$.removeData(this, 'cachedValidity');
+			webshims.data(this, 'customvalidationMessage', ''+error);
+		}
+	},
+	willValidate: {
+		writeable: false,
+		get: (function(){
+			var types = {
+					button: 1,
+					reset: 1,
+					hidden: 1,
+					image: 1
+				}
+			;
+			return function(){
+				var elem = $(this).getNativeElement()[0];
+				//elem.name && <- we don't use to make it easier for developers
+				return !!(!elem.disabled && !elem.readOnly && !types[elem.type] );
+			};
+		})()
+	},
+	validity: {
+		writeable: false,
+		get: function(){
+			var jElm = $(this).getNativeElement();
+			var elem = jElm[0];
+			var validityState = $.data(elem, 'cachedValidity');
+			if(validityState){
+				return validityState;
+			}
+			validityState 	= $.extend({}, validityPrototype);
+			
+			if( !$.prop(elem, 'willValidate') || elem.type == 'submit' ){
+				return validityState;
+			}
+			var val				= jElm.val(),
+				cache 			= {nodeName: elem.nodeName.toLowerCase()}
+			;
+			
+			validityState.customError = !!(webshims.data(elem, 'customvalidationMessage'));
+			if( validityState.customError ){
+				validityState.valid = false;
+			}
+							
+			$.each(validityRules, function(rule, fn){
+				if (fn(jElm, val, cache)) {
+					validityState[rule] = true;
+					validityState.valid = false;
+				}
+			});
+			$(this).getShadowFocusElement().attr('aria-invalid',  validityState.valid ? 'false' : 'true');
+			jElm = null;
+			elem = null;
+			return validityState;
+		}
+	}
+}, 'prop');
+
+webshims.defineNodeNamesBooleanProperty(['input', 'textarea', 'select'], 'required', {
+	set: function(value){
+		$(this).getShadowFocusElement().attr('aria-required', !!(value)+'');
+	},
+	initAttr: (!$.browser.msie || webshims.browserVersion > 7)//only if we have aria-support
+});
+
+webshims.reflectProperties(['input'], ['pattern']);
+
+
+if( !('maxLength' in document.createElement('textarea')) ){
+	var constrainMaxLength = (function(){
+		var timer;
+		var curLength = 0;
+		var lastElement = $([]);
+		var max = 1e9;
+		var constrainLength = function(){
+			var nowValue = lastElement.prop('value');
+			var nowLen = nowValue.length;
+			if(nowLen > curLength && nowLen > max){
+				nowLen = Math.max(curLength, max);
+				lastElement.prop('value', nowValue.substr(0, nowLen ));
+			}
+			curLength = nowLen;
+		};
+		var remove = function(){
+			clearTimeout(timer);
+			lastElement.unbind('.maxlengthconstraint');
+		};
+		return function(element, maxLength){
+			remove();
+			if(maxLength > -1){
+				max = maxLength;
+				curLength = $.prop(element, 'value').length;
+				lastElement = $(element);
+				lastElement.on({
+					'keydown.maxlengthconstraint keypress.maxlengthconstraint paste.maxlengthconstraint cut.maxlengthconstraint': function(e){
+						setTimeout(constrainLength, 0);
+					},
+					'keyup.maxlengthconstraint': constrainLength,
+					'blur.maxlengthconstraint': remove
+				});
+				timer = setInterval(constrainLength, 200);
+			}
+		};
+	})();
+	
+	constrainMaxLength.update = function(element, maxLength){
+		if($(element).is(':focus')){
+			if(!maxLength){
+				maxLength = $.prop(element, 'maxlength');
+			}
+			constrainMaxLength(element, maxLength);
+		}
+	};
+	
+	$(document).on('focusin', function(e){
+		var maxLength;
+		if(e.target.nodeName == "TEXTAREA" && (maxLength = $.prop(e.target, 'maxlength')) > -1){
+			constrainMaxLength(e.target, maxLength);
+		}
+	});
+	
+	webshims.defineNodeNameProperty('textarea', 'maxlength', {
+		attr: {
+			set: function(val){
+				this.setAttribute('maxlength', ''+val);
+				constrainMaxLength.update(this);
+			},
+			get: function(){
+				var ret = this.getAttribute('maxlength');
+				return ret == null ? undefined : ret;
+			}
+		},
+		prop: {
+			set: function(val){
+				if(isNumber(val)){
+					if(val < 0){
+						throw('INDEX_SIZE_ERR');
+					}
+					val = parseInt(val, 10);
+					this.setAttribute('maxlength', val);
+					constrainMaxLength.update(this, val);
+					return;
+				}
+				this.setAttribute('maxlength', '0');
+				constrainMaxLength.update(this, 0);
+			},
+			get: function(){
+				var val = this.getAttribute('maxlength');
+				return (isNumber(val) && val >= 0) ? parseInt(val, 10) : -1; 
+				
+			}
+		}
+	});
+	webshims.defineNodeNameProperty('textarea', 'maxLength', {
+		prop: {
+			set: function(val){
+				$.prop(this, 'maxlength', val);
+			},
+			get: function(){
+				return $.prop(this, 'maxlength');
+			}
+		}
+	});
+} 
+
+
+
+var submitterTypes = {submit: 1, button: 1, image: 1};
+var formSubmitterDescriptors = {};
+[
+	{
+		name: "enctype",
+		limitedTo: {
+			"application/x-www-form-urlencoded": 1,
+			"multipart/form-data": 1,
+			"text/plain": 1
+		},
+		defaultProp: "application/x-www-form-urlencoded",
+		proptype: "enum"
+	},
+	{
+		name: "method",
+		limitedTo: {
+			"get": 1,
+			"post": 1
+		},
+		defaultProp: "get",
+		proptype: "enum"
+	},
+	{
+		name: "action",
+		proptype: "url"
+	},
+	{
+		name: "target"
+	},
+	{
+		name: "novalidate",
+		propName: "noValidate",
+		proptype: "boolean"
+	}
+].forEach(function(desc){
+	var propName = 'form'+ (desc.propName || desc.name).replace(/^[a-z]/, function(f){
+		return f.toUpperCase();
+	});
+	var attrName = 'form'+ desc.name;
+	var formName = desc.name;
+	var eventName = 'click.webshimssubmittermutate'+formName;
+	
+	var changeSubmitter = function(){
+		var elem = this;
+		if( !('form' in elem) || !submitterTypes[elem.type] ){return;}
+		var form = $.prop(elem, 'form');
+		if(!form){return;}
+		var attr = $.attr(elem, attrName);
+		if(attr != null && ( !desc.limitedTo || attr.toLowerCase() === $.prop(elem, propName))){
+			
+			var oldAttr = $.attr(form, formName);
+			
+			$.attr(form, formName, attr);
+			setTimeout(function(){
+				if(oldAttr != null){
+					$.attr(form, formName, oldAttr);
+				} else {
+					try {
+						$(form).removeAttr(formName);
+					} catch(er){
+						form.removeAttribute(formName);
+					}
+				}
+			}, 9);
+		}
+	};
+	
+	
+
+switch(desc.proptype) {
+		case "url":
+			var urlForm = document.createElement('form');
+			formSubmitterDescriptors[propName] = {
+				prop: {
+					set: function(value){
+						$.attr(this, attrName, value);
+					},
+					get: function(){
+						var value = $.attr(this, attrName);
+						if(value == null){return '';}
+						urlForm.setAttribute('action', value);
+						return urlForm.action;
+					}
+				}
+			};
+			break;
+		case "boolean":
+			formSubmitterDescriptors[propName] = {
+				prop: {
+					set: function(val){
+						val = !!val;
+						if(val){
+							$.attr(this, 'formnovalidate', 'formnovalidate');
+						} else {
+							$(this).removeAttr('formnovalidate');
+						}
+					},
+					get: function(){
+						return $.attr(this, 'formnovalidate') != null;
+					}
+				}
+			};
+			break;
+		case "enum":
+			formSubmitterDescriptors[propName] = {
+				prop: {
+					set: function(value){
+						$.attr(this, attrName, value);
+					},
+					get: function(){
+						var value = $.attr(this, attrName);
+						return (!value || ( (value = value.toLowerCase()) && !desc.limitedTo[value] )) ? desc.defaultProp : value;
+					}
+				}
+		};
+		break;
+		default:
+			formSubmitterDescriptors[propName] = {
+				prop: {
+					set: function(value){
+						$.attr(this, attrName, value);
+					},
+					get: function(){
+						var value = $.attr(this, attrName);
+						return (value != null) ? value : "";
+					}
+				}
+			};
+	}
+
+
+	if(!formSubmitterDescriptors[attrName]){
+		formSubmitterDescriptors[attrName] = {};
+	}
+	formSubmitterDescriptors[attrName].attr = {
+		set: function(value){
+			formSubmitterDescriptors[attrName].attr._supset.call(this, value);
+			$(this).unbind(eventName).on(eventName, changeSubmitter);
+		},
+		get: function(){
+			return formSubmitterDescriptors[attrName].attr._supget.call(this);
+		}
+	};
+	formSubmitterDescriptors[attrName].initAttr = true;
+	formSubmitterDescriptors[attrName].removeAttr = {
+		value: function(){
+			$(this).unbind(eventName);
+			formSubmitterDescriptors[attrName].removeAttr._supvalue.call(this);
+		}
+	};
+});
+
+webshims.defineNodeNamesProperties(['input', 'button'], formSubmitterDescriptors);
+
+
+if(!$.support.getSetAttribute && $('<form novalidate></form>').attr('novalidate') == null){
+	webshims.defineNodeNameProperty('form', 'novalidate', {
+		attr: {
+			set: function(val){
+				this.setAttribute('novalidate', ''+val);
+			},
+			get: function(){
+				var ret = this.getAttribute('novalidate');
+				return ret == null ? undefined : ret;
+			}
+		}
+	});
+} else if(webshims.bugs.bustedValidity){
+	
+	webshims.defineNodeNameProperty('form', 'novalidate', {
+		attr: {
+			set: function(val){
+				webshims.data(this, 'bustedNoValidate', ''+val);
+			},
+			get: function(){
+				var ret = webshims.data(this, 'bustedNoValidate');
+				return ret == null ? undefined : ret;
+			}
+		},
+		removeAttr: {
+			value: function(){
+				webshims.data(this, 'bustedNoValidate', null);
+			}
+		}
+	});
+	
+	$.each(['rangeUnderflow', 'rangeOverflow', 'stepMismatch'], function(i, name){
+		validityRules[name] = function(elem){
+			return (elem[0].validity || {})[name] || false;
+		};
+	});
+	
+}
+
+webshims.defineNodeNameProperty('form', 'noValidate', {
+	prop: {
+		set: function(val){
+			val = !!val;
+			if(val){
+				$.attr(this, 'novalidate', 'novalidate');
+			} else {
+				$(this).removeAttr('novalidate');
+			}
+		},
+		get: function(){
+			return $.attr(this, 'novalidate') != null;
+		}
+	}
+});
+
+if($.browser.webkit && Modernizr.inputtypes.date){
+	(function(){
+		
+		var noInputTriggerEvts = {updateInput: 1, input: 1},
+			fixInputTypes = {
+				date: 1,
+				time: 1,
+				"datetime-local": 1
+			},
+			noFocusEvents = {
+				focusout: 1,
+				blur: 1
+			},
+			changeEvts = {
+				updateInput: 1,
+				change: 1
+			},
+			observe = function(input){
+				var timer,
+					focusedin = true,
+					lastInputVal = input.prop('value'),
+					lastChangeVal = lastInputVal,
+					trigger = function(e){
+						//input === null
+						if(!input){return;}
+						var newVal = input.prop('value');
+						
+						if(newVal !== lastInputVal){
+							lastInputVal = newVal;
+							if(!e || !noInputTriggerEvts[e.type]){
+								input.trigger('input');
+							}
+						}
+						if(e && changeEvts[e.type]){
+							lastChangeVal = newVal;
+						}
+						if(!focusedin && newVal !== lastChangeVal){
+							input.trigger('change');
+						}
+					},
+					extraTimer,
+					extraTest = function(){
+						clearTimeout(extraTimer);
+						extraTimer = setTimeout(trigger, 9);
+					},
+					unbind = function(e){
+						clearInterval(timer);
+						setTimeout(function(){
+							if(e && noFocusEvents[e.type]){
+								focusedin = false;
+							}
+							if(input){
+								input.unbind('focusout blur', unbind).unbind('input change updateInput', trigger);
+								trigger();
+							}
+							input = null;
+						}, 1);
+						
+					}
+				;
+				
+				clearInterval(timer);
+				timer = setInterval(trigger, 160);
+				extraTest();
+				input
+					.off({
+						'focusout blur': unbind,
+						'input change updateInput': trigger
+					})
+					.on({
+						'focusout blur': unbind,
+						'input updateInput change': trigger
+					})
+				;
+			}
+		;
+		if($.event.customEvent){
+			$.event.customEvent.updateInput = true;
+		}
+		
+		(function(){
+			
+			var correctValue = function(elem){
+				var i = 1;
+				var len = 3;
+				var abort, val;
+				if(elem.type == 'date' && (isSubmit || !$(elem).is(':focus'))){
+					val = elem.value;
+					if(val && val.length < 10 && (val = val.split('-')) && val.length == len){
+						for(; i < len; i++){
+							if(val[i].length == 1){
+								val[i] = '0'+val[i];
+							} else if(val[i].length != 2){
+								abort = true;
+								break;
+							}
+						}
+						if(!abort){
+							val = val.join('-');
+							$.prop(elem, 'value', val);
+							return val;
+						}
+					}
+				}
+			};
+			var inputCheckValidityDesc, formCheckValidityDesc, inputValueDesc, inputValidityDesc;
+			
+			inputCheckValidityDesc = webshims.defineNodeNameProperty('input', 'checkValidity', {
+				prop: {
+					value: function(){
+						correctValue(this);
+						return inputCheckValidityDesc.prop._supvalue.apply(this, arguments);
+					}
+				}
+			});
+			
+			formCheckValidityDesc = webshims.defineNodeNameProperty('form', 'checkValidity', {
+				prop: {
+					value: function(){
+						$('input', this).each(function(){
+							correctValue(this);
+						});
+						return formCheckValidityDesc.prop._supvalue.apply(this, arguments);
+					}
+				}
+			});
+			
+			inputValueDesc = webshims.defineNodeNameProperty('input', 'value', {
+				prop: {
+					set: function(){
+						return inputValueDesc.prop._supset.apply(this, arguments);
+					},
+					get: function(){
+						return correctValue(this) || inputValueDesc.prop._supget.apply(this, arguments);
+					}
+				}
+			});
+			
+			inputValidityDesc = webshims.defineNodeNameProperty('input', 'validity', {
+				prop: {
+					writeable: false,
+					get: function(){
+						correctValue(this);
+						return inputValidityDesc.prop._supget.apply(this, arguments);
+					}
+				}
+			});
+			
+			$(document).on('change', function(e){
+				correctValue(e.target);
+			});
+			
+		})();
+		
+		$(document)
+			.on('focusin', function(e){
+				if( e.target && fixInputTypes[e.target.type] && !e.target.readOnly && !e.target.disabled ){
+					observe($(e.target));
+				}
+			})
+		;
+		
+		
+	})();
+}
+
+webshims.addReady(function(context, contextElem){
+	//start constrain-validation
+	var focusElem;
+	$('form', context)
+		.add(contextElem.filter('form'))
+		.bind('invalid', $.noop)
+	;
+	
+	try {
+		if(context == document && !('form' in (document.activeElement || {}))) {
+			focusElem = $('input[autofocus], select[autofocus], textarea[autofocus]', context).eq(0).getShadowFocusElement()[0];
+			if (focusElem && focusElem.offsetHeight && focusElem.offsetWidth) {
+				focusElem.focus();
+			}
+		}
+	} 
+	catch (er) {}
+	
+});
+
+if(!Modernizr.formattribute || !Modernizr.fieldsetdisabled){
+	(function(){
+		(function(prop, undefined){
+			$.prop = function(elem, name, value){
+				var ret;
+				if(elem && elem.nodeType == 1 && value === undefined && $.nodeName(elem, 'form') && elem.id){
+					ret = document.getElementsByName(name);
+					if(!ret || !ret.length){
+						ret = document.getElementById(name);
+					}
+					if(ret){
+						ret = $(ret).filter(function(){
+							return $.prop(this, 'form') == elem;
+						}).get();
+						if(ret.length){
+							return ret.length == 1 ? ret[0] : ret;
+						}
+					}
+				}
+				return prop.apply(this, arguments);
+			};
+		})($.prop, undefined);
+		var removeAddedElements = function(form){
+			var elements = $.data(form, 'webshimsAddedElements');
+			if(elements){
+				elements.remove();
+				$.removeData(form, 'webshimsAddedElements');
+			}
+		};
+		var rCRLF = /\r?\n/g,
+			rinput = /^(?:color|date|datetime|datetime-local|email|hidden|month|number|password|range|search|tel|text|time|url|week)$/i,
+			rselectTextarea = /^(?:select|textarea)/i;
+		
+		if(!Modernizr.formattribute){
+			webshims.defineNodeNamesProperty(['input', 'textarea', 'select', 'button', 'fieldset'], 'form', {
+				prop: {
+					get: function(){
+						var form = webshims.contentAttr(this, 'form');
+						if(form){
+							form = document.getElementById(form);
+							if(form && !$.nodeName(form, 'form')){
+								form = null;
+							}
+						} 
+						return form || this.form;
+					},
+					writeable: false
+				}
+			});
+			
+			
+			webshims.defineNodeNamesProperty(['form'], 'elements', {
+				prop: {
+					get: function(){
+						var id = this.id;
+						var elements = $.makeArray(this.elements);
+						if(id){
+							elements = $(elements).add('input[form="'+ id +'"], select[form="'+ id +'"], textarea[form="'+ id +'"], button[form="'+ id +'"], fieldset[form="'+ id +'"]').not('.webshims-visual-hide > *').get();
+						}
+						return elements;
+					},
+					writeable: false
+				}
+			});
+			
+			
+			
+			$(function(){
+				var stopPropagation = function(e){
+					e.stopPropagation();
+				};
+				$(document).on('submit', function(e){
+					
+					if(!e.isDefaultPrevented()){
+						var form = e.target;
+						var id = form.id;
+						var elements;
+						
+						
+						if(id){
+							removeAddedElements(form);
+							
+							elements = $('input[form="'+ id +'"], select[form="'+ id +'"], textarea[form="'+ id +'"]')
+								.filter(function(){
+									return !this.disabled && this.name && this.form != form;
+								})
+								.clone()
+							;
+							if(elements.length){
+								$.data(form, 'webshimsAddedElements', $('<div class="webshims-visual-hide" />').append(elements).appendTo(form));
+								setTimeout(function(){
+									removeAddedElements(form);
+								}, 9);
+							}
+							elements = null;
+						}
+					}
+				});
+				
+				$(document).on('click', function(e){
+					if(!e.isDefaultPrevented() && $(e.target).is('input[type="submit"][form], button[form], input[type="button"][form], input[type="image"][form], input[type="reset"][form]')){
+						var trueForm = $.prop(e.target, 'form');
+						var formIn = e.target.form;
+						var clone;
+						if(trueForm && trueForm != formIn){
+							clone = $(e.target)
+								.clone()
+								.removeAttr('form')
+								.addClass('webshims-visual-hide')
+								.on('click', stopPropagation)
+								.appendTo(trueForm)
+							;
+							if(formIn){
+								e.preventDefault();
+							}
+							addSubmitBubbles(trueForm);
+							clone.trigger('click');
+							setTimeout(function(){
+								clone.remove();
+								clone = null;
+							}, 9);
+						}
+					}
+				});
+			});
+		}
+		
+		if(!Modernizr.fieldsetdisabled){
+			webshims.defineNodeNamesProperty(['fieldset'], 'elements', {
+				prop: {
+					get: function(){
+						//add listed elements without keygen, object, output
+						return $('input, select, textarea, button, fieldset', this).get() || [];
+					},
+					writeable: false
+				}
+			});
+		}
+		
+		$.fn.serializeArray = function() {
+				return this.map(function(){
+					var elements = $.prop(this, 'elements');
+					return elements ? $.makeArray( elements ) : this;
+				})
+				.filter(function(){
+					return this.name && !this.disabled &&
+						( this.checked || rselectTextarea.test( this.nodeName ) ||
+							rinput.test( this.type ) );
+				})
+				.map(function( i, elem ){
+					var val = $( this ).val();
+		
+					return val == null ?
+						null :
+						$.isArray( val ) ?
+							$.map( val, function( val, i ){
+								return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+							}) :
+							{ name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
+				}).get();
+			};
+		
+	})();
+}
+
+try {
+	document.querySelector(':checked');
+} catch(er){
+	(function(){
+		var checkInputs = {
+			radio: 1,
+			checkbox: 1
+		};
+		var selectChange = function(){
+			var options = this.options || [];
+			var i, len, option;
+			for(i = 0, len = options.length; i < len; i++){
+				option = $(options[i]);
+				option[$.prop(options[i], 'selected') ? 'addClass' : 'removeClass']('prop-checked');
+			}
+		};
+		var checkChange = function(){
+			var fn = $.prop(this, 'checked')  ? 'addClass' : 'removeClass';
+			var className = this.className || '';
+			var parent;
+			
+			//IE8- has problems to update styles, we help
+			if( (className.indexOf('prop-checked') == -1) == (fn == 'addClass')){ 
+				$(this)[fn]('prop-checked');
+				if((parent = this.parentNode)){
+					parent.className = parent.className;
+				}
+			}
+		};
+		
+		
+		webshims.onNodeNamesPropertyModify('select', 'value', selectChange);
+		webshims.onNodeNamesPropertyModify('select', 'selectedIndex', selectChange);
+		webshims.onNodeNamesPropertyModify('option', 'selected', function(){
+			$(this).closest('select').each(selectChange);
+		});
+		webshims.onNodeNamesPropertyModify('input', 'checked', function(value, boolVal){
+			var type = this.type;
+			if(type == 'radio' && boolVal){
+				webshims.modules["form-core"].getGroupElements(this).each(checkChange);
+			} else if(checkInputs[type]) {
+				$(this).each(checkChange);
+			}
+		});
+		
+		$(document).on('change', function(e){
+			
+			if(checkInputs[e.target.type]){
+				if(e.target.type == 'radio'){
+					webshims.modules["form-core"].getGroupElements(e.target).each(checkChange);
+				} else {
+					$(e.target)[$.prop(e.target, 'checked') ? 'addClass' : 'removeClass']('prop-checked');
+				}
+			} else if(e.target.nodeName.toLowerCase() == 'select'){
+				$(e.target).each(selectChange);
+			}
+		});
+		
+		webshims.addReady(function(context, contextElem){
+			$('option, input', context)
+				.add(contextElem.filter('option, input'))
+				.each(function(){
+					var prop;
+					if(checkInputs[this.type]){
+						prop = 'checked';
+					} else if(this.nodeName.toLowerCase() == 'option'){
+						prop = 'selected';
+					}  
+					if(prop){
+						$(this)[$.prop(this, prop) ? 'addClass' : 'removeClass']('prop-checked');
+					}
+					
+				})
+			;
+		});
+	})();
+}
+
+(function(){
+	Modernizr.textareaPlaceholder = !!('placeholder' in $('<textarea />')[0]);
+	var bustedTextarea = $.browser.webkit && Modernizr.textareaPlaceholder && webshims.browserVersion < 535;
+	if(Modernizr.input.placeholder && Modernizr.textareaPlaceholder && !bustedTextarea){return;}
+	
+	var isOver = (webshims.cfg.forms.placeholderType == 'over');
+	var isResponsive = (webshims.cfg.forms.responsivePlaceholder);
+	var polyfillElements = ['textarea'];
+	if(!Modernizr.input.placeholder){
+		polyfillElements.push('input');
+	}
+	
+	var setSelection = function(elem){
+		try {
+			if(elem.setSelectionRange){
+				elem.setSelectionRange(0, 0);
+				return true;
+			} else if(elem.createTextRange){
+				var range = elem.createTextRange();
+				range.collapse(true);
+				range.moveEnd('character', 0);
+				range.moveStart('character', 0);
+				range.select();
+				return true;
+			}
+		} catch(er){}
+	};
+	
+	var hidePlaceholder = function(elem, data, value, _onFocus){
+			if(value === false){
+				value = $.prop(elem, 'value');
+			}
+			if(!isOver && elem.type != 'password'){
+				if(!value && _onFocus && setSelection(elem)){
+					var selectTimer  = setTimeout(function(){
+						setSelection(elem);
+					}, 9);
+					$(elem)
+						.off('.placeholderremove')
+						.on({
+							'keydown.placeholderremove keypress.placeholderremove paste.placeholderremove input.placeholderremove': function(e){
+								if(e && (e.keyCode == 17 || e.keyCode == 16)){return;}
+								elem.value = $.prop(elem, 'value');
+								data.box.removeClass('placeholder-visible');
+								clearTimeout(selectTimer);
+								$(elem).unbind('.placeholderremove');
+							},
+							'mousedown.placeholderremove drag.placeholderremove select.placeholderremove': function(e){
+								setSelection(elem);
+								clearTimeout(selectTimer);
+								selectTimer = setTimeout(function(){
+									setSelection(elem);
+								}, 9);
+							},
+							'blur.placeholderremove': function(){
+								clearTimeout(selectTimer);
+								$(elem).unbind('.placeholderremove');
+							}
+						})
+					;
+					return;
+				}
+				elem.value = value;
+			} else if(!value && _onFocus){
+				$(elem)
+					.off('.placeholderremove')
+					.on({
+						'keydown.placeholderremove keypress.placeholderremove paste.placeholderremove input.placeholderremove': function(e){
+							if(e && (e.keyCode == 17 || e.keyCode == 16)){return;}
+							data.box.removeClass('placeholder-visible');
+							$(elem).unbind('.placeholderremove');
+						},
+						'blur.placeholderremove': function(){
+							$(elem).unbind('.placeholderremove');
+						}
+					})
+				;
+				return;
+			}
+			data.box.removeClass('placeholder-visible');
+		},
+		showPlaceholder = function(elem, data, placeholderTxt){
+			if(placeholderTxt === false){
+				placeholderTxt = $.prop(elem, 'placeholder');
+			}
+			
+			if(!isOver && elem.type != 'password'){
+				elem.value = placeholderTxt;
+			}
+			data.box.addClass('placeholder-visible');
+		},
+		changePlaceholderVisibility = function(elem, value, placeholderTxt, data, type){
+			if(!data){
+				data = $.data(elem, 'placeHolder');
+				if(!data){return;}
+			}
+			$(elem).unbind('.placeholderremove');
+			if(type == 'focus' || (!type && $(elem).is(':focus'))){
+				if(elem.type == 'password' || isOver || $(elem).hasClass('placeholder-visible')){
+					hidePlaceholder(elem, data, '', true);
+				}
+				return;
+			}
+			if(value === false){
+				value = $.prop(elem, 'value');
+			}
+			if(value){
+				hidePlaceholder(elem, data, value);
+				return;
+			}
+			if(placeholderTxt === false){
+				placeholderTxt = $.attr(elem, 'placeholder') || '';
+			}
+			if(placeholderTxt && !value){
+				showPlaceholder(elem, data, placeholderTxt);
+			} else {
+				hidePlaceholder(elem, data, value);
+			}
+		},
+		createPlaceholder = function(elem){
+			elem = $(elem);
+			var id 			= elem.prop('id'),
+				hasLabel	= !!(elem.prop('title') || elem.attr('aria-labelledby'))
+			;
+			if(!hasLabel && id){
+				hasLabel = !!( $('label[for="'+ id +'"]', elem[0].form)[0] );
+			}
+			if(!hasLabel){
+				if(!id){
+					id = $.webshims.getID(elem);
+				}
+				hasLabel = !!($('label #'+ id)[0]);
+			}
+			return $( hasLabel ? '<span class="placeholder-text"></span>' : '<label for="'+ id +'" class="placeholder-text"></label>');
+		},
+		pHolder = (function(){
+			var delReg 	= /\n|\r|\f|\t/g,
+				allowedPlaceholder = {
+					text: 1,
+					search: 1,
+					url: 1,
+					email: 1,
+					password: 1,
+					tel: 1,
+					number: 1
+				}
+			;
+			
+			return {
+				create: function(elem){
+					var data = $.data(elem, 'placeHolder');
+					var form;
+					var responsiveElem;
+					if(data){return data;}
+					data = $.data(elem, 'placeHolder', {});
+					
+					$(elem).on('focus.placeholder blur.placeholder', function(e){
+						changePlaceholderVisibility(this, false, false, data, e.type );
+						data.box[e.type == 'focus' ? 'addClass' : 'removeClass']('placeholder-focused');
+					});
+					
+					if((form = $.prop(elem, 'form'))){
+						$(form).on('reset.placeholder', function(e){
+							setTimeout(function(){
+								changePlaceholderVisibility(elem, false, false, data, e.type );
+							}, 0);
+						});
+					}
+					
+					if(elem.type == 'password' || isOver){
+						data.text = createPlaceholder(elem);
+						if(isResponsive || $(elem).is('.responsive-width') || (elem.currentStyle || {width: ''}).width.indexOf('%') != -1){
+							responsiveElem = true;
+							data.box = data.text;
+						} else {
+							data.box = $(elem)
+								.wrap('<span class="placeholder-box placeholder-box-'+ (elem.nodeName || '').toLowerCase() +' placeholder-box-'+$.css(elem, 'float')+'" />')
+								.parent()
+							;
+						}
+						data.text
+							.insertAfter(elem)
+							.on('mousedown.placeholder', function(){
+								changePlaceholderVisibility(this, false, false, data, 'focus');
+								try {
+									setTimeout(function(){
+										elem.focus();
+									}, 0);
+								} catch(e){}
+								return false;
+							})
+						;
+						
+						
+						$.each(['lineHeight', 'fontSize', 'fontFamily', 'fontWeight'], function(i, style){
+							var prop = $.css(elem, style);
+							if(data.text.css(style) != prop){
+								data.text.css(style, prop);
+							}
+						});
+						$.each(['Left', 'Top'], function(i, side){
+							var size = (parseInt($.css(elem, 'padding'+ side), 10) || 0) + Math.max((parseInt($.css(elem, 'margin'+ side), 10) || 0), 0) + (parseInt($.css(elem, 'border'+ side +'Width'), 10) || 0);
+							data.text.css('padding'+ side, size);
+						});
+						
+						$(elem)
+							.on('updateshadowdom', function(){
+								var height, width; 
+								if((width = elem.offsetWidth) || (height = elem.offsetHeight)){
+									data.text
+										.css({
+											width: width,
+											height: height
+										})
+										.css($(elem).position())
+									;
+								}
+							})
+							.triggerHandler('updateshadowdom')
+						;
+						
+					} else {
+						var reset = function(e){
+							if($(elem).hasClass('placeholder-visible')){
+								hidePlaceholder(elem, data, '');
+								if(e && e.type == 'submit'){
+									setTimeout(function(){
+										if(e.isDefaultPrevented()){
+											changePlaceholderVisibility(elem, false, false, data );
+										}
+									}, 9);
+								}
+							}
+						};
+						
+						$(window).on('beforeunload', reset);
+						data.box = $(elem);
+						if(form){
+							$(form).submit(reset);
+						}
+					}
+					
+					return data;
+				},
+				update: function(elem, val){
+					var type = ($.attr(elem, 'type') || $.prop(elem, 'type') || '').toLowerCase();
+					if(!allowedPlaceholder[type] && !$.nodeName(elem, 'textarea')){
+						webshims.error('placeholder not allowed on input[type="'+type+'"]');
+						if(type == 'date'){
+							webshims.error('but you can use data-placeholder for input[type="date"]');
+						}
+						return;
+					}
+					
+					
+					var data = pHolder.create(elem);
+					if(data.text){
+						data.text.text(val);
+					}
+					
+					changePlaceholderVisibility(elem, false, val, data);
+				}
+			};
+		})()
+	;
+	
+	$.webshims.publicMethods = {
+		pHolder: pHolder
+	};
+	polyfillElements.forEach(function(nodeName){
+		var desc = webshims.defineNodeNameProperty(nodeName, 'placeholder', {
+			attr: {
+				set: function(val){
+					var elem = this;
+					if(bustedTextarea){
+						webshims.data(elem, 'textareaPlaceholder', val);
+						elem.placeholder = '';
+					} else {
+						webshims.contentAttr(elem, 'placeholder', val);
+					}
+					pHolder.update(elem, val);
+				},
+				get: function(){
+					var ret = (bustedTextarea) ? webshims.data(this, 'textareaPlaceholder') : '';
+					return ret || webshims.contentAttr(this, 'placeholder');
+				}
+			},
+			reflect: true,
+			initAttr: true
+		});
+	});
+	
+	
+	polyfillElements.forEach(function(name){
+		var placeholderValueDesc =  {};
+		var desc;
+		['attr', 'prop'].forEach(function(propType){
+			placeholderValueDesc[propType] = {
+				set: function(val){
+					var elem = this;
+					var placeholder;
+					if(bustedTextarea){
+						placeholder = webshims.data(elem, 'textareaPlaceholder');
+					} 
+					if(!placeholder){
+						placeholder = webshims.contentAttr(elem, 'placeholder');
+					}
+					$.removeData(elem, 'cachedValidity');
+					var ret = desc[propType]._supset.call(elem, val);
+					if(placeholder && 'value' in elem){
+						changePlaceholderVisibility(elem, val, placeholder);
+					}
+					return ret;
+				},
+				get: function(){
+					var elem = this;
+					return $(elem).hasClass('placeholder-visible') ? '' : desc[propType]._supget.call(elem);
+				}
+			};
+		});
+		desc = webshims.defineNodeNameProperty(name, 'value', placeholderValueDesc);
+	});
+	
+})();
+
+	(function(){
+		var doc = document;	
+		if( 'value' in document.createElement('output') ){return;}
+		
+		webshims.defineNodeNameProperty('output', 'value', {
+			prop: {
+				set: function(value){
+					var setVal = $.data(this, 'outputShim');
+					if(!setVal){
+						setVal = outputCreate(this);
+					}
+					setVal(value);
+				},
+				get: function(){
+					return webshims.contentAttr(this, 'value') || $(this).text() || '';
+				}
+			}
+		});
+		
+		
+		webshims.onNodeNamesPropertyModify('input', 'value', function(value, boolVal, type){
+			if(type == 'removeAttr'){return;}
+			var setVal = $.data(this, 'outputShim');
+			if(setVal){
+				setVal(value);
+			}
+		});
+		
+		var outputCreate = function(elem){
+			if(elem.getAttribute('aria-live')){return;}
+			elem = $(elem);
+			var value = (elem.text() || '').trim();
+			var	id 	= elem.attr('id');
+			var	htmlFor = elem.attr('for');
+			var shim = $('<input class="output-shim" type="text" disabled name="'+ (elem.attr('name') || '')+'" value="'+value+'" style="display: none !important;" />').insertAfter(elem);
+			var form = shim[0].form || doc;
+			var setValue = function(val){
+				shim[0].value = val;
+				val = shim[0].value;
+				elem.text(val);
+				webshims.contentAttr(elem[0], 'value', val);
+			};
+			
+			elem[0].defaultValue = value;
+			webshims.contentAttr(elem[0], 'value', value);
+			
+			elem.attr({'aria-live': 'polite'});
+			if(id){
+				shim.attr('id', id);
+				elem.attr('aria-labelledby', webshims.getID($('label[for="'+id+'"]', form)));
+			}
+			if(htmlFor){
+				id = webshims.getID(elem);
+				htmlFor.split(' ').forEach(function(control){
+					control = document.getElementById(control);
+					if(control){
+						control.setAttribute('aria-controls', id);
+					}
+				});
+			}
+			elem.data('outputShim', setValue );
+			shim.data('outputShim', setValue );
+			return setValue;
+		};
+						
+		webshims.addReady(function(context, contextElem){
+			$('output', context).add(contextElem.filter('output')).each(function(){
+				outputCreate(this);
+			});
+		});
+		
+		/*
+		 * Implements input event in all browsers
+		 */
+		(function(){
+			var noInputTriggerEvts = {updateInput: 1, input: 1},
+				noInputTypes = {
+					radio: 1,
+					checkbox: 1,
+					submit: 1,
+					button: 1,
+					image: 1,
+					reset: 1,
+					file: 1
+					
+					//pro forma
+					,color: 1
+					//,range: 1
+				},
+				observe = function(input){
+					var timer,
+						lastVal = input.prop('value'),
+						trigger = function(e){
+							//input === null
+							if(!input){return;}
+							var newVal = input.prop('value');
+							
+							if(newVal !== lastVal){
+								lastVal = newVal;
+								if(!e || !noInputTriggerEvts[e.type]){
+									webshims.triggerInlineForm && webshims.triggerInlineForm(input[0], 'input');
+								}
+							}
+						},
+						extraTimer,
+						extraTest = function(){
+							clearTimeout(extraTimer);
+							extraTimer = setTimeout(trigger, 9);
+						},
+						unbind = function(){
+							input.unbind('focusout', unbind).unbind('keyup keypress keydown paste cut', extraTest).unbind('input change updateInput', trigger);
+							clearInterval(timer);
+							setTimeout(function(){
+								trigger();
+								input = null;
+							}, 1);
+							
+						}
+					;
+					
+					clearInterval(timer);
+					timer = setInterval(trigger, 99);
+					extraTest();
+					input.on({
+						'keyup keypress keydown paste cut': extraTest,
+						focusout: unbind,
+						'input updateInput change': trigger
+					});
+				}
+			;
+			if($.event.customEvent){
+				$.event.customEvent.updateInput = true;
+			} 
+			
+			$(doc)
+				.on('focusin', function(e){
+					if( e.target && e.target.type && !e.target.readOnly && !e.target.disabled && (e.target.nodeName || '').toLowerCase() == 'input' && !noInputTypes[e.target.type] ){
+						observe($(e.target));
+					}
+				})
+			;
+		})();
+	})();
+
+}); //webshims.ready end
+}//end formvalidation

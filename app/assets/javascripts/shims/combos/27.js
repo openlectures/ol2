@@ -1,101 +1,4129 @@
-(function(){var a=Function.prototype.call,g=Object.prototype,h=Array.prototype.slice,m,k;if(!Function.prototype.bind)Function.prototype.bind=function(a){var e=this;if("function"!=typeof e)throw new TypeError;var b=h.call(arguments,1),d=function(){if(this instanceof d){var c=function(){};c.prototype=e.prototype;var c=new c,f=e.apply(c,b.concat(h.call(arguments)));return null!==f&&Object(f)===f?f:c}return e.apply(a,b.concat(h.call(arguments)))};return d};k=a.bind(g.toString);m=a.bind(g.hasOwnProperty);
-if(!Array.isArray)Array.isArray=function(a){return"[object Array]"==k(a)};if(!Array.prototype.forEach)Array.prototype.forEach=function(a,e){var b=q(this),d=0,c=b.length>>>0;if("[object Function]"!=k(a))throw new TypeError;for(;d<c;)d in b&&a.call(e,b[d],d,b),d++};if(!Array.prototype.map)Array.prototype.map=function(a,e){var b=q(this),d=b.length>>>0,c=Array(d);if("[object Function]"!=k(a))throw new TypeError;for(var f=0;f<d;f++)f in b&&(c[f]=a.call(e,b[f],f,b));return c};if(!Array.prototype.filter)Array.prototype.filter=
-function(a,e){var b=q(this),d=b.length>>>0,c=[];if("[object Function]"!=k(a))throw new TypeError;for(var f=0;f<d;f++)f in b&&a.call(e,b[f],f,b)&&c.push(b[f]);return c};if(!Array.prototype.every)Array.prototype.every=function(a,e){var b=q(this),d=b.length>>>0;if("[object Function]"!=k(a))throw new TypeError;for(var c=0;c<d;c++)if(c in b&&!a.call(e,b[c],c,b))return!1;return!0};if(!Array.prototype.some)Array.prototype.some=function(a,e){var b=q(this),d=b.length>>>0;if("[object Function]"!=k(a))throw new TypeError;
-for(var c=0;c<d;c++)if(c in b&&a.call(e,b[c],c,b))return!0;return!1};if(!Array.prototype.reduce)Array.prototype.reduce=function(a){var e=q(this),b=e.length>>>0;if("[object Function]"!=k(a))throw new TypeError;if(!b&&1==arguments.length)throw new TypeError;var d=0,c;if(2<=arguments.length)c=arguments[1];else{do{if(d in e){c=e[d++];break}if(++d>=b)throw new TypeError;}while(1)}for(;d<b;d++)d in e&&(c=a.call(void 0,c,e[d],d,e));return c};if(!Array.prototype.reduceRight)Array.prototype.reduceRight=function(a){var e=
-q(this),b=e.length>>>0;if("[object Function]"!=k(a))throw new TypeError;if(!b&&1==arguments.length)throw new TypeError;var d,b=b-1;if(2<=arguments.length)d=arguments[1];else{do{if(b in e){d=e[b--];break}if(0>--b)throw new TypeError;}while(1)}do b in this&&(d=a.call(void 0,d,e[b],b,e));while(b--);return d};if(!Array.prototype.indexOf)Array.prototype.indexOf=function(a){var e=q(this),b=e.length>>>0;if(!b)return-1;var d=0;1<arguments.length&&(d=v(arguments[1]));for(d=0<=d?d:b-Math.abs(d);d<b;d++)if(d in
-e&&e[d]===a)return d;return-1};if(!Array.prototype.lastIndexOf)Array.prototype.lastIndexOf=function(a){var e=q(this),b=e.length>>>0;if(!b)return-1;var d=b-1;1<arguments.length&&(d=v(arguments[1]));for(d=0<=d?d:b-Math.abs(d);0<=d;d--)if(d in e&&a===e[d])return d;return-1};if(2!=[1,2].splice(0).length){var t=Array.prototype.splice;Array.prototype.splice=function(a,e){return!arguments.length?[]:t.apply(this,[void 0===a?0:a,void 0===e?this.length-a:e].concat(h.call(arguments,2)))}}if(!Object.keys){var i=
-!0,r="toString,toLocaleString,valueOf,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,constructor".split(","),n=r.length,p;for(p in{toString:null})i=!1;Object.keys=function(a){if("object"!=typeof a&&"function"!=typeof a||null===a)throw new TypeError("Object.keys called on a non-object");var e=[],b;for(b in a)m(a,b)&&e.push(b);if(i)for(b=0;b<n;b++){var d=r[b];m(a,d)&&e.push(d)}return e}}if(!Date.prototype.toISOString)Date.prototype.toISOString=function(){var a,e,b;if(!isFinite(this))throw new RangeError;
-a=[this.getUTCFullYear(),this.getUTCMonth()+1,this.getUTCDate(),this.getUTCHours(),this.getUTCMinutes(),this.getUTCSeconds()];for(e=a.length;e--;)b=a[e],10>b&&(a[e]="0"+b);return a.slice(0,3).join("-")+"T"+a.slice(3).join(":")+"."+("000"+this.getUTCMilliseconds()).slice(-3)+"Z"};if(!Date.now)Date.now=function(){return(new Date).getTime()};if(!Date.prototype.toJSON)Date.prototype.toJSON=function(){if("function"!=typeof this.toISOString)throw new TypeError;return this.toISOString()};a="\t\n\u000b\u000c\r \u00a0\u1680\u180e\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u202f\u205f\u3000\u2028\u2029\ufeff";
-if(!String.prototype.trim||a.trim()){var a="["+a+"]",y=RegExp("^"+a+a+"*"),w=RegExp(a+a+"*$");String.prototype.trim=function(){return(""+this).replace(y,"").replace(w,"")}}if("0".split(void 0,0).length){var u=String.prototype.split;String.prototype.split=function(a,e){return void 0===a&&0===e?[]:u.apply(this,arguments)}}if("".substr&&"b"!=="0b".substr(-1)){var x=String.prototype.substr;String.prototype.substr=function(a,e){return x.call(this,0>a?0>(a=this.length+a)?0:a:a,e)}}var v=function(a){a=+a;
-a!==a?a=-1:0!==a&&a!==1/0&&a!==-(1/0)&&(a=(0<a||-1)*Math.floor(Math.abs(a)));return a},s="a"!="a"[0],q=function(a){if(null==a)throw new TypeError;return s&&"string"==typeof a&&a?a.split(""):Object(a)}})();
-(function(a,g){var h=!(!Object.create||!Object.defineProperties||!Object.getOwnPropertyDescriptor);h&&!a.browser.msie&&Object.defineProperty&&Object.prototype.__defineGetter__&&function(){try{var a=document.createElement("foo");Object.defineProperty(a,"bar",{get:function(){return!0}});h=!!a.bar}catch(g){h=!1}a=null}();Modernizr.objectAccessor=!(!(h||Object.prototype.__defineGetter__&&Object.prototype.__lookupSetter__)||a.browser.opera&&!(11<=g.browserVersion));Modernizr.advancedObjectProperties=h;
-if(!h||!Object.create||!Object.defineProperties||!Object.getOwnPropertyDescriptor||!Object.defineProperty){var m=Function.prototype.call.bind(Object.prototype.hasOwnProperty);g.objectCreate=function(a,h,i,m){var n;n=function(){};n.prototype=a;n=new n;if(!m&&!("__proto__"in n)&&!Modernizr.objectAccessor)n.__proto__=a;h&&g.defineProperties(n,h);if(i)n.options=jQuery.extend(!0,{},n.options||{},i),i=n.options;n._create&&jQuery.isFunction(n._create)&&n._create(i);return n};g.defineProperties=function(a,
-h){for(var i in h)m(h,i)&&g.defineProperty(a,i,h[i]);return a};g.defineProperty=function(a,g,i){if("object"!=typeof i||null===i)return a;if(m(i,"value"))return a[g]=i.value,a;a.__defineGetter__&&("function"==typeof i.get&&a.__defineGetter__(g,i.get),"function"==typeof i.set&&a.__defineSetter__(g,i.set));return a};g.getPrototypeOf=function(a){return Object.getPrototypeOf&&Object.getPrototypeOf(a)||a.__proto__||a.constructor&&a.constructor.prototype};g.getOwnPropertyDescriptor=function(a,g){if("object"!==
-typeof a&&"function"!==typeof a||null===a)throw new TypeError("Object.getOwnPropertyDescriptor called on a non-object");var i;if(Object.defineProperty&&Object.getOwnPropertyDescriptor)try{return i=Object.getOwnPropertyDescriptor(a,g)}catch(h){}i={configurable:!0,enumerable:!0,writable:!0,value:void 0};var n=a.__lookupGetter__&&a.__lookupGetter__(g),p=a.__lookupSetter__&&a.__lookupSetter__(g);if(!n&&!p){if(!m(a,g))return;i.value=a[g];return i}delete i.writable;delete i.value;i.get=i.set=void 0;if(n)i.get=
-n;if(p)i.set=p;return i}}})(jQuery,jQuery.webshims);
-jQuery.webshims.register("dom-extend",function(a,g,h,m,k){var t=g.modules,i=/\s*,\s*/,r={},n={},p={},y={},w={},u=a.fn.val,x=function(d,c,f,j,b){return b?u.call(a(d)):u.call(a(d),f)};a.fn.val=function(d){var c=this[0];arguments.length&&null==d&&(d="");if(!arguments.length)return!c||1!==c.nodeType?u.call(this):a.prop(c,"value",d,"val",!0);if(a.isArray(d))return u.apply(this,arguments);var f=a.isFunction(d);return this.each(function(j){c=this;1===c.nodeType&&(f?(j=d.call(c,j,a.prop(c,"value",k,"val",
-!0)),null==j&&(j=""),a.prop(c,"value",j,"val")):a.prop(c,"value",d,"val"))})};var v="_webshimsLib"+Math.round(1E3*Math.random()),s=function(d,c,f){d=d.jquery?d[0]:d;if(!d)return f||{};var j=a.data(d,v);f!==k&&(j||(j=a.data(d,v,{})),c&&(j[c]=f));return c?j&&j[c]:j};[{name:"getNativeElement",prop:"nativeElement"},{name:"getShadowElement",prop:"shadowElement"},{name:"getShadowFocusElement",prop:"shadowFocusElement"}].forEach(function(d){a.fn[d.name]=function(){return this.map(function(){var a=s(this,
-"shadowData");return a&&a[d.prop]||this})}});["removeAttr","prop","attr"].forEach(function(d){r[d]=a[d];a[d]=function(c,f,j,b,e){var g="val"==b,A=!g?r[d]:x;if(!c||!n[f]||1!==c.nodeType||!g&&b&&"attr"==d&&a.attrFn[f])return A(c,f,j,b,e);var E=(c.nodeName||"").toLowerCase(),B=p[E],C="attr"==d&&(!1===j||null===j)?"removeAttr":d,i,u,h;B||(B=p["*"]);B&&(B=B[f]);B&&(i=B[C]);if(i){if("value"==f)u=i.isVal,i.isVal=g;if("removeAttr"===C)return i.value.call(c);if(j===k)return i.get?i.get.call(c):i.value;i.set&&
-("attr"==d&&!0===j&&(j=f),h=i.set.call(c,j));if("value"==f)i.isVal=u}else h=A(c,f,j,b,e);if((j!==k||"removeAttr"===C)&&w[E]&&w[E][f]){var l;l="removeAttr"==C?!1:"prop"==C?!!j:!0;w[E][f].forEach(function(a){if(!a.only||(a.only="prop"==d)||"attr"==a.only&&"prop"!=d)a.call(c,j,l,g?"val":C,d)})}return h};y[d]=function(c,f,b){p[c]||(p[c]={});p[c][f]||(p[c][f]={});var e=p[c][f][d],z=function(a,c,e){return c&&c[a]?c[a]:e&&e[a]?e[a]:"prop"==d&&"value"==f?function(a){return b.isVal?x(this,f,a,!1,0===arguments.length):
-r[d](this,f,a)}:"prop"==d&&"value"==a&&b.value.apply?function(a){var c=r[d](this,f);c&&c.apply&&(c=c.apply(this,arguments));return c}:function(a){return r[d](this,f,a)}};p[c][f][d]=b;if(b.value===k){if(!b.set)b.set=b.writeable?z("set",b,e):g.cfg.useStrict&&"prop"==f?function(){throw f+" is readonly on "+c;}:a.noop;if(!b.get)b.get=z("get",b,e)}["value","get","set"].forEach(function(a){b[a]&&(b["_sup"+a]=z(a,e))})}});var q=!a.browser.msie||8<parseInt(a.browser.version,10),l=function(){var a=g.getPrototypeOf(m.createElement("foobar")),
-c=Object.prototype.hasOwnProperty;return function(f,b,o){var z=m.createElement(f),i=g.getPrototypeOf(z);if(q&&i&&a!==i&&(!z[b]||!c.call(z,b))){var A=z[b];o._supvalue=function(){return A&&A.apply?A.apply(this,arguments):A};i[b]=o.value}else o._supvalue=function(){var a=s(this,"propValue");return a&&a[b]&&a[b].apply?a[b].apply(this,arguments):a&&a[b]},e.extendValue(f,b,o.value);o.value._supvalue=o._supvalue}}(),e=function(){var d={};g.addReady(function(c,f){var b={},e=function(d){b[d]||(b[d]=a(c.getElementsByTagName(d)),
-f[0]&&a.nodeName(f[0],d)&&(b[d]=b[d].add(f)))};a.each(d,function(a,d){e(a);!d||!d.forEach?g.warn("Error: with "+a+"-property. methods: "+d):d.forEach(function(d){b[a].each(d)})});b=null});var c,f=a([]),b=function(f,b){d[f]?d[f].push(b):d[f]=[b];a.isDOMReady&&(c||a(m.getElementsByTagName(f))).each(b)};return{createTmpCache:function(d){a.isDOMReady&&(c=c||a(m.getElementsByTagName(d)));return c||f},flushTmpCache:function(){c=null},content:function(d,c){b(d,function(){var d=a.attr(this,c);null!=d&&a.attr(this,
-c,d)})},createElement:function(a,d){b(a,d)},extendValue:function(d,c,f){b(d,function(){a(this).each(function(){s(this,"propValue",{})[c]=this[c];this[c]=f})})}}}(),b=function(a,c){if(a.defaultValue===k)a.defaultValue="";if(!a.removeAttr)a.removeAttr={value:function(){a[c||"prop"].set.call(this,a.defaultValue);a.removeAttr._supvalue.call(this)}};if(!a.attr)a.attr={}};a.extend(g,{getID:function(){var d=(new Date).getTime();return function(c){var c=a(c),f=c.attr("id");f||(d++,f="ID-"+d,c.attr("id",f));
-return f}}(),extendUNDEFProp:function(d,c){a.each(c,function(a,c){a in d||(d[a]=c)})},createPropDefault:b,data:s,moveToFirstEvent:function(){var d=a._data?"_data":"data";return function(c,f,b){if((c=(a[d](c,"events")||{})[f])&&1<c.length)f=c.pop(),b||(b="bind"),"bind"==b&&c.delegateCount?c.splice(c.delegateCount,0,f):c.unshift(f)}}(),addShadowDom:function(){var d,c,b,e={init:!1,runs:0,test:function(){var a=e.getHeight(),d=e.getWidth();a!=e.height||d!=e.width?(e.height=a,e.width=d,e.handler({type:"docresize"}),
-e.runs++,30>e.runs&&setTimeout(e.test,30)):e.runs=0},handler:function(g){clearTimeout(d);d=setTimeout(function(){if("resize"==g.type){var d=a(h).width(),i=a(h).width();if(i==c&&d==b)return;c=i;b=d;e.height=e.getHeight();e.width=e.getWidth()}a.event.trigger("updateshadowdom")},"resize"==g.type?50:9)},_create:function(){a.each({Height:"getHeight",Width:"getWidth"},function(a,d){var c=m.body,b=m.documentElement;e[d]=function(){return Math.max(c["scroll"+a],b["scroll"+a],c["offset"+a],b["offset"+a],b["client"+
-a])}})},start:function(){if(!this.init&&m.body)this.init=!0,this._create(),this.height=e.getHeight(),this.width=e.getWidth(),setInterval(this.test,400),a(this.test),a(h).bind("load",this.test),a(h).bind("resize",this.handler),function(){var d=a.fn.animate,c;a.fn.animate=function(){clearTimeout(c);c=setTimeout(function(){e.test();e.handler({type:"animationstart"})},19);return d.apply(this,arguments)}}()}};a.event.customEvent.updateshadowdom=!0;g.docObserve=function(){g.ready("DOM",function(){e.start()})};
-return function(d,c,b){b=b||{};d.jquery&&(d=d[0]);c.jquery&&(c=c[0]);var f=a.data(d,v)||a.data(d,v,{}),e=a.data(c,v)||a.data(c,v,{}),j={};if(b.shadowFocusElement){if(b.shadowFocusElement){if(b.shadowFocusElement.jquery)b.shadowFocusElement=b.shadowFocusElement[0];j=a.data(b.shadowFocusElement,v)||a.data(b.shadowFocusElement,v,j)}}else b.shadowFocusElement=c;f.hasShadow=c;j.nativeElement=e.nativeElement=d;j.shadowData=e.shadowData=f.shadowData={nativeElement:d,shadowElement:c,shadowFocusElement:b.shadowFocusElement};
-b.shadowChilds&&b.shadowChilds.each(function(){s(this,"shadowData",e.shadowData)});if(b.data)j.shadowData.data=e.shadowData.data=f.shadowData.data=b.data;b=null;g.docObserve()}}(),propTypes:{standard:function(a){b(a);if(!a.prop)a.prop={set:function(c){a.attr.set.call(this,""+c)},get:function(){return a.attr.get.call(this)||a.defaultValue}}},"boolean":function(a){b(a);if(!a.prop)a.prop={set:function(c){c?a.attr.set.call(this,""):a.removeAttr.value.call(this)},get:function(){return null!=a.attr.get.call(this)}}},
-src:function(){var d=m.createElement("a");d.style.display="none";return function(c,f){b(c);if(!c.prop)c.prop={set:function(a){c.attr.set.call(this,a)},get:function(){var c=this.getAttribute(f),b;if(null==c)return"";d.setAttribute("href",c+"");if(!a.support.hrefNormalized){try{a(d).insertAfter(this),b=d.getAttribute("href",4)}catch(e){b=d.getAttribute("href",4)}a(d).detach()}return b||d.href}}}}(),enumarated:function(a){b(a);if(!a.prop)a.prop={set:function(c){a.attr.set.call(this,c)},get:function(){var c=
-(a.attr.get.call(this)||"").toLowerCase();if(!c||-1==a.limitedTo.indexOf(c))c=a.defaultValue;return c}}}},reflectProperties:function(d,c){"string"==typeof c&&(c=c.split(i));c.forEach(function(c){g.defineNodeNamesProperty(d,c,{prop:{set:function(d){a.attr(this,c,d)},get:function(){return a.attr(this,c)||""}}})})},defineNodeNameProperty:function(d,c,b){n[c]=!0;if(b.reflect)g.propTypes[b.propType||"standard"](b,c);["prop","attr","removeAttr"].forEach(function(e){var o=b[e];o&&(o="prop"===e?a.extend({writeable:!0},
-o):a.extend({},o,{writeable:!0}),y[e](d,c,o),"*"!=d&&g.cfg.extendNative&&"prop"==e&&o.value&&a.isFunction(o.value)&&l(d,c,o),b[e]=o)});b.initAttr&&e.content(d,c);return b},defineNodeNameProperties:function(a,c,b,j){for(var o in c)!j&&c[o].initAttr&&e.createTmpCache(a),b&&!c[o][b]&&(c[o][b]={},["value","set","get"].forEach(function(a){a in c[o]&&(c[o][b][a]=c[o][a],delete c[o][a])})),c[o]=g.defineNodeNameProperty(a,o,c[o]);j||e.flushTmpCache();return c},createElement:function(b,c,f){var j;a.isFunction(c)&&
-(c={after:c});e.createTmpCache(b);c.before&&e.createElement(b,c.before);f&&(j=g.defineNodeNameProperties(b,f,!1,!0));c.after&&e.createElement(b,c.after);e.flushTmpCache();return j},onNodeNamesPropertyModify:function(b,c,f,g){"string"==typeof b&&(b=b.split(i));a.isFunction(f)&&(f={set:f});b.forEach(function(a){w[a]||(w[a]={});"string"==typeof c&&(c=c.split(i));f.initAttr&&e.createTmpCache(a);c.forEach(function(b){w[a][b]||(w[a][b]=[],n[b]=!0);if(f.set){if(g)f.set.only=g;w[a][b].push(f.set)}f.initAttr&&
-e.content(a,b)});e.flushTmpCache()})},defineNodeNamesBooleanProperty:function(b,c,f){f||(f={});if(a.isFunction(f))f.set=f;g.defineNodeNamesProperty(b,c,{attr:{set:function(a){this.setAttribute(c,a);f.set&&f.set.call(this,!0)},get:function(){return null==this.getAttribute(c)?k:c}},removeAttr:{value:function(){this.removeAttribute(c);f.set&&f.set.call(this,!1)}},reflect:!0,propType:"boolean",initAttr:f.initAttr||!1})},contentAttr:function(a,b,f){if(a.nodeName){if(f===k)return a=a.attributes[b]||{},
-f=a.specified?a.value:null,null==f?k:f;"boolean"==typeof f?f?a.setAttribute(b,b):a.removeAttribute(b):a.setAttribute(b,f)}},activeLang:function(){var b=[],c={},f,e,o=/:\/\/|^\.*\//,i=function(b,c,d){return c&&d&&-1!==a.inArray(c,d.availabeLangs||[])?(b.loading=!0,d=d.langSrc,o.test(d)||(d=g.cfg.basePath+d),g.loader.loadScript(d+c+".js",function(){b.langObj[c]?(b.loading=!1,A(b,!0)):a(function(){b.langObj[c]&&A(b,!0);b.loading=!1})}),!0):!1},u=function(a){c[a]&&c[a].forEach(function(a){a.callback()})},
-A=function(a,b){if(a.activeLang!=f&&a.activeLang!==e){var c=t[a.module].options;if(a.langObj[f]||e&&a.langObj[e])a.activeLang=f,a.callback(a.langObj[f]||a.langObj[e],f),u(a.module);else if(!b&&!i(a,f,c)&&!i(a,e,c)&&a.langObj[""]&&""!==a.activeLang)a.activeLang="",a.callback(a.langObj[""],f),u(a.module)}};return function(g){if("string"==typeof g&&g!==f)f=g,e=f.split("-")[0],f==e&&(e=!1),a.each(b,function(a,b){A(b)});else if("object"==typeof g)if(g.register)c[g.register]||(c[g.register]=[]),c[g.register].push(g),
-g.callback();else{if(!g.activeLang)g.activeLang="";b.push(g);A(g)}return f}}()});a.each({defineNodeNamesProperty:"defineNodeNameProperty",defineNodeNamesProperties:"defineNodeNameProperties",createElements:"createElement"},function(a,b){g[a]=function(a,d,e,u){"string"==typeof a&&(a=a.split(i));var h={};a.forEach(function(a){h[a]=g[b](a,d,e,u)});return h}});g.isReady("webshimLocalization",!0)});
-(function(a,g){var h=a.webshims.browserVersion;if(!(a.browser.mozilla&&5<h)&&(!a.browser.msie||12>h&&7<h)){var m={article:"article",aside:"complementary",section:"region",nav:"navigation",address:"contentinfo"},k=function(a,g){a.getAttribute("role")||a.setAttribute("role",g)};a.webshims.addReady(function(h,i){a.each(m,function(g,n){for(var u=a(g,h).add(i.filter(g)),x=0,m=u.length;x<m;x++)k(u[x],n)});if(h===g){var r=g.getElementsByTagName("header")[0],n=g.getElementsByTagName("footer"),p=n.length;
-r&&!a(r).closest("section, article")[0]&&k(r,"banner");p&&(r=n[p-1],a(r).closest("section, article")[0]||k(r,"contentinfo"))}})}})(jQuery,document);
-(function(a,g,h){var m=g.audio&&g.video,k=!1,t=h.cfg.mediaelement,i=h.bugs,r="jwplayer"==t.player?"mediaelement-swf":"mediaelement-jaris",n=function(){h.ready(r,function(){if(!h.mediaelement.createSWF)h.mediaelement.loadSwf=!0,h.reTest([r],m)})},p;if(m){var y=document.createElement("video");g.videoBuffered="buffered"in y;k="loop"in y;h.capturingEvents("play,playing,waiting,paused,ended,durationchange,loadedmetadata,canplay,volumechange".split(","));g.videoBuffered||(h.addPolyfill("mediaelement-native-fix",
-{f:"mediaelement",test:g.videoBuffered,d:["dom-support"]}),h.reTest("mediaelement-native-fix"))}if(m&&!t.preferFlash){var w=function(g){var i=g.target.parentNode;!t.preferFlash&&(a(g.target).is("audio, video")||i&&a("source:last",i)[0]==g.target)&&h.ready("DOM mediaelement",function(){p&&n();h.ready("WINDOWLOAD "+r,function(){setTimeout(function(){p&&!t.preferFlash&&h.mediaelement.createSWF&&!a(g.target).closest("audio, video").is(".nonnative-api-active")?(t.preferFlash=!0,document.removeEventListener("error",
-w,!0),a("audio, video").mediaLoad(),h.info("switching mediaelements option to 'preferFlash', due to an error with native player: "+g.target.src)):p||document.removeEventListener("error",w,!0)},20)})})};document.addEventListener("error",w,!0);a("audio, video").each(function(){this.error&&w({target:this})})}i.track=!1;g.track&&function(){if(!i.track)i.track="number"!=typeof a("<track />")[0].readyState;if(!i.track)try{new TextTrackCue(2,3,"")}catch(g){i.track=!0}var k=h.cfg.track,n=function(g){a(g.target).filter("track").each(m)},
-m=function(){if(i.track||!k.override&&3==a.prop(this,"readyState"))k.override=!0,h.reTest("track"),document.removeEventListener("error",n,!0),this&&a.nodeName(this,"track")?h.error("track support was overwritten. Please check your vtt including your vtt mime-type"):h.info("track support was overwritten. due to bad browser support")},p=function(){document.addEventListener("error",n,!0);i.track?m():a("track").each(m)};k.override||(h.isReady("track")?p():a(p))}();h.register("mediaelement-core",function(a,
-h,v,s,q){p=swfobject.hasFlashPlayerVersion("9.0.115");var l=h.mediaelement,e=function(b,c){var b=a(b),d={src:b.attr("src")||"",elem:b,srcProp:b.prop("src")};if(!d.src)return d;var e=b.attr("type");if(e)d.type=e,d.container=a.trim(e.split(";")[0]);else if(c||(c=b[0].nodeName.toLowerCase(),"source"==c&&(c=(b.closest("video, audio")[0]||{nodeName:"video"}).nodeName.toLowerCase())),e=l.getTypeForSrc(d.src,c))d.type=e,d.container=e;if(e=b.attr("media"))d.media=e;return d},b=!p&&"postMessage"in v&&m,d=
-function(){var c;return function(){!c&&b&&(c=!0,h.loader.loadScript("https://www.youtube.com/player_api"),a(function(){h.polyfill("mediaelement-yt")}))}}(),c=function(){p?n():d()};h.addPolyfill("mediaelement-yt",{test:!b,d:["dom-support"]});l.mimeTypes={audio:{"audio/ogg":["ogg","oga","ogm"],'audio/ogg;codecs="opus"':"opus","audio/mpeg":["mp2","mp3","mpga","mpega"],"audio/mp4":"mp4,mpg4,m4r,m4a,m4p,m4b,aac".split(","),"audio/wav":["wav"],"audio/3gpp":["3gp","3gpp"],"audio/webm":["webm"],"audio/fla":["flv",
-"f4a","fla"],"application/x-mpegURL":["m3u8","m3u"]},video:{"video/ogg":["ogg","ogv","ogm"],"video/mpeg":["mpg","mpeg","mpe"],"video/mp4":["mp4","mpg4","m4v"],"video/quicktime":["mov","qt"],"video/x-msvideo":["avi"],"video/x-ms-asf":["asf","asx"],"video/flv":["flv","f4v"],"video/3gpp":["3gp","3gpp"],"video/webm":["webm"],"application/x-mpegURL":["m3u8","m3u"],"video/MP2T":["ts"]}};l.mimeTypes.source=a.extend({},l.mimeTypes.audio,l.mimeTypes.video);l.getTypeForSrc=function(b,c){if(-1!=b.indexOf("youtube.com/watch?")||
--1!=b.indexOf("youtube.com/v/"))return"video/youtube";var b=b.split("?")[0].split("."),b=b[b.length-1],d;a.each(l.mimeTypes[c],function(a,c){if(-1!==c.indexOf(b))return d=a,!1});return d};l.srces=function(b,c){b=a(b);if(c)b.removeAttr("src").removeAttr("type").find("source").remove(),a.isArray(c)||(c=[c]),c.forEach(function(a){var c=s.createElement("source");"string"==typeof a&&(a={src:a});c.setAttribute("src",a.src);a.type&&c.setAttribute("type",a.type);a.media&&c.setAttribute("media",a.media);b.append(c)});
-else{var c=[],d=b[0].nodeName.toLowerCase(),f=e(b,d);f.src?c.push(f):a("source",b).each(function(){f=e(this,d);f.src&&c.push(f)});return c}};a.fn.loadMediaSrc=function(b,c){return this.each(function(){c!==q&&(a(this).removeAttr("poster"),c&&a.attr(this,"poster",c));l.srces(this,b);a(this).mediaLoad()})};l.swfMimeTypes="video/3gpp,video/x-msvideo,video/quicktime,video/x-m4v,video/mp4,video/m4p,video/x-flv,video/flv,audio/mpeg,audio/aac,audio/mp4,audio/x-m4a,audio/m4a,audio/mp3,audio/x-fla,audio/fla,youtube/flv,jwplayer/jwplayer,video/youtube".split(",");
-l.canThirdPlaySrces=function(c,d){var e="";if(p||b)c=a(c),d=d||l.srces(c),a.each(d,function(a,c){if(c.container&&c.src&&(p&&-1!=l.swfMimeTypes.indexOf(c.container)||b&&"video/youtube"==c.container))return e=c,!1});return e};var f={};l.canNativePlaySrces=function(b,c){var d="";if(m){var b=a(b),e=(b[0].nodeName||"").toLowerCase();if(!f[e])return d;c=c||l.srces(b);a.each(c,function(a,c){if(c.type&&f[e].prop._supvalue.call(b[0],c.type))return d=c,!1})}return d};l.setError=function(b,c){c||(c="can't play sources");
-a(b).pause().data("mediaerror",c);h.warn("mediaelementError: "+c);setTimeout(function(){a(b).data("mediaerror")&&a(b).trigger("mediaerror")},1)};var j=function(){var a;return function(e,f,g){h.ready(p?r:"mediaelement-yt",function(){l.createSWF?l.createSWF(e,f,g):a||(a=!0,c(),j(e,f,g))});!a&&b&&!l.createSWF&&d()}}(),o=function(a,b,c,d,e){c||!1!==c&&b&&"third"==b.isActive?(c=l.canThirdPlaySrces(a,d))?j(a,c,b):e?l.setError(a,!1):o(a,b,!1,d,!0):(c=l.canNativePlaySrces(a,d))?b&&"third"==b.isActive&&l.setActive(a,
-"html5",b):e?(l.setError(a,!1),b&&"third"==b.isActive&&l.setActive(a,"html5",b)):o(a,b,!0,d,!0)},z=/^(?:embed|object|datalist)$/i,D=function(b,c){var d=h.data(b,"mediaelementBase")||h.data(b,"mediaelementBase",{}),e=l.srces(b),f=b.parentNode;clearTimeout(d.loadTimer);a.data(b,"mediaerror",!1);if(e.length&&f&&!(1!=f.nodeType||z.test(f.nodeName||"")))c=c||h.data(b,"mediaelement"),o(b,c,t.preferFlash||q,e)};a(s).on("ended",function(b){var c=h.data(b.target,"mediaelement");(!k||c&&"html5"!=c.isActive||
-a.prop(b.target,"loop"))&&setTimeout(function(){!a.prop(b.target,"paused")&&a.prop(b.target,"loop")&&a(b.target).prop("currentTime",0).play()},1)});k||h.defineNodeNamesBooleanProperty(["audio","video"],"loop");["audio","video"].forEach(function(b){var c=h.defineNodeNameProperty(b,"load",{prop:{value:function(){var a=h.data(this,"mediaelement");D(this,a);m&&(!a||"html5"==a.isActive)&&c.prop._supvalue&&c.prop._supvalue.apply(this,arguments)}}});f[b]=h.defineNodeNameProperty(b,"canPlayType",{prop:{value:function(c){var d=
-"";m&&f[b].prop._supvalue&&(d=f[b].prop._supvalue.call(this,c),"no"==d&&(d=""));!d&&p&&(c=a.trim((c||"").split(";")[0]),-1!=l.swfMimeTypes.indexOf(c)&&(d="maybe"));return d}}})});h.onNodeNamesPropertyModify(["audio","video"],["src","poster"],{set:function(){var a=this,b=h.data(a,"mediaelementBase")||h.data(a,"mediaelementBase",{});clearTimeout(b.loadTimer);b.loadTimer=setTimeout(function(){D(a);a=null},9)}});v=function(){h.addReady(function(b,c){a("video, audio",b).add(c.filter("video, audio")).each(function(){a.browser.msie&&
-8<h.browserVersion&&a.prop(this,"paused")&&!a.prop(this,"readyState")&&a(this).is('audio[preload="none"][controls]:not([autoplay])')?a(this).prop("preload","metadata").mediaLoad():D(this);if(m){var b,c,d=this,e=function(){var b=a.prop(d,"buffered");if(b){for(var c="",e=0,f=b.length;e<f;e++)c+=b.end(e);return c}},f=function(){var b=e();b!=c&&(c=b,a(d).triggerHandler("progress"))};a(this).on({"play loadstart progress":function(a){"progress"==a.type&&(c=e());clearTimeout(b);b=setTimeout(f,999)},"emptied stalled mediaerror abort suspend":function(a){"emptied"==
-a.type&&(c=!1);clearTimeout(b)}})}})})};g.track&&!i.track&&h.defineProperty(TextTrack.prototype,"shimActiveCues",{get:function(){return this._shimActiveCues||this.activeCues}});m?(h.isReady("mediaelement-core",!0),v(),h.ready("WINDOWLOAD mediaelement",c)):h.ready(r,v);a(function(){h.loader.loadList(["track-ui"])})})})(jQuery,Modernizr,jQuery.webshims);
-jQuery.webshims.register("mediaelement-swf",function(a,g,h,m,k,t){var i=g.mediaelement,r=h.swfobject,n=Modernizr.audio&&Modernizr.video,p=r.hasFlashPlayerVersion("9.0.115"),y=0,h={paused:!0,ended:!1,currentSrc:"",duration:h.NaN,readyState:0,networkState:0,videoHeight:0,videoWidth:0,error:null,buffered:{start:function(a){if(a)g.error("buffered index size error");else return 0},end:function(a){if(a)g.error("buffered index size error");else return 0},length:0}},w=Object.keys(h),u={currentTime:0,volume:1,
-muted:!1};Object.keys(u);var x=a.extend({isActive:"html5",activating:"html5",wasSwfReady:!1,_bufferedEnd:0,_bufferedStart:0,_metadata:!1,_durationCalcs:-1,_callMeta:!1,currentTime:0,_ppFlag:k},h,u),v=/^jwplayer-/,s=function(a){if(a=m.getElementById(a.replace(v,"")))return a=g.data(a,"mediaelement"),"third"==a.isActive?a:null},q=function(a){return(a=g.data(a,"mediaelement"))&&"third"==a.isActive?a:null},l=function(b,c){c=a.Event(c);c.preventDefault();a.event.trigger(c,k,b)},e=t.playerPath||g.cfg.basePath+
-"jwplayer/"+(t.playerName||"player.swf"),b=t.pluginPath||g.cfg.basePath+"swf/jwwebshims.swf";g.extendUNDEFProp(t.params,{allowscriptaccess:"always",allowfullscreen:"true",wmode:"transparent"});g.extendUNDEFProp(t.vars,{screencolor:"ffffffff"});g.extendUNDEFProp(t.attrs,{bgcolor:"#000000"});var d=function(b,c){var d=b.duration;if(!(d&&0<b._durationCalcs)){try{if(b.duration=b.jwapi.getPlaylist()[0].duration,!b.duration||0>=b.duration||b.duration===b._lastDuration)b.duration=d}catch(e){}b.duration&&
-b.duration!=b._lastDuration?(l(b._elem,"durationchange"),("audio"==b._elemNodeName||b._callMeta)&&i.jwEvents.Model.META(a.extend({duration:b.duration},c),b),b._durationCalcs--):b._durationCalcs++}},c=function(a,b){3>a&&clearTimeout(b._canplaythroughTimer);if(3<=a&&3>b.readyState)b.readyState=a,l(b._elem,"canplay"),clearTimeout(b._canplaythroughTimer),b._canplaythroughTimer=setTimeout(function(){c(4,b)},4E3);if(4<=a&&4>b.readyState)b.readyState=a,l(b._elem,"canplaythrough");b.readyState=a};a.extend(a.event.customEvent,
-{updatemediaelementdimensions:!0,flashblocker:!0,swfstageresize:!0,mediaelementapichange:!0});i.jwEvents={View:{PLAY:function(a){var b=s(a.id);if(b&&!b.stopPlayPause&&(b._ppFlag=!0,b.paused==a.state)){b.paused=!a.state;if(b.ended)b.ended=!1;l(b._elem,a.state?"play":"pause")}}},Model:{BUFFER:function(b){var e=s(b.id);if(e&&"percentage"in b&&e._bufferedEnd!=b.percentage){e.networkState=100==b.percentage?1:2;(isNaN(e.duration)||5<b.percentage&&25>b.percentage||100===b.percentage)&&d(e,b);if(e.ended)e.ended=
-!1;if(e.duration){2<b.percentage&&20>b.percentage?c(3,e):20<b.percentage&&c(4,e);if(e._bufferedEnd&&e._bufferedEnd>b.percentage)e._bufferedStart=e.currentTime||0;e._bufferedEnd=b.percentage;e.buffered.length=1;if(100==b.percentage)e.networkState=1,c(4,e);a.event.trigger("progress",k,e._elem,!0)}}},META:function(a,b){if(b=b&&b.networkState?b:s(a.id))if("duration"in a){if(!b._metadata||!((!a.height||b.videoHeight==a.height)&&a.duration===b.duration)){b._metadata=!0;var d=b.duration;if(a.duration)b.duration=
-a.duration;b._lastDuration=b.duration;if(a.height||a.width)b.videoHeight=a.height||0,b.videoWidth=a.width||0;if(!b.networkState)b.networkState=2;1>b.readyState&&c(1,b);b.duration&&d!==b.duration&&l(b._elem,"durationchange");l(b._elem,"loadedmetadata")}}else b._callMeta=!0},TIME:function(a){var b=s(a.id);if(b&&b.currentTime!==a.position){b.currentTime=a.position;b.duration&&b.duration<b.currentTime&&d(b,a);2>b.readyState&&c(2,b);if(b.ended)b.ended=!1;l(b._elem,"timeupdate")}},STATE:function(a){var b=
-s(a.id);if(b)switch(a.newstate){case "BUFFERING":if(b.ended)b.ended=!1;c(1,b);l(b._elem,"waiting");break;case "PLAYING":b.paused=!1;b._ppFlag=!0;b.duration||d(b,a);3>b.readyState&&c(3,b);if(b.ended)b.ended=!1;l(b._elem,"playing");break;case "PAUSED":if(!b.paused&&!b.stopPlayPause)b.paused=!0,b._ppFlag=!0,l(b._elem,"pause");break;case "COMPLETED":4>b.readyState&&c(4,b),b.ended=!0,l(b._elem,"ended")}}},Controller:{ERROR:function(a){var b=s(a.id);b&&i.setError(b._elem,a.message)},SEEK:function(a){var b=
-s(a.id);if(b){if(b.ended)b.ended=!1;if(b.paused)try{b.jwapi.sendEvent("play","false")}catch(c){}if(b.currentTime!=a.position)b.currentTime=a.position,l(b._elem,"timeupdate")}},VOLUME:function(a){var b=s(a.id);if(b&&(a=a.percentage/100,b.volume!=a))b.volume=a,l(b._elem,"volumechange")},MUTE:function(a){if(!a.state){var b=s(a.id);if(b&&b.muted!=a.state)b.muted=a.state,l(b._elem,"volumechange")}}}};var f=function(b){var c=!0;a.each(i.jwEvents,function(d,e){a.each(e,function(a){try{b.jwapi["add"+d+"Listener"](a,
-"jQuery.webshims.mediaelement.jwEvents."+d+"."+a)}catch(e){return c=!1}})});return c},j=function(a){var b=a.actionQueue.length,c=0,d;if(b&&"third"==a.isActive)for(;a.actionQueue.length&&b>c;)c++,d=a.actionQueue.shift(),a.jwapi[d.fn].apply(a.jwapi,d.args);if(a.actionQueue.length)a.actionQueue=[]},o=function(b){b&&(b._ppFlag===k&&a.prop(b._elem,"autoplay")||!b.paused)&&setTimeout(function(){if("third"==b.isActive&&(b._ppFlag===k||!b.paused))try{a(b._elem).play()}catch(c){}},1)};i.playerResize=function(b){b&&
-(b=m.getElementById(b.replace(v,"")))&&a(b).triggerHandler("swfstageresize")};a(m).on("emptied",function(a){a=q(a.target);o(a)});var z;i.jwPlayerReady=function(b){var c=s(b.id),d=0,e=function(){if(!(9<d))if(d++,f(c)){if(c.wasSwfReady)a(c._elem).mediaLoad();else{var h=parseFloat(b.version,10);(5.1>h||6<=h)&&g.warn("mediaelement-swf is only testet with jwplayer 5.6+")}c.wasSwfReady=!0;c.tryedReframeing=0;j(c);o(c)}else clearTimeout(c.reframeTimer),c.reframeTimer=setTimeout(e,9*d),2<d&&9>c.tryedReframeing&&
-(c.tryedReframeing++,c.shadowElem.css({overflow:"visible"}),setTimeout(function(){c.shadowElem.css({overflow:"hidden"})},16))};if(c&&c.jwapi){if(!c.tryedReframeing)c.tryedReframeing=0;clearTimeout(z);c.jwData=b;c.shadowElem.removeClass("flashblocker-assumed");a.prop(c._elem,"volume",c.volume);a.prop(c._elem,"muted",c.muted);e()}};var D=a.noop;if(n){var A={play:1,playing:1},E="play,pause,playing,canplay,progress,waiting,ended,loadedmetadata,durationchange,emptied".split(","),B=E.map(function(a){return a+
-".webshimspolyfill"}).join(" "),C=function(b){var c=g.data(b.target,"mediaelement");c&&(b.originalEvent&&b.originalEvent.type===b.type)==("third"==c.activating)&&(b.stopImmediatePropagation(),A[b.type]&&c.isActive!=c.activating&&a(b.target).pause())},D=function(b){a(b).off(B).on(B,C);E.forEach(function(a){g.moveToFirstEvent(b,a)})};D(m)}i.setActive=function(b,c,d){d||(d=g.data(b,"mediaelement"));if(d&&d.isActive!=c){"html5"!=c&&"third"!=c&&g.warn("wrong type for mediaelement activating: "+c);var e=
-g.data(b,"shadowData");d.activating=c;a(b).pause();d.isActive=c;"third"==c?(e.shadowElement=e.shadowFocusElement=d.shadowElem[0],a(b).addClass("swf-api-active nonnative-api-active").hide().getShadowElement().show()):(a(b).removeClass("swf-api-active nonnative-api-active").show().getShadowElement().hide(),e.shadowElement=e.shadowFocusElement=!1);a(b).trigger("mediaelementapichange")}};var H=function(){var a="_bufferedEnd,_bufferedStart,_metadata,_ppFlag,currentSrc,currentTime,duration,ended,networkState,paused,videoHeight,videoWidth,_callMeta,_durationCalcs".split(","),
-b=a.length;return function(d){if(d){var e=b,f=d.networkState;for(c(0,d);--e;)delete d[a[e]];d.actionQueue=[];d.buffered.length=0;f&&l(d._elem,"emptied")}}}(),G=function(b,c){var d=b._elem,e=b.shadowElem;a(d)[c?"addClass":"removeClass"]("webshims-controls");"audio"==b._elemNodeName&&!c?e.css({width:0,height:0}):e.css({width:d.style.width||a(d).width(),height:d.style.height||a(d).height()})};i.createSWF=function(c,d,f){if(p){1>y?y=1:y++;var j=a.extend({},t.vars,{image:a.prop(c,"poster")||"",file:d.srcProp}),
-h=a(c).data("vars")||{};f||(f=g.data(c,"mediaelement"));if(f&&f.swfCreated)i.setActive(c,"third",f),H(f),f.currentSrc=d.srcProp,a.extend(j,h),t.changeSWF(j,c,d,f,"load"),F(c,"sendEvent",["LOAD",j]);else{var o=a.prop(c,"controls"),k="jwplayer-"+g.getID(c),l=a.extend({},t.params,a(c).data("params")),m=c.nodeName.toLowerCase(),s=a.extend({},t.attrs,{name:k,id:k},a(c).data("attrs")),q=a('<div class="polyfill-'+m+' polyfill-mediaelement" id="wrapper-'+k+'"><div id="'+k+'"></div>').css({position:"relative",
-overflow:"hidden"}),f=g.data(c,"mediaelement",g.objectCreate(x,{actionQueue:{value:[]},shadowElem:{value:q},_elemNodeName:{value:m},_elem:{value:c},currentSrc:{value:d.srcProp},swfCreated:{value:!0},buffered:{value:{start:function(a){if(a>=f.buffered.length)g.error("buffered index size error");else return 0},end:function(a){if(a>=f.buffered.length)g.error("buffered index size error");else return(f.duration-f._bufferedStart)*f._bufferedEnd/100+f._bufferedStart},length:0}}}));G(f,o);q.insertBefore(c);
-n&&a.extend(f,{volume:a.prop(c,"volume"),muted:a.prop(c,"muted")});a.extend(j,{id:k,controlbar:o?t.vars.controlbar||("video"==m?"over":"bottom"):"video"==m?"none":"bottom",icons:""+(o&&"video"==m)},h,{playerready:"jQuery.webshims.mediaelement.jwPlayerReady"});j.plugins=j.plugins?j.plugins+(","+b):b;g.addShadowDom(c,q);D(c);i.setActive(c,"third",f);t.changeSWF(j,c,d,f,"embed");a(c).on("updatemediaelementdimensions updateshadowdom",function(){G(f,a.prop(c,"controls"))});r.embedSWF(e,k,"100%","100%",
-"9.0.0",!1,j,l,s,function(b){if(b.success)f.jwapi=b.ref,o||a(b.ref).attr("tabindex","-1").css("outline","none"),setTimeout(function(){if(!b.ref.parentNode&&q[0].parentNode||"none"==b.ref.style.display)q.addClass("flashblocker-assumed"),a(c).trigger("flashblocker"),g.warn("flashblocker assumed");a(b.ref).css({minHeight:"2px",minWidth:"2px",display:"block"})},9),z||(clearTimeout(z),z=setTimeout(function(){var c=a(b.ref);1<c[0].offsetWidth&&1<c[0].offsetHeight&&0===location.protocol.indexOf("file:")?
-g.error("Add your local development-directory to the local-trusted security sandbox:  http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html"):(2>c[0].offsetWidth||2>c[0].offsetHeight)&&g.warn("JS-SWF connection can't be established on hidden or unconnected flash objects")},8E3))})}}else setTimeout(function(){a(c).mediaLoad()},1)};var F=function(a,b,c,d){return(d=d||q(a))?(d.jwapi&&d.jwapi[b]?d.jwapi[b].apply(d.jwapi,c||[]):(d.actionQueue.push({fn:b,args:c}),10<
-d.actionQueue.length&&setTimeout(function(){5<d.actionQueue.length&&d.actionQueue.shift()},99)),d):!1};["audio","video"].forEach(function(b){var c={},d,e=function(a){"audio"==b&&("videoHeight"==a||"videoWidth"==a)||(c[a]={get:function(){var b=q(this);return b?b[a]:n&&d[a].prop._supget?d[a].prop._supget.apply(this):x[a]},writeable:!1})},f=function(a,b){e(a);delete c[a].writeable;c[a].set=b};f("volume",function(a){var b=q(this);if(b){if(a*=100,!isNaN(a)){var c=b.muted;(0>a||100<a)&&g.error("volume greater or less than allowed "+
-a/100);F(this,"sendEvent",["VOLUME",a],b);if(c)try{b.jwapi.sendEvent("mute","true")}catch(e){}a/=100;if(!(b.volume==a||"third"!=b.isActive))b.volume=a,l(b._elem,"volumechange")}}else if(d.volume.prop._supset)return d.volume.prop._supset.apply(this,arguments)});f("muted",function(a){var b=q(this);if(b){if(a=!!a,F(this,"sendEvent",["mute",""+a],b),!(b.muted==a||"third"!=b.isActive))b.muted=a,l(b._elem,"volumechange")}else if(d.muted.prop._supset)return d.muted.prop._supset.apply(this,arguments)});f("currentTime",
-function(a){var b=q(this);if(b){if(a*=1,!isNaN(a)){if(b.paused)clearTimeout(b.stopPlayPause),b.stopPlayPause=setTimeout(function(){b.paused=!0;b.stopPlayPause=!1},50);F(this,"sendEvent",["SEEK",""+a],b);if(b.paused){if(0<b.readyState)b.currentTime=a,l(b._elem,"timeupdate");try{b.jwapi.sendEvent("play","false")}catch(c){}}}}else if(d.currentTime.prop._supset)return d.currentTime.prop._supset.apply(this,arguments)});["play","pause"].forEach(function(a){c[a]={value:function(){var b=q(this);if(b)b.stopPlayPause&&
-clearTimeout(b.stopPlayPause),F(this,"sendEvent",["play","play"==a],b),setTimeout(function(){if("third"==b.isActive&&(b._ppFlag=!0,b.paused!=("play"!=a)))b.paused="play"!=a,l(b._elem,a)},1);else if(d[a].prop._supvalue)return d[a].prop._supvalue.apply(this,arguments)}}});w.forEach(e);g.onNodeNamesPropertyModify(b,"controls",function(c,d){var e=q(this);a(this)[d?"addClass":"removeClass"]("webshims-controls");if(e){try{F(this,d?"showControls":"hideControls",[b],e)}catch(f){g.warn("you need to generate a crossdomain.xml")}"audio"==
-b&&G(e,d);a(e.jwapi).attr("tabindex",d?"0":"-1")}});d=g.defineNodeNameProperties(b,c,"prop")});if(p){var I=a.cleanData,J=a.browser.msie&&9>g.browserVersion,K={object:1,OBJECT:1};a.cleanData=function(a){var b,c,d;if(a&&(c=a.length)&&y)for(b=0;b<c;b++)if(K[a[b].nodeName]){if("sendEvent"in a[b]){y--;try{a[b].sendEvent("play",!1)}catch(e){}}if(J)try{for(d in a[b])"function"==typeof a[b][d]&&(a[b][d]=null)}catch(f){}}return I.apply(this,arguments)}}n||(["poster","src"].forEach(function(a){g.defineNodeNamesProperty("src"==
-a?["audio","video","source"]:["video"],a,{reflect:!0,propType:"src"})}),["autoplay","controls"].forEach(function(a){g.defineNodeNamesBooleanProperty(["audio","video"],a)}),g.defineNodeNamesProperties(["audio","video"],{HAVE_CURRENT_DATA:{value:2},HAVE_ENOUGH_DATA:{value:4},HAVE_FUTURE_DATA:{value:3},HAVE_METADATA:{value:1},HAVE_NOTHING:{value:0},NETWORK_EMPTY:{value:0},NETWORK_IDLE:{value:1},NETWORK_LOADING:{value:2},NETWORK_NO_SOURCE:{value:3}},"prop"))});
-jQuery.webshims.register("track",function(a,g,h,m){var k=g.mediaelement;(new Date).getTime();var t={subtitles:1,captions:1,descriptions:1},i=a("<track />"),r=Modernizr.ES5&&Modernizr.objectAccessor,n=function(a){var b={};a.addEventListener=function(a,c){b[a]&&g.error("always use $.on to the shimed event: "+a+" already bound fn was: "+b[a]+" your fn was: "+c);b[a]=c};a.removeEventListener=function(a,c){b[a]&&b[a]!=c&&g.error("always use $.on/$.off to the shimed event: "+a+" already bound fn was: "+
-b[a]+" your fn was: "+c);b[a]&&delete b[a]};return a},p={getCueById:function(a){for(var b=null,d=0,c=this.length;d<c;d++)if(this[d].id===a){b=this[d];break}return b}},y={"0":"disabled",1:"hidden",2:"showing"},w={shimActiveCues:null,_shimActiveCues:null,activeCues:null,cues:null,kind:"subtitles",label:"",language:"",mode:"disabled",readyState:0,oncuechange:null,toString:function(){return"[object TextTrack]"},addCue:function(a){if(this.cues){var b=this.cues[this.cues.length-1];b&&b.startTime>a.startTime&&
-g.error("cue startTime higher than previous cue's startTime")}else this.cues=k.createCueList();a.track&&a.track.removeCue&&a.track.removeCue(a);a.track=this;this.cues.push(a)},removeCue:function(a){var b=this.cues||[],d=0,c=b.length;if(a.track!=this)g.error("cue not part of track");else{for(;d<c;d++)if(b[d]===a){b.splice(d,1);a.track=null;break}a.track&&g.error("cue not part of track")}},DISABLED:"disabled",OFF:"disabled",HIDDEN:"hidden",SHOWING:"showing",ERROR:3,LOADED:2,LOADING:1,NONE:0},u=["kind",
-"label","srclang"],x={srclang:"language"},v=Function.prototype.call.bind(Object.prototype.hasOwnProperty),s=function(e,b){var d=[],c=[],f=[],j,h;e||(e=g.data(this,"mediaelementBase")||g.data(this,"mediaelementBase",{}));if(!b)e.blockTrackListUpdate=!0,b=a.prop(this,"textTracks"),e.blockTrackListUpdate=!1;clearTimeout(e.updateTrackListTimer);a("track",this).each(function(){var d=a.prop(this,"track");f.push(d);-1==b.indexOf(d)&&c.push(d)});if(e.scriptedTextTracks)for(j=0,h=e.scriptedTextTracks.length;j<
-h;j++)f.push(e.scriptedTextTracks[j]),-1==b.indexOf(e.scriptedTextTracks[j])&&c.push(e.scriptedTextTracks[j]);for(j=0,h=b.length;j<h;j++)-1==f.indexOf(b[j])&&d.push(b[j]);if(d.length||c.length){b.splice(0);for(j=0,h=f.length;j<h;j++)b.push(f[j]);for(j=0,h=d.length;j<h;j++)a([b]).triggerHandler(a.Event({type:"removetrack",track:d[j]}));for(j=0,h=c.length;j<h;j++)a([b]).triggerHandler(a.Event({type:"addtrack",track:c[j]}));(e.scriptedTextTracks||d.length)&&a(this).triggerHandler("updatetrackdisplay")}},
-q=function(e,b){b||(b=g.data(e,"trackData"));if(b&&!b.isTriggering)b.isTriggering=!0,setTimeout(function(){(b.track||{}).readyState?a(e).closest("audio, video").triggerHandler("updatetrackdisplay"):a(e).triggerHandler("checktrackmode");b.isTriggering=!1},1)},l=a("<div />")[0];h.TextTrackCue=function(a,b,d){3!=arguments.length&&g.error("wrong arguments.length for TextTrackCue.constructor");this.startTime=a;this.endTime=b;this.text=d;this.id="";this.pauseOnExit=!1;n(this)};h.TextTrackCue.prototype=
-{onenter:null,onexit:null,pauseOnExit:!1,getCueAsHTML:function(){var a="",b="",d=m.createDocumentFragment(),c;if(!v(this,"getCueAsHTML"))c=this.getCueAsHTML=function(){var c,g;if(a!=this.text){a=this.text;b=k.parseCueTextToHTML(a);l.innerHTML=b;for(c=0,g=l.childNodes.length;c<g;c++)d.appendChild(l.childNodes[c].cloneNode(!0))}return d.cloneNode(!0)};return c?c.apply(this,arguments):d.cloneNode(!0)},track:null,id:""};k.createCueList=function(){return a.extend([],p)};k.parseCueTextToHTML=function(){var a=
-/(<\/?[^>]+>)/ig,b=/^(?:c|v|ruby|rt|b|i|u)/,d=/\<\s*\//,c=function(a,b,c,e){d.test(e)?a="</"+a+">":(c.splice(0,1),a="<"+a+" "+b+'="'+c.join(" ").replace(/\"/g,"&#34;")+'">');return a},f=function(a){var d=a.replace(/[<\/>]+/ig,"").split(/[\s\.]+/);d[0]&&(d[0]=d[0].toLowerCase(),b.test(d[0])?"c"==d[0]?a=c("span","class",d,a):"v"==d[0]&&(a=c("q","title",d,a)):a="");return a};return function(b){return b.replace(a,f)}}();k.loadTextTrack=function(e,b,d,c){var f=d.track,h=function(){var c=a.prop(b,"src"),
-d,i;if("disabled"!=f.mode&&c&&a.attr(b,"src")&&(a(e).unbind("play playing timeupdate updatetrackdisplay",h),a(b).unbind("checktrackmode",h),!f.readyState)){d=function(){f.readyState=3;f.cues=null;f.activeCues=f.shimActiveCues=f._shimActiveCues=null;a(b).triggerHandler("error")};f.readyState=1;try{f.cues=k.createCueList(),f.activeCues=f.shimActiveCues=f._shimActiveCues=k.createCueList(),i=a.ajax({dataType:"text",url:c,success:function(c){"text/vtt"!=i.getResponseHeader("content-type")&&g.error("set the mime-type of your WebVTT files to text/vtt. see: http://dev.w3.org/html5/webvtt/#text/vtt");
-k.parseCaptions(c,f,function(c){c&&"length"in c?(f.readyState=2,a(b).triggerHandler("load"),a(e).triggerHandler("updatetrackdisplay")):d()})},error:d})}catch(l){d(),g.warn(l)}}};f.readyState=0;f.shimActiveCues=null;f._shimActiveCues=null;f.activeCues=null;f.cues=null;a(e).unbind("play playing timeupdate updatetrackdisplay",h);a(b).unbind("checktrackmode",h);a(e).on("play playing timeupdate updatetrackdisplay",h);a(b).on("checktrackmode",h);if(c)f.mode=t[f.kind]?"showing":"hidden",h()};k.createTextTrack=
-function(e,b){var d,c;if(b.nodeName&&(c=g.data(b,"trackData")))q(b,c),d=c.track;if(!d)d=n(g.objectCreate(w)),r||u.forEach(function(c){var e=a.prop(b,c);e&&(d[x[c]||c]=e)}),b.nodeName?(r&&u.forEach(function(c){g.defineProperty(d,x[c]||c,{get:function(){return a.prop(b,c)}})}),c=g.data(b,"trackData",{track:d}),k.loadTextTrack(e,b,c,a.prop(b,"default")&&a(b).siblings("track[default]").andSelf()[0]==b)):(r&&u.forEach(function(a){g.defineProperty(d,x[a]||a,{value:b[a],writeable:!1})}),d.cues=k.createCueList(),
-d.activeCues=d._shimActiveCues=d.shimActiveCues=k.createCueList(),d.mode="hidden",d.readyState=2);return d};k.parseCaptionChunk=function(){var a=/^(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s+\-\-\>\s+(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s*(.*)/,b=/^(DEFAULTS|DEFAULT)\s+\-\-\>\s+(.*)/g,d=/^(STYLE|STYLES)\s+\-\-\>\s*\n([\s\S]*)/g,c=/^(COMMENT|COMMENTS)\s+\-\-\>\s+(.*)/g;return function(f){var h,i,k,l;if(b.exec(f)||d.exec(f)||c.exec(f))return null;for(f=f.split(/\n/g);!f[0].replace(/\s+/ig,"").length&&0<f.length;)f.shift();
-for(f[0].match(/^\s*[a-z0-9-\_]+\s*$/ig)&&(k=""+f.shift().replace(/\s*/ig,""));0<f.length;){if(l=a.exec(f[0]))i=l.slice(1),h=parseInt(3600*(i[0]||0),10)+parseInt(60*(i[1]||0),10)+parseInt(i[2]||0,10)+parseFloat("0."+(i[3]||0)),i=parseInt(3600*(i[4]||0),10)+parseInt(60*(i[5]||0),10)+parseInt(i[6]||0,10)+parseFloat("0."+(i[7]||0));f=f.slice(0,0).concat(f.slice(1));break}if(!h&&!i)return g.warn("couldn't extract time information: "+[h,i,f.join("\n"),k].join(" ; ")),null;f=f.join("\n");h=new TextTrackCue(h,
-i,f);if(k)h.id=k;return h}}();k.parseCaptions=function(a,b,d){k.createCueList();var c,f,h,i,l;a?(h=/^WEBVTT(\s*FILE)?/ig,f=function(m,n){for(;m<n;m++){c=a[m];if(h.test(c))l=!0;else if(c.replace(/\s*/ig,"").length){if(!l){g.error("please use WebVTT format. This is the standard");d(null);break}(c=k.parseCaptionChunk(c,m))&&b.addCue(c)}if(i<(new Date).getTime()-30){m++;setTimeout(function(){i=(new Date).getTime();f(m,n)},90);break}}m>=n&&(l||g.error("please use WebVTT format. This is the standard"),
-d(b.cues))},a=a.replace(/\r\n/g,"\n"),setTimeout(function(){a=a.replace(/\r/g,"\n");setTimeout(function(){i=(new Date).getTime();a=a.split(/\n\n+/g);f(0,a.length)},9)},9)):g.error("Required parameter captionData not supplied.")};k.createTrackList=function(a,b){b=b||g.data(a,"mediaelementBase")||g.data(a,"mediaelementBase",{});if(!b.textTracks)b.textTracks=[],g.defineProperties(b.textTracks,{onaddtrack:{value:null},onremovetrack:{value:null}}),n(b.textTracks);return b.textTracks};Modernizr.track||
-(g.defineNodeNamesBooleanProperty(["track"],"default"),g.reflectProperties(["track"],["srclang","label"]),g.defineNodeNameProperties("track",{src:{reflect:!0,propType:"src"}}));g.defineNodeNameProperties("track",{kind:{attr:Modernizr.track?{set:function(a){var b=g.data(this,"trackData");this.setAttribute("data-kind",a);if(b)b.attrKind=a},get:function(){var a=g.data(this,"trackData");return a&&"attrKind"in a?a.attrKind:this.getAttribute("kind")}}:{},reflect:!0,propType:"enumarated",defaultValue:"subtitles",
-limitedTo:["subtitles","captions","descriptions","chapters","metadata"]}});a.each(u,function(e,b){var d=x[b]||b;g.onNodeNamesPropertyModify("track",b,function(){var c=g.data(this,"trackData"),e=this;if(c)"kind"==b&&q(this,c),r||(c.track[d]=a.prop(this,b)),clearTimeout(c.changedTrackPropTimer),c.changedTrackPropTimer=setTimeout(function(){a(e).trigger("updatesubtitlestate")},1)})});g.onNodeNamesPropertyModify("track","src",function(e){if(e){var e=g.data(this,"trackData"),b;e&&(b=a(this).closest("video, audio"),
-b[0]&&k.loadTextTrack(b,this,e))}});g.defineNodeNamesProperties(["track"],{ERROR:{value:3},LOADED:{value:2},LOADING:{value:1},NONE:{value:0},readyState:{get:function(){return(a.prop(this,"track")||{readyState:0}).readyState},writeable:!1},track:{get:function(){return k.createTextTrack(a(this).closest("audio, video")[0],this)},writeable:!1}},"prop");g.defineNodeNamesProperties(["audio","video"],{textTracks:{get:function(){var a=g.data(this,"mediaelementBase")||g.data(this,"mediaelementBase",{}),b=
-k.createTrackList(this,a);a.blockTrackListUpdate||s.call(this,a,b);return b},writeable:!1},addTextTrack:{value:function(a,b,d){a=k.createTextTrack(this,{kind:i.prop("kind",a||"").prop("kind"),label:b||"",srclang:d||""});b=g.data(this,"mediaelementBase")||g.data(this,"mediaelementBase",{});if(!b.scriptedTextTracks)b.scriptedTextTracks=[];b.scriptedTextTracks.push(a);s.call(this);return a}}},"prop");a(m).on("emptied ended updatetracklist",function(e){if(a(e.target).is("audio, video")){var b=g.data(e.target,
-"mediaelementBase");if(b)clearTimeout(b.updateTrackListTimer),b.updateTrackListTimer=setTimeout(function(){s.call(e.target,b)},0)}});g.addReady(function(e,b){var d=b.filter("video, audio, track").closest("audio, video");a("video, audio",e).add(d).each(function(){s.call(this)}).each(function(){if(Modernizr.track){var b=this.textTracks;a.prop(this,"textTracks").length!=b.length&&g.error("textTracks couldn't be copied");a("track",this).each(function(){var b=a.prop(this,"track"),c=this.track,d,e;if(c){d=
-a.prop(this,"kind");e=c.readyState||this.readyState;if(c.mode||e)b.mode=y[c.mode]||c.mode;if("descriptions"!=d)c.mode="string"==typeof c.mode?"disabled":0,this.kind="metadata",a(this).attr({kind:d})}}).on("load error",function(a){a.originalEvent&&a.stopImmediatePropagation()})}});d.each(function(){var a=this,b=g.data(a,"mediaelementBase");if(b)clearTimeout(b.updateTrackListTimer),b.updateTrackListTimer=setTimeout(function(){s.call(a,b)},9)})});Modernizr.track&&a("video, audio").trigger("trackapichange")});
+// vim: ts=4 sts=4 sw=4 expandtab
+// -- kriskowal Kris Kowal Copyright (C) 2009-2011 MIT License
+// -- tlrobinson Tom Robinson Copyright (C) 2009-2010 MIT License (Narwhal Project)
+// -- dantman Daniel Friesen Copyright (C) 2010 XXX TODO License or CLA
+// -- fschaefer Florian Schäfer Copyright (C) 2010 MIT License
+// -- Gozala Irakli Gozalishvili Copyright (C) 2010 MIT License
+// -- kitcambridge Kit Cambridge Copyright (C) 2011 MIT License
+// -- kossnocorp Sasha Koss XXX TODO License or CLA
+// -- bryanforbes Bryan Forbes XXX TODO License or CLA
+// -- killdream Quildreen Motta Copyright (C) 2011 MIT Licence
+// -- michaelficarra Michael Ficarra Copyright (C) 2011 3-clause BSD License
+// -- sharkbrainguy Gerard Paapu Copyright (C) 2011 MIT License
+// -- bbqsrc Brendan Molloy XXX TODO License or CLA
+// -- iwyg XXX TODO License or CLA
+// -- DomenicDenicola Domenic Denicola XXX TODO License or CLA
+// -- xavierm02 Montillet Xavier XXX TODO License or CLA
+// -- Raynos Raynos XXX TODO License or CLA
+// -- samsonjs Sami Samhuri XXX TODO License or CLA
+// -- rwldrn Rick Waldron Copyright (C) 2011 MIT License
+// -- lexer Alexey Zakharov XXX TODO License or CLA
+
+/*!
+    Copyright (c) 2009, 280 North Inc. http://280north.com/
+    MIT License. http://github.com/280north/narwhal/blob/master/README.md
+*/
+
+(function (undefined) {
+
+/**
+ * Brings an environment as close to ECMAScript 5 compliance
+ * as is possible with the facilities of erstwhile engines.
+ *
+ * ES5 Draft
+ * http://www.ecma-international.org/publications/files/drafts/tc39-2009-050.pdf
+ *
+ * NOTE: this is a draft, and as such, the URL is subject to change.  If the
+ * link is broken, check in the parent directory for the latest TC39 PDF.
+ * http://www.ecma-international.org/publications/files/drafts/
+ *
+ * Previous ES5 Draft
+ * http://www.ecma-international.org/publications/files/drafts/tc39-2009-025.pdf
+ * This is a broken link to the previous draft of ES5 on which most of the
+ * numbered specification references and quotes herein were taken.  Updating
+ * these references and quotes to reflect the new document would be a welcome
+ * volunteer project.
+ *
+ * @module
+ */
+
+/*whatsupdoc*/
+
+// Shortcut to an often accessed properties, in order to avoid multiple
+// dereference that costs universally.
+// _Please note: Shortcuts are defined after `Function.prototype.bind` as we
+// us it in defining shortcuts.
+var call = Function.prototype.call;
+var prototypeOfArray = Array.prototype;
+var prototypeOfObject = Object.prototype;
+var slice = prototypeOfArray.slice;
+var owns;
+var toString;
+
+// ES-5 15.3.4.5
+// http://www.ecma-international.org/publications/files/drafts/tc39-2009-025.pdf
+
+if (!Function.prototype.bind) {
+    Function.prototype.bind = function (that) { // .length is 1
+        // 1. Let Target be the this value.
+        var target = this;
+        // 2. If IsCallable(Target) is false, throw a TypeError exception.
+        if (typeof target != "function")
+            throw new TypeError(); // TODO message
+        // 3. Let A be a new (possibly empty) internal list of all of the
+        //   argument values provided after thisArg (arg1, arg2 etc), in order.
+        // XXX slicedArgs will stand in for "A" if used
+        var args = slice.call(arguments, 1); // for normal call
+        // 4. Let F be a new native ECMAScript object.
+        // 9. Set the [[Prototype]] internal property of F to the standard
+        //   built-in Function prototype object as specified in 15.3.3.1.
+        // 10. Set the [[Call]] internal property of F as described in
+        //   15.3.4.5.1.
+        // 11. Set the [[Construct]] internal property of F as described in
+        //   15.3.4.5.2.
+        // 12. Set the [[HasInstance]] internal property of F as described in
+        //   15.3.4.5.3.
+        // 13. The [[Scope]] internal property of F is unused and need not
+        //   exist.
+        var bound = function () {
+
+            if (this instanceof bound) {
+                // 15.3.4.5.2 [[Construct]]
+                // When the [[Construct]] internal method of a function object,
+                // F that was created using the bind function is called with a
+                // list of arguments ExtraArgs the following steps are taken:
+                // 1. Let target be the value of F's [[TargetFunction]]
+                //   internal property.
+                // 2. If target has no [[Construct]] internal method, a
+                //   TypeError exception is thrown.
+                // 3. Let boundArgs be the value of F's [[BoundArgs]] internal
+                //   property.
+                // 4. Let args be a new list containing the same values as the
+                //   list boundArgs in the same order followed by the same
+                //   values as the list ExtraArgs in the same order.
+
+                var F = function(){};
+                F.prototype = target.prototype;
+                var self = new F;
+
+                var result = target.apply(
+                    self,
+                    args.concat(slice.call(arguments))
+                );
+                if (result !== null && Object(result) === result)
+                    return result;
+                return self;
+
+            } else {
+                // 15.3.4.5.1 [[Call]]
+                // When the [[Call]] internal method of a function object, F,
+                // which was created using the bind function is called with a
+                // this value and a list of arguments ExtraArgs the following
+                // steps are taken:
+                // 1. Let boundArgs be the value of F's [[BoundArgs]] internal
+                //   property.
+                // 2. Let boundThis be the value of F's [[BoundThis]] internal
+                //   property.
+                // 3. Let target be the value of F's [[TargetFunction]] internal
+                //   property.
+                // 4. Let args be a new list containing the same values as the list
+                //   boundArgs in the same order followed by the same values as
+                //   the list ExtraArgs in the same order. 5.  Return the
+                //   result of calling the [[Call]] internal method of target
+                //   providing boundThis as the this value and providing args
+                //   as the arguments.
+
+                // equiv: target.call(this, ...boundArgs, ...args)
+                return target.apply(
+                    that,
+                    args.concat(slice.call(arguments))
+                );
+
+            }
+
+        };
+        // XXX bound.length is never writable, so don't even try
+        //
+        // 16. The length own property of F is given attributes as specified in
+        //   15.3.5.1.
+        // TODO
+        // 17. Set the [[Extensible]] internal property of F to true.
+        // TODO
+        // 18. Call the [[DefineOwnProperty]] internal method of F with
+        //   arguments "caller", PropertyDescriptor {[[Value]]: null,
+        //   [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]:
+        //   false}, and false.
+        // TODO
+        // 19. Call the [[DefineOwnProperty]] internal method of F with
+        //   arguments "arguments", PropertyDescriptor {[[Value]]: null,
+        //   [[Writable]]: false, [[Enumerable]]: false, [[Configurable]]:
+        //   false}, and false.
+        // TODO
+        // NOTE Function objects created using Function.prototype.bind do not
+        // have a prototype property.
+        // XXX can't delete it in pure-js.
+        return bound;
+    };
+}
+
+toString = call.bind(prototypeOfObject.toString);
+owns = call.bind(prototypeOfObject.hasOwnProperty);
+
+
+//
+// Array
+// =====
+//
+
+// ES5 15.4.3.2
+if (!Array.isArray) {
+    Array.isArray = function (obj) {
+        return toString(obj) == "[object Array]";
+    };
+}
+
+// The IsCallable() check in the Array functions
+// has been replaced with a strict check on the
+// internal class of the object to trap cases where
+// the provided function was actually a regular
+// expression literal, which in V8 and
+// JavaScriptCore is a typeof "function".  Only in
+// V8 are regular expression literals permitted as
+// reduce parameters, so it is desirable in the
+// general case for the shim to match the more
+// strict and common behavior of rejecting regular
+// expressions.
+
+// ES5 15.4.4.18
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/array/foreach
+if (!Array.prototype.forEach) {
+    Array.prototype.forEach = function (fun /*, thisp*/) {
+        var self = toObject(this),
+            thisp = arguments[1],
+            i = 0,
+            length = self.length >>> 0;
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        while (i < length) {
+            if (i in self) {
+                // Invoke the callback function with call, passing arguments:
+                // context, property value, property key, thisArg object context
+                fun.call(thisp, self[i], i, self);
+            }
+            i++;
+        }
+    };
+}
+
+// ES5 15.4.4.19
+// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/map
+if (!Array.prototype.map) {
+    Array.prototype.map = function (fun /*, thisp*/) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            result = Array(length),
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self)
+                result[i] = fun.call(thisp, self[i], i, self);
+        }
+        return result;
+    };
+}
+
+// ES5 15.4.4.20
+if (!Array.prototype.filter) {
+    Array.prototype.filter = function (fun /*, thisp */) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            result = [],
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self && fun.call(thisp, self[i], i, self))
+                result.push(self[i]);
+        }
+        return result;
+    };
+}
+
+// ES5 15.4.4.16
+if (!Array.prototype.every) {
+    Array.prototype.every = function (fun /*, thisp */) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self && !fun.call(thisp, self[i], i, self))
+                return false;
+        }
+        return true;
+    };
+}
+
+// ES5 15.4.4.17
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/some
+if (!Array.prototype.some) {
+    Array.prototype.some = function (fun /*, thisp */) {
+        var self = toObject(this),
+            length = self.length >>> 0,
+            thisp = arguments[1];
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        for (var i = 0; i < length; i++) {
+            if (i in self && fun.call(thisp, self[i], i, self))
+                return true;
+        }
+        return false;
+    };
+}
+
+// ES5 15.4.4.21
+// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduce
+if (!Array.prototype.reduce) {
+    Array.prototype.reduce = function (fun /*, initial*/) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        // no value to return if no initial value and an empty array
+        if (!length && arguments.length == 1)
+            throw new TypeError(); // TODO message
+
+        var i = 0;
+        var result;
+        if (arguments.length >= 2) {
+            result = arguments[1];
+        } else {
+            do {
+                if (i in self) {
+                    result = self[i++];
+                    break;
+                }
+
+                // if array contains no values, no initial value to return
+                if (++i >= length)
+                    throw new TypeError(); // TODO message
+            } while (true);
+        }
+
+        for (; i < length; i++) {
+            if (i in self)
+                result = fun.call(void 0, result, self[i], i, self);
+        }
+
+        return result;
+    };
+}
+
+// ES5 15.4.4.22
+// https://developer.mozilla.org/en/Core_JavaScript_1.5_Reference/Objects/Array/reduceRight
+if (!Array.prototype.reduceRight) {
+    Array.prototype.reduceRight = function (fun /*, initial*/) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        // If no callback function or if callback is not a callable function
+        if (toString(fun) != "[object Function]") {
+            throw new TypeError(); // TODO message
+        }
+
+        // no value to return if no initial value, empty array
+        if (!length && arguments.length == 1)
+            throw new TypeError(); // TODO message
+
+        var result, i = length - 1;
+        if (arguments.length >= 2) {
+            result = arguments[1];
+        } else {
+            do {
+                if (i in self) {
+                    result = self[i--];
+                    break;
+                }
+
+                // if array contains no values, no initial value to return
+                if (--i < 0)
+                    throw new TypeError(); // TODO message
+            } while (true);
+        }
+
+        do {
+            if (i in this)
+                result = fun.call(void 0, result, self[i], i, self);
+        } while (i--);
+
+        return result;
+    };
+}
+
+// ES5 15.4.4.14
+// https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
+if (!Array.prototype.indexOf) {
+    Array.prototype.indexOf = function (sought /*, fromIndex */ ) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        if (!length)
+            return -1;
+
+        var i = 0;
+        if (arguments.length > 1)
+            i = toInteger(arguments[1]);
+
+        // handle negative indices
+        i = i >= 0 ? i : length - Math.abs(i);
+        for (; i < length; i++) {
+            if (i in self && self[i] === sought) {
+                return i;
+            }
+        }
+        return -1;
+    };
+}
+
+// ES5 15.4.4.15
+if (!Array.prototype.lastIndexOf) {
+    Array.prototype.lastIndexOf = function (sought /*, fromIndex */) {
+        var self = toObject(this),
+            length = self.length >>> 0;
+
+        if (!length)
+            return -1;
+        var i = length - 1;
+        if (arguments.length > 1)
+            i = toInteger(arguments[1]);
+        // handle negative indices
+        i = i >= 0 ? i : length - Math.abs(i);
+        for (; i >= 0; i--) {
+            if (i in self && sought === self[i])
+                return i;
+        }
+        return -1;
+    };
+}
+
+//
+// Array
+// =====
+//
+
+// ES5 15.4.4.12
+// http://es5.github.com/#x15.4.4.12
+// Default value for second param
+// [bugfix, ielt9, old browsers]
+// IE < 9 bug: [1,2].splice(0).join("") == "" but should be "12"
+if([1,2].splice(0).length != 2) {
+    var _origArraySplice = Array.prototype.splice;
+
+    Array.prototype.splice = function(start, deleteCount) {
+        if(!arguments.length)return [];
+
+        return _origArraySplice.apply(this, [
+                start === void 0 ? 0 : start,
+                deleteCount === void 0 ? (this.length - start) : deleteCount
+            ].concat(slice.call(arguments, 2)))
+    };
+}
+
+//
+// Object
+// ======
+//
+
+
+// ES5 15.2.3.14
+// http://whattheheadsaid.com/2010/10/a-safer-object-keys-compatibility-implementation
+if (!Object.keys) {
+
+    var hasDontEnumBug = true,
+        dontEnums = [
+            "toString",
+            "toLocaleString",
+            "valueOf",
+            "hasOwnProperty",
+            "isPrototypeOf",
+            "propertyIsEnumerable",
+            "constructor"
+        ],
+        dontEnumsLength = dontEnums.length;
+
+    for (var key in {"toString": null})
+        hasDontEnumBug = false;
+
+    Object.keys = function keys(object) {
+
+        if ((typeof object != "object" && typeof object != "function") || object === null)
+            throw new TypeError("Object.keys called on a non-object");
+
+        var keys = [];
+        for (var name in object) {
+            if (owns(object, name)) {
+                keys.push(name);
+            }
+        }
+
+        if (hasDontEnumBug) {
+            for (var i = 0, ii = dontEnumsLength; i < ii; i++) {
+                var dontEnum = dontEnums[i];
+                if (owns(object, dontEnum)) {
+                    keys.push(dontEnum);
+                }
+            }
+        }
+
+        return keys;
+    };
+
+}
+
+//
+// Date
+// ====
+//
+
+// ES5 15.9.5.43
+// Format a Date object as a string according to a simplified subset of the ISO 8601
+// standard as defined in 15.9.1.15.
+if (!Date.prototype.toISOString) {
+    Date.prototype.toISOString = function toISOString() {
+        var result, length, value;
+        if (!isFinite(this))
+            throw new RangeError;
+
+        // the date time string format is specified in 15.9.1.15.
+        result = [this.getUTCFullYear(), this.getUTCMonth() + 1, this.getUTCDate(),
+            this.getUTCHours(), this.getUTCMinutes(), this.getUTCSeconds()];
+
+        length = result.length;
+        while (length--) {
+            value = result[length];
+            // pad months, days, hours, minutes, and seconds to have two digits.
+            if (value < 10)
+                result[length] = "0" + value;
+        }
+        // pad milliseconds to have three digits.
+        return result.slice(0, 3).join("-") + "T" + result.slice(3).join(":") + "." +
+            ("000" + this.getUTCMilliseconds()).slice(-3) + "Z";
+    }
+}
+
+// ES5 15.9.4.4
+if (!Date.now) {
+    Date.now = function now() {
+        return new Date().getTime();
+    };
+}
+
+// ES5 15.9.5.44
+if (!Date.prototype.toJSON) {
+    Date.prototype.toJSON = function toJSON(key) {
+        // This function provides a String representation of a Date object for
+        // use by JSON.stringify (15.12.3). When the toJSON method is called
+        // with argument key, the following steps are taken:
+
+        // 1.  Let O be the result of calling ToObject, giving it the this
+        // value as its argument.
+        // 2. Let tv be ToPrimitive(O, hint Number).
+        // 3. If tv is a Number and is not finite, return null.
+        // XXX
+        // 4. Let toISO be the result of calling the [[Get]] internal method of
+        // O with argument "toISOString".
+        // 5. If IsCallable(toISO) is false, throw a TypeError exception.
+        if (typeof this.toISOString != "function")
+            throw new TypeError(); // TODO message
+        // 6. Return the result of calling the [[Call]] internal method of
+        // toISO with O as the this value and an empty argument list.
+        return this.toISOString();
+
+        // NOTE 1 The argument is ignored.
+
+        // NOTE 2 The toJSON function is intentionally generic; it does not
+        // require that its this value be a Date object. Therefore, it can be
+        // transferred to other kinds of objects for use as a method. However,
+        // it does require that any such object have a toISOString method. An
+        // object is free to use the argument key to filter its
+        // stringification.
+    };
+}
+
+
+//
+// String
+// ======
+//
+
+// ES5 15.5.4.20
+var ws = "\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003" +
+    "\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028" +
+    "\u2029\uFEFF";
+if (!String.prototype.trim || ws.trim()) {
+    // http://blog.stevenlevithan.com/archives/faster-trim-javascript
+    // http://perfectionkills.com/whitespace-deviations/
+    ws = "[" + ws + "]";
+    var trimBeginRegexp = new RegExp("^" + ws + ws + "*"),
+        trimEndRegexp = new RegExp(ws + ws + "*$");
+    String.prototype.trim = function trim() {
+        return String(this).replace(trimBeginRegexp, "").replace(trimEndRegexp, "");
+    };
+}
+
+// ES5 15.5.4.14
+// http://es5.github.com/#x15.5.4.14
+// [bugfix, chrome]
+// If separator is undefined, then the result array contains just one String, which is the this value (converted to a String). If limit is not undefined, then the output array is truncated so that it contains no more than limit elements.
+// "0".split(undefined, 0) -> []
+if("0".split(void 0, 0).length) {
+    var oldSplit = String.prototype.split;
+    String.prototype.split = function(separator, limit) {
+        if(separator === void 0 && limit === 0)return [];
+        return oldSplit.apply(this, arguments);
+    }
+}
+
+// ECMA-262, 3rd B.2.3
+// Note an ECMAScript standart, although ECMAScript 3rd Edition has a non-normative section suggesting uniform semantics
+// and it should be normalized across all browsers
+// [bugfix, IE lt 9] IE < 9 substr() with negative value not working in IE
+if("".substr && "0b".substr(-1) !== "b") {
+    var oldSubstr = String.prototype.substr;
+    /**
+* Get the substring of a string
+* @param {integer} start where to start the substring
+* @param {integer} length how many characters to return
+* @return {string}
+*/
+    String.prototype.substr = function(start, length) {
+        return oldSubstr.call(this, start < 0 ? (start = this.length + start) < 0 ? 0 : start : start, length);
+    }
+}
+
+//
+// Util
+// ======
+//
+
+// http://jsperf.com/to-integer
+var toInteger = function (n) {
+    n = +n;
+    if (n !== n) // isNaN
+        n = -1;
+    else if (n !== 0 && n !== (1/0) && n !== -(1/0))
+        n = (n > 0 || -1) * Math.floor(Math.abs(n));
+    return n;
+};
+
+var prepareString = "a"[0] != "a",
+    // ES5 9.9
+    toObject = function (o) {
+        if (o == null) { // this matches both null and undefined
+            throw new TypeError(); // TODO message
+        }
+        // If the implementation doesn't support by-index access of
+        // string characters (ex. IE < 7), split the string
+        if (prepareString && typeof o == "string" && o) {
+            return o.split("");
+        }
+        return Object(o);
+    };
+
+})();
+
+
+
+(function($, shims){
+	var defineProperty = 'defineProperty';
+	var advancedObjectProperties = !!(Object.create && Object.defineProperties && Object.getOwnPropertyDescriptor);
+	//safari5 has defineProperty-interface, but it can't be used on dom-object
+	//only do this test in non-IE browsers, because this hurts dhtml-behavior in some IE8 versions
+	if (advancedObjectProperties && !$.browser.msie && Object[defineProperty] && Object.prototype.__defineGetter__) {
+		(function(){
+			try {
+				var foo = document.createElement('foo');
+				Object[defineProperty](foo, 'bar', {
+					get: function(){
+						return true;
+					}
+				});
+				advancedObjectProperties = !!foo.bar;
+			} 
+			catch (e) {
+				advancedObjectProperties = false;
+			}
+			foo = null;
+		})();
+	}
+	
+	Modernizr.objectAccessor = !!((advancedObjectProperties || (Object.prototype.__defineGetter__ && Object.prototype.__lookupSetter__)) && (!$.browser.opera || shims.browserVersion >= 11));
+	Modernizr.advancedObjectProperties = advancedObjectProperties;
+	
+if((!advancedObjectProperties || !Object.create || !Object.defineProperties || !Object.getOwnPropertyDescriptor  || !Object.defineProperty)){
+	var call = Function.prototype.call;
+	var prototypeOfObject = Object.prototype;
+	var owns = call.bind(prototypeOfObject.hasOwnProperty);
+	
+	shims.objectCreate = function(proto, props, opts, no__proto__){
+		var o;
+		var f = function(){};
+		
+		f.prototype = proto;
+		o = new f();
+		
+		if(!no__proto__ && !('__proto__' in o) && !Modernizr.objectAccessor){
+			o.__proto__ = proto;
+		}
+		
+		if(props){
+			shims.defineProperties(o, props);
+		}
+		
+		if(opts){
+			o.options = jQuery.extend(true, {}, o.options || {}, opts);
+			opts = o.options;
+		}
+		
+		if(o._create && jQuery.isFunction(o._create)){
+			o._create(opts);
+		}
+		return o;
+	};
+	
+	shims.defineProperties = function(object, props){
+		for (var name in props) {
+			if (owns(props, name)) {
+				shims.defineProperty(object, name, props[name]);
+			}
+		}
+		return object;
+	};
+	
+	var descProps = ['configurable', 'enumerable', 'writable'];
+	shims.defineProperty = function(proto, property, descriptor){
+		if(typeof descriptor != "object" || descriptor === null){return proto;}
+		
+		if(owns(descriptor, "value")){
+			proto[property] = descriptor.value;
+			return proto;
+		}
+		
+		if(proto.__defineGetter__){
+            if (typeof descriptor.get == "function") {
+				proto.__defineGetter__(property, descriptor.get);
+			}
+            if (typeof descriptor.set == "function"){
+                proto.__defineSetter__(property, descriptor.set);
+			}
+        }
+		return proto;
+	};
+	
+	shims.getPrototypeOf = function (object) {
+        return Object.getPrototypeOf && Object.getPrototypeOf(object) || object.__proto__ || object.constructor && object.constructor.prototype;
+    };
+	
+	//based on http://www.refactory.org/s/object_getownpropertydescriptor/view/latest 
+	shims.getOwnPropertyDescriptor = function(obj, prop){
+		if (typeof obj !== "object" && typeof obj !== "function" || obj === null){
+            throw new TypeError("Object.getOwnPropertyDescriptor called on a non-object");
+		}
+		var descriptor;
+		if(Object.defineProperty && Object.getOwnPropertyDescriptor){
+			try{
+				descriptor = Object.getOwnPropertyDescriptor(obj, prop);
+				return descriptor;
+			} catch(e){}
+		}
+        descriptor = {
+            configurable: true,
+            enumerable: true,
+            writable: true,
+            value: undefined
+        };
+		var getter = obj.__lookupGetter__ && obj.__lookupGetter__(prop), 
+			setter = obj.__lookupSetter__ && obj.__lookupSetter__(prop)
+		;
+        
+        if (!getter && !setter) { // not an accessor so return prop
+        	if(!owns(obj, prop)){
+				return;
+			}
+            descriptor.value = obj[prop];
+            return descriptor;
+        }
+        
+        // there is an accessor, remove descriptor.writable; populate descriptor.get and descriptor.set
+        delete descriptor.writable;
+        delete descriptor.value;
+        descriptor.get = descriptor.set = undefined;
+        
+        if(getter){
+			descriptor.get = getter;
+		}
+        
+        if(setter){
+            descriptor.set = setter;
+		}
+        
+        return descriptor;
+    };
+
+}
+})(jQuery, jQuery.webshims);
+
+
+
+//DOM-Extension helper
+jQuery.webshims.register('dom-extend', function($, webshims, window, document, undefined){
+	"use strict";
+	//shortcus
+	var modules = webshims.modules;
+	var listReg = /\s*,\s*/;
+		
+	//proxying attribute
+	var olds = {};
+	var havePolyfill = {};
+	var extendedProps = {};
+	var extendQ = {};
+	var modifyProps = {};
+	
+	var oldVal = $.fn.val;
+	var singleVal = function(elem, name, val, pass, _argless){
+		return (_argless) ? oldVal.call($(elem)) : oldVal.call($(elem), val);
+	};
+	$.fn.val = function(val){
+		var elem = this[0];
+		if(arguments.length && val == null){
+			val = '';
+		}
+		if(!arguments.length){
+			if(!elem || elem.nodeType !== 1){return oldVal.call(this);}
+			return $.prop(elem, 'value', val, 'val', true);
+		}
+		if($.isArray(val)){
+			return oldVal.apply(this, arguments);
+		}
+		var isFunction = $.isFunction(val);
+		return this.each(function(i){
+			elem = this;
+			if(elem.nodeType === 1){
+				if(isFunction){
+					var genVal = val.call( elem, i, $.prop(elem, 'value', undefined, 'val', true));
+					if(genVal == null){
+						genVal = '';
+					}
+					$.prop(elem, 'value', genVal, 'val') ;
+				} else {
+					$.prop(elem, 'value', val, 'val');
+				}
+			}
+		});
+	};
+	
+	var dataID = '_webshimsLib'+ (Math.round(Math.random() * 1000));
+	var elementData = function(elem, key, val){
+		elem = elem.jquery ? elem[0] : elem;
+		if(!elem){return val || {};}
+		var data = $.data(elem, dataID);
+		if(val !== undefined){
+			if(!data){
+				data = $.data(elem, dataID, {});
+			}
+			if(key){
+				data[key] = val;
+			}
+		}
+		
+		return key ? data && data[key] : data;
+	};
+
+
+	[{name: 'getNativeElement', prop: 'nativeElement'}, {name: 'getShadowElement', prop: 'shadowElement'}, {name: 'getShadowFocusElement', prop: 'shadowFocusElement'}].forEach(function(data){
+		$.fn[data.name] = function(){
+			return this.map(function(){
+				var shadowData = elementData(this, 'shadowData');
+				return shadowData && shadowData[data.prop] || this;
+			});
+		};
+	});
+	
+	
+	['removeAttr', 'prop', 'attr'].forEach(function(type){
+		olds[type] = $[type];
+		$[type] = function(elem, name, value, pass, _argless){
+			var isVal = (pass == 'val');
+			var oldMethod = !isVal ? olds[type] : singleVal;
+			if( !elem || !havePolyfill[name] || elem.nodeType !== 1 || (!isVal && pass && type == 'attr' && $.attrFn[name]) ){
+				return oldMethod(elem, name, value, pass, _argless);
+			}
+			
+			var nodeName = (elem.nodeName || '').toLowerCase();
+			var desc = extendedProps[nodeName];
+			var curType = (type == 'attr' && (value === false || value === null)) ? 'removeAttr' : type;
+			var propMethod;
+			var oldValMethod;
+			var ret;
+			
+			
+			if(!desc){
+				desc = extendedProps['*'];
+			}
+			if(desc){
+				desc = desc[name];
+			}
+			
+			if(desc){
+				propMethod = desc[curType];
+			}
+			
+			if(propMethod){
+				if(name == 'value'){
+					oldValMethod = propMethod.isVal;
+					propMethod.isVal = isVal;
+				}
+				if(curType === 'removeAttr'){
+					return propMethod.value.call(elem);	
+				} else if(value === undefined){
+					return (propMethod.get) ? 
+						propMethod.get.call(elem) : 
+						propMethod.value
+					;
+				} else if(propMethod.set) {
+					if(type == 'attr' && value === true){
+						value = name;
+					}
+					
+					ret = propMethod.set.call(elem, value);
+				}
+				if(name == 'value'){
+					propMethod.isVal = oldValMethod;
+				}
+			} else {
+				ret = oldMethod(elem, name, value, pass, _argless);
+			}
+			if((value !== undefined || curType === 'removeAttr') && modifyProps[nodeName] && modifyProps[nodeName][name]){
+				
+				var boolValue;
+				if(curType == 'removeAttr'){
+					boolValue = false;
+				} else if(curType == 'prop'){
+					boolValue = !!(value);
+				} else {
+					boolValue = true;
+				}
+				
+				modifyProps[nodeName][name].forEach(function(fn){
+					if(!fn.only || (fn.only = 'prop' && type == 'prop') || (fn.only == 'attr' && type != 'prop')){
+						fn.call(elem, value, boolValue, (isVal) ? 'val' : curType, type);
+					}
+				});
+			}
+			return ret;
+		};
+		
+		extendQ[type] = function(nodeName, prop, desc){
+			
+			if(!extendedProps[nodeName]){
+				extendedProps[nodeName] = {};
+			}
+			if(!extendedProps[nodeName][prop]){
+				extendedProps[nodeName][prop] = {};
+			}
+			var oldDesc = extendedProps[nodeName][prop][type];
+			var getSup = function(propType, descriptor, oDesc){
+				if(descriptor && descriptor[propType]){
+					return descriptor[propType];
+				}
+				if(oDesc && oDesc[propType]){
+					return oDesc[propType];
+				}
+				if(type == 'prop' && prop == 'value'){
+					return function(value){
+						var elem = this;
+						return (desc.isVal) ? 
+							singleVal(elem, prop, value, false, (arguments.length === 0)) : 
+							olds[type](elem, prop, value)
+						;
+					};
+				}
+				if(type == 'prop' && propType == 'value' && desc.value.apply){
+					return  function(value){
+						var sup = olds[type](this, prop);
+						if(sup && sup.apply){
+							sup = sup.apply(this, arguments);
+						} 
+						return sup;
+					};
+				}
+				return function(value){
+					return olds[type](this, prop, value);
+				};
+			};
+			extendedProps[nodeName][prop][type] = desc;
+			if(desc.value === undefined){
+				if(!desc.set){
+					desc.set = desc.writeable ? 
+						getSup('set', desc, oldDesc) : 
+						(webshims.cfg.useStrict && prop == 'prop') ? 
+							function(){throw(prop +' is readonly on '+ nodeName);} : 
+							$.noop
+					;
+				}
+				if(!desc.get){
+					desc.get = getSup('get', desc, oldDesc);
+				}
+				
+			}
+			
+			['value', 'get', 'set'].forEach(function(descProp){
+				if(desc[descProp]){
+					desc['_sup'+descProp] = getSup(descProp, oldDesc);
+				}
+			});
+		};
+		
+	});
+	
+	//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
+	var isExtendNativeSave = (!$.browser.msie || parseInt($.browser.version, 10) > 8);
+	var extendNativeValue = (function(){
+		var UNKNOWN = webshims.getPrototypeOf(document.createElement('foobar'));
+		var has = Object.prototype.hasOwnProperty;
+		return function(nodeName, prop, desc){
+			var elem = document.createElement(nodeName);
+			var elemProto = webshims.getPrototypeOf(elem);
+			if( isExtendNativeSave && elemProto && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
+				var sup = elem[prop];
+				desc._supvalue = function(){
+					if(sup && sup.apply){
+						return sup.apply(this, arguments);
+					}
+					return sup;
+				};
+				elemProto[prop] = desc.value;
+			} else {
+				desc._supvalue = function(){
+					var data = elementData(this, 'propValue');
+					if(data && data[prop] && data[prop].apply){
+						return data[prop].apply(this, arguments);
+					}
+					return data && data[prop];
+				};
+				initProp.extendValue(nodeName, prop, desc.value);
+			}
+			desc.value._supvalue = desc._supvalue;
+		};
+	})();
+		
+	var initProp = (function(){
+		
+		var initProps = {};
+		
+		webshims.addReady(function(context, contextElem){
+			var nodeNameCache = {};
+			var getElementsByName = function(name){
+				if(!nodeNameCache[name]){
+					nodeNameCache[name] = $(context.getElementsByTagName(name));
+					if(contextElem[0] && $.nodeName(contextElem[0], name)){
+						nodeNameCache[name] = nodeNameCache[name].add(contextElem);
+					}
+				}
+			};
+			
+			
+			$.each(initProps, function(name, fns){
+				getElementsByName(name);
+				if(!fns || !fns.forEach){
+					webshims.warn('Error: with '+ name +'-property. methods: '+ fns);
+					return;
+				}
+				fns.forEach(function(fn){
+					nodeNameCache[name].each(fn);
+				});
+			});
+			nodeNameCache = null;
+		});
+		
+		var tempCache;
+		var emptyQ = $([]);
+		var createNodeNameInit = function(nodeName, fn){
+			if(!initProps[nodeName]){
+				initProps[nodeName] = [fn];
+			} else {
+				initProps[nodeName].push(fn);
+			}
+			if($.isDOMReady){
+				(tempCache || $( document.getElementsByTagName(nodeName) )).each(fn);
+			}
+		};
+		
+		var elementExtends = {};
+		return {
+			createTmpCache: function(nodeName){
+				if($.isDOMReady){
+					tempCache = tempCache || $( document.getElementsByTagName(nodeName) );
+				}
+				return tempCache || emptyQ;
+			},
+			flushTmpCache: function(){
+				tempCache = null;
+			},
+			content: function(nodeName, prop){
+				createNodeNameInit(nodeName, function(){
+					var val =  $.attr(this, prop);
+					if(val != null){
+						$.attr(this, prop, val);
+					}
+				});
+			},
+			createElement: function(nodeName, fn){
+				createNodeNameInit(nodeName, fn);
+			},
+			extendValue: function(nodeName, prop, value){
+				createNodeNameInit(nodeName, function(){
+					$(this).each(function(){
+						var data = elementData(this, 'propValue', {});
+						data[prop] = this[prop];
+						this[prop] = value;
+					});
+				});
+			}
+		};
+	})();
+		
+	var createPropDefault = function(descs, removeType){
+		if(descs.defaultValue === undefined){
+			descs.defaultValue = '';
+		}
+		if(!descs.removeAttr){
+			descs.removeAttr = {
+				value: function(){
+					descs[removeType || 'prop'].set.call(this, descs.defaultValue);
+					descs.removeAttr._supvalue.call(this);
+				}
+			};
+		}
+		if(!descs.attr){
+			descs.attr = {};
+		}
+	};
+	
+	$.extend(webshims, {
+
+		getID: (function(){
+			var ID = new Date().getTime();
+			return function(elem){
+				elem = $(elem);
+				var id = elem.attr('id');
+				if(!id){
+					ID++;
+					id = 'ID-'+ ID;
+					elem.attr('id', id);
+				}
+				return id;
+			};
+		})(),
+		extendUNDEFProp: function(obj, props){
+			$.each(props, function(name, prop){
+				if( !(name in obj) ){
+					obj[name] = prop;
+				}
+			});
+		},
+		//http://www.w3.org/TR/html5/common-dom-interfaces.html#reflect
+		createPropDefault: createPropDefault,
+		data: elementData,
+		moveToFirstEvent: function(elem, eventType, bindType){
+			var events = ($._data(elem, 'events') || {})[eventType];
+			var fn;
+			
+			if(events && events.length > 1){
+				fn = events.pop();
+				if(!bindType){
+					bindType = 'bind';
+				}
+				if(bindType == 'bind' && events.delegateCount){
+					events.splice( events.delegateCount, 0, fn);
+				} else {
+					events.unshift( fn );
+				}
+				
+				
+			}
+			elem = null;
+		},
+		addShadowDom: (function(){
+			var resizeTimer;
+			var lastHeight;
+			var lastWidth;
+			
+			var docObserve = {
+				init: false,
+				runs: 0,
+				test: function(){
+					var height = docObserve.getHeight();
+					var width = docObserve.getWidth();
+					
+					if(height != docObserve.height || width != docObserve.width){
+						docObserve.height = height;
+						docObserve.width = width;
+						docObserve.handler({type: 'docresize'});
+						docObserve.runs++;
+						if(docObserve.runs < 9){
+							setTimeout(docObserve.test, 90);
+						}
+					} else {
+						docObserve.runs = 0;
+					}
+				},
+				handler: function(e){
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function(){
+						if(e.type == 'resize'){
+							var width = $(window).width();
+							var height = $(window).width();
+							if(height == lastHeight && width == lastWidth){
+								return;
+							}
+							lastHeight = height;
+							lastWidth = width;
+							
+							docObserve.height = docObserve.getHeight();
+							docObserve.width = docObserve.getWidth();
+							
+						}
+						$.event.trigger('updateshadowdom');
+					}, (e.type == 'resize') ? 50 : 9);
+				},
+				_create: function(){
+					$.each({ Height: "getHeight", Width: "getWidth" }, function(name, type){
+						var body = document.body;
+						var doc = document.documentElement;
+						docObserve[type] = function(){
+							return Math.max(
+								body[ "scroll" + name ], doc[ "scroll" + name ],
+								body[ "offset" + name ], doc[ "offset" + name ],
+								doc[ "client" + name ]
+							);
+						};
+					});
+				},
+				start: function(){
+					if(!this.init && document.body){
+						this.init = true;
+						this._create();
+						this.height = docObserve.getHeight();
+						this.width = docObserve.getWidth();
+						setInterval(this.test, 600);
+						$(this.test);
+						webshims.ready('WINDOWLOAD', this.test);
+						$(window).bind('resize', this.handler);
+						(function(){
+							var oldAnimate = $.fn.animate;
+							var animationTimer;
+							
+							$.fn.animate = function(){
+								clearTimeout(animationTimer);
+								animationTimer = setTimeout(function(){
+									docObserve.test();
+								}, 99);
+								
+								return oldAnimate.apply(this, arguments);
+							};
+						})();
+					}
+				}
+			};
+			
+			
+			$.event.customEvent.updateshadowdom = true;
+			webshims.docObserve = function(){
+				webshims.ready('DOM', function(){
+					docObserve.start();
+				});
+			};
+			return function(nativeElem, shadowElem, opts){
+				opts = opts || {};
+				if(nativeElem.jquery){
+					nativeElem = nativeElem[0];
+				}
+				if(shadowElem.jquery){
+					shadowElem = shadowElem[0];
+				}
+				var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
+				var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
+				var shadowFocusElementData = {};
+				if(!opts.shadowFocusElement){
+					opts.shadowFocusElement = shadowElem;
+				} else if(opts.shadowFocusElement){
+					if(opts.shadowFocusElement.jquery){
+						opts.shadowFocusElement = opts.shadowFocusElement[0];
+					}
+					shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
+				}
+				
+				nativeData.hasShadow = shadowElem;
+				shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
+				shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
+					nativeElement: nativeElem,
+					shadowElement: shadowElem,
+					shadowFocusElement: opts.shadowFocusElement
+				};
+				if(opts.shadowChilds){
+					opts.shadowChilds.each(function(){
+						elementData(this, 'shadowData', shadowData.shadowData);
+					});
+				}
+				
+				if(opts.data){
+					shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
+				}
+				opts = null;
+				webshims.docObserve();
+			};
+		})(),
+		propTypes: {
+			standard: function(descs, name){
+				createPropDefault(descs);
+				if(descs.prop){return;}
+				descs.prop = {
+					set: function(val){
+						descs.attr.set.call(this, ''+val);
+					},
+					get: function(){
+						return descs.attr.get.call(this) || descs.defaultValue;
+					}
+				};
+				
+			},
+			"boolean": function(descs, name){
+				
+				createPropDefault(descs);
+				if(descs.prop){return;}
+				descs.prop = {
+					set: function(val){
+						if(val){
+							descs.attr.set.call(this, "");
+						} else {
+							descs.removeAttr.value.call(this);
+						}
+					},
+					get: function(){
+						return descs.attr.get.call(this) != null;
+					}
+				};
+			},
+			"src": (function(){
+				var anchor = document.createElement('a');
+				anchor.style.display = "none";
+				return function(descs, name){
+					
+					createPropDefault(descs);
+					if(descs.prop){return;}
+					descs.prop = {
+						set: function(val){
+							descs.attr.set.call(this, val);
+						},
+						get: function(){
+							var href = this.getAttribute(name);
+							var ret;
+							if(href == null){return '';}
+							
+							anchor.setAttribute('href', href+'' );
+							
+							if(!$.support.hrefNormalized){
+								try {
+									$(anchor).insertAfter(this);
+									ret = anchor.getAttribute('href', 4);
+								} catch(er){
+									ret = anchor.getAttribute('href', 4);
+								}
+								$(anchor).detach();
+							}
+							return ret || anchor.href;
+						}
+					};
+				};
+			})(),
+			enumarated: function(descs, name){
+					
+					createPropDefault(descs);
+					if(descs.prop){return;}
+					descs.prop = {
+						set: function(val){
+							descs.attr.set.call(this, val);
+						},
+						get: function(){
+							var val = (descs.attr.get.call(this) || '').toLowerCase();
+							if(!val || descs.limitedTo.indexOf(val) == -1){
+								val = descs.defaultValue;
+							}
+							return val;
+						}
+					};
+				}
+			
+//			,unsignedLong: $.noop
+//			,"doubble": $.noop
+//			,"long": $.noop
+//			,tokenlist: $.noop
+//			,settableTokenlist: $.noop
+		},
+		reflectProperties: function(nodeNames, props){
+			if(typeof props == 'string'){
+				props = props.split(listReg);
+			}
+			props.forEach(function(prop){
+				webshims.defineNodeNamesProperty(nodeNames, prop, {
+					prop: {
+						set: function(val){
+							$.attr(this, prop, val);
+						},
+						get: function(){
+							return $.attr(this, prop) || '';
+						}
+					}
+				});
+			});
+		},
+		defineNodeNameProperty: function(nodeName, prop, descs){
+			havePolyfill[prop] = true;
+						
+			if(descs.reflect){
+				webshims.propTypes[descs.propType || 'standard'](descs, prop);
+			}
+			
+			['prop', 'attr', 'removeAttr'].forEach(function(type){
+				var desc = descs[type];
+				if(desc){
+					if(type === 'prop'){
+						desc = $.extend({writeable: true}, desc);
+					} else {
+						desc = $.extend({}, desc, {writeable: true});
+					}
+						
+					extendQ[type](nodeName, prop, desc);
+					if(nodeName != '*' && webshims.cfg.extendNative && type == 'prop' && desc.value && $.isFunction(desc.value)){
+						extendNativeValue(nodeName, prop, desc);
+					}
+					descs[type] = desc;
+				}
+			});
+			if(descs.initAttr){
+				initProp.content(nodeName, prop);
+			}
+			return descs;
+		},
+		
+		defineNodeNameProperties: function(name, descs, propType, _noTmpCache){
+			var olddesc;
+			for(var prop in descs){
+				if(!_noTmpCache && descs[prop].initAttr){
+					initProp.createTmpCache(name);
+				}
+				if(propType){
+					if(descs[prop][propType]){
+						//webshims.log('override: '+ name +'['+prop +'] for '+ propType);
+					} else {
+						descs[prop][propType] = {};
+						['value', 'set', 'get'].forEach(function(copyProp){
+							if(copyProp in descs[prop]){
+								descs[prop][propType][copyProp] = descs[prop][copyProp];
+								delete descs[prop][copyProp];
+							}
+						});
+					}
+				}
+				descs[prop] = webshims.defineNodeNameProperty(name, prop, descs[prop]);
+			}
+			if(!_noTmpCache){
+				initProp.flushTmpCache();
+			}
+			return descs;
+		},
+		
+		createElement: function(nodeName, create, descs){
+			var ret;
+			if($.isFunction(create)){
+				create = {
+					after: create
+				};
+			}
+			initProp.createTmpCache(nodeName);
+			if(create.before){
+				initProp.createElement(nodeName, create.before);
+			}
+			if(descs){
+				ret = webshims.defineNodeNameProperties(nodeName, descs, false, true);
+			}
+			if(create.after){
+				initProp.createElement(nodeName, create.after);
+			}
+			initProp.flushTmpCache();
+			return ret;
+		},
+		onNodeNamesPropertyModify: function(nodeNames, props, desc, only){
+			if(typeof nodeNames == 'string'){
+				nodeNames = nodeNames.split(listReg);
+			}
+			if($.isFunction(desc)){
+				desc = {set: desc};
+			}
+			
+			nodeNames.forEach(function(name){
+				if(!modifyProps[name]){
+					modifyProps[name] = {};
+				}
+				if(typeof props == 'string'){
+					props = props.split(listReg);
+				}
+				if(desc.initAttr){
+					initProp.createTmpCache(name);
+				}
+				props.forEach(function(prop){
+					if(!modifyProps[name][prop]){
+						modifyProps[name][prop] = [];
+						havePolyfill[prop] = true;
+					}
+					if(desc.set){
+						if(only){
+							desc.set.only =  only;
+						}
+						modifyProps[name][prop].push(desc.set);
+					}
+					
+					if(desc.initAttr){
+						initProp.content(name, prop);
+					}
+				});
+				initProp.flushTmpCache();
+				
+			});
+		},
+		defineNodeNamesBooleanProperty: function(elementNames, prop, descs){
+			if(!descs){
+				descs = {};
+			}
+			if($.isFunction(descs)){
+				descs.set = descs;
+			}
+			webshims.defineNodeNamesProperty(elementNames, prop, {
+				attr: {
+					set: function(val){
+						this.setAttribute(prop, val);
+						if(descs.set){
+							descs.set.call(this, true);
+						}
+					},
+					get: function(){
+						var ret = this.getAttribute(prop);
+						return (ret == null) ? undefined : prop;
+					}
+				},
+				removeAttr: {
+					value: function(){
+						this.removeAttribute(prop);
+						if(descs.set){
+							descs.set.call(this, false);
+						}
+					}
+				},
+				reflect: true,
+				propType: 'boolean',
+				initAttr: descs.initAttr || false
+			});
+		},
+		contentAttr: function(elem, name, val){
+			if(!elem.nodeName){return;}
+			var attr;
+			if(val === undefined){
+				attr = (elem.attributes[name] || {});
+				val = attr.specified ? attr.value : null;
+				return (val == null) ? undefined : val;
+			}
+			
+			if(typeof val == 'boolean'){
+				if(!val){
+					elem.removeAttribute(name);
+				} else {
+					elem.setAttribute(name, name);
+				}
+			} else {
+				elem.setAttribute(name, val);
+			}
+		},
+		
+//		set current Lang:
+//			- webshims.activeLang(lang:string);
+//		get current lang
+//			- webshims.activeLang();
+//		get current lang
+//			webshims.activeLang({
+//				register: moduleName:string,
+//				callback: callback:function
+//			});
+//		get/set including removeLang
+//			- webshims.activeLang({
+//				module: moduleName:string,
+//				callback: callback:function,
+//				langObj: languageObj:array/object
+//			});
+		activeLang: (function(){
+			var callbacks = [];
+			var registeredCallbacks = {};
+			var currentLang;
+			var shortLang;
+			var notLocal = /:\/\/|^\.*\//;
+			var loadRemoteLang = function(data, lang, options){
+				var langSrc;
+				if(lang && options && $.inArray(lang, options.availabeLangs || []) !== -1){
+					data.loading = true;
+					langSrc = options.langSrc;
+					if(!notLocal.test(langSrc)){
+						langSrc = webshims.cfg.basePath+langSrc;
+					}
+					webshims.loader.loadScript(langSrc+lang+'.js', function(){
+						if(data.langObj[lang]){
+							data.loading = false;
+							callLang(data, true);
+						} else {
+							$(function(){
+								if(data.langObj[lang]){
+									callLang(data, true);
+								}
+								data.loading = false;
+							});
+						}
+					});
+					return true;
+				}
+				return false;
+			};
+			var callRegister = function(module){
+				if(registeredCallbacks[module]){
+					registeredCallbacks[module].forEach(function(data){
+						data.callback();
+					});
+				}
+			};
+			var callLang = function(data, _noLoop){
+				if(data.activeLang != currentLang && data.activeLang !== shortLang){
+					var options = modules[data.module].options;
+					if( data.langObj[currentLang] || (shortLang && data.langObj[shortLang]) ){
+						data.activeLang = currentLang;
+						data.callback(data.langObj[currentLang] || data.langObj[shortLang], currentLang);
+						callRegister(data.module);
+					} else if( !_noLoop &&
+						!loadRemoteLang(data, currentLang, options) && 
+						!loadRemoteLang(data, shortLang, options) && 
+						data.langObj[''] && data.activeLang !== '' ) {
+						data.activeLang = '';
+						data.callback(data.langObj[''], currentLang);
+						callRegister(data.module);
+					}
+				}
+			};
+			
+			
+			var activeLang = function(lang){
+				
+				if(typeof lang == 'string' && lang !== currentLang){
+					currentLang = lang;
+					shortLang = currentLang.split('-')[0];
+					if(currentLang == shortLang){
+						shortLang = false;
+					}
+					$.each(callbacks, function(i, data){
+						callLang(data);
+					});
+				} else if(typeof lang == 'object'){
+					
+					if(lang.register){
+						if(!registeredCallbacks[lang.register]){
+							registeredCallbacks[lang.register] = [];
+						}
+						registeredCallbacks[lang.register].push(lang);
+						lang.callback();
+					} else {
+						if(!lang.activeLang){
+							lang.activeLang = '';
+						}
+						callbacks.push(lang);
+						callLang(lang);
+					}
+				}
+				return currentLang;
+			};
+			
+			return activeLang;
+		})()
+	});
+	
+	$.each({
+		defineNodeNamesProperty: 'defineNodeNameProperty',
+		defineNodeNamesProperties: 'defineNodeNameProperties',
+		createElements: 'createElement'
+	}, function(name, baseMethod){
+		webshims[name] = function(names, a, b, c){
+			if(typeof names == 'string'){
+				names = names.split(listReg);
+			}
+			var retDesc = {};
+			names.forEach(function(nodeName){
+				retDesc[nodeName] = webshims[baseMethod](nodeName, a, b, c);
+			});
+			return retDesc;
+		};
+	});
+	
+	webshims.isReady('webshimLocalization', true);
+});
+//html5a11y
+(function($, document){
+	var browserVersion = $.webshims.browserVersion;
+	if($.browser.mozilla && browserVersion > 5){return;}
+	if (!$.browser.msie || (browserVersion < 12 && browserVersion > 7)) {
+		var elemMappings = {
+			article: "article",
+			aside: "complementary",
+			section: "region",
+			nav: "navigation",
+			address: "contentinfo"
+		};
+		var addRole = function(elem, role){
+			var hasRole = elem.getAttribute('role');
+			if (!hasRole) {
+				elem.setAttribute('role', role);
+			}
+		};
+		
+		$.webshims.addReady(function(context, contextElem){
+			$.each(elemMappings, function(name, role){
+				var elems = $(name, context).add(contextElem.filter(name));
+				for (var i = 0, len = elems.length; i < len; i++) {
+					addRole(elems[i], role);
+				}
+			});
+			if (context === document) {
+				var header = document.getElementsByTagName('header')[0];
+				var footers = document.getElementsByTagName('footer');
+				var footerLen = footers.length;
+				if (header && !$(header).closest('section, article')[0]) {
+					addRole(header, 'banner');
+				}
+				if (!footerLen) {
+					return;
+				}
+				var footer = footers[footerLen - 1];
+				if (!$(footer).closest('section, article')[0]) {
+					addRole(footer, 'contentinfo');
+				}
+			}
+		});
+	}
+})(jQuery, document);
+
+(function($, Modernizr, webshims){
+	"use strict";
+	var hasNative = Modernizr.audio && Modernizr.video;
+	var supportsLoop = false;
+	var bugs = webshims.bugs;
+	
+	var loadSwf = function(){
+		webshims.ready(swfType, function(){
+			if(!webshims.mediaelement.createSWF){
+				webshims.mediaelement.loadSwf = true;
+				webshims.reTest([swfType], hasNative);
+			}
+		});
+	};
+	var options = webshims.cfg.mediaelement;
+	var swfType = options && options.player == 'jwplayer' ? 'mediaelement-swf' : 'mediaelement-jaris';
+	var hasSwf;
+	if(!options){
+		webshims.error("mediaelement wasn't implemented but loaded");
+		return;
+	}
+	if(hasNative){
+		var videoElem = document.createElement('video');
+		Modernizr.videoBuffered = ('buffered' in videoElem);
+		supportsLoop = ('loop' in videoElem);
+		
+		webshims.capturingEvents(['play', 'playing', 'waiting', 'paused', 'ended', 'durationchange', 'loadedmetadata', 'canplay', 'volumechange']);
+		
+		if(!Modernizr.videoBuffered){
+			webshims.addPolyfill('mediaelement-native-fix', {
+				f: 'mediaelement',
+				test: Modernizr.videoBuffered,
+				d: ['dom-support']
+			});
+			
+			webshims.reTest('mediaelement-native-fix');
+		}
+	}
+	
+	if(hasNative && !options.preferFlash){
+		var switchOptions = function(e){
+			var parent = e.target.parentNode;
+			if(!options.preferFlash && ($(e.target).is('audio, video') || (parent && $('source:last', parent)[0] == e.target)) ){
+				webshims.ready('DOM mediaelement', function(){
+					if(hasSwf){
+						loadSwf();
+					}
+					webshims.ready('WINDOWLOAD '+swfType, function(){
+						setTimeout(function(){
+							if(hasSwf && !options.preferFlash && webshims.mediaelement.createSWF && !$(e.target).closest('audio, video').is('.nonnative-api-active')){
+								options.preferFlash = true;
+								document.removeEventListener('error', switchOptions, true);
+								$('audio, video').mediaLoad();
+								webshims.info("switching mediaelements option to 'preferFlash', due to an error with native player: "+e.target.src);
+							} else if(!hasSwf){
+								document.removeEventListener('error', switchOptions, true);
+							}
+						}, 20);
+					});
+				});
+			}
+		};
+		document.addEventListener('error', switchOptions, true);
+		$('audio, video').each(function(){
+			if(this.error){
+				switchOptions({target: this});
+			}
+		});
+	}
+	
+	
+	if(Modernizr.track && !bugs.track){
+		(function(){
+			
+			if(!bugs.track){
+				bugs.track = typeof $('<track />')[0].readyState != 'number';
+			}
+			
+			if(!bugs.track){
+				try {
+					new TextTrackCue(2, 3, '');
+				} catch(e){
+					bugs.track = true;
+				}
+			}
+			
+			var trackOptions = webshims.cfg.track;
+			var trackListener = function(e){
+				$(e.target).filter('track').each(changeApi);
+			};
+			var changeApi = function(){
+				if(bugs.track || (!trackOptions.override && $.prop(this, 'readyState') == 3)){
+					trackOptions.override = true;
+					webshims.reTest('track');
+					document.removeEventListener('error', trackListener, true);
+					if(this && $.nodeName(this, 'track')){
+						webshims.error("track support was overwritten. Please check your vtt including your vtt mime-type");
+					} else {
+						webshims.info("track support was overwritten. due to bad browser support");
+					}
+				}
+			};
+			var detectTrackError = function(){
+				document.addEventListener('error', trackListener, true);
+				
+				if(bugs.track){
+					changeApi();
+				} else {
+					$('track').each(changeApi);
+				}
+			};
+			if(!trackOptions.override){
+				if(webshims.isReady('track')){
+					detectTrackError();
+				} else {
+					$(detectTrackError);
+				}
+			}
+		})();
+		
+	}
+
+webshims.register('mediaelement-core', function($, webshims, window, document, undefined){
+	hasSwf = swfobject.hasFlashPlayerVersion('9.0.115');
+	$('html').addClass(hasSwf ? 'swf' : 'no-swf');
+	var mediaelement = webshims.mediaelement;
+	mediaelement.parseRtmp = function(data){
+		var src = data.src.split('://');
+		var paths = src[1].split('/');
+		var i, len, found;
+		data.server = src[0]+'://'+paths[0]+'/';
+		data.streamId = [];
+		for(i = 1, len = paths.length; i < len; i++){
+			if(!found && paths[i].indexOf(':') !== -1){
+				paths[i] = paths[i].split(':')[1];
+				found = true;
+			}
+			if(!found){
+				data.server += paths[i]+'/';
+			} else {
+				data.streamId.push(paths[i]);
+			}
+		}
+		if(!data.streamId.length){
+			webshims.error('Could not parse rtmp url');
+		}
+		data.streamId = data.streamId.join('/');
+		console.log(data)
+	};
+	var getSrcObj = function(elem, nodeName){
+		elem = $(elem);
+		var src = {src: elem.attr('src') || '', elem: elem, srcProp: elem.prop('src')};
+		var tmp;
+		
+		if(!src.src){return src;}
+		
+		tmp = elem.attr('data-server');
+		if(tmp != null){
+			src.server = tmp;
+		}
+		
+		tmp = elem.attr('type');
+		if(tmp){
+			src.type = tmp;
+			src.container = $.trim(tmp.split(';')[0]);
+		} else {
+			if(!nodeName){
+				nodeName = elem[0].nodeName.toLowerCase();
+				if(nodeName == 'source'){
+					nodeName = (elem.closest('video, audio')[0] || {nodeName: 'video'}).nodeName.toLowerCase();
+				}
+			}
+			if(src.server){
+				src.type = nodeName+'/rtmp';
+				src.container = nodeName+'/rtmp';
+			} else {
+				
+				tmp = mediaelement.getTypeForSrc( src.src, nodeName, src );
+				
+				if(tmp){
+					src.type = tmp;
+					src.container = tmp;
+				}
+			}
+		}
+		tmp = elem.attr('media');
+		if(tmp){
+			src.media = tmp;
+		}
+		if(src.type == 'audio/rtmp' || src.type == 'video/rtmp'){
+			if(src.server){
+				src.streamId = src.src;
+			} else {
+				mediaelement.parseRtmp(src);
+			}
+		}
+		return src;
+	};
+	
+	
+	
+	var hasYt = !hasSwf && ('postMessage' in window) && hasNative;
+	
+	var loadTrackUi = function(){
+		if(loadTrackUi.loaded){return;}
+		loadTrackUi.loaded = true;
+		$(function(){
+			webshims.loader.loadList(['track-ui']);
+		});
+	};
+	var loadYt = (function(){
+		var loaded;
+		return function(){
+			if(loaded || !hasYt){return;}
+			loaded = true;
+			webshims.loader.loadScript("https://www.youtube.com/player_api");
+			$(function(){
+				webshims.polyfill("mediaelement-yt");
+			});
+		};
+	})();
+	var loadThird = function(){
+		if(hasSwf){
+			loadSwf();
+		} else {
+			loadYt();
+		}
+	};
+	
+	webshims.addPolyfill('mediaelement-yt', {
+		test: !hasYt,
+		d: ['dom-support']
+	});
+	
+	mediaelement.mimeTypes = {
+		audio: {
+				//ogm shouldn´t be used!
+				'audio/ogg': ['ogg','oga', 'ogm'],
+				'audio/ogg;codecs="opus"': 'opus',
+				'audio/mpeg': ['mp2','mp3','mpga','mpega'],
+				'audio/mp4': ['mp4','mpg4', 'm4r', 'm4a', 'm4p', 'm4b', 'aac'],
+				'audio/wav': ['wav'],
+				'audio/3gpp': ['3gp','3gpp'],
+				'audio/webm': ['webm'],
+				'audio/fla': ['flv', 'f4a', 'fla'],
+				'application/x-mpegURL': ['m3u8', 'm3u']
+			},
+			video: {
+				//ogm shouldn´t be used!
+				'video/ogg': ['ogg','ogv', 'ogm'],
+				'video/mpeg': ['mpg','mpeg','mpe'],
+				'video/mp4': ['mp4','mpg4', 'm4v'],
+				'video/quicktime': ['mov','qt'],
+				'video/x-msvideo': ['avi'],
+				'video/x-ms-asf': ['asf', 'asx'],
+				'video/flv': ['flv', 'f4v'],
+				'video/3gpp': ['3gp','3gpp'],
+				'video/webm': ['webm'],
+				'application/x-mpegURL': ['m3u8', 'm3u'],
+				'video/MP2T': ['ts']
+			}
+		}
+	;
+	
+	mediaelement.mimeTypes.source =  $.extend({}, mediaelement.mimeTypes.audio, mediaelement.mimeTypes.video);
+	
+	mediaelement.getTypeForSrc = function(src, nodeName, data){
+		if(src.indexOf('youtube.com/watch?') != -1 || src.indexOf('youtube.com/v/') != -1){
+			return 'video/youtube';
+		}
+		if(src.indexOf('rtmp') === 0){
+			return nodeName+'/rtmp';
+		}
+		src = src.split('?')[0].split('.');
+		src = src[src.length - 1];
+		var mt;
+		
+		$.each(mediaelement.mimeTypes[nodeName], function(mimeType, exts){
+			if(exts.indexOf(src) !== -1){
+				mt = mimeType;
+				return false;
+			}
+		});
+		return mt;
+	};
+	
+	
+	mediaelement.srces = function(mediaElem, srces){
+		mediaElem = $(mediaElem);
+		if(!srces){
+			srces = [];
+			var nodeName = mediaElem[0].nodeName.toLowerCase();
+			var src = getSrcObj(mediaElem, nodeName);
+			
+			if(!src.src){
+				
+				$('source', mediaElem).each(function(){
+					src = getSrcObj(this, nodeName);
+					if(src.src){srces.push(src);}
+				});
+			} else {
+				srces.push(src);
+			}
+			return srces;
+		} else {
+			mediaElem.removeAttr('src').removeAttr('type').find('source').remove();
+			if(!$.isArray(srces)){
+				srces = [srces]; 
+			}
+			srces.forEach(function(src){
+				var source = document.createElement('source');
+				if(typeof src == 'string'){
+					src = {src: src};
+				} 
+				source.setAttribute('src', src.src);
+				if(src.type){
+					source.setAttribute('type', src.type);
+				}
+				if(src.media){
+					source.setAttribute('media', src.media);
+				}
+				mediaElem.append(source);
+			});
+			
+		}
+	};
+	
+	
+	$.fn.loadMediaSrc = function(srces, poster){
+		return this.each(function(){
+			if(poster !== undefined){
+				$(this).removeAttr('poster');
+				if(poster){
+					$.attr(this, 'poster', poster);
+				}
+			}
+			mediaelement.srces(this, srces);
+			$(this).mediaLoad();
+		});
+	};
+	
+	mediaelement.swfMimeTypes = ['video/3gpp', 'video/x-msvideo', 'video/quicktime', 'video/x-m4v', 'video/mp4', 'video/m4p', 'video/x-flv', 'video/flv', 'audio/mpeg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a', 'audio/mp3', 'audio/x-fla', 'audio/fla', 'youtube/flv', 'jwplayer/jwplayer', 'video/youtube', 'video/rtmp', 'audio/rtmp'];
+	
+	mediaelement.canThirdPlaySrces = function(mediaElem, srces){
+		var ret = '';
+		if(hasSwf || hasYt){
+			mediaElem = $(mediaElem);
+			srces = srces || mediaelement.srces(mediaElem);
+			$.each(srces, function(i, src){
+				if(src.container && src.src && ((hasSwf && mediaelement.swfMimeTypes.indexOf(src.container) != -1) || (hasYt && src.container == 'video/youtube'))){
+					ret = src;
+					return false;
+				}
+			});
+			
+		}
+		
+		return ret;
+	};
+	
+	var nativeCanPlayType = {};
+	mediaelement.canNativePlaySrces = function(mediaElem, srces){
+		var ret = '';
+		if(hasNative){
+			mediaElem = $(mediaElem);
+			var nodeName = (mediaElem[0].nodeName || '').toLowerCase();
+			if(!nativeCanPlayType[nodeName]){return ret;}
+			srces = srces || mediaelement.srces(mediaElem);
+			
+			$.each(srces, function(i, src){
+				if(src.type && nativeCanPlayType[nodeName].prop._supvalue.call(mediaElem[0], src.type) ){
+					ret = src;
+					return false;
+				}
+			});
+		}
+		return ret;
+	};
+	
+	mediaelement.setError = function(elem, message){
+		if(!message){
+			message = "can't play sources";
+		}
+		
+		$(elem).pause().data('mediaerror', message);
+		webshims.warn('mediaelementError: '+ message);
+		setTimeout(function(){
+			if($(elem).data('mediaerror')){
+				$(elem).trigger('mediaerror');
+			}
+		}, 1);
+	};
+	
+	var handleThird = (function(){
+		var requested;
+		return function( mediaElem, ret, data ){
+			if(!requested){
+				loadTrackUi();
+			}
+			webshims.ready(hasSwf ? swfType : 'mediaelement-yt', function(){
+				if(mediaelement.createSWF){
+					mediaelement.createSWF( mediaElem, ret, data );
+				} else if(!requested) {
+					requested = true;
+					loadThird();
+					//readd to ready
+					handleThird( mediaElem, ret, data );
+				}
+			});
+			if(!requested && hasYt && !mediaelement.createSWF){
+				loadYt();
+			}
+		};
+	})();
+	
+	var stepSources = function(elem, data, useSwf, _srces, _noLoop){
+		var ret;
+		if(useSwf || (useSwf !== false && data && data.isActive == 'third')){
+			ret = mediaelement.canThirdPlaySrces(elem, _srces);
+			if(!ret){
+				if(_noLoop){
+					mediaelement.setError(elem, false);
+				} else {
+					stepSources(elem, data, false, _srces, true);
+				}
+			} else {
+				handleThird(elem, ret, data);
+			}
+		} else {
+			ret = mediaelement.canNativePlaySrces(elem, _srces);
+			if(!ret){
+				if(_noLoop){
+					mediaelement.setError(elem, false);
+					if(data && data.isActive == 'third') {
+						mediaelement.setActive(elem, 'html5', data);
+					}
+				} else {
+					stepSources(elem, data, true, _srces, true);
+				}
+			} else if(data && data.isActive == 'third') {
+				mediaelement.setActive(elem, 'html5', data);
+			}
+		}
+	};
+	var stopParent = /^(?:embed|object|datalist)$/i;
+	var selectSource = function(elem, data){
+		var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
+		var _srces = mediaelement.srces(elem);
+		var parent = elem.parentNode;
+		
+		clearTimeout(baseData.loadTimer);
+		$.data(elem, 'mediaerror', false);
+		
+		if(!_srces.length || !parent || parent.nodeType != 1 || stopParent.test(parent.nodeName || '')){return;}
+		data = data || webshims.data(elem, 'mediaelement');
+		stepSources(elem, data, options.preferFlash || undefined, _srces);
+	};
+	
+	
+	$(document).on('ended', function(e){
+		var data = webshims.data(e.target, 'mediaelement');
+		if( supportsLoop && (!data || data.isActive == 'html5') && !$.prop(e.target, 'loop')){return;}
+		setTimeout(function(){
+			if( $.prop(e.target, 'paused') || !$.prop(e.target, 'loop') ){return;}
+			$(e.target).prop('currentTime', 0).play();
+		}, 1);
+		
+	});
+	if(!supportsLoop){
+		webshims.defineNodeNamesBooleanProperty(['audio', 'video'], 'loop');
+	}
+	
+	['audio', 'video'].forEach(function(nodeName){
+		var supLoad = webshims.defineNodeNameProperty(nodeName, 'load',  {
+			prop: {
+				value: function(){
+					var data = webshims.data(this, 'mediaelement');
+					selectSource(this, data);
+					if(hasNative && (!data || data.isActive == 'html5') && supLoad.prop._supvalue){
+						supLoad.prop._supvalue.apply(this, arguments);
+					}
+				}
+			}
+		});
+		nativeCanPlayType[nodeName] = webshims.defineNodeNameProperty(nodeName, 'canPlayType',  {
+			prop: {
+				value: function(type){
+					var ret = '';
+					if(hasNative && nativeCanPlayType[nodeName].prop._supvalue){
+						ret = nativeCanPlayType[nodeName].prop._supvalue.call(this, type);
+						if(ret == 'no'){
+							ret = '';
+						}
+					}
+					if(!ret && hasSwf){
+						type = $.trim((type || '').split(';')[0]);
+						if(mediaelement.swfMimeTypes.indexOf(type) != -1){
+							ret = 'maybe';
+						}
+					}
+					return ret;
+				}
+			}
+		});
+	});
+	webshims.onNodeNamesPropertyModify(['audio', 'video'], ['src', 'poster'], {
+		set: function(){
+			var elem = this;
+			var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
+			clearTimeout(baseData.loadTimer);
+			baseData.loadTimer = setTimeout(function(){
+				selectSource(elem);
+				elem = null;
+			}, 9);
+		}
+	});
+		
+	var initMediaElements = function(){
+		
+		webshims.addReady(function(context, insertedElement){
+			var media = $('video, audio', context)
+				.add(insertedElement.filter('video, audio'))
+				.each(function(){
+					if($.browser.msie && webshims.browserVersion > 8 && $.prop(this, 'paused') && !$.prop(this, 'readyState') && $(this).is('audio[preload="none"][controls]:not([autoplay])')){
+						$(this).prop('preload', 'metadata').mediaLoad();
+					} else {
+						selectSource(this);
+					}
+					
+					
+					
+					if(hasNative){
+						var bufferTimer;
+						var lastBuffered;
+						var elem = this;
+						var getBufferedString = function(){
+							var buffered = $.prop(elem, 'buffered');
+							if(!buffered){return;}
+							var bufferString = "";
+							for(var i = 0, len = buffered.length; i < len;i++){
+								bufferString += buffered.end(i);
+							}
+							return bufferString;
+						};
+						var testBuffer = function(){
+							var buffered = getBufferedString();
+							if(buffered != lastBuffered){
+								lastBuffered = buffered;
+								$(elem).triggerHandler('progress');
+							}
+						};
+						
+						$(this)
+							.on({
+								'play loadstart progress': function(e){
+									if(e.type == 'progress'){
+										lastBuffered = getBufferedString();
+									}
+									clearTimeout(bufferTimer);
+									bufferTimer = setTimeout(testBuffer, 999);
+								},
+								'emptied stalled mediaerror abort suspend': function(e){
+									if(e.type == 'emptied'){
+										lastBuffered = false;
+									}
+									clearTimeout(bufferTimer);
+								}
+							})
+						;
+					}
+					
+				})
+			;
+			if(!loadTrackUi.loaded && $('track', media).length){
+				loadTrackUi();
+			}
+			media = null;
+		});
+	};
+	
+	if(Modernizr.track && !bugs.track){
+		webshims.defineProperty(TextTrack.prototype, 'shimActiveCues', {
+			get: function(){
+				return this._shimActiveCues || this.activeCues;
+			}
+		});
+	}
+	//set native implementation ready, before swf api is retested
+	if(hasNative){
+		webshims.isReady('mediaelement-core', true);
+		initMediaElements();
+		webshims.ready('WINDOWLOAD mediaelement', loadThird);
+	} else {
+		webshims.ready(swfType, initMediaElements);
+	}
+	webshims.ready('WINDOWLOAD mediaelement', loadTrackUi);
+});
+})(jQuery, Modernizr, jQuery.webshims);
+/*
+ * todos: 
+ * - decouple muted/volume (needs improvement)
+ * - implement video <-> flashcanvas pro API
+ * - improve buffered-property with youtube/rtmp
+ * - use jwplayer5 api instead of old flash4 api
+ */
+
+jQuery.webshims.register('mediaelement-swf', function($, webshims, window, document, undefined, options){
+	"use strict";
+	var SENDEVENT = 'sendEvent';
+	var mediaelement = webshims.mediaelement;
+	var swfobject = window.swfobject;
+	var hasNative = Modernizr.audio && Modernizr.video;
+	var hasFlash = swfobject.hasFlashPlayerVersion('9.0.115');
+	var loadedSwf = 0;
+	var getProps = {
+		paused: true,
+		ended: false,
+		currentSrc: '',
+		duration: window.NaN,
+		
+		readyState: 0,
+		networkState: 0,
+		videoHeight: 0,
+		videoWidth: 0,
+		error: null,
+		buffered: {
+			start: function(index){
+				if(index){
+					webshims.error('buffered index size error');
+					return;
+				}
+				return 0;
+			},
+			end: function(index){
+				if(index){
+					webshims.error('buffered index size error');
+					return;
+				}
+				return 0;
+			},
+			length: 0
+		}
+	};
+	var getPropKeys = Object.keys(getProps);
+	
+	var getSetProps = {
+		currentTime: 0,
+		volume: 1,
+		muted: false
+	};
+	var getSetPropKeys = Object.keys(getSetProps);
+	
+	var playerStateObj = $.extend({
+		isActive: 'html5',
+		activating: 'html5',	
+		wasSwfReady: false,
+		_bufferedEnd: 0,
+		_bufferedStart: 0,
+		_metadata: false,
+		_durationCalcs: -1,
+		_callMeta: false,
+		currentTime: 0,
+		_ppFlag: undefined
+	}, getProps, getSetProps);
+	
+	var idRep = /^jwplayer-/;
+	var getSwfDataFromID = function(id){
+		
+		var elem = document.getElementById(id.replace(idRep, ''));
+		if(!elem){return;}
+		var data = webshims.data(elem, 'mediaelement');
+		return data.isActive == 'third' ? data : null;
+	};
+	
+	
+	var getSwfDataFromElem = function(elem){
+		try {
+			(elem.nodeName);
+		} catch(er){
+			return null;
+		}
+		var data = webshims.data(elem, 'mediaelement');
+		return (data && data.isActive== 'third') ? data : null;
+	};
+	
+	var trigger = function(elem, evt){
+		evt = $.Event(evt);
+		evt.preventDefault();
+		$.event.trigger(evt, undefined, elem);
+	};
+	
+	var playerSwfPath = options.playerPath || webshims.cfg.basePath + "jwplayer/" + (options.playerName || "player.swf");
+	var jwplugin = options.pluginPath || webshims.cfg.basePath +'swf/jwwebshims.swf';
+	
+	webshims.extendUNDEFProp(options.params, {
+		allowscriptaccess: 'always',
+		allowfullscreen: 'true',
+		wmode: 'transparent'
+	});
+	webshims.extendUNDEFProp(options.vars, {
+		screencolor: 'ffffffff'
+	});
+	webshims.extendUNDEFProp(options.attrs, {
+		bgcolor: '#000000'
+	});
+	
+	var getDuration = function(data, obj){
+		var curDuration = data.duration;
+		if(curDuration && data._durationCalcs > 0){return;}
+		try {
+			data.duration = data.jwapi.getPlaylist()[0].duration;
+			if(!data.duration || data.duration <= 0 || data.duration === data._lastDuration){
+				data.duration = curDuration;
+			}
+		} catch(er){}
+		if(data.duration && data.duration != data._lastDuration){
+			trigger(data._elem, 'durationchange');
+			if(data._elemNodeName == 'audio' || data._callMeta){
+				mediaelement.jwEvents.Model.META($.extend({duration: data.duration}, obj), data);
+			}
+			data._durationCalcs--;
+		} else {
+			data._durationCalcs++;
+		}
+	};
+	var setReadyState = function(readyState, data){
+		if(readyState < 3){
+			clearTimeout(data._canplaythroughTimer);
+		}
+		if(readyState >= 3 && data.readyState < 3){
+			data.readyState = readyState;
+			trigger(data._elem, 'canplay');
+			clearTimeout(data._canplaythroughTimer);
+			data._canplaythroughTimer = setTimeout(function(){
+				setReadyState(4, data);
+			}, 4000);
+		}
+		if(readyState >= 4 && data.readyState < 4){
+			data.readyState = readyState;
+			trigger(data._elem, 'canplaythrough');
+		}
+		data.readyState = readyState;
+	};
+	
+	$.extend($.event.customEvent, {
+		updatemediaelementdimensions: true,
+		flashblocker: true,
+		swfstageresize: true,
+		mediaelementapichange: true
+	});
+	
+	mediaelement.jwEvents = {
+		View: {
+			
+			PLAY: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data || data.stopPlayPause){return;}
+				data._ppFlag = true;
+				if(data.paused == obj.state){
+					data.paused = !obj.state;
+					if(data.ended){
+						data.ended = false;
+					}
+					trigger(data._elem, obj.state ? 'play' : 'pause');
+				}
+			}
+		},
+		Model: {
+			
+			BUFFER: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data || !('percentage' in obj) || data._bufferedEnd == obj.percentage){return;}
+				data.networkState = (obj.percentage == 100) ? 1 : 2;
+				if(isNaN(data.duration) || (obj.percentage > 5 && obj.percentage < 25) || (obj.percentage === 100)){
+					getDuration(data, obj);
+				}
+				
+				if(data.ended){
+					data.ended = false;
+				}
+				if(!data.duration){
+					return;
+				}
+				if(obj.percentage > 2 && obj.percentage < 20){
+					setReadyState(3, data);
+				} else if(obj.percentage > 20){
+					setReadyState(4, data);
+				}
+				if(data._bufferedEnd && (data._bufferedEnd > obj.percentage)){
+					data._bufferedStart = data.currentTime || 0;
+				}
+				
+				data._bufferedEnd = obj.percentage;
+				data.buffered.length = 1;
+				if(obj.percentage == 100){
+					data.networkState = 1;
+					setReadyState(4, data);
+				}
+				$.event.trigger('progress', undefined, data._elem, true);
+			},
+			META: function(obj, data){
+				
+				data = data && data.networkState ? data : getSwfDataFromID(obj.id);
+
+				if(!data){return;}
+				if( !('duration' in obj) ){
+					data._callMeta = true;
+					return;
+				}
+				
+				if( data._metadata && (!obj.height || data.videoHeight == obj.height) && (obj.duration === data.duration) ){return;}
+				
+				data._metadata = true;
+								
+				var oldDur = data.duration;
+				if(obj.duration){
+					data.duration = obj.duration;
+				}
+				data._lastDuration = data.duration;
+				if(obj.height || obj.width){
+					data.videoHeight = obj.height || 0;
+					data.videoWidth = obj.width || 0;
+				}
+				if(!data.networkState){
+					data.networkState = 2;
+				}
+				if(data.readyState < 1){
+					setReadyState(1, data);
+				}
+				if(data.duration && oldDur !== data.duration){
+					trigger(data._elem, 'durationchange');
+				}
+				
+				trigger(data._elem, 'loadedmetadata');
+			},
+			TIME: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data || data.currentTime === obj.position){return;}
+				data.currentTime = obj.position;
+				if(data.duration && data.duration < data.currentTime){
+					getDuration(data, obj);
+				}
+				if(data.readyState < 2){
+					setReadyState(2, data);
+				}
+				if(data.ended){
+					data.ended = false;
+				}
+				trigger(data._elem, 'timeupdate');
+				
+			},
+			STATE: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				switch(obj.newstate) {
+					case 'BUFFERING':
+						
+						if(data.ended){
+							data.ended = false;
+						}
+						setReadyState(1, data);
+						trigger(data._elem, 'waiting');
+						break;
+					case 'PLAYING':
+						data.paused = false;
+						data._ppFlag = true;
+						if(!data.duration){
+							getDuration(data, obj);
+						}
+						if(data.readyState < 3){
+							setReadyState(3, data);
+						}
+						if(data.ended){
+							data.ended = false;
+						}
+						trigger(data._elem, 'playing');
+						break;
+					case 'PAUSED':
+						if(!data.paused && !data.stopPlayPause){
+							data.paused = true;
+							data._ppFlag = true;
+							trigger(data._elem, 'pause');
+						}
+						break;
+					case 'COMPLETED':
+						if(data.readyState < 4){
+							setReadyState(4, data);
+						}
+						data.ended = true;
+						trigger(data._elem, 'ended');
+						break;
+				}
+			}
+		}
+		,Controller: {
+			
+			ERROR: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				mediaelement.setError(data._elem, obj.message);
+			},
+			SEEK: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				if(data.ended){
+					data.ended = false;
+				}
+				if(data.paused){
+					try {
+						data.jwapi[SENDEVENT]('play', 'false');
+					} catch(er){}
+				}
+				if(data.currentTime != obj.position){
+					data.currentTime = obj.position;
+					trigger(data._elem, 'timeupdate');
+				}
+				
+				
+			},
+			VOLUME: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				var newVolume = obj.percentage / 100;
+				if(data.volume == newVolume){return;}
+				data.volume = newVolume;
+				trigger(data._elem, 'volumechange');
+			},
+			MUTE: function(obj){
+				if(obj.state){return;}
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				if(data.muted == obj.state){return;}
+				data.muted = obj.state;
+				trigger(data._elem, 'volumechange');
+			}
+		}
+	};
+	
+	var initEvents = function(data){
+		var passed = true;
+		$.each(mediaelement.jwEvents, function(mvcName, evts){
+			$.each(evts, function(evtName){
+				try {
+					data.jwapi['add'+ mvcName +'Listener'](evtName, 'jQuery.webshims.mediaelement.jwEvents.'+ mvcName +'.'+ evtName);
+				} catch(er){
+					passed = false;
+					return false;
+				}
+			});
+		});
+		return passed;
+	};
+	
+	var workActionQueue = function(data){
+		var actionLen = data.actionQueue.length;
+		var i = 0;
+		var operation;
+		if(actionLen && data.isActive == 'third'){
+			while(data.actionQueue.length && actionLen > i){
+				i++;
+				operation = data.actionQueue.shift();
+				data.jwapi[operation.fn].apply(data.jwapi, operation.args);
+			}
+		}
+		if(data.actionQueue.length){
+			data.actionQueue = [];
+		}
+	};
+	var startAutoPlay = function(data){
+		if(!data){return;}
+		if( (data._ppFlag === undefined && ($.prop(data._elem, 'autoplay')) || !data.paused)){
+			setTimeout(function(){
+				if(data.isActive == 'third' && (data._ppFlag === undefined || !data.paused)){
+					try {
+						$(data._elem).play();
+					} catch(er){}
+				}
+			}, 1);
+		}
+	};
+	
+	
+	mediaelement.playerResize = function(id){
+		if(!id){return;}
+		var elem = document.getElementById(id.replace(idRep, ''));
+		
+		if(elem){
+			$(elem).triggerHandler('swfstageresize');
+		}
+		elem = null;
+	};
+	
+	
+	$(document).on('emptied', function(e){
+		var data = getSwfDataFromElem(e.target);
+		startAutoPlay(data);
+	});
+	
+	var localConnectionTimer;
+	mediaelement.jwPlayerReady = function(jwData){
+		var data = getSwfDataFromID(jwData.id);
+		var passed = true;
+		var i = 0;
+		var doneFn = function(){
+			if(i > 9){return;}
+			i++;
+			if(initEvents(data)){
+				if(!data.wasSwfReady){
+					var version = parseFloat( jwData.version, 10);
+					if(version < 5.1 || version >= 6){
+						webshims.warn('mediaelement-swf is only testet with jwplayer 5.6+');
+					}
+				} else {
+					$(data._elem).mediaLoad();
+					
+				}
+				data.wasSwfReady = true;
+				data.tryedReframeing = 0;
+				workActionQueue(data);
+				startAutoPlay(data);
+			} else {
+				clearTimeout(data.reframeTimer);
+				data.reframeTimer = setTimeout(doneFn, 9 * i);
+				if(i > 2 && data.tryedReframeing < 9){
+					data.tryedReframeing++;
+					data.shadowElem.css({overflow: 'visible'});
+					setTimeout(function(){
+						data.shadowElem.css({overflow: 'hidden'});
+					}, 16);
+				}
+			}
+		};
+		if(!data || !data.jwapi){return;}
+		if(!data.tryedReframeing){
+			data.tryedReframeing = 0;
+		}
+		clearTimeout(localConnectionTimer);
+		data.jwData = jwData;
+		data.shadowElem.removeClass('flashblocker-assumed');
+		$.prop(data._elem, 'volume', data.volume);
+		$.prop(data._elem, 'muted', data.muted);
+		doneFn();
+		
+	};
+	
+	var addMediaToStopEvents = $.noop;
+	if(hasNative){
+		var stopEvents = {
+			play: 1,
+			playing: 1
+		};
+		var hideEvtArray = ['play', 'pause', 'playing', 'canplay', 'progress', 'waiting', 'ended', 'loadedmetadata', 'durationchange', 'emptied'];
+		var hidevents = hideEvtArray.map(function(evt){
+			return evt +'.webshimspolyfill';
+		}).join(' ');
+		
+		var hidePlayerEvents = function(event){
+			var data = webshims.data(event.target, 'mediaelement');
+			if(!data){return;}
+			var isNativeHTML5 = ( event.originalEvent && event.originalEvent.type === event.type );
+			if( isNativeHTML5 == (data.activating == 'third') ){
+				event.stopImmediatePropagation();
+				if(stopEvents[event.type] && data.isActive != data.activating){
+					$(event.target).pause();
+				}
+			}
+		};
+		
+		addMediaToStopEvents = function(elem){
+			$(elem)
+				.off(hidevents)
+				.on(hidevents, hidePlayerEvents)
+			;
+			hideEvtArray.forEach(function(evt){
+				webshims.moveToFirstEvent(elem, evt);
+			});
+		};
+		addMediaToStopEvents(document);
+	}
+	
+	
+	mediaelement.setActive = function(elem, type, data){
+		if(!data){
+			data = webshims.data(elem, 'mediaelement');
+		}
+		if(!data || data.isActive == type){return;}
+		if(type != 'html5' && type != 'third'){
+			webshims.warn('wrong type for mediaelement activating: '+ type);
+		}
+		var shadowData = webshims.data(elem, 'shadowData');
+		data.activating = type;
+		$(elem).pause();
+		data.isActive = type;
+		if(type == 'third'){
+			shadowData.shadowElement = shadowData.shadowFocusElement = data.shadowElem[0];
+			$(elem).addClass('swf-api-active nonnative-api-active').hide().getShadowElement().show();
+		} else {
+			$(elem).removeClass('swf-api-active nonnative-api-active').show().getShadowElement().hide();
+			shadowData.shadowElement = shadowData.shadowFocusElement = false;
+		}
+		$(elem).trigger('mediaelementapichange');
+	};
+	
+	
+	
+	var resetSwfProps = (function(){
+		var resetProtoProps = ['_bufferedEnd', '_bufferedStart', '_metadata', '_ppFlag', 'currentSrc', 'currentTime', 'duration', 'ended', 'networkState', 'paused', 'videoHeight', 'videoWidth', '_callMeta', '_durationCalcs'];
+		var len = resetProtoProps.length;
+		return function(data){
+			
+			if(!data){return;}
+			var lenI = len;
+			var networkState = data.networkState;
+			setReadyState(0, data);
+			while(--lenI){
+				delete data[resetProtoProps[lenI]];
+			}
+			data.actionQueue = [];
+			data.buffered.length = 0;
+			if(networkState){
+				trigger(data._elem, 'emptied');
+			}
+		};
+	})();
+	
+	var setElementDimension = function(data, hasControls){
+		var elem = data._elem;
+		var box = data.shadowElem;
+		$(elem)[hasControls ? 'addClass' : 'removeClass']('webshims-controls');
+		if(data._elemNodeName == 'audio' && !hasControls){
+			box.css({width: 0, height: 0});
+		} else {
+			box.css({
+				width: elem.style.width || $(elem).width(),
+				height: elem.style.height || $(elem).height()
+			});
+		}
+	};
+	
+	mediaelement.createSWF = function( elem, canPlaySrc, data ){
+		if(!hasFlash){
+			setTimeout(function(){
+				$(elem).mediaLoad(); //<- this should produce a mediaerror
+			}, 1);
+			return;
+		}
+		
+		if(loadedSwf < 1){
+			loadedSwf = 1;
+		} else {
+			loadedSwf++;
+		}
+		var vars = $.extend({}, options.vars, {
+				image: $.prop(elem, 'poster') || '',
+				file: canPlaySrc.streamId || canPlaySrc.srcProp
+		});
+		var elemVars = $(elem).data('vars') || {};
+		
+		if(canPlaySrc.server){
+			vars.streamer = canPlaySrc.server;
+		}
+		if(!data){
+			data = webshims.data(elem, 'mediaelement');
+		}
+		
+		if(data && data.swfCreated){
+			mediaelement.setActive(elem, 'third', data);
+			resetSwfProps(data);
+			data.currentSrc = canPlaySrc.srcProp;
+			$.extend(vars, elemVars);
+			options.changeSWF(vars, elem, canPlaySrc, data, 'load');
+			queueSwfMethod(elem, SENDEVENT, ['LOAD', vars]);
+			return;
+		}
+		
+		
+		var hasControls = $.prop(elem, 'controls');
+		var elemId = 'jwplayer-'+ webshims.getID(elem);
+		var params = $.extend(
+			{},
+			options.params,
+			$(elem).data('params')
+		);
+		var elemNodeName = elem.nodeName.toLowerCase();
+		var attrs = $.extend(
+			{},
+			options.attrs,
+			{
+				name: elemId,
+				id: elemId
+			},
+			$(elem).data('attrs')
+		);
+		var box = $('<div class="polyfill-'+ (elemNodeName) +' polyfill-mediaelement" id="wrapper-'+ elemId +'"><div id="'+ elemId +'"></div>')
+			.css({
+				position: 'relative',
+				overflow: 'hidden'
+			})
+		;
+		data = webshims.data(elem, 'mediaelement', webshims.objectCreate(playerStateObj, {
+			actionQueue: {
+				value: []
+			},
+			shadowElem: {
+				value: box
+			},
+			_elemNodeName: {
+				value: elemNodeName
+			},
+			_elem: {
+				value: elem
+			},
+			currentSrc: {
+				value: canPlaySrc.srcProp
+			},
+			swfCreated: {
+				value: true
+			},
+			buffered: {
+				value: {
+					start: function(index){
+						if(index >= data.buffered.length){
+							webshims.error('buffered index size error');
+							return;
+						}
+						return 0;
+					},
+					end: function(index){
+						if(index >= data.buffered.length){
+							webshims.error('buffered index size error');
+							return;
+						}
+						return ( (data.duration - data._bufferedStart) * data._bufferedEnd / 100) + data._bufferedStart;
+					},
+					length: 0
+				}
+			}
+		}));
+		
+		setElementDimension(data, hasControls);
+		
+		box.insertBefore(elem);
+		
+		if(hasNative){
+			$.extend(data, {volume: $.prop(elem, 'volume'), muted: $.prop(elem, 'muted')});
+		}
+		
+		$.extend(vars, 
+			{
+				id: elemId,
+				controlbar: hasControls ? options.vars.controlbar || (elemNodeName == 'video' ? 'over' : 'bottom') : (elemNodeName == 'video') ? 'none' : 'bottom',
+				icons: ''+ (hasControls && elemNodeName == 'video')
+			},
+			elemVars,
+			{playerready: 'jQuery.webshims.mediaelement.jwPlayerReady'}
+		);
+		if(vars.plugins){
+			vars.plugins += ','+jwplugin;
+		} else {
+			vars.plugins = jwplugin;
+		}
+		
+		
+		webshims.addShadowDom(elem, box);
+		
+		addMediaToStopEvents(elem);
+		
+		mediaelement.setActive(elem, 'third', data);
+		
+		options.changeSWF(vars, elem, canPlaySrc, data, 'embed');
+		
+		$(elem).on('updatemediaelementdimensions updateshadowdom', function(){
+			setElementDimension(data, $.prop(elem, 'controls'));
+		});
+		
+		
+		swfobject.embedSWF(playerSwfPath, elemId, "100%", "100%", "9.0.0", false, vars, params, attrs, function(swfData){
+			
+			if(swfData.success){
+				data.jwapi = swfData.ref;
+				
+				if(!hasControls){
+					$(swfData.ref).attr('tabindex', '-1').css('outline', 'none');
+				}
+				setTimeout(function(){
+					if((!swfData.ref.parentNode && box[0].parentNode) || swfData.ref.style.display == "none"){
+						box.addClass('flashblocker-assumed');
+						$(elem).trigger('flashblocker');
+						webshims.warn("flashblocker assumed");
+					}
+					$(swfData.ref).css({'minHeight': '2px', 'minWidth': '2px', display: 'block'});
+				}, 9);
+				if(!localConnectionTimer){
+					clearTimeout(localConnectionTimer);
+					localConnectionTimer = setTimeout(function(){
+						var flash = $(swfData.ref);
+						if(flash[0].offsetWidth > 1 && flash[0].offsetHeight > 1 && location.protocol.indexOf('file:') === 0){
+							webshims.error("Add your local development-directory to the local-trusted security sandbox:  http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html");
+						} else if(flash[0].offsetWidth < 2 || flash[0].offsetHeight < 2) {
+							webshims.warn("JS-SWF connection can't be established on hidden or unconnected flash objects");
+						}
+						flash = null;
+					}, 8000);
+				}
+			}
+		});
+	};
+	
+	
+	var queueSwfMethod = function(elem, fn, args, data){
+		data = data || getSwfDataFromElem(elem);
+		if(data){
+			if(data.jwapi && data.jwapi[fn]){
+				data.jwapi[fn].apply(data.jwapi, args || []);
+			} else {
+				//todo add to queue
+				data.actionQueue.push({fn: fn, args: args});
+				if(data.actionQueue.length > 10){
+					setTimeout(function(){
+						if(data.actionQueue.length > 5){
+							data.actionQueue.shift();
+						}
+					}, 99);
+				}
+			}
+			return data;
+		}
+		return false;
+	};
+	
+	['audio', 'video'].forEach(function(nodeName){
+		var descs = {};
+		var mediaSup;
+		var createGetProp = function(key){
+			if(nodeName == 'audio' && (key == 'videoHeight' || key == 'videoWidth')){return;}
+			
+			descs[key] = {
+				get: function(){
+					var data = getSwfDataFromElem(this);
+					if(data){
+						return data[key];
+					} else if(hasNative && mediaSup[key].prop._supget) {
+						return mediaSup[key].prop._supget.apply(this);
+					} else {
+						return playerStateObj[key];
+					}
+				},
+				writeable: false
+			};
+		};
+		var createGetSetProp = function(key, setFn){
+			createGetProp(key);
+			delete descs[key].writeable;
+			descs[key].set = setFn;
+		};
+		
+		createGetSetProp('volume', function(v){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				v *= 100;
+				if(!isNaN(v)){
+					var muted = data.muted;
+					if(v < 0 || v > 100){
+						webshims.error('volume greater or less than allowed '+ (v / 100));
+					}
+					
+					queueSwfMethod(this, SENDEVENT, ['VOLUME', v], data);
+					if(muted){
+						try {
+							data.jwapi.sendEvent('mute', 'true');
+						} catch(er){}
+					}
+					v /= 100;
+					if(data.volume == v || data.isActive != 'third'){return;}
+					data.volume = v;
+					trigger(data._elem, 'volumechange');
+					data = null;
+				} 
+			} else if(mediaSup.volume.prop._supset) {
+				return mediaSup.volume.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		createGetSetProp('muted', function(m){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				m = !!m;
+				queueSwfMethod(this, SENDEVENT, ['mute', ''+m], data);
+				if(data.muted == m || data.isActive != 'third'){return;}
+				data.muted = m;
+				trigger(data._elem, 'volumechange');
+				data = null;
+			} else if(mediaSup.muted.prop._supset) {
+				return mediaSup.muted.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		
+		createGetSetProp('currentTime', function(t){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				t *= 1;
+				if (!isNaN(t)) {
+					if(data.paused){
+						clearTimeout(data.stopPlayPause);
+						data.stopPlayPause = setTimeout(function(){
+							data.paused = true;
+							data.stopPlayPause = false;
+						}, 50);
+					}
+					queueSwfMethod(this, SENDEVENT, ['SEEK', '' + t], data);
+					
+					if(data.paused){
+						if(data.readyState > 0){
+							data.currentTime = t;
+							trigger(data._elem, 'timeupdate');
+						}
+						try {
+							data.jwapi[SENDEVENT]('play', 'false');
+						} catch(er){}
+						
+					}
+				}
+				 
+			} else if(mediaSup.currentTime.prop._supset) {
+				return mediaSup.currentTime.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		['play', 'pause'].forEach(function(fn){
+			descs[fn] = {
+				value: function(){
+					var data = getSwfDataFromElem(this);
+					if(data){
+						if(data.stopPlayPause){
+							clearTimeout(data.stopPlayPause);
+						}
+						queueSwfMethod(this, SENDEVENT, ['play', fn == 'play'], data);
+						setTimeout(function(){
+							if(data.isActive == 'third'){
+								data._ppFlag = true;
+								if(data.paused != (fn != 'play')){
+									data.paused = fn != 'play';
+									trigger(data._elem, fn);
+								}
+							}
+						}, 1);
+					} else if(mediaSup[fn].prop._supvalue) {
+						return mediaSup[fn].prop._supvalue.apply(this, arguments);
+					}
+				}
+			};
+		});
+		
+		getPropKeys.forEach(createGetProp);
+		
+		webshims.onNodeNamesPropertyModify(nodeName, 'controls', function(val, boolProp){
+			var data = getSwfDataFromElem(this);
+			$(this)[boolProp ? 'addClass' : 'removeClass']('webshims-controls');
+			
+			if(data){
+				try {
+					queueSwfMethod(this, boolProp ? 'showControls' : 'hideControls', [nodeName], data);
+				} catch(er){
+					webshims.warn("you need to generate a crossdomain.xml");
+				}
+				if(nodeName == 'audio'){
+					setElementDimension(data, boolProp);
+				}
+				$(data.jwapi).attr('tabindex', boolProp ? '0' : '-1');
+			}
+		});
+		
+		mediaSup = webshims.defineNodeNameProperties(nodeName, descs, 'prop');
+	});
+	
+	if(hasFlash){
+		var oldClean = $.cleanData;
+		var gcBrowser = $.browser.msie && webshims.browserVersion < 9;
+		var flashNames = {
+			object: 1,
+			OBJECT: 1
+		};
+		$.cleanData = function(elems){
+			var i, len, prop;
+			if(elems && (len = elems.length) && loadedSwf){
+				
+				for(i = 0; i < len; i++){
+					if(flashNames[elems[i].nodeName]){
+						if(SENDEVENT in elems[i]){
+							loadedSwf--;
+							try {
+								elems[i][SENDEVENT]('play', false);
+							} catch(er){}
+						}
+						if(gcBrowser){
+							try {
+								for (prop in elems[i]) {
+									if (typeof elems[i][prop] == "function") {
+										elems[i][prop] = null;
+									}
+								}
+							} catch(er){}
+						}
+					}
+				}
+				
+			}
+			return oldClean.apply(this, arguments);
+		};
+	}
+
+	if(!hasNative){
+		
+		['poster', 'src'].forEach(function(prop){
+			webshims.defineNodeNamesProperty(prop == 'src' ? ['audio', 'video', 'source'] : ['video'], prop, {
+				//attr: {},
+				reflect: true,
+				propType: 'src'
+			});
+		});
+		
+		
+		['autoplay', 'controls'].forEach(function(name){
+			webshims.defineNodeNamesBooleanProperty(['audio', 'video'], name);
+		});
+			
+		webshims.defineNodeNamesProperties(['audio', 'video'], {
+			HAVE_CURRENT_DATA: {
+				value: 2
+			},
+			HAVE_ENOUGH_DATA: {
+				value: 4
+			},
+			HAVE_FUTURE_DATA: {
+				value: 3
+			},
+			HAVE_METADATA: {
+				value: 1
+			},
+			HAVE_NOTHING: {
+				value: 0
+			},
+			NETWORK_EMPTY: {
+				value: 0
+			},
+			NETWORK_IDLE: {
+				value: 1
+			},
+			NETWORK_LOADING: {
+				value: 2
+			},
+			NETWORK_NO_SOURCE: {
+				value: 3
+			}
+					
+		}, 'prop');
+	}
+});
+jQuery.webshims.register('track', function($, webshims, window, document, undefined){
+	"use strict";
+	var mediaelement = webshims.mediaelement;
+	var id = new Date().getTime();
+	//descriptions are not really shown, but they are inserted into the dom
+	var showTracks = {subtitles: 1, captions: 1, descriptions: 1};
+	var notImplemented = function(){
+		webshims.error('not implemented yet');
+	};
+	var dummyTrack = $('<track />');
+	var supportTrackMod = Modernizr.ES5 && Modernizr.objectAccessor;
+	var createEventTarget = function(obj){
+		var eventList = {};
+		obj.addEventListener = function(name, fn){
+			if(eventList[name]){
+				webshims.error('always use $.on to the shimed event: '+ name +' already bound fn was: '+ eventList[name] +' your fn was: '+ fn);
+			}
+			eventList[name] = fn;
+			
+		};
+		obj.removeEventListener = function(name, fn){
+			if(eventList[name] && eventList[name] != fn){
+				webshims.error('always use $.on/$.off to the shimed event: '+ name +' already bound fn was: '+ eventList[name] +' your fn was: '+ fn);
+			}
+			if(eventList[name]){
+				delete eventList[name];
+			}
+		};
+		return obj;
+	};
+	
+	
+	var cueListProto = {
+		getCueById: function(id){
+			var cue = null;
+			for(var i = 0, len = this.length; i < len; i++){
+				if(this[i].id === id){
+					cue = this[i];
+					break;
+				}
+			}
+			return cue;
+		}
+	};
+	var numericModes = {
+		0: 'disabled',
+		1: 'hidden',
+		2: 'showing'
+	};
+	
+	var textTrackProto = {
+		shimActiveCues: null,
+		_shimActiveCues: null,
+		activeCues: null,
+		cues: null,
+		kind: 'subtitles',
+		label: '',
+		language: '',
+		mode: 'disabled',
+		readyState: 0,
+		oncuechange: null,
+		toString: function() {
+			return "[object TextTrack]";
+		},
+		addCue: function(cue){
+			if(!this.cues){
+				this.cues = mediaelement.createCueList();
+			} else {
+				var lastCue = this.cues[this.cues.length-1];
+				if(lastCue && lastCue.startTime > cue.startTime){
+					webshims.error("cue startTime higher than previous cue's startTime");
+				}
+			}
+			if(cue.track && cue.track.removeCue){
+				cue.track.removeCue(cue);
+			}
+			cue.track = this;
+			this.cues.push(cue);
+		},
+		//ToDo: make it more dynamic
+		removeCue: function(cue){
+			var cues = this.cues || [];
+			var i = 0;
+			var len = cues.length;
+			if(cue.track != this){
+				webshims.error("cue not part of track");
+				return;
+			}
+			for(; i < len; i++){
+				if(cues[i] === cue){
+					cues.splice(i, 1);
+					cue.track = null;
+					break;
+				}
+			}
+			if(cue.track){
+				webshims.error("cue not part of track");
+				return;
+			}
+		},
+		DISABLED: 'disabled',
+		OFF: 'disabled',
+		HIDDEN: 'hidden',
+		SHOWING: 'showing',
+		ERROR: 3,
+		LOADED: 2,
+		LOADING: 1,
+		NONE: 0
+	};
+	var copyProps = ['kind', 'label', 'srclang'];
+	var copyName = {srclang: 'language'};
+	
+	var owns = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
+	
+	var updateMediaTrackList = function(baseData, trackList){
+		var removed = [];
+		var added = [];
+		var newTracks = [];
+		var i, len;
+		if(!baseData){
+			baseData =  webshims.data(this, 'mediaelementBase') || webshims.data(this, 'mediaelementBase', {});
+		}
+		
+		if(!trackList){
+			baseData.blockTrackListUpdate = true;
+			trackList = $.prop(this, 'textTracks');
+			baseData.blockTrackListUpdate = false;
+		}
+		
+		clearTimeout(baseData.updateTrackListTimer);
+		
+		$('track', this).each(function(){
+			var track = $.prop(this, 'track');
+			newTracks.push(track);
+			if(trackList.indexOf(track) == -1){
+				added.push(track);
+			}
+		});
+		
+		if(baseData.scriptedTextTracks){
+			for(i = 0, len = baseData.scriptedTextTracks.length; i < len; i++){
+				newTracks.push(baseData.scriptedTextTracks[i]);
+				if(trackList.indexOf(baseData.scriptedTextTracks[i]) == -1){
+					added.push(baseData.scriptedTextTracks[i]);
+				}
+			}
+		}
+		
+		for(i = 0, len = trackList.length; i < len; i++){
+			if(newTracks.indexOf(trackList[i]) == -1){
+				removed.push(trackList[i]);
+			}
+		}
+		
+		if(removed.length || added.length){
+			trackList.splice(0);
+			
+			for(i = 0, len = newTracks.length; i < len; i++){
+				trackList.push(newTracks[i]);
+			}
+			for(i = 0, len = removed.length; i < len; i++){
+				$([trackList]).triggerHandler($.Event({type: 'removetrack', track: removed[i]}));
+			}
+			for(i = 0, len = added.length; i < len; i++){
+				$([trackList]).triggerHandler($.Event({type: 'addtrack', track: added[i]}));
+			}
+			if(baseData.scriptedTextTracks || removed.length){
+				$(this).triggerHandler('updatetrackdisplay');
+			}
+		}
+	};
+	
+	var refreshTrack = function(track, trackData){
+		if(!trackData){
+			trackData = webshims.data(track, 'trackData');
+		}
+		if(trackData && !trackData.isTriggering){
+			trackData.isTriggering = true;
+			setTimeout(function(){
+				if(!(trackData.track || {}).readyState){
+					$(track).triggerHandler('checktrackmode');
+				} else {
+					$(track).closest('audio, video').triggerHandler('updatetrackdisplay');
+				}
+				trackData.isTriggering = false;
+			}, 1);
+		}
+	};
+	
+	var emptyDiv = $('<div />')[0];
+	window.TextTrackCue = function(startTime, endTime, text){
+		if(arguments.length != 3){
+			webshims.error("wrong arguments.length for TextTrackCue.constructor");
+		}
+		
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.text = text;
+		
+		this.id = "";
+		this.pauseOnExit = false;
+		
+		createEventTarget(this);
+	};
+	
+	window.TextTrackCue.prototype = {
+		
+		onenter: null,
+		onexit: null,
+		pauseOnExit: false,
+		getCueAsHTML: function(){
+			var lastText = "";
+			var parsedText = "";
+			var fragment = document.createDocumentFragment();
+			var fn;
+			if(!owns(this, 'getCueAsHTML')){
+				fn = this.getCueAsHTML = function(){
+					var i, len;
+					if(lastText != this.text){
+						lastText = this.text;
+						parsedText = mediaelement.parseCueTextToHTML(lastText);
+						emptyDiv.innerHTML = parsedText;
+						
+						for(i = 0, len = emptyDiv.childNodes.length; i < len; i++){
+							fragment.appendChild(emptyDiv.childNodes[i].cloneNode(true));
+						}
+					}
+					return fragment.cloneNode(true);
+				};
+				
+			}
+			return fn ? fn.apply(this, arguments) : fragment.cloneNode(true);
+		},
+		track: null,
+		
+		
+		id: ''
+		//todo-->
+//			,
+//			snapToLines: true,
+//			line: 'auto',
+//			size: 100,
+//			position: 50,
+//			vertical: '',
+//			align: 'middle'
+	};
+	
+	
+	
+	
+	
+	mediaelement.createCueList = function(){
+		return $.extend([], cueListProto);
+	};
+	
+	mediaelement.parseCueTextToHTML = (function(){
+		var tagSplits = /(<\/?[^>]+>)/ig;
+		var allowedTags = /^(?:c|v|ruby|rt|b|i|u)/;
+		var regEnd = /\<\s*\//;
+		var addToTemplate = function(localName, attribute, tag, html){
+			var ret;
+			if(regEnd.test(html)){
+				ret = '</'+ localName +'>';
+			} else {
+				tag.splice(0, 1);
+				ret =  '<'+ localName +' '+ attribute +'="'+ (tag.join(' ').replace(/\"/g, '&#34;')) +'">';
+			}
+			return ret;
+		};
+		var replacer = function(html){
+			var tag = html.replace(/[<\/>]+/ig,"").split(/[\s\.]+/);
+			if(tag[0]){
+				tag[0] = tag[0].toLowerCase();
+				if(allowedTags.test(tag[0])){
+					if(tag[0] == 'c'){
+						html = addToTemplate('span', 'class', tag, html);
+					} else if(tag[0] == 'v'){
+						html = addToTemplate('q', 'title', tag, html);
+					}
+				} else {
+					html = "";
+				}
+			}
+			return html;
+		};
+		
+		return function(cueText){
+			return cueText.replace(tagSplits, replacer);
+		};
+	})();
+	
+	mediaelement.loadTextTrack = function(mediaelem, track, trackData, _default){
+		var loadEvents = 'play playing timeupdate updatetrackdisplay';
+		var obj = trackData.track;
+		var load = function(){
+			var src = $.prop(track, 'src');
+			var error;
+			var ajax;
+			if(obj.mode != 'disabled' && src && $.attr(track, 'src')){
+				$(mediaelem).unbind(loadEvents, load);
+				$(track).unbind('checktrackmode', load);
+				if(!obj.readyState){
+					error = function(){
+						obj.readyState = 3;
+						obj.cues = null;
+						obj.activeCues = obj.shimActiveCues = obj._shimActiveCues = null;
+						$(track).triggerHandler('error');
+					};
+					obj.readyState = 1;
+					try {
+						obj.cues = mediaelement.createCueList();
+						obj.activeCues = obj.shimActiveCues = obj._shimActiveCues = mediaelement.createCueList();
+						ajax = $.ajax({
+							dataType: 'text',
+							url: src,
+							success: function(text){
+								if(ajax.getResponseHeader('content-type') != 'text/vtt'){
+									webshims.error('set the mime-type of your WebVTT files to text/vtt. see: http://dev.w3.org/html5/webvtt/#text/vtt');
+								}
+								mediaelement.parseCaptions(text, obj, function(cues){
+									if(cues && 'length' in cues){
+										obj.readyState = 2;
+										$(track).triggerHandler('load');
+										$(mediaelem).triggerHandler('updatetrackdisplay');
+									} else {
+										error();
+									}
+								});
+								
+							},
+							error: error
+						});
+					} catch(er){
+						error();
+						webshims.warn(er);
+					}
+				}
+			}
+		};
+		obj.readyState = 0;
+		obj.shimActiveCues = null;
+		obj._shimActiveCues = null;
+		obj.activeCues = null;
+		obj.cues = null;
+		$(mediaelem).unbind(loadEvents, load);
+		$(track).unbind('checktrackmode', load);
+		$(mediaelem).on(loadEvents, load);
+		$(track).on('checktrackmode', load);
+		if(_default){
+			obj.mode = showTracks[obj.kind] ? 'showing' : 'hidden';
+			load();
+		}
+	};
+	
+	mediaelement.createTextTrack = function(mediaelem, track){
+		var obj, trackData;
+		if(track.nodeName){
+			trackData = webshims.data(track, 'trackData');
+			
+			if(trackData){
+				refreshTrack(track, trackData);
+				obj = trackData.track;
+			}
+		}
+		
+		if(!obj){
+			obj = createEventTarget(webshims.objectCreate(textTrackProto));
+			
+			if(!supportTrackMod){
+				copyProps.forEach(function(copyProp){
+					var prop = $.prop(track, copyProp);
+					if(prop){
+						obj[copyName[copyProp] || copyProp] = prop;
+					}
+				});
+			}
+			
+			
+			if(track.nodeName){
+				
+				if(supportTrackMod){
+					copyProps.forEach(function(copyProp){
+						webshims.defineProperty(obj, copyName[copyProp] || copyProp, {
+							get: function(){
+								return $.prop(track, copyProp);
+							}
+						});
+					});
+				}
+				
+				trackData = webshims.data(track, 'trackData', {track: obj});
+				mediaelement.loadTextTrack(mediaelem, track, trackData, ($.prop(track, 'default') && $(track).siblings('track[default]').andSelf()[0] == track));
+			} else {
+				if(supportTrackMod){
+					copyProps.forEach(function(copyProp){
+						webshims.defineProperty(obj, copyName[copyProp] || copyProp, {
+							value: track[copyProp],
+							writeable: false
+						});
+					});
+				}
+				obj.cues = mediaelement.createCueList();
+				obj.activeCues = obj._shimActiveCues = obj.shimActiveCues = mediaelement.createCueList();
+				obj.mode = 'hidden';
+				obj.readyState = 2;
+			}
+		}
+		return obj;
+	};
+	
+	
+/*
+taken from:
+Captionator 0.5.1 [CaptionCrunch]
+Christopher Giffard, 2011
+Share and enjoy
+
+https://github.com/cgiffard/Captionator
+
+modified for webshims
+*/
+	mediaelement.parseCaptionChunk = (function(){
+		// Set up timestamp parsers
+		var WebVTTTimestampParser			= /^(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s+\-\-\>\s+(\d{2})?:?(\d{2}):(\d{2})\.(\d+)\s*(.*)/;
+		var GoogleTimestampParser		= /^([\d\.]+)\s+\+([\d\.]+)\s*(.*)/;
+		var WebVTTDEFAULTSCueParser		= /^(DEFAULTS|DEFAULT)\s+\-\-\>\s+(.*)/g;
+		var WebVTTSTYLECueParser		= /^(STYLE|STYLES)\s+\-\-\>\s*\n([\s\S]*)/g;
+		var WebVTTCOMMENTCueParser		= /^(COMMENT|COMMENTS)\s+\-\-\>\s+(.*)/g;
+		
+		return function(subtitleElement,objectCount){
+			var cueDefaults = [];
+		
+			var subtitleParts, timeIn, timeOut, html, timeData, subtitlePartIndex, cueSettings = "", id, specialCueData;
+			var timestampMatch, tmpCue;
+
+			// WebVTT Special Cue Logic
+			if ((specialCueData = WebVTTDEFAULTSCueParser.exec(subtitleElement))) {
+//				cueDefaults = specialCueData.slice(2).join("");
+//				cueDefaults = cueDefaults.split(/\s+/g).filter(function(def) { return def && !!def.length; });
+				return null;
+			} else if ((specialCueData = WebVTTSTYLECueParser.exec(subtitleElement))) {
+				return null;
+			} else if ((specialCueData = WebVTTCOMMENTCueParser.exec(subtitleElement))) {
+				return null; // At this stage, we don't want to do anything with these.
+			}
+			
+			subtitleParts = subtitleElement.split(/\n/g);
+		
+			// Trim off any blank lines (logically, should only be max. one, but loop to be sure)
+			while (!subtitleParts[0].replace(/\s+/ig,"").length && subtitleParts.length > 0) {
+				subtitleParts.shift();
+			}
+		
+			if (subtitleParts[0].match(/^\s*[a-z0-9-\_]+\s*$/ig)) {
+				// The identifier becomes the cue ID (when *we* load the cues from file. Programatically created cues can have an ID of whatever.)
+				id = String(subtitleParts.shift().replace(/\s*/ig,""));
+			}
+		
+			for (subtitlePartIndex = 0; subtitlePartIndex < subtitleParts.length; subtitlePartIndex ++) {
+				var timestamp = subtitleParts[subtitlePartIndex];
+				
+				if ((timestampMatch = WebVTTTimestampParser.exec(timestamp))) {
+					
+					// WebVTT
+					
+					timeData = timestampMatch.slice(1);
+					
+					timeIn =	parseInt((timeData[0]||0) * 60 * 60,10) +	// Hours
+								parseInt((timeData[1]||0) * 60,10) +		// Minutes
+								parseInt((timeData[2]||0),10) +				// Seconds
+								parseFloat("0." + (timeData[3]||0));		// MS
+					
+					timeOut =	parseInt((timeData[4]||0) * 60 * 60,10) +	// Hours
+								parseInt((timeData[5]||0) * 60,10) +		// Minutes
+								parseInt((timeData[6]||0),10) +				// Seconds
+								parseFloat("0." + (timeData[7]||0));		// MS
+/*
+					if (timeData[8]) {
+						cueSettings = timeData[8];
+					}
+*/
+				}
+				
+				// We've got the timestamp - return all the other unmatched lines as the raw subtitle data
+				subtitleParts = subtitleParts.slice(0,subtitlePartIndex).concat(subtitleParts.slice(subtitlePartIndex+1));
+				break;
+			}
+
+			if (!timeIn && !timeOut) {
+				// We didn't extract any time information. Assume the cue is invalid!
+				webshims.warn("couldn't extract time information: "+[timeIn, timeOut, subtitleParts.join("\n"), id].join(' ; '));
+				return null;
+			}
+/*
+			// Consolidate cue settings, convert defaults to object
+			var compositeCueSettings =
+				cueDefaults
+					.reduce(function(previous,current,index,array){
+						previous[current.split(":")[0]] = current.split(":")[1];
+						return previous;
+					},{});
+			
+			// Loop through cue settings, replace defaults with cue specific settings if they exist
+			compositeCueSettings =
+				cueSettings
+					.split(/\s+/g)
+					.filter(function(set) { return set && !!set.length; })
+					// Convert array to a key/val object
+					.reduce(function(previous,current,index,array){
+						previous[current.split(":")[0]] = current.split(":")[1];
+						return previous;
+					},compositeCueSettings);
+			
+			// Turn back into string like the TextTrackCue constructor expects
+			cueSettings = "";
+			for (var key in compositeCueSettings) {
+				if (compositeCueSettings.hasOwnProperty(key)) {
+					cueSettings += !!cueSettings.length ? " " : "";
+					cueSettings += key + ":" + compositeCueSettings[key];
+				}
+			}
+*/
+			// The remaining lines are the subtitle payload itself (after removing an ID if present, and the time);
+			html = subtitleParts.join("\n");
+			tmpCue = new TextTrackCue(timeIn, timeOut, html);
+			if(id){
+				tmpCue.id = id;
+			}
+			return tmpCue;
+		};
+	})();
+	
+	mediaelement.parseCaptions = function(captionData, track, complete) {
+		var subtitles = mediaelement.createCueList();
+		var cue, lazyProcess, regWevVTT;
+		var startDate;
+		var isWEBVTT;
+		if (captionData) {
+			
+			regWevVTT = /^WEBVTT(\s*FILE)?/ig;
+			
+			lazyProcess = function(i, len){
+				
+				for(; i < len; i++){
+					cue = captionData[i];
+					if(regWevVTT.test(cue)){
+						isWEBVTT = true;
+					} else if(cue.replace(/\s*/ig,"").length){
+						if(!isWEBVTT){
+							webshims.error('please use WebVTT format. This is the standard');
+							complete(null);
+							break;
+						}
+						cue = mediaelement.parseCaptionChunk(cue, i);
+						if(cue){
+							track.addCue(cue);
+						}
+					}
+					if(startDate < (new Date().getTime()) - 30){
+						i++;
+						setTimeout(function(){
+							startDate = new Date().getTime();
+							lazyProcess(i, len);
+						}, 90);
+						
+						break;
+					}
+				}
+				if(i >= len){
+					if(!isWEBVTT){
+						webshims.error('please use WebVTT format. This is the standard');
+					}
+					complete(track.cues);
+				}
+			};
+			
+			captionData = captionData.replace(/\r\n/g,"\n");
+			
+			setTimeout(function(){
+				captionData = captionData.replace(/\r/g,"\n");
+				setTimeout(function(){
+					startDate = new Date().getTime();
+					captionData = captionData.split(/\n\n+/g);
+					lazyProcess(0, captionData.length);
+				}, 9);
+			}, 9);
+			
+		} else {
+			webshims.error("Required parameter captionData not supplied.");
+		}
+	};
+	
+	
+	mediaelement.createTrackList = function(mediaelem, baseData){
+		baseData = baseData || webshims.data(mediaelem, 'mediaelementBase') || webshims.data(mediaelem, 'mediaelementBase', {});
+		if(!baseData.textTracks){
+			baseData.textTracks = [];
+			webshims.defineProperties(baseData.textTracks, {
+				onaddtrack: {value: null},
+				onremovetrack: {value: null}
+			});
+			createEventTarget(baseData.textTracks);
+		}
+		return baseData.textTracks;
+	};
+	
+	if(!Modernizr.track){
+		webshims.defineNodeNamesBooleanProperty(['track'], 'default');
+		webshims.reflectProperties(['track'], ['srclang', 'label']);
+		
+		webshims.defineNodeNameProperties('track', {
+			src: {
+				//attr: {},
+				reflect: true,
+				propType: 'src'
+			}
+		});
+	}
+	
+	webshims.defineNodeNameProperties('track', {
+		kind: {
+			attr: Modernizr.track ? {
+				set: function(value){
+					var trackData = webshims.data(this, 'trackData');
+					this.setAttribute('data-kind', value);
+					if(trackData){
+						trackData.attrKind = value;
+					}
+				},
+				get: function(){
+					var trackData = webshims.data(this, 'trackData');
+					if(trackData && ('attrKind' in trackData)){
+						return trackData.attrKind;
+					}
+					return this.getAttribute('kind');
+				}
+			} : {},
+			reflect: true,
+			propType: 'enumarated',
+			defaultValue: 'subtitles',
+			limitedTo: ['subtitles', 'captions', 'descriptions', 'chapters', 'metadata']
+		}
+	});
+	
+	$.each(copyProps, function(i, copyProp){
+		var name = copyName[copyProp] || copyProp;
+		webshims.onNodeNamesPropertyModify('track', copyProp, function(){
+			var trackData = webshims.data(this, 'trackData');
+			var track = this;
+			if(trackData){
+				if(copyProp == 'kind'){
+					refreshTrack(this, trackData);
+				}
+				if(!supportTrackMod){
+					trackData.track[name] = $.prop(this, copyProp);
+				}
+				clearTimeout(trackData.changedTrackPropTimer);
+				trackData.changedTrackPropTimer = setTimeout(function(){
+					$(track).trigger('updatesubtitlestate');
+				}, 1); 
+			}
+		});
+	});		
+	
+	
+	webshims.onNodeNamesPropertyModify('track', 'src', function(val){
+		if(val){
+			var data = webshims.data(this, 'trackData');
+			var media;
+			if(data){
+				media = $(this).closest('video, audio');
+				if(media[0]){
+					mediaelement.loadTextTrack(media, this, data);
+				}
+			}
+		}
+		
+	});
+	
+	//
+	
+	webshims.defineNodeNamesProperties(['track'], {
+		ERROR: {
+			value: 3
+		},
+		LOADED: {
+			value: 2
+		},
+		LOADING: {
+			value: 1
+		},
+		NONE: {
+			value: 0
+		},
+		readyState: {
+			get: function(){
+				return ($.prop(this, 'track') || {readyState: 0}).readyState;
+			},
+			writeable: false
+		},
+		track: {
+			get: function(){
+				return mediaelement.createTextTrack($(this).closest('audio, video')[0], this);
+			},
+			writeable: false
+		}
+	}, 'prop');
+	
+	webshims.defineNodeNamesProperties(['audio', 'video'], {
+		textTracks: {
+			get: function(){
+				var media = this;
+				var baseData = webshims.data(media, 'mediaelementBase') || webshims.data(media, 'mediaelementBase', {});
+				var tracks = mediaelement.createTrackList(media, baseData);
+				if(!baseData.blockTrackListUpdate){
+					updateMediaTrackList.call(media, baseData, tracks);
+				}
+				return tracks;
+			},
+			writeable: false
+		},
+		addTextTrack: {
+			value: function(kind, label, lang){
+				var textTrack = mediaelement.createTextTrack(this, {
+					kind: dummyTrack.prop('kind', kind || '').prop('kind'),
+					label: label || '',
+					srclang: lang || ''
+				});
+				var baseData = webshims.data(this, 'mediaelementBase') || webshims.data(this, 'mediaelementBase', {});
+				if (!baseData.scriptedTextTracks) {
+					baseData.scriptedTextTracks = [];
+				}
+				baseData.scriptedTextTracks.push(textTrack);
+				updateMediaTrackList.call(this);
+				return textTrack;
+			}
+		}
+	}, 'prop');
+
+	
+	$(document).on('emptied ended updatetracklist', function(e){
+		if($(e.target).is('audio, video')){
+			var baseData = webshims.data(e.target, 'mediaelementBase');
+			if(baseData){
+				clearTimeout(baseData.updateTrackListTimer);
+				baseData.updateTrackListTimer = setTimeout(function(){
+					updateMediaTrackList.call(e.target, baseData);
+				}, 0);
+			}
+		}
+	});
+	
+	var getNativeReadyState = function(trackElem, textTrack){
+		return textTrack.readyState || trackElem.readyState;
+	};
+	
+	webshims.addReady(function(context, insertedElement){
+		var insertedMedia = insertedElement.filter('video, audio, track').closest('audio, video');
+		$('video, audio', context)
+			.add(insertedMedia)
+			.each(function(){
+				updateMediaTrackList.call(this);
+			})
+			.each(function(){
+				if(Modernizr.track){
+					var shimedTextTracks = $.prop(this, 'textTracks');
+					var origTextTracks = this.textTracks;
+					if(shimedTextTracks.length != origTextTracks.length){
+						webshims.error("textTracks couldn't be copied");
+					}
+					
+					$('track', this)
+						.each(function(){
+							var shimedTrack = $.prop(this, 'track');
+							var origTrack = this.track;
+							var kind;
+							var readyState;
+							if(origTrack){
+								kind = $.prop(this, 'kind');
+								readyState = getNativeReadyState(this, origTrack);
+								if (origTrack.mode || readyState) {
+									shimedTrack.mode = numericModes[origTrack.mode] || origTrack.mode;
+								}
+								//disable track from showing + remove UI
+								if(kind != 'descriptions'){
+									origTrack.mode = (typeof origTrack.mode == 'string') ? 'disabled' : 0;
+									this.kind = 'metadata';
+									$(this).attr({kind: kind});
+								}
+								
+							}
+						})
+						.on('load error', function(e){
+							if(e.originalEvent){
+								e.stopImmediatePropagation();
+							}
+						})
+					;
+				}
+			})
+		;
+		insertedMedia.each(function(){
+			var media = this;
+			var baseData = webshims.data(media, 'mediaelementBase');
+			if(baseData){
+				clearTimeout(baseData.updateTrackListTimer);
+				baseData.updateTrackListTimer = setTimeout(function(){
+					updateMediaTrackList.call(media, baseData);
+				}, 9);
+			}
+		});
+	});
+	
+	if(Modernizr.track){
+		$('video, audio').trigger('trackapichange');
+	}
+});

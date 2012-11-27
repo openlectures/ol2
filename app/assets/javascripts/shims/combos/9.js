@@ -1,65 +1,2509 @@
-jQuery.webshims.register("dom-extend",function(b,f,g,k,l){var p=f.modules,n=/\s*,\s*/,q={},B={},m={},z={},t={},h=b.fn.val,A=function(d,a,c,e,o){return o?h.call(b(d)):h.call(b(d),c)};b.fn.val=function(d){var a=this[0];arguments.length&&null==d&&(d="");if(!arguments.length)return!a||1!==a.nodeType?h.call(this):b.prop(a,"value",d,"val",!0);if(b.isArray(d))return h.apply(this,arguments);var c=b.isFunction(d);return this.each(function(e){a=this;1===a.nodeType&&(c?(e=d.call(a,e,b.prop(a,"value",l,"val",
-!0)),null==e&&(e=""),b.prop(a,"value",e,"val")):b.prop(a,"value",d,"val"))})};var v="_webshimsLib"+Math.round(1E3*Math.random()),r=function(d,a,c){d=d.jquery?d[0]:d;if(!d)return c||{};var e=b.data(d,v);c!==l&&(e||(e=b.data(d,v,{})),a&&(e[a]=c));return a?e&&e[a]:e};[{name:"getNativeElement",prop:"nativeElement"},{name:"getShadowElement",prop:"shadowElement"},{name:"getShadowFocusElement",prop:"shadowFocusElement"}].forEach(function(d){b.fn[d.name]=function(){return this.map(function(){var a=r(this,
-"shadowData");return a&&a[d.prop]||this})}});["removeAttr","prop","attr"].forEach(function(d){q[d]=b[d];b[d]=function(a,c,e,o,u){var f="val"==o,w=!f?q[d]:A;if(!a||!B[c]||1!==a.nodeType||!f&&o&&"attr"==d&&b.attrFn[c])return w(a,c,e,o,u);var j=(a.nodeName||"").toLowerCase(),x=m[j],E="attr"==d&&(!1===e||null===e)?"removeAttr":d,h,i,g;x||(x=m["*"]);x&&(x=x[c]);x&&(h=x[E]);if(h){if("value"==c)i=h.isVal,h.isVal=f;if("removeAttr"===E)return h.value.call(a);if(e===l)return h.get?h.get.call(a):h.value;h.set&&
-("attr"==d&&!0===e&&(e=c),g=h.set.call(a,e));if("value"==c)h.isVal=i}else g=w(a,c,e,o,u);if((e!==l||"removeAttr"===E)&&t[j]&&t[j][c]){var n;n="removeAttr"==E?!1:"prop"==E?!!e:!0;t[j][c].forEach(function(j){if(!j.only||(j.only="prop"==d)||"attr"==j.only&&"prop"!=d)j.call(a,e,n,f?"val":E,d)})}return g};z[d]=function(a,c,e){m[a]||(m[a]={});m[a][c]||(m[a][c]={});var o=m[a][c][d],u=function(a,b,j){return b&&b[a]?b[a]:j&&j[a]?j[a]:"prop"==d&&"value"==c?function(a){return e.isVal?A(this,c,a,!1,0===arguments.length):
-q[d](this,c,a)}:"prop"==d&&"value"==a&&e.value.apply?function(a){var j=q[d](this,c);j&&j.apply&&(j=j.apply(this,arguments));return j}:function(a){return q[d](this,c,a)}};m[a][c][d]=e;if(e.value===l){if(!e.set)e.set=e.writeable?u("set",e,o):f.cfg.useStrict&&"prop"==c?function(){throw c+" is readonly on "+a;}:b.noop;if(!e.get)e.get=u("get",e,o)}["value","get","set"].forEach(function(a){e[a]&&(e["_sup"+a]=u(a,o))})}});var D=!b.browser.msie||8<parseInt(b.browser.version,10),i=function(){var b=f.getPrototypeOf(k.createElement("foobar")),
-a=Object.prototype.hasOwnProperty;return function(c,e,o){var u=k.createElement(c),h=f.getPrototypeOf(u);if(D&&h&&b!==h&&(!u[e]||!a.call(u,e))){var w=u[e];o._supvalue=function(){return w&&w.apply?w.apply(this,arguments):w};h[e]=o.value}else o._supvalue=function(){var a=r(this,"propValue");return a&&a[e]&&a[e].apply?a[e].apply(this,arguments):a&&a[e]},y.extendValue(c,e,o.value);o.value._supvalue=o._supvalue}}(),y=function(){var d={};f.addReady(function(a,c){var e={},w=function(j){e[j]||(e[j]=b(a.getElementsByTagName(j)),
-c[0]&&b.nodeName(c[0],j)&&(e[j]=e[j].add(c)))};b.each(d,function(a,b){w(a);!b||!b.forEach?f.warn("Error: with "+a+"-property. methods: "+b):b.forEach(function(b){e[a].each(b)})});e=null});var a,c=b([]),e=function(c,e){d[c]?d[c].push(e):d[c]=[e];b.isDOMReady&&(a||b(k.getElementsByTagName(c))).each(e)};return{createTmpCache:function(d){b.isDOMReady&&(a=a||b(k.getElementsByTagName(d)));return a||c},flushTmpCache:function(){a=null},content:function(a,d){e(a,function(){var a=b.attr(this,d);null!=a&&b.attr(this,
-d,a)})},createElement:function(a,b){e(a,b)},extendValue:function(a,d,c){e(a,function(){b(this).each(function(){r(this,"propValue",{})[d]=this[d];this[d]=c})})}}}(),C=function(b,a){if(b.defaultValue===l)b.defaultValue="";if(!b.removeAttr)b.removeAttr={value:function(){b[a||"prop"].set.call(this,b.defaultValue);b.removeAttr._supvalue.call(this)}};if(!b.attr)b.attr={}};b.extend(f,{getID:function(){var d=(new Date).getTime();return function(a){var a=b(a),c=a.attr("id");c||(d++,c="ID-"+d,a.attr("id",c));
-return c}}(),extendUNDEFProp:function(d,a){b.each(a,function(a,b){a in d||(d[a]=b)})},createPropDefault:C,data:r,moveToFirstEvent:function(){var d=b._data?"_data":"data";return function(a,c,e){if((a=(b[d](a,"events")||{})[c])&&1<a.length)c=a.pop(),e||(e="bind"),"bind"==e&&a.delegateCount?a.splice(a.delegateCount,0,c):a.unshift(c)}}(),addShadowDom:function(){var d,a,c,e={init:!1,runs:0,test:function(){var a=e.getHeight(),b=e.getWidth();a!=e.height||b!=e.width?(e.height=a,e.width=b,e.handler({type:"docresize"}),
-e.runs++,30>e.runs&&setTimeout(e.test,30)):e.runs=0},handler:function(o){clearTimeout(d);d=setTimeout(function(){if("resize"==o.type){var d=b(g).width(),f=b(g).width();if(f==a&&d==c)return;a=f;c=d;e.height=e.getHeight();e.width=e.getWidth()}b.event.trigger("updateshadowdom")},"resize"==o.type?50:9)},_create:function(){b.each({Height:"getHeight",Width:"getWidth"},function(a,b){var d=k.body,c=k.documentElement;e[b]=function(){return Math.max(d["scroll"+a],c["scroll"+a],d["offset"+a],c["offset"+a],c["client"+
-a])}})},start:function(){if(!this.init&&k.body)this.init=!0,this._create(),this.height=e.getHeight(),this.width=e.getWidth(),setInterval(this.test,400),b(this.test),b(g).bind("load",this.test),b(g).bind("resize",this.handler),function(){var a=b.fn.animate,d;b.fn.animate=function(){clearTimeout(d);d=setTimeout(function(){e.test();e.handler({type:"animationstart"})},19);return a.apply(this,arguments)}}()}};b.event.customEvent.updateshadowdom=!0;f.docObserve=function(){f.ready("DOM",function(){e.start()})};
-return function(a,d,c){c=c||{};a.jquery&&(a=a[0]);d.jquery&&(d=d[0]);var e=b.data(a,v)||b.data(a,v,{}),j=b.data(d,v)||b.data(d,v,{}),x={};if(c.shadowFocusElement){if(c.shadowFocusElement){if(c.shadowFocusElement.jquery)c.shadowFocusElement=c.shadowFocusElement[0];x=b.data(c.shadowFocusElement,v)||b.data(c.shadowFocusElement,v,x)}}else c.shadowFocusElement=d;e.hasShadow=d;x.nativeElement=j.nativeElement=a;x.shadowData=j.shadowData=e.shadowData={nativeElement:a,shadowElement:d,shadowFocusElement:c.shadowFocusElement};
-c.shadowChilds&&c.shadowChilds.each(function(){r(this,"shadowData",j.shadowData)});if(c.data)x.shadowData.data=j.shadowData.data=e.shadowData.data=c.data;c=null;f.docObserve()}}(),propTypes:{standard:function(b){C(b);if(!b.prop)b.prop={set:function(a){b.attr.set.call(this,""+a)},get:function(){return b.attr.get.call(this)||b.defaultValue}}},"boolean":function(b){C(b);if(!b.prop)b.prop={set:function(a){a?b.attr.set.call(this,""):b.removeAttr.value.call(this)},get:function(){return null!=b.attr.get.call(this)}}},
-src:function(){var d=k.createElement("a");d.style.display="none";return function(a,c){C(a);if(!a.prop)a.prop={set:function(b){a.attr.set.call(this,b)},get:function(){var a=this.getAttribute(c),f;if(null==a)return"";d.setAttribute("href",a+"");if(!b.support.hrefNormalized){try{b(d).insertAfter(this),f=d.getAttribute("href",4)}catch(h){f=d.getAttribute("href",4)}b(d).detach()}return f||d.href}}}}(),enumarated:function(b){C(b);if(!b.prop)b.prop={set:function(a){b.attr.set.call(this,a)},get:function(){var a=
-(b.attr.get.call(this)||"").toLowerCase();if(!a||-1==b.limitedTo.indexOf(a))a=b.defaultValue;return a}}}},reflectProperties:function(d,a){"string"==typeof a&&(a=a.split(n));a.forEach(function(a){f.defineNodeNamesProperty(d,a,{prop:{set:function(d){b.attr(this,a,d)},get:function(){return b.attr(this,a)||""}}})})},defineNodeNameProperty:function(d,a,c){B[a]=!0;if(c.reflect)f.propTypes[c.propType||"standard"](c,a);["prop","attr","removeAttr"].forEach(function(e){var h=c[e];h&&(h="prop"===e?b.extend({writeable:!0},
-h):b.extend({},h,{writeable:!0}),z[e](d,a,h),"*"!=d&&f.cfg.extendNative&&"prop"==e&&h.value&&b.isFunction(h.value)&&i(d,a,h),c[e]=h)});c.initAttr&&y.content(d,a);return c},defineNodeNameProperties:function(b,a,c,e){for(var h in a)!e&&a[h].initAttr&&y.createTmpCache(b),c&&!a[h][c]&&(a[h][c]={},["value","set","get"].forEach(function(b){b in a[h]&&(a[h][c][b]=a[h][b],delete a[h][b])})),a[h]=f.defineNodeNameProperty(b,h,a[h]);e||y.flushTmpCache();return a},createElement:function(d,a,c){var e;b.isFunction(a)&&
-(a={after:a});y.createTmpCache(d);a.before&&y.createElement(d,a.before);c&&(e=f.defineNodeNameProperties(d,c,!1,!0));a.after&&y.createElement(d,a.after);y.flushTmpCache();return e},onNodeNamesPropertyModify:function(d,a,c,e){"string"==typeof d&&(d=d.split(n));b.isFunction(c)&&(c={set:c});d.forEach(function(b){t[b]||(t[b]={});"string"==typeof a&&(a=a.split(n));c.initAttr&&y.createTmpCache(b);a.forEach(function(a){t[b][a]||(t[b][a]=[],B[a]=!0);if(c.set){if(e)c.set.only=e;t[b][a].push(c.set)}c.initAttr&&
-y.content(b,a)});y.flushTmpCache()})},defineNodeNamesBooleanProperty:function(d,a,c){c||(c={});if(b.isFunction(c))c.set=c;f.defineNodeNamesProperty(d,a,{attr:{set:function(b){this.setAttribute(a,b);c.set&&c.set.call(this,!0)},get:function(){return null==this.getAttribute(a)?l:a}},removeAttr:{value:function(){this.removeAttribute(a);c.set&&c.set.call(this,!1)}},reflect:!0,propType:"boolean",initAttr:c.initAttr||!1})},contentAttr:function(b,a,c){if(b.nodeName){if(c===l)return b=b.attributes[a]||{},
-c=b.specified?b.value:null,null==c?l:c;"boolean"==typeof c?c?b.setAttribute(a,a):b.removeAttribute(a):b.setAttribute(a,c)}},activeLang:function(){var d=[],a={},c,e,h=/:\/\/|^\.*\//,i=function(a,c,d){return c&&d&&-1!==b.inArray(c,d.availabeLangs||[])?(a.loading=!0,d=d.langSrc,h.test(d)||(d=f.cfg.basePath+d),f.loader.loadScript(d+c+".js",function(){a.langObj[c]?(a.loading=!1,w(a,!0)):b(function(){a.langObj[c]&&w(a,!0);a.loading=!1})}),!0):!1},A=function(b){a[b]&&a[b].forEach(function(a){a.callback()})},
-w=function(a,b){if(a.activeLang!=c&&a.activeLang!==e){var d=p[a.module].options;if(a.langObj[c]||e&&a.langObj[e])a.activeLang=c,a.callback(a.langObj[c]||a.langObj[e],c),A(a.module);else if(!b&&!i(a,c,d)&&!i(a,e,d)&&a.langObj[""]&&""!==a.activeLang)a.activeLang="",a.callback(a.langObj[""],c),A(a.module)}};return function(j){if("string"==typeof j&&j!==c)c=j,e=c.split("-")[0],c==e&&(e=!1),b.each(d,function(a,b){w(b)});else if("object"==typeof j)if(j.register)a[j.register]||(a[j.register]=[]),a[j.register].push(j),
-j.callback();else{if(!j.activeLang)j.activeLang="";d.push(j);w(j)}return c}}()});b.each({defineNodeNamesProperty:"defineNodeNameProperty",defineNodeNamesProperties:"defineNodeNameProperties",createElements:"createElement"},function(b,a){f[b]=function(b,d,h,i){"string"==typeof b&&(b=b.split(n));var A={};b.forEach(function(b){A[b]=f[a](b,d,h,i)});return A}});f.isReady("webshimLocalization",!0)});
-(function(b,f){var g=b.webshims.browserVersion;if(!(b.browser.mozilla&&5<g)&&(!b.browser.msie||12>g&&7<g)){var k={article:"article",aside:"complementary",section:"region",nav:"navigation",address:"contentinfo"},l=function(b,f){b.getAttribute("role")||b.setAttribute("role",f)};b.webshims.addReady(function(g,n){b.each(k,function(f,k){for(var h=b(f,g).add(n.filter(f)),A=0,m=h.length;A<m;A++)l(h[A],k)});if(g===f){var q=f.getElementsByTagName("header")[0],B=f.getElementsByTagName("footer"),m=B.length;
-q&&!b(q).closest("section, article")[0]&&l(q,"banner");m&&(q=B[m-1],b(q).closest("section, article")[0]||l(q,"contentinfo"))}})}})(jQuery,document);
-(function(b,f,g){var k=f.audio&&f.video,l=!1,p=g.cfg.mediaelement,n=g.bugs,q="jwplayer"==p.player?"mediaelement-swf":"mediaelement-jaris",B=function(){g.ready(q,function(){if(!g.mediaelement.createSWF)g.mediaelement.loadSwf=!0,g.reTest([q],k)})},m;if(k){var z=document.createElement("video");f.videoBuffered="buffered"in z;l="loop"in z;g.capturingEvents("play,playing,waiting,paused,ended,durationchange,loadedmetadata,canplay,volumechange".split(","));f.videoBuffered||(g.addPolyfill("mediaelement-native-fix",
-{f:"mediaelement",test:f.videoBuffered,d:["dom-support"]}),g.reTest("mediaelement-native-fix"))}if(k&&!p.preferFlash){var t=function(h){var f=h.target.parentNode;!p.preferFlash&&(b(h.target).is("audio, video")||f&&b("source:last",f)[0]==h.target)&&g.ready("DOM mediaelement",function(){m&&B();g.ready("WINDOWLOAD "+q,function(){setTimeout(function(){m&&!p.preferFlash&&g.mediaelement.createSWF&&!b(h.target).closest("audio, video").is(".nonnative-api-active")?(p.preferFlash=!0,document.removeEventListener("error",
-t,!0),b("audio, video").mediaLoad(),g.info("switching mediaelements option to 'preferFlash', due to an error with native player: "+h.target.src)):m||document.removeEventListener("error",t,!0)},20)})})};document.addEventListener("error",t,!0);b("audio, video").each(function(){this.error&&t({target:this})})}n.track=!1;f.track&&function(){if(!n.track)n.track="number"!=typeof b("<track />")[0].readyState;if(!n.track)try{new TextTrackCue(2,3,"")}catch(h){n.track=!0}var f=g.cfg.track,k=function(h){b(h.target).filter("track").each(m)},
-m=function(){if(n.track||!f.override&&3==b.prop(this,"readyState"))f.override=!0,g.reTest("track"),document.removeEventListener("error",k,!0),this&&b.nodeName(this,"track")?g.error("track support was overwritten. Please check your vtt including your vtt mime-type"):g.info("track support was overwritten. due to bad browser support")},l=function(){document.addEventListener("error",k,!0);n.track?m():b("track").each(m)};f.override||(g.isReady("track")?l():b(l))}();g.register("mediaelement-core",function(b,
-g,v,r,t){m=swfobject.hasFlashPlayerVersion("9.0.115");var i=g.mediaelement,y=function(a,c){var a=b(a),d={src:a.attr("src")||"",elem:a,srcProp:a.prop("src")};if(!d.src)return d;var e=a.attr("type");if(e)d.type=e,d.container=b.trim(e.split(";")[0]);else if(c||(c=a[0].nodeName.toLowerCase(),"source"==c&&(c=(a.closest("video, audio")[0]||{nodeName:"video"}).nodeName.toLowerCase())),e=i.getTypeForSrc(d.src,c))d.type=e,d.container=e;if(e=a.attr("media"))d.media=e;return d},C=!m&&"postMessage"in v&&k,d=
-function(){var a;return function(){!a&&C&&(a=!0,g.loader.loadScript("https://www.youtube.com/player_api"),b(function(){g.polyfill("mediaelement-yt")}))}}(),a=function(){m?B():d()};g.addPolyfill("mediaelement-yt",{test:!C,d:["dom-support"]});i.mimeTypes={audio:{"audio/ogg":["ogg","oga","ogm"],'audio/ogg;codecs="opus"':"opus","audio/mpeg":["mp2","mp3","mpga","mpega"],"audio/mp4":"mp4,mpg4,m4r,m4a,m4p,m4b,aac".split(","),"audio/wav":["wav"],"audio/3gpp":["3gp","3gpp"],"audio/webm":["webm"],"audio/fla":["flv",
-"f4a","fla"],"application/x-mpegURL":["m3u8","m3u"]},video:{"video/ogg":["ogg","ogv","ogm"],"video/mpeg":["mpg","mpeg","mpe"],"video/mp4":["mp4","mpg4","m4v"],"video/quicktime":["mov","qt"],"video/x-msvideo":["avi"],"video/x-ms-asf":["asf","asx"],"video/flv":["flv","f4v"],"video/3gpp":["3gp","3gpp"],"video/webm":["webm"],"application/x-mpegURL":["m3u8","m3u"],"video/MP2T":["ts"]}};i.mimeTypes.source=b.extend({},i.mimeTypes.audio,i.mimeTypes.video);i.getTypeForSrc=function(a,c){if(-1!=a.indexOf("youtube.com/watch?")||
--1!=a.indexOf("youtube.com/v/"))return"video/youtube";var a=a.split("?")[0].split("."),a=a[a.length-1],d;b.each(i.mimeTypes[c],function(b,c){if(-1!==c.indexOf(a))return d=b,!1});return d};i.srces=function(a,c){a=b(a);if(c)a.removeAttr("src").removeAttr("type").find("source").remove(),b.isArray(c)||(c=[c]),c.forEach(function(b){var c=r.createElement("source");"string"==typeof b&&(b={src:b});c.setAttribute("src",b.src);b.type&&c.setAttribute("type",b.type);b.media&&c.setAttribute("media",b.media);a.append(c)});
-else{var c=[],d=a[0].nodeName.toLowerCase(),e=y(a,d);e.src?c.push(e):b("source",a).each(function(){e=y(this,d);e.src&&c.push(e)});return c}};b.fn.loadMediaSrc=function(a,c){return this.each(function(){c!==t&&(b(this).removeAttr("poster"),c&&b.attr(this,"poster",c));i.srces(this,a);b(this).mediaLoad()})};i.swfMimeTypes="video/3gpp,video/x-msvideo,video/quicktime,video/x-m4v,video/mp4,video/m4p,video/x-flv,video/flv,audio/mpeg,audio/aac,audio/mp4,audio/x-m4a,audio/m4a,audio/mp3,audio/x-fla,audio/fla,youtube/flv,jwplayer/jwplayer,video/youtube".split(",");
-i.canThirdPlaySrces=function(a,c){var d="";if(m||C)a=b(a),c=c||i.srces(a),b.each(c,function(b,a){if(a.container&&a.src&&(m&&-1!=i.swfMimeTypes.indexOf(a.container)||C&&"video/youtube"==a.container))return d=a,!1});return d};var c={};i.canNativePlaySrces=function(a,d){var e="";if(k){var a=b(a),f=(a[0].nodeName||"").toLowerCase();if(!c[f])return e;d=d||i.srces(a);b.each(d,function(b,d){if(d.type&&c[f].prop._supvalue.call(a[0],d.type))return e=d,!1})}return e};i.setError=function(a,c){c||(c="can't play sources");
-b(a).pause().data("mediaerror",c);g.warn("mediaelementError: "+c);setTimeout(function(){b(a).data("mediaerror")&&b(a).trigger("mediaerror")},1)};var e=function(){var b;return function(c,f,h){g.ready(m?q:"mediaelement-yt",function(){i.createSWF?i.createSWF(c,f,h):b||(b=!0,a(),e(c,f,h))});!b&&C&&!i.createSWF&&d()}}(),o=function(a,b,c,d,f){c||!1!==c&&b&&"third"==b.isActive?(c=i.canThirdPlaySrces(a,d))?e(a,c,b):f?i.setError(a,!1):o(a,b,!1,d,!0):(c=i.canNativePlaySrces(a,d))?b&&"third"==b.isActive&&i.setActive(a,
-"html5",b):f?(i.setError(a,!1),b&&"third"==b.isActive&&i.setActive(a,"html5",b)):o(a,b,!0,d,!0)},u=/^(?:embed|object|datalist)$/i,z=function(a,c){var d=g.data(a,"mediaelementBase")||g.data(a,"mediaelementBase",{}),e=i.srces(a),f=a.parentNode;clearTimeout(d.loadTimer);b.data(a,"mediaerror",!1);if(e.length&&f&&!(1!=f.nodeType||u.test(f.nodeName||"")))c=c||g.data(a,"mediaelement"),o(a,c,p.preferFlash||t,e)};b(r).on("ended",function(a){var c=g.data(a.target,"mediaelement");(!l||c&&"html5"!=c.isActive||
-b.prop(a.target,"loop"))&&setTimeout(function(){!b.prop(a.target,"paused")&&b.prop(a.target,"loop")&&b(a.target).prop("currentTime",0).play()},1)});l||g.defineNodeNamesBooleanProperty(["audio","video"],"loop");["audio","video"].forEach(function(a){var d=g.defineNodeNameProperty(a,"load",{prop:{value:function(){var a=g.data(this,"mediaelement");z(this,a);k&&(!a||"html5"==a.isActive)&&d.prop._supvalue&&d.prop._supvalue.apply(this,arguments)}}});c[a]=g.defineNodeNameProperty(a,"canPlayType",{prop:{value:function(d){var e=
-"";k&&c[a].prop._supvalue&&(e=c[a].prop._supvalue.call(this,d),"no"==e&&(e=""));!e&&m&&(d=b.trim((d||"").split(";")[0]),-1!=i.swfMimeTypes.indexOf(d)&&(e="maybe"));return e}}})});g.onNodeNamesPropertyModify(["audio","video"],["src","poster"],{set:function(){var a=this,b=g.data(a,"mediaelementBase")||g.data(a,"mediaelementBase",{});clearTimeout(b.loadTimer);b.loadTimer=setTimeout(function(){z(a);a=null},9)}});v=function(){g.addReady(function(a,c){b("video, audio",a).add(c.filter("video, audio")).each(function(){b.browser.msie&&
-8<g.browserVersion&&b.prop(this,"paused")&&!b.prop(this,"readyState")&&b(this).is('audio[preload="none"][controls]:not([autoplay])')?b(this).prop("preload","metadata").mediaLoad():z(this);if(k){var a,c,d=this,e=function(){var a=b.prop(d,"buffered");if(a){for(var c="",e=0,M=a.length;e<M;e++)c+=a.end(e);return c}},f=function(){var a=e();a!=c&&(c=a,b(d).triggerHandler("progress"))};b(this).on({"play loadstart progress":function(b){"progress"==b.type&&(c=e());clearTimeout(a);a=setTimeout(f,999)},"emptied stalled mediaerror abort suspend":function(b){"emptied"==
-b.type&&(c=!1);clearTimeout(a)}})}})})};f.track&&!n.track&&g.defineProperty(TextTrack.prototype,"shimActiveCues",{get:function(){return this._shimActiveCues||this.activeCues}});k?(g.isReady("mediaelement-core",!0),v(),g.ready("WINDOWLOAD mediaelement",a)):g.ready(q,v);b(function(){g.loader.loadList(["track-ui"])})})})(jQuery,Modernizr,jQuery.webshims);
-jQuery.webshims.register("mediaelement-swf",function(b,f,g,k,l,p){var n=f.mediaelement,q=g.swfobject,B=Modernizr.audio&&Modernizr.video,m=q.hasFlashPlayerVersion("9.0.115"),z=0,g={paused:!0,ended:!1,currentSrc:"",duration:g.NaN,readyState:0,networkState:0,videoHeight:0,videoWidth:0,error:null,buffered:{start:function(a){if(a)f.error("buffered index size error");else return 0},end:function(a){if(a)f.error("buffered index size error");else return 0},length:0}},t=Object.keys(g),h={currentTime:0,volume:1,
-muted:!1};Object.keys(h);var A=b.extend({isActive:"html5",activating:"html5",wasSwfReady:!1,_bufferedEnd:0,_bufferedStart:0,_metadata:!1,_durationCalcs:-1,_callMeta:!1,currentTime:0,_ppFlag:l},g,h),v=/^jwplayer-/,r=function(a){if(a=k.getElementById(a.replace(v,"")))return a=f.data(a,"mediaelement"),"third"==a.isActive?a:null},D=function(a){return(a=f.data(a,"mediaelement"))&&"third"==a.isActive?a:null},i=function(a,c){c=b.Event(c);c.preventDefault();b.event.trigger(c,l,a)},y=p.playerPath||f.cfg.basePath+
-"jwplayer/"+(p.playerName||"player.swf"),C=p.pluginPath||f.cfg.basePath+"swf/jwwebshims.swf";f.extendUNDEFProp(p.params,{allowscriptaccess:"always",allowfullscreen:"true",wmode:"transparent"});f.extendUNDEFProp(p.vars,{screencolor:"ffffffff"});f.extendUNDEFProp(p.attrs,{bgcolor:"#000000"});var d=function(a,c){var d=a.duration;if(!(d&&0<a._durationCalcs)){try{if(a.duration=a.jwapi.getPlaylist()[0].duration,!a.duration||0>=a.duration||a.duration===a._lastDuration)a.duration=d}catch(e){}a.duration&&
-a.duration!=a._lastDuration?(i(a._elem,"durationchange"),("audio"==a._elemNodeName||a._callMeta)&&n.jwEvents.Model.META(b.extend({duration:a.duration},c),a),a._durationCalcs--):a._durationCalcs++}},a=function(b,c){3>b&&clearTimeout(c._canplaythroughTimer);if(3<=b&&3>c.readyState)c.readyState=b,i(c._elem,"canplay"),clearTimeout(c._canplaythroughTimer),c._canplaythroughTimer=setTimeout(function(){a(4,c)},4E3);if(4<=b&&4>c.readyState)c.readyState=b,i(c._elem,"canplaythrough");c.readyState=b};b.extend(b.event.customEvent,
-{updatemediaelementdimensions:!0,flashblocker:!0,swfstageresize:!0,mediaelementapichange:!0});n.jwEvents={View:{PLAY:function(a){var b=r(a.id);if(b&&!b.stopPlayPause&&(b._ppFlag=!0,b.paused==a.state)){b.paused=!a.state;if(b.ended)b.ended=!1;i(b._elem,a.state?"play":"pause")}}},Model:{BUFFER:function(c){var s=r(c.id);if(s&&"percentage"in c&&s._bufferedEnd!=c.percentage){s.networkState=100==c.percentage?1:2;(isNaN(s.duration)||5<c.percentage&&25>c.percentage||100===c.percentage)&&d(s,c);if(s.ended)s.ended=
-!1;if(s.duration){2<c.percentage&&20>c.percentage?a(3,s):20<c.percentage&&a(4,s);if(s._bufferedEnd&&s._bufferedEnd>c.percentage)s._bufferedStart=s.currentTime||0;s._bufferedEnd=c.percentage;s.buffered.length=1;if(100==c.percentage)s.networkState=1,a(4,s);b.event.trigger("progress",l,s._elem,!0)}}},META:function(b,c){if(c=c&&c.networkState?c:r(b.id))if("duration"in b){if(!c._metadata||!((!b.height||c.videoHeight==b.height)&&b.duration===c.duration)){c._metadata=!0;var d=c.duration;if(b.duration)c.duration=
-b.duration;c._lastDuration=c.duration;if(b.height||b.width)c.videoHeight=b.height||0,c.videoWidth=b.width||0;if(!c.networkState)c.networkState=2;1>c.readyState&&a(1,c);c.duration&&d!==c.duration&&i(c._elem,"durationchange");i(c._elem,"loadedmetadata")}}else c._callMeta=!0},TIME:function(b){var c=r(b.id);if(c&&c.currentTime!==b.position){c.currentTime=b.position;c.duration&&c.duration<c.currentTime&&d(c,b);2>c.readyState&&a(2,c);if(c.ended)c.ended=!1;i(c._elem,"timeupdate")}},STATE:function(b){var c=
-r(b.id);if(c)switch(b.newstate){case "BUFFERING":if(c.ended)c.ended=!1;a(1,c);i(c._elem,"waiting");break;case "PLAYING":c.paused=!1;c._ppFlag=!0;c.duration||d(c,b);3>c.readyState&&a(3,c);if(c.ended)c.ended=!1;i(c._elem,"playing");break;case "PAUSED":if(!c.paused&&!c.stopPlayPause)c.paused=!0,c._ppFlag=!0,i(c._elem,"pause");break;case "COMPLETED":4>c.readyState&&a(4,c),c.ended=!0,i(c._elem,"ended")}}},Controller:{ERROR:function(a){var b=r(a.id);b&&n.setError(b._elem,a.message)},SEEK:function(a){var b=
-r(a.id);if(b){if(b.ended)b.ended=!1;if(b.paused)try{b.jwapi.sendEvent("play","false")}catch(c){}if(b.currentTime!=a.position)b.currentTime=a.position,i(b._elem,"timeupdate")}},VOLUME:function(a){var b=r(a.id);if(b&&(a=a.percentage/100,b.volume!=a))b.volume=a,i(b._elem,"volumechange")},MUTE:function(a){if(!a.state){var b=r(a.id);if(b&&b.muted!=a.state)b.muted=a.state,i(b._elem,"volumechange")}}}};var c=function(a){var c=!0;b.each(n.jwEvents,function(d,e){b.each(e,function(b){try{a.jwapi["add"+d+"Listener"](b,
-"jQuery.webshims.mediaelement.jwEvents."+d+"."+b)}catch(e){return c=!1}})});return c},e=function(a){var b=a.actionQueue.length,c=0,d;if(b&&"third"==a.isActive)for(;a.actionQueue.length&&b>c;)c++,d=a.actionQueue.shift(),a.jwapi[d.fn].apply(a.jwapi,d.args);if(a.actionQueue.length)a.actionQueue=[]},o=function(a){a&&(a._ppFlag===l&&b.prop(a._elem,"autoplay")||!a.paused)&&setTimeout(function(){if("third"==a.isActive&&(a._ppFlag===l||!a.paused))try{b(a._elem).play()}catch(c){}},1)};n.playerResize=function(a){a&&
-(a=k.getElementById(a.replace(v,"")))&&b(a).triggerHandler("swfstageresize")};b(k).on("emptied",function(a){a=D(a.target);o(a)});var u;n.jwPlayerReady=function(a){var d=r(a.id),g=0,h=function(){if(!(9<g))if(g++,c(d)){if(d.wasSwfReady)b(d._elem).mediaLoad();else{var i=parseFloat(a.version,10);(5.1>i||6<=i)&&f.warn("mediaelement-swf is only testet with jwplayer 5.6+")}d.wasSwfReady=!0;d.tryedReframeing=0;e(d);o(d)}else clearTimeout(d.reframeTimer),d.reframeTimer=setTimeout(h,9*g),2<g&&9>d.tryedReframeing&&
-(d.tryedReframeing++,d.shadowElem.css({overflow:"visible"}),setTimeout(function(){d.shadowElem.css({overflow:"hidden"})},16))};if(d&&d.jwapi){if(!d.tryedReframeing)d.tryedReframeing=0;clearTimeout(u);d.jwData=a;d.shadowElem.removeClass("flashblocker-assumed");b.prop(d._elem,"volume",d.volume);b.prop(d._elem,"muted",d.muted);h()}};var G=b.noop;if(B){var w={play:1,playing:1},j="play,pause,playing,canplay,progress,waiting,ended,loadedmetadata,durationchange,emptied".split(","),x=j.map(function(a){return a+
-".webshimspolyfill"}).join(" "),E=function(a){var c=f.data(a.target,"mediaelement");c&&(a.originalEvent&&a.originalEvent.type===a.type)==("third"==c.activating)&&(a.stopImmediatePropagation(),w[a.type]&&c.isActive!=c.activating&&b(a.target).pause())},G=function(a){b(a).off(x).on(x,E);j.forEach(function(b){f.moveToFirstEvent(a,b)})};G(k)}n.setActive=function(a,c,d){d||(d=f.data(a,"mediaelement"));if(d&&d.isActive!=c){"html5"!=c&&"third"!=c&&f.warn("wrong type for mediaelement activating: "+c);var e=
-f.data(a,"shadowData");d.activating=c;b(a).pause();d.isActive=c;"third"==c?(e.shadowElement=e.shadowFocusElement=d.shadowElem[0],b(a).addClass("swf-api-active nonnative-api-active").hide().getShadowElement().show()):(b(a).removeClass("swf-api-active nonnative-api-active").show().getShadowElement().hide(),e.shadowElement=e.shadowFocusElement=!1);b(a).trigger("mediaelementapichange")}};var I=function(){var b="_bufferedEnd,_bufferedStart,_metadata,_ppFlag,currentSrc,currentTime,duration,ended,networkState,paused,videoHeight,videoWidth,_callMeta,_durationCalcs".split(","),
-c=b.length;return function(d){if(d){var e=c,f=d.networkState;for(a(0,d);--e;)delete d[b[e]];d.actionQueue=[];d.buffered.length=0;f&&i(d._elem,"emptied")}}}(),H=function(a,c){var d=a._elem,e=a.shadowElem;b(d)[c?"addClass":"removeClass"]("webshims-controls");"audio"==a._elemNodeName&&!c?e.css({width:0,height:0}):e.css({width:d.style.width||b(d).width(),height:d.style.height||b(d).height()})};n.createSWF=function(a,c,d){if(m){1>z?z=1:z++;var e=b.extend({},p.vars,{image:b.prop(a,"poster")||"",file:c.srcProp}),
-g=b(a).data("vars")||{};d||(d=f.data(a,"mediaelement"));if(d&&d.swfCreated)n.setActive(a,"third",d),I(d),d.currentSrc=c.srcProp,b.extend(e,g),p.changeSWF(e,a,c,d,"load"),F(a,"sendEvent",["LOAD",e]);else{var h=b.prop(a,"controls"),i="jwplayer-"+f.getID(a),j=b.extend({},p.params,b(a).data("params")),k=a.nodeName.toLowerCase(),o=b.extend({},p.attrs,{name:i,id:i},b(a).data("attrs")),l=b('<div class="polyfill-'+k+' polyfill-mediaelement" id="wrapper-'+i+'"><div id="'+i+'"></div>').css({position:"relative",
-overflow:"hidden"}),d=f.data(a,"mediaelement",f.objectCreate(A,{actionQueue:{value:[]},shadowElem:{value:l},_elemNodeName:{value:k},_elem:{value:a},currentSrc:{value:c.srcProp},swfCreated:{value:!0},buffered:{value:{start:function(a){if(a>=d.buffered.length)f.error("buffered index size error");else return 0},end:function(a){if(a>=d.buffered.length)f.error("buffered index size error");else return(d.duration-d._bufferedStart)*d._bufferedEnd/100+d._bufferedStart},length:0}}}));H(d,h);l.insertBefore(a);
-B&&b.extend(d,{volume:b.prop(a,"volume"),muted:b.prop(a,"muted")});b.extend(e,{id:i,controlbar:h?p.vars.controlbar||("video"==k?"over":"bottom"):"video"==k?"none":"bottom",icons:""+(h&&"video"==k)},g,{playerready:"jQuery.webshims.mediaelement.jwPlayerReady"});e.plugins=e.plugins?e.plugins+(","+C):C;f.addShadowDom(a,l);G(a);n.setActive(a,"third",d);p.changeSWF(e,a,c,d,"embed");b(a).on("updatemediaelementdimensions updateshadowdom",function(){H(d,b.prop(a,"controls"))});q.embedSWF(y,i,"100%","100%",
-"9.0.0",!1,e,j,o,function(c){if(c.success)d.jwapi=c.ref,h||b(c.ref).attr("tabindex","-1").css("outline","none"),setTimeout(function(){if(!c.ref.parentNode&&l[0].parentNode||"none"==c.ref.style.display)l.addClass("flashblocker-assumed"),b(a).trigger("flashblocker"),f.warn("flashblocker assumed");b(c.ref).css({minHeight:"2px",minWidth:"2px",display:"block"})},9),u||(clearTimeout(u),u=setTimeout(function(){var a=b(c.ref);1<a[0].offsetWidth&&1<a[0].offsetHeight&&0===location.protocol.indexOf("file:")?
-f.error("Add your local development-directory to the local-trusted security sandbox:  http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html"):(2>a[0].offsetWidth||2>a[0].offsetHeight)&&f.warn("JS-SWF connection can't be established on hidden or unconnected flash objects")},8E3))})}}else setTimeout(function(){b(a).mediaLoad()},1)};var F=function(a,b,c,d){return(d=d||D(a))?(d.jwapi&&d.jwapi[b]?d.jwapi[b].apply(d.jwapi,c||[]):(d.actionQueue.push({fn:b,args:c}),10<
-d.actionQueue.length&&setTimeout(function(){5<d.actionQueue.length&&d.actionQueue.shift()},99)),d):!1};["audio","video"].forEach(function(a){var c={},d,e=function(b){"audio"==a&&("videoHeight"==b||"videoWidth"==b)||(c[b]={get:function(){var a=D(this);return a?a[b]:B&&d[b].prop._supget?d[b].prop._supget.apply(this):A[b]},writeable:!1})},g=function(a,b){e(a);delete c[a].writeable;c[a].set=b};g("volume",function(a){var b=D(this);if(b){if(a*=100,!isNaN(a)){var c=b.muted;(0>a||100<a)&&f.error("volume greater or less than allowed "+
-a/100);F(this,"sendEvent",["VOLUME",a],b);if(c)try{b.jwapi.sendEvent("mute","true")}catch(e){}a/=100;if(!(b.volume==a||"third"!=b.isActive))b.volume=a,i(b._elem,"volumechange")}}else if(d.volume.prop._supset)return d.volume.prop._supset.apply(this,arguments)});g("muted",function(a){var b=D(this);if(b){if(a=!!a,F(this,"sendEvent",["mute",""+a],b),!(b.muted==a||"third"!=b.isActive))b.muted=a,i(b._elem,"volumechange")}else if(d.muted.prop._supset)return d.muted.prop._supset.apply(this,arguments)});g("currentTime",
-function(a){var b=D(this);if(b){if(a*=1,!isNaN(a)){if(b.paused)clearTimeout(b.stopPlayPause),b.stopPlayPause=setTimeout(function(){b.paused=!0;b.stopPlayPause=!1},50);F(this,"sendEvent",["SEEK",""+a],b);if(b.paused){if(0<b.readyState)b.currentTime=a,i(b._elem,"timeupdate");try{b.jwapi.sendEvent("play","false")}catch(c){}}}}else if(d.currentTime.prop._supset)return d.currentTime.prop._supset.apply(this,arguments)});["play","pause"].forEach(function(a){c[a]={value:function(){var b=D(this);if(b)b.stopPlayPause&&
-clearTimeout(b.stopPlayPause),F(this,"sendEvent",["play","play"==a],b),setTimeout(function(){if("third"==b.isActive&&(b._ppFlag=!0,b.paused!=("play"!=a)))b.paused="play"!=a,i(b._elem,a)},1);else if(d[a].prop._supvalue)return d[a].prop._supvalue.apply(this,arguments)}}});t.forEach(e);f.onNodeNamesPropertyModify(a,"controls",function(c,d){var e=D(this);b(this)[d?"addClass":"removeClass"]("webshims-controls");if(e){try{F(this,d?"showControls":"hideControls",[a],e)}catch(g){f.warn("you need to generate a crossdomain.xml")}"audio"==
-a&&H(e,d);b(e.jwapi).attr("tabindex",d?"0":"-1")}});d=f.defineNodeNameProperties(a,c,"prop")});if(m){var J=b.cleanData,K=b.browser.msie&&9>f.browserVersion,L={object:1,OBJECT:1};b.cleanData=function(a){var b,c,d;if(a&&(c=a.length)&&z)for(b=0;b<c;b++)if(L[a[b].nodeName]){if("sendEvent"in a[b]){z--;try{a[b].sendEvent("play",!1)}catch(e){}}if(K)try{for(d in a[b])"function"==typeof a[b][d]&&(a[b][d]=null)}catch(f){}}return J.apply(this,arguments)}}B||(["poster","src"].forEach(function(a){f.defineNodeNamesProperty("src"==
-a?["audio","video","source"]:["video"],a,{reflect:!0,propType:"src"})}),["autoplay","controls"].forEach(function(a){f.defineNodeNamesBooleanProperty(["audio","video"],a)}),f.defineNodeNamesProperties(["audio","video"],{HAVE_CURRENT_DATA:{value:2},HAVE_ENOUGH_DATA:{value:4},HAVE_FUTURE_DATA:{value:3},HAVE_METADATA:{value:1},HAVE_NOTHING:{value:0},NETWORK_EMPTY:{value:0},NETWORK_IDLE:{value:1},NETWORK_LOADING:{value:2},NETWORK_NO_SOURCE:{value:3}},"prop"))});
+//DOM-Extension helper
+jQuery.webshims.register('dom-extend', function($, webshims, window, document, undefined){
+	"use strict";
+	//shortcus
+	var modules = webshims.modules;
+	var listReg = /\s*,\s*/;
+		
+	//proxying attribute
+	var olds = {};
+	var havePolyfill = {};
+	var extendedProps = {};
+	var extendQ = {};
+	var modifyProps = {};
+	
+	var oldVal = $.fn.val;
+	var singleVal = function(elem, name, val, pass, _argless){
+		return (_argless) ? oldVal.call($(elem)) : oldVal.call($(elem), val);
+	};
+	$.fn.val = function(val){
+		var elem = this[0];
+		if(arguments.length && val == null){
+			val = '';
+		}
+		if(!arguments.length){
+			if(!elem || elem.nodeType !== 1){return oldVal.call(this);}
+			return $.prop(elem, 'value', val, 'val', true);
+		}
+		if($.isArray(val)){
+			return oldVal.apply(this, arguments);
+		}
+		var isFunction = $.isFunction(val);
+		return this.each(function(i){
+			elem = this;
+			if(elem.nodeType === 1){
+				if(isFunction){
+					var genVal = val.call( elem, i, $.prop(elem, 'value', undefined, 'val', true));
+					if(genVal == null){
+						genVal = '';
+					}
+					$.prop(elem, 'value', genVal, 'val') ;
+				} else {
+					$.prop(elem, 'value', val, 'val');
+				}
+			}
+		});
+	};
+	
+	var dataID = '_webshimsLib'+ (Math.round(Math.random() * 1000));
+	var elementData = function(elem, key, val){
+		elem = elem.jquery ? elem[0] : elem;
+		if(!elem){return val || {};}
+		var data = $.data(elem, dataID);
+		if(val !== undefined){
+			if(!data){
+				data = $.data(elem, dataID, {});
+			}
+			if(key){
+				data[key] = val;
+			}
+		}
+		
+		return key ? data && data[key] : data;
+	};
+
+
+	[{name: 'getNativeElement', prop: 'nativeElement'}, {name: 'getShadowElement', prop: 'shadowElement'}, {name: 'getShadowFocusElement', prop: 'shadowFocusElement'}].forEach(function(data){
+		$.fn[data.name] = function(){
+			return this.map(function(){
+				var shadowData = elementData(this, 'shadowData');
+				return shadowData && shadowData[data.prop] || this;
+			});
+		};
+	});
+	
+	
+	['removeAttr', 'prop', 'attr'].forEach(function(type){
+		olds[type] = $[type];
+		$[type] = function(elem, name, value, pass, _argless){
+			var isVal = (pass == 'val');
+			var oldMethod = !isVal ? olds[type] : singleVal;
+			if( !elem || !havePolyfill[name] || elem.nodeType !== 1 || (!isVal && pass && type == 'attr' && $.attrFn[name]) ){
+				return oldMethod(elem, name, value, pass, _argless);
+			}
+			
+			var nodeName = (elem.nodeName || '').toLowerCase();
+			var desc = extendedProps[nodeName];
+			var curType = (type == 'attr' && (value === false || value === null)) ? 'removeAttr' : type;
+			var propMethod;
+			var oldValMethod;
+			var ret;
+			
+			
+			if(!desc){
+				desc = extendedProps['*'];
+			}
+			if(desc){
+				desc = desc[name];
+			}
+			
+			if(desc){
+				propMethod = desc[curType];
+			}
+			
+			if(propMethod){
+				if(name == 'value'){
+					oldValMethod = propMethod.isVal;
+					propMethod.isVal = isVal;
+				}
+				if(curType === 'removeAttr'){
+					return propMethod.value.call(elem);	
+				} else if(value === undefined){
+					return (propMethod.get) ? 
+						propMethod.get.call(elem) : 
+						propMethod.value
+					;
+				} else if(propMethod.set) {
+					if(type == 'attr' && value === true){
+						value = name;
+					}
+					
+					ret = propMethod.set.call(elem, value);
+				}
+				if(name == 'value'){
+					propMethod.isVal = oldValMethod;
+				}
+			} else {
+				ret = oldMethod(elem, name, value, pass, _argless);
+			}
+			if((value !== undefined || curType === 'removeAttr') && modifyProps[nodeName] && modifyProps[nodeName][name]){
+				
+				var boolValue;
+				if(curType == 'removeAttr'){
+					boolValue = false;
+				} else if(curType == 'prop'){
+					boolValue = !!(value);
+				} else {
+					boolValue = true;
+				}
+				
+				modifyProps[nodeName][name].forEach(function(fn){
+					if(!fn.only || (fn.only = 'prop' && type == 'prop') || (fn.only == 'attr' && type != 'prop')){
+						fn.call(elem, value, boolValue, (isVal) ? 'val' : curType, type);
+					}
+				});
+			}
+			return ret;
+		};
+		
+		extendQ[type] = function(nodeName, prop, desc){
+			
+			if(!extendedProps[nodeName]){
+				extendedProps[nodeName] = {};
+			}
+			if(!extendedProps[nodeName][prop]){
+				extendedProps[nodeName][prop] = {};
+			}
+			var oldDesc = extendedProps[nodeName][prop][type];
+			var getSup = function(propType, descriptor, oDesc){
+				if(descriptor && descriptor[propType]){
+					return descriptor[propType];
+				}
+				if(oDesc && oDesc[propType]){
+					return oDesc[propType];
+				}
+				if(type == 'prop' && prop == 'value'){
+					return function(value){
+						var elem = this;
+						return (desc.isVal) ? 
+							singleVal(elem, prop, value, false, (arguments.length === 0)) : 
+							olds[type](elem, prop, value)
+						;
+					};
+				}
+				if(type == 'prop' && propType == 'value' && desc.value.apply){
+					return  function(value){
+						var sup = olds[type](this, prop);
+						if(sup && sup.apply){
+							sup = sup.apply(this, arguments);
+						} 
+						return sup;
+					};
+				}
+				return function(value){
+					return olds[type](this, prop, value);
+				};
+			};
+			extendedProps[nodeName][prop][type] = desc;
+			if(desc.value === undefined){
+				if(!desc.set){
+					desc.set = desc.writeable ? 
+						getSup('set', desc, oldDesc) : 
+						(webshims.cfg.useStrict && prop == 'prop') ? 
+							function(){throw(prop +' is readonly on '+ nodeName);} : 
+							$.noop
+					;
+				}
+				if(!desc.get){
+					desc.get = getSup('get', desc, oldDesc);
+				}
+				
+			}
+			
+			['value', 'get', 'set'].forEach(function(descProp){
+				if(desc[descProp]){
+					desc['_sup'+descProp] = getSup(descProp, oldDesc);
+				}
+			});
+		};
+		
+	});
+	
+	//see also: https://github.com/lojjic/PIE/issues/40 | https://prototype.lighthouseapp.com/projects/8886/tickets/1107-ie8-fatal-crash-when-prototypejs-is-loaded-with-rounded-cornershtc
+	var isExtendNativeSave = (!$.browser.msie || parseInt($.browser.version, 10) > 8);
+	var extendNativeValue = (function(){
+		var UNKNOWN = webshims.getPrototypeOf(document.createElement('foobar'));
+		var has = Object.prototype.hasOwnProperty;
+		return function(nodeName, prop, desc){
+			var elem = document.createElement(nodeName);
+			var elemProto = webshims.getPrototypeOf(elem);
+			if( isExtendNativeSave && elemProto && UNKNOWN !== elemProto && ( !elem[prop] || !has.call(elem, prop) ) ){
+				var sup = elem[prop];
+				desc._supvalue = function(){
+					if(sup && sup.apply){
+						return sup.apply(this, arguments);
+					}
+					return sup;
+				};
+				elemProto[prop] = desc.value;
+			} else {
+				desc._supvalue = function(){
+					var data = elementData(this, 'propValue');
+					if(data && data[prop] && data[prop].apply){
+						return data[prop].apply(this, arguments);
+					}
+					return data && data[prop];
+				};
+				initProp.extendValue(nodeName, prop, desc.value);
+			}
+			desc.value._supvalue = desc._supvalue;
+		};
+	})();
+		
+	var initProp = (function(){
+		
+		var initProps = {};
+		
+		webshims.addReady(function(context, contextElem){
+			var nodeNameCache = {};
+			var getElementsByName = function(name){
+				if(!nodeNameCache[name]){
+					nodeNameCache[name] = $(context.getElementsByTagName(name));
+					if(contextElem[0] && $.nodeName(contextElem[0], name)){
+						nodeNameCache[name] = nodeNameCache[name].add(contextElem);
+					}
+				}
+			};
+			
+			
+			$.each(initProps, function(name, fns){
+				getElementsByName(name);
+				if(!fns || !fns.forEach){
+					webshims.warn('Error: with '+ name +'-property. methods: '+ fns);
+					return;
+				}
+				fns.forEach(function(fn){
+					nodeNameCache[name].each(fn);
+				});
+			});
+			nodeNameCache = null;
+		});
+		
+		var tempCache;
+		var emptyQ = $([]);
+		var createNodeNameInit = function(nodeName, fn){
+			if(!initProps[nodeName]){
+				initProps[nodeName] = [fn];
+			} else {
+				initProps[nodeName].push(fn);
+			}
+			if($.isDOMReady){
+				(tempCache || $( document.getElementsByTagName(nodeName) )).each(fn);
+			}
+		};
+		
+		var elementExtends = {};
+		return {
+			createTmpCache: function(nodeName){
+				if($.isDOMReady){
+					tempCache = tempCache || $( document.getElementsByTagName(nodeName) );
+				}
+				return tempCache || emptyQ;
+			},
+			flushTmpCache: function(){
+				tempCache = null;
+			},
+			content: function(nodeName, prop){
+				createNodeNameInit(nodeName, function(){
+					var val =  $.attr(this, prop);
+					if(val != null){
+						$.attr(this, prop, val);
+					}
+				});
+			},
+			createElement: function(nodeName, fn){
+				createNodeNameInit(nodeName, fn);
+			},
+			extendValue: function(nodeName, prop, value){
+				createNodeNameInit(nodeName, function(){
+					$(this).each(function(){
+						var data = elementData(this, 'propValue', {});
+						data[prop] = this[prop];
+						this[prop] = value;
+					});
+				});
+			}
+		};
+	})();
+		
+	var createPropDefault = function(descs, removeType){
+		if(descs.defaultValue === undefined){
+			descs.defaultValue = '';
+		}
+		if(!descs.removeAttr){
+			descs.removeAttr = {
+				value: function(){
+					descs[removeType || 'prop'].set.call(this, descs.defaultValue);
+					descs.removeAttr._supvalue.call(this);
+				}
+			};
+		}
+		if(!descs.attr){
+			descs.attr = {};
+		}
+	};
+	
+	$.extend(webshims, {
+
+		getID: (function(){
+			var ID = new Date().getTime();
+			return function(elem){
+				elem = $(elem);
+				var id = elem.attr('id');
+				if(!id){
+					ID++;
+					id = 'ID-'+ ID;
+					elem.attr('id', id);
+				}
+				return id;
+			};
+		})(),
+		extendUNDEFProp: function(obj, props){
+			$.each(props, function(name, prop){
+				if( !(name in obj) ){
+					obj[name] = prop;
+				}
+			});
+		},
+		//http://www.w3.org/TR/html5/common-dom-interfaces.html#reflect
+		createPropDefault: createPropDefault,
+		data: elementData,
+		moveToFirstEvent: function(elem, eventType, bindType){
+			var events = ($._data(elem, 'events') || {})[eventType];
+			var fn;
+			
+			if(events && events.length > 1){
+				fn = events.pop();
+				if(!bindType){
+					bindType = 'bind';
+				}
+				if(bindType == 'bind' && events.delegateCount){
+					events.splice( events.delegateCount, 0, fn);
+				} else {
+					events.unshift( fn );
+				}
+				
+				
+			}
+			elem = null;
+		},
+		addShadowDom: (function(){
+			var resizeTimer;
+			var lastHeight;
+			var lastWidth;
+			
+			var docObserve = {
+				init: false,
+				runs: 0,
+				test: function(){
+					var height = docObserve.getHeight();
+					var width = docObserve.getWidth();
+					
+					if(height != docObserve.height || width != docObserve.width){
+						docObserve.height = height;
+						docObserve.width = width;
+						docObserve.handler({type: 'docresize'});
+						docObserve.runs++;
+						if(docObserve.runs < 9){
+							setTimeout(docObserve.test, 90);
+						}
+					} else {
+						docObserve.runs = 0;
+					}
+				},
+				handler: function(e){
+					clearTimeout(resizeTimer);
+					resizeTimer = setTimeout(function(){
+						if(e.type == 'resize'){
+							var width = $(window).width();
+							var height = $(window).width();
+							if(height == lastHeight && width == lastWidth){
+								return;
+							}
+							lastHeight = height;
+							lastWidth = width;
+							
+							docObserve.height = docObserve.getHeight();
+							docObserve.width = docObserve.getWidth();
+							
+						}
+						$.event.trigger('updateshadowdom');
+					}, (e.type == 'resize') ? 50 : 9);
+				},
+				_create: function(){
+					$.each({ Height: "getHeight", Width: "getWidth" }, function(name, type){
+						var body = document.body;
+						var doc = document.documentElement;
+						docObserve[type] = function(){
+							return Math.max(
+								body[ "scroll" + name ], doc[ "scroll" + name ],
+								body[ "offset" + name ], doc[ "offset" + name ],
+								doc[ "client" + name ]
+							);
+						};
+					});
+				},
+				start: function(){
+					if(!this.init && document.body){
+						this.init = true;
+						this._create();
+						this.height = docObserve.getHeight();
+						this.width = docObserve.getWidth();
+						setInterval(this.test, 600);
+						$(this.test);
+						webshims.ready('WINDOWLOAD', this.test);
+						$(window).bind('resize', this.handler);
+						(function(){
+							var oldAnimate = $.fn.animate;
+							var animationTimer;
+							
+							$.fn.animate = function(){
+								clearTimeout(animationTimer);
+								animationTimer = setTimeout(function(){
+									docObserve.test();
+								}, 99);
+								
+								return oldAnimate.apply(this, arguments);
+							};
+						})();
+					}
+				}
+			};
+			
+			
+			$.event.customEvent.updateshadowdom = true;
+			webshims.docObserve = function(){
+				webshims.ready('DOM', function(){
+					docObserve.start();
+				});
+			};
+			return function(nativeElem, shadowElem, opts){
+				opts = opts || {};
+				if(nativeElem.jquery){
+					nativeElem = nativeElem[0];
+				}
+				if(shadowElem.jquery){
+					shadowElem = shadowElem[0];
+				}
+				var nativeData = $.data(nativeElem, dataID) || $.data(nativeElem, dataID, {});
+				var shadowData = $.data(shadowElem, dataID) || $.data(shadowElem, dataID, {});
+				var shadowFocusElementData = {};
+				if(!opts.shadowFocusElement){
+					opts.shadowFocusElement = shadowElem;
+				} else if(opts.shadowFocusElement){
+					if(opts.shadowFocusElement.jquery){
+						opts.shadowFocusElement = opts.shadowFocusElement[0];
+					}
+					shadowFocusElementData = $.data(opts.shadowFocusElement, dataID) || $.data(opts.shadowFocusElement, dataID, shadowFocusElementData);
+				}
+				
+				nativeData.hasShadow = shadowElem;
+				shadowFocusElementData.nativeElement = shadowData.nativeElement = nativeElem;
+				shadowFocusElementData.shadowData = shadowData.shadowData = nativeData.shadowData = {
+					nativeElement: nativeElem,
+					shadowElement: shadowElem,
+					shadowFocusElement: opts.shadowFocusElement
+				};
+				if(opts.shadowChilds){
+					opts.shadowChilds.each(function(){
+						elementData(this, 'shadowData', shadowData.shadowData);
+					});
+				}
+				
+				if(opts.data){
+					shadowFocusElementData.shadowData.data = shadowData.shadowData.data = nativeData.shadowData.data = opts.data;
+				}
+				opts = null;
+				webshims.docObserve();
+			};
+		})(),
+		propTypes: {
+			standard: function(descs, name){
+				createPropDefault(descs);
+				if(descs.prop){return;}
+				descs.prop = {
+					set: function(val){
+						descs.attr.set.call(this, ''+val);
+					},
+					get: function(){
+						return descs.attr.get.call(this) || descs.defaultValue;
+					}
+				};
+				
+			},
+			"boolean": function(descs, name){
+				
+				createPropDefault(descs);
+				if(descs.prop){return;}
+				descs.prop = {
+					set: function(val){
+						if(val){
+							descs.attr.set.call(this, "");
+						} else {
+							descs.removeAttr.value.call(this);
+						}
+					},
+					get: function(){
+						return descs.attr.get.call(this) != null;
+					}
+				};
+			},
+			"src": (function(){
+				var anchor = document.createElement('a');
+				anchor.style.display = "none";
+				return function(descs, name){
+					
+					createPropDefault(descs);
+					if(descs.prop){return;}
+					descs.prop = {
+						set: function(val){
+							descs.attr.set.call(this, val);
+						},
+						get: function(){
+							var href = this.getAttribute(name);
+							var ret;
+							if(href == null){return '';}
+							
+							anchor.setAttribute('href', href+'' );
+							
+							if(!$.support.hrefNormalized){
+								try {
+									$(anchor).insertAfter(this);
+									ret = anchor.getAttribute('href', 4);
+								} catch(er){
+									ret = anchor.getAttribute('href', 4);
+								}
+								$(anchor).detach();
+							}
+							return ret || anchor.href;
+						}
+					};
+				};
+			})(),
+			enumarated: function(descs, name){
+					
+					createPropDefault(descs);
+					if(descs.prop){return;}
+					descs.prop = {
+						set: function(val){
+							descs.attr.set.call(this, val);
+						},
+						get: function(){
+							var val = (descs.attr.get.call(this) || '').toLowerCase();
+							if(!val || descs.limitedTo.indexOf(val) == -1){
+								val = descs.defaultValue;
+							}
+							return val;
+						}
+					};
+				}
+			
+//			,unsignedLong: $.noop
+//			,"doubble": $.noop
+//			,"long": $.noop
+//			,tokenlist: $.noop
+//			,settableTokenlist: $.noop
+		},
+		reflectProperties: function(nodeNames, props){
+			if(typeof props == 'string'){
+				props = props.split(listReg);
+			}
+			props.forEach(function(prop){
+				webshims.defineNodeNamesProperty(nodeNames, prop, {
+					prop: {
+						set: function(val){
+							$.attr(this, prop, val);
+						},
+						get: function(){
+							return $.attr(this, prop) || '';
+						}
+					}
+				});
+			});
+		},
+		defineNodeNameProperty: function(nodeName, prop, descs){
+			havePolyfill[prop] = true;
+						
+			if(descs.reflect){
+				webshims.propTypes[descs.propType || 'standard'](descs, prop);
+			}
+			
+			['prop', 'attr', 'removeAttr'].forEach(function(type){
+				var desc = descs[type];
+				if(desc){
+					if(type === 'prop'){
+						desc = $.extend({writeable: true}, desc);
+					} else {
+						desc = $.extend({}, desc, {writeable: true});
+					}
+						
+					extendQ[type](nodeName, prop, desc);
+					if(nodeName != '*' && webshims.cfg.extendNative && type == 'prop' && desc.value && $.isFunction(desc.value)){
+						extendNativeValue(nodeName, prop, desc);
+					}
+					descs[type] = desc;
+				}
+			});
+			if(descs.initAttr){
+				initProp.content(nodeName, prop);
+			}
+			return descs;
+		},
+		
+		defineNodeNameProperties: function(name, descs, propType, _noTmpCache){
+			var olddesc;
+			for(var prop in descs){
+				if(!_noTmpCache && descs[prop].initAttr){
+					initProp.createTmpCache(name);
+				}
+				if(propType){
+					if(descs[prop][propType]){
+						//webshims.log('override: '+ name +'['+prop +'] for '+ propType);
+					} else {
+						descs[prop][propType] = {};
+						['value', 'set', 'get'].forEach(function(copyProp){
+							if(copyProp in descs[prop]){
+								descs[prop][propType][copyProp] = descs[prop][copyProp];
+								delete descs[prop][copyProp];
+							}
+						});
+					}
+				}
+				descs[prop] = webshims.defineNodeNameProperty(name, prop, descs[prop]);
+			}
+			if(!_noTmpCache){
+				initProp.flushTmpCache();
+			}
+			return descs;
+		},
+		
+		createElement: function(nodeName, create, descs){
+			var ret;
+			if($.isFunction(create)){
+				create = {
+					after: create
+				};
+			}
+			initProp.createTmpCache(nodeName);
+			if(create.before){
+				initProp.createElement(nodeName, create.before);
+			}
+			if(descs){
+				ret = webshims.defineNodeNameProperties(nodeName, descs, false, true);
+			}
+			if(create.after){
+				initProp.createElement(nodeName, create.after);
+			}
+			initProp.flushTmpCache();
+			return ret;
+		},
+		onNodeNamesPropertyModify: function(nodeNames, props, desc, only){
+			if(typeof nodeNames == 'string'){
+				nodeNames = nodeNames.split(listReg);
+			}
+			if($.isFunction(desc)){
+				desc = {set: desc};
+			}
+			
+			nodeNames.forEach(function(name){
+				if(!modifyProps[name]){
+					modifyProps[name] = {};
+				}
+				if(typeof props == 'string'){
+					props = props.split(listReg);
+				}
+				if(desc.initAttr){
+					initProp.createTmpCache(name);
+				}
+				props.forEach(function(prop){
+					if(!modifyProps[name][prop]){
+						modifyProps[name][prop] = [];
+						havePolyfill[prop] = true;
+					}
+					if(desc.set){
+						if(only){
+							desc.set.only =  only;
+						}
+						modifyProps[name][prop].push(desc.set);
+					}
+					
+					if(desc.initAttr){
+						initProp.content(name, prop);
+					}
+				});
+				initProp.flushTmpCache();
+				
+			});
+		},
+		defineNodeNamesBooleanProperty: function(elementNames, prop, descs){
+			if(!descs){
+				descs = {};
+			}
+			if($.isFunction(descs)){
+				descs.set = descs;
+			}
+			webshims.defineNodeNamesProperty(elementNames, prop, {
+				attr: {
+					set: function(val){
+						this.setAttribute(prop, val);
+						if(descs.set){
+							descs.set.call(this, true);
+						}
+					},
+					get: function(){
+						var ret = this.getAttribute(prop);
+						return (ret == null) ? undefined : prop;
+					}
+				},
+				removeAttr: {
+					value: function(){
+						this.removeAttribute(prop);
+						if(descs.set){
+							descs.set.call(this, false);
+						}
+					}
+				},
+				reflect: true,
+				propType: 'boolean',
+				initAttr: descs.initAttr || false
+			});
+		},
+		contentAttr: function(elem, name, val){
+			if(!elem.nodeName){return;}
+			var attr;
+			if(val === undefined){
+				attr = (elem.attributes[name] || {});
+				val = attr.specified ? attr.value : null;
+				return (val == null) ? undefined : val;
+			}
+			
+			if(typeof val == 'boolean'){
+				if(!val){
+					elem.removeAttribute(name);
+				} else {
+					elem.setAttribute(name, name);
+				}
+			} else {
+				elem.setAttribute(name, val);
+			}
+		},
+		
+//		set current Lang:
+//			- webshims.activeLang(lang:string);
+//		get current lang
+//			- webshims.activeLang();
+//		get current lang
+//			webshims.activeLang({
+//				register: moduleName:string,
+//				callback: callback:function
+//			});
+//		get/set including removeLang
+//			- webshims.activeLang({
+//				module: moduleName:string,
+//				callback: callback:function,
+//				langObj: languageObj:array/object
+//			});
+		activeLang: (function(){
+			var callbacks = [];
+			var registeredCallbacks = {};
+			var currentLang;
+			var shortLang;
+			var notLocal = /:\/\/|^\.*\//;
+			var loadRemoteLang = function(data, lang, options){
+				var langSrc;
+				if(lang && options && $.inArray(lang, options.availabeLangs || []) !== -1){
+					data.loading = true;
+					langSrc = options.langSrc;
+					if(!notLocal.test(langSrc)){
+						langSrc = webshims.cfg.basePath+langSrc;
+					}
+					webshims.loader.loadScript(langSrc+lang+'.js', function(){
+						if(data.langObj[lang]){
+							data.loading = false;
+							callLang(data, true);
+						} else {
+							$(function(){
+								if(data.langObj[lang]){
+									callLang(data, true);
+								}
+								data.loading = false;
+							});
+						}
+					});
+					return true;
+				}
+				return false;
+			};
+			var callRegister = function(module){
+				if(registeredCallbacks[module]){
+					registeredCallbacks[module].forEach(function(data){
+						data.callback();
+					});
+				}
+			};
+			var callLang = function(data, _noLoop){
+				if(data.activeLang != currentLang && data.activeLang !== shortLang){
+					var options = modules[data.module].options;
+					if( data.langObj[currentLang] || (shortLang && data.langObj[shortLang]) ){
+						data.activeLang = currentLang;
+						data.callback(data.langObj[currentLang] || data.langObj[shortLang], currentLang);
+						callRegister(data.module);
+					} else if( !_noLoop &&
+						!loadRemoteLang(data, currentLang, options) && 
+						!loadRemoteLang(data, shortLang, options) && 
+						data.langObj[''] && data.activeLang !== '' ) {
+						data.activeLang = '';
+						data.callback(data.langObj[''], currentLang);
+						callRegister(data.module);
+					}
+				}
+			};
+			
+			
+			var activeLang = function(lang){
+				
+				if(typeof lang == 'string' && lang !== currentLang){
+					currentLang = lang;
+					shortLang = currentLang.split('-')[0];
+					if(currentLang == shortLang){
+						shortLang = false;
+					}
+					$.each(callbacks, function(i, data){
+						callLang(data);
+					});
+				} else if(typeof lang == 'object'){
+					
+					if(lang.register){
+						if(!registeredCallbacks[lang.register]){
+							registeredCallbacks[lang.register] = [];
+						}
+						registeredCallbacks[lang.register].push(lang);
+						lang.callback();
+					} else {
+						if(!lang.activeLang){
+							lang.activeLang = '';
+						}
+						callbacks.push(lang);
+						callLang(lang);
+					}
+				}
+				return currentLang;
+			};
+			
+			return activeLang;
+		})()
+	});
+	
+	$.each({
+		defineNodeNamesProperty: 'defineNodeNameProperty',
+		defineNodeNamesProperties: 'defineNodeNameProperties',
+		createElements: 'createElement'
+	}, function(name, baseMethod){
+		webshims[name] = function(names, a, b, c){
+			if(typeof names == 'string'){
+				names = names.split(listReg);
+			}
+			var retDesc = {};
+			names.forEach(function(nodeName){
+				retDesc[nodeName] = webshims[baseMethod](nodeName, a, b, c);
+			});
+			return retDesc;
+		};
+	});
+	
+	webshims.isReady('webshimLocalization', true);
+});
+//html5a11y
+(function($, document){
+	var browserVersion = $.webshims.browserVersion;
+	if($.browser.mozilla && browserVersion > 5){return;}
+	if (!$.browser.msie || (browserVersion < 12 && browserVersion > 7)) {
+		var elemMappings = {
+			article: "article",
+			aside: "complementary",
+			section: "region",
+			nav: "navigation",
+			address: "contentinfo"
+		};
+		var addRole = function(elem, role){
+			var hasRole = elem.getAttribute('role');
+			if (!hasRole) {
+				elem.setAttribute('role', role);
+			}
+		};
+		
+		$.webshims.addReady(function(context, contextElem){
+			$.each(elemMappings, function(name, role){
+				var elems = $(name, context).add(contextElem.filter(name));
+				for (var i = 0, len = elems.length; i < len; i++) {
+					addRole(elems[i], role);
+				}
+			});
+			if (context === document) {
+				var header = document.getElementsByTagName('header')[0];
+				var footers = document.getElementsByTagName('footer');
+				var footerLen = footers.length;
+				if (header && !$(header).closest('section, article')[0]) {
+					addRole(header, 'banner');
+				}
+				if (!footerLen) {
+					return;
+				}
+				var footer = footers[footerLen - 1];
+				if (!$(footer).closest('section, article')[0]) {
+					addRole(footer, 'contentinfo');
+				}
+			}
+		});
+	}
+})(jQuery, document);
+
+(function($, Modernizr, webshims){
+	"use strict";
+	var hasNative = Modernizr.audio && Modernizr.video;
+	var supportsLoop = false;
+	var bugs = webshims.bugs;
+	
+	var loadSwf = function(){
+		webshims.ready(swfType, function(){
+			if(!webshims.mediaelement.createSWF){
+				webshims.mediaelement.loadSwf = true;
+				webshims.reTest([swfType], hasNative);
+			}
+		});
+	};
+	var options = webshims.cfg.mediaelement;
+	var swfType = options && options.player == 'jwplayer' ? 'mediaelement-swf' : 'mediaelement-jaris';
+	var hasSwf;
+	if(!options){
+		webshims.error("mediaelement wasn't implemented but loaded");
+		return;
+	}
+	if(hasNative){
+		var videoElem = document.createElement('video');
+		Modernizr.videoBuffered = ('buffered' in videoElem);
+		supportsLoop = ('loop' in videoElem);
+		
+		webshims.capturingEvents(['play', 'playing', 'waiting', 'paused', 'ended', 'durationchange', 'loadedmetadata', 'canplay', 'volumechange']);
+		
+		if(!Modernizr.videoBuffered){
+			webshims.addPolyfill('mediaelement-native-fix', {
+				f: 'mediaelement',
+				test: Modernizr.videoBuffered,
+				d: ['dom-support']
+			});
+			
+			webshims.reTest('mediaelement-native-fix');
+		}
+	}
+	
+	if(hasNative && !options.preferFlash){
+		var switchOptions = function(e){
+			var parent = e.target.parentNode;
+			if(!options.preferFlash && ($(e.target).is('audio, video') || (parent && $('source:last', parent)[0] == e.target)) ){
+				webshims.ready('DOM mediaelement', function(){
+					if(hasSwf){
+						loadSwf();
+					}
+					webshims.ready('WINDOWLOAD '+swfType, function(){
+						setTimeout(function(){
+							if(hasSwf && !options.preferFlash && webshims.mediaelement.createSWF && !$(e.target).closest('audio, video').is('.nonnative-api-active')){
+								options.preferFlash = true;
+								document.removeEventListener('error', switchOptions, true);
+								$('audio, video').mediaLoad();
+								webshims.info("switching mediaelements option to 'preferFlash', due to an error with native player: "+e.target.src);
+							} else if(!hasSwf){
+								document.removeEventListener('error', switchOptions, true);
+							}
+						}, 20);
+					});
+				});
+			}
+		};
+		document.addEventListener('error', switchOptions, true);
+		$('audio, video').each(function(){
+			if(this.error){
+				switchOptions({target: this});
+			}
+		});
+	}
+	
+	
+	if(Modernizr.track && !bugs.track){
+		(function(){
+			
+			if(!bugs.track){
+				bugs.track = typeof $('<track />')[0].readyState != 'number';
+			}
+			
+			if(!bugs.track){
+				try {
+					new TextTrackCue(2, 3, '');
+				} catch(e){
+					bugs.track = true;
+				}
+			}
+			
+			var trackOptions = webshims.cfg.track;
+			var trackListener = function(e){
+				$(e.target).filter('track').each(changeApi);
+			};
+			var changeApi = function(){
+				if(bugs.track || (!trackOptions.override && $.prop(this, 'readyState') == 3)){
+					trackOptions.override = true;
+					webshims.reTest('track');
+					document.removeEventListener('error', trackListener, true);
+					if(this && $.nodeName(this, 'track')){
+						webshims.error("track support was overwritten. Please check your vtt including your vtt mime-type");
+					} else {
+						webshims.info("track support was overwritten. due to bad browser support");
+					}
+				}
+			};
+			var detectTrackError = function(){
+				document.addEventListener('error', trackListener, true);
+				
+				if(bugs.track){
+					changeApi();
+				} else {
+					$('track').each(changeApi);
+				}
+			};
+			if(!trackOptions.override){
+				if(webshims.isReady('track')){
+					detectTrackError();
+				} else {
+					$(detectTrackError);
+				}
+			}
+		})();
+		
+	}
+
+webshims.register('mediaelement-core', function($, webshims, window, document, undefined){
+	hasSwf = swfobject.hasFlashPlayerVersion('9.0.115');
+	$('html').addClass(hasSwf ? 'swf' : 'no-swf');
+	var mediaelement = webshims.mediaelement;
+	mediaelement.parseRtmp = function(data){
+		var src = data.src.split('://');
+		var paths = src[1].split('/');
+		var i, len, found;
+		data.server = src[0]+'://'+paths[0]+'/';
+		data.streamId = [];
+		for(i = 1, len = paths.length; i < len; i++){
+			if(!found && paths[i].indexOf(':') !== -1){
+				paths[i] = paths[i].split(':')[1];
+				found = true;
+			}
+			if(!found){
+				data.server += paths[i]+'/';
+			} else {
+				data.streamId.push(paths[i]);
+			}
+		}
+		if(!data.streamId.length){
+			webshims.error('Could not parse rtmp url');
+		}
+		data.streamId = data.streamId.join('/');
+		console.log(data)
+	};
+	var getSrcObj = function(elem, nodeName){
+		elem = $(elem);
+		var src = {src: elem.attr('src') || '', elem: elem, srcProp: elem.prop('src')};
+		var tmp;
+		
+		if(!src.src){return src;}
+		
+		tmp = elem.attr('data-server');
+		if(tmp != null){
+			src.server = tmp;
+		}
+		
+		tmp = elem.attr('type');
+		if(tmp){
+			src.type = tmp;
+			src.container = $.trim(tmp.split(';')[0]);
+		} else {
+			if(!nodeName){
+				nodeName = elem[0].nodeName.toLowerCase();
+				if(nodeName == 'source'){
+					nodeName = (elem.closest('video, audio')[0] || {nodeName: 'video'}).nodeName.toLowerCase();
+				}
+			}
+			if(src.server){
+				src.type = nodeName+'/rtmp';
+				src.container = nodeName+'/rtmp';
+			} else {
+				
+				tmp = mediaelement.getTypeForSrc( src.src, nodeName, src );
+				
+				if(tmp){
+					src.type = tmp;
+					src.container = tmp;
+				}
+			}
+		}
+		tmp = elem.attr('media');
+		if(tmp){
+			src.media = tmp;
+		}
+		if(src.type == 'audio/rtmp' || src.type == 'video/rtmp'){
+			if(src.server){
+				src.streamId = src.src;
+			} else {
+				mediaelement.parseRtmp(src);
+			}
+		}
+		return src;
+	};
+	
+	
+	
+	var hasYt = !hasSwf && ('postMessage' in window) && hasNative;
+	
+	var loadTrackUi = function(){
+		if(loadTrackUi.loaded){return;}
+		loadTrackUi.loaded = true;
+		$(function(){
+			webshims.loader.loadList(['track-ui']);
+		});
+	};
+	var loadYt = (function(){
+		var loaded;
+		return function(){
+			if(loaded || !hasYt){return;}
+			loaded = true;
+			webshims.loader.loadScript("https://www.youtube.com/player_api");
+			$(function(){
+				webshims.polyfill("mediaelement-yt");
+			});
+		};
+	})();
+	var loadThird = function(){
+		if(hasSwf){
+			loadSwf();
+		} else {
+			loadYt();
+		}
+	};
+	
+	webshims.addPolyfill('mediaelement-yt', {
+		test: !hasYt,
+		d: ['dom-support']
+	});
+	
+	mediaelement.mimeTypes = {
+		audio: {
+				//ogm shouldn´t be used!
+				'audio/ogg': ['ogg','oga', 'ogm'],
+				'audio/ogg;codecs="opus"': 'opus',
+				'audio/mpeg': ['mp2','mp3','mpga','mpega'],
+				'audio/mp4': ['mp4','mpg4', 'm4r', 'm4a', 'm4p', 'm4b', 'aac'],
+				'audio/wav': ['wav'],
+				'audio/3gpp': ['3gp','3gpp'],
+				'audio/webm': ['webm'],
+				'audio/fla': ['flv', 'f4a', 'fla'],
+				'application/x-mpegURL': ['m3u8', 'm3u']
+			},
+			video: {
+				//ogm shouldn´t be used!
+				'video/ogg': ['ogg','ogv', 'ogm'],
+				'video/mpeg': ['mpg','mpeg','mpe'],
+				'video/mp4': ['mp4','mpg4', 'm4v'],
+				'video/quicktime': ['mov','qt'],
+				'video/x-msvideo': ['avi'],
+				'video/x-ms-asf': ['asf', 'asx'],
+				'video/flv': ['flv', 'f4v'],
+				'video/3gpp': ['3gp','3gpp'],
+				'video/webm': ['webm'],
+				'application/x-mpegURL': ['m3u8', 'm3u'],
+				'video/MP2T': ['ts']
+			}
+		}
+	;
+	
+	mediaelement.mimeTypes.source =  $.extend({}, mediaelement.mimeTypes.audio, mediaelement.mimeTypes.video);
+	
+	mediaelement.getTypeForSrc = function(src, nodeName, data){
+		if(src.indexOf('youtube.com/watch?') != -1 || src.indexOf('youtube.com/v/') != -1){
+			return 'video/youtube';
+		}
+		if(src.indexOf('rtmp') === 0){
+			return nodeName+'/rtmp';
+		}
+		src = src.split('?')[0].split('.');
+		src = src[src.length - 1];
+		var mt;
+		
+		$.each(mediaelement.mimeTypes[nodeName], function(mimeType, exts){
+			if(exts.indexOf(src) !== -1){
+				mt = mimeType;
+				return false;
+			}
+		});
+		return mt;
+	};
+	
+	
+	mediaelement.srces = function(mediaElem, srces){
+		mediaElem = $(mediaElem);
+		if(!srces){
+			srces = [];
+			var nodeName = mediaElem[0].nodeName.toLowerCase();
+			var src = getSrcObj(mediaElem, nodeName);
+			
+			if(!src.src){
+				
+				$('source', mediaElem).each(function(){
+					src = getSrcObj(this, nodeName);
+					if(src.src){srces.push(src);}
+				});
+			} else {
+				srces.push(src);
+			}
+			return srces;
+		} else {
+			mediaElem.removeAttr('src').removeAttr('type').find('source').remove();
+			if(!$.isArray(srces)){
+				srces = [srces]; 
+			}
+			srces.forEach(function(src){
+				var source = document.createElement('source');
+				if(typeof src == 'string'){
+					src = {src: src};
+				} 
+				source.setAttribute('src', src.src);
+				if(src.type){
+					source.setAttribute('type', src.type);
+				}
+				if(src.media){
+					source.setAttribute('media', src.media);
+				}
+				mediaElem.append(source);
+			});
+			
+		}
+	};
+	
+	
+	$.fn.loadMediaSrc = function(srces, poster){
+		return this.each(function(){
+			if(poster !== undefined){
+				$(this).removeAttr('poster');
+				if(poster){
+					$.attr(this, 'poster', poster);
+				}
+			}
+			mediaelement.srces(this, srces);
+			$(this).mediaLoad();
+		});
+	};
+	
+	mediaelement.swfMimeTypes = ['video/3gpp', 'video/x-msvideo', 'video/quicktime', 'video/x-m4v', 'video/mp4', 'video/m4p', 'video/x-flv', 'video/flv', 'audio/mpeg', 'audio/aac', 'audio/mp4', 'audio/x-m4a', 'audio/m4a', 'audio/mp3', 'audio/x-fla', 'audio/fla', 'youtube/flv', 'jwplayer/jwplayer', 'video/youtube', 'video/rtmp', 'audio/rtmp'];
+	
+	mediaelement.canThirdPlaySrces = function(mediaElem, srces){
+		var ret = '';
+		if(hasSwf || hasYt){
+			mediaElem = $(mediaElem);
+			srces = srces || mediaelement.srces(mediaElem);
+			$.each(srces, function(i, src){
+				if(src.container && src.src && ((hasSwf && mediaelement.swfMimeTypes.indexOf(src.container) != -1) || (hasYt && src.container == 'video/youtube'))){
+					ret = src;
+					return false;
+				}
+			});
+			
+		}
+		
+		return ret;
+	};
+	
+	var nativeCanPlayType = {};
+	mediaelement.canNativePlaySrces = function(mediaElem, srces){
+		var ret = '';
+		if(hasNative){
+			mediaElem = $(mediaElem);
+			var nodeName = (mediaElem[0].nodeName || '').toLowerCase();
+			if(!nativeCanPlayType[nodeName]){return ret;}
+			srces = srces || mediaelement.srces(mediaElem);
+			
+			$.each(srces, function(i, src){
+				if(src.type && nativeCanPlayType[nodeName].prop._supvalue.call(mediaElem[0], src.type) ){
+					ret = src;
+					return false;
+				}
+			});
+		}
+		return ret;
+	};
+	
+	mediaelement.setError = function(elem, message){
+		if(!message){
+			message = "can't play sources";
+		}
+		
+		$(elem).pause().data('mediaerror', message);
+		webshims.warn('mediaelementError: '+ message);
+		setTimeout(function(){
+			if($(elem).data('mediaerror')){
+				$(elem).trigger('mediaerror');
+			}
+		}, 1);
+	};
+	
+	var handleThird = (function(){
+		var requested;
+		return function( mediaElem, ret, data ){
+			if(!requested){
+				loadTrackUi();
+			}
+			webshims.ready(hasSwf ? swfType : 'mediaelement-yt', function(){
+				if(mediaelement.createSWF){
+					mediaelement.createSWF( mediaElem, ret, data );
+				} else if(!requested) {
+					requested = true;
+					loadThird();
+					//readd to ready
+					handleThird( mediaElem, ret, data );
+				}
+			});
+			if(!requested && hasYt && !mediaelement.createSWF){
+				loadYt();
+			}
+		};
+	})();
+	
+	var stepSources = function(elem, data, useSwf, _srces, _noLoop){
+		var ret;
+		if(useSwf || (useSwf !== false && data && data.isActive == 'third')){
+			ret = mediaelement.canThirdPlaySrces(elem, _srces);
+			if(!ret){
+				if(_noLoop){
+					mediaelement.setError(elem, false);
+				} else {
+					stepSources(elem, data, false, _srces, true);
+				}
+			} else {
+				handleThird(elem, ret, data);
+			}
+		} else {
+			ret = mediaelement.canNativePlaySrces(elem, _srces);
+			if(!ret){
+				if(_noLoop){
+					mediaelement.setError(elem, false);
+					if(data && data.isActive == 'third') {
+						mediaelement.setActive(elem, 'html5', data);
+					}
+				} else {
+					stepSources(elem, data, true, _srces, true);
+				}
+			} else if(data && data.isActive == 'third') {
+				mediaelement.setActive(elem, 'html5', data);
+			}
+		}
+	};
+	var stopParent = /^(?:embed|object|datalist)$/i;
+	var selectSource = function(elem, data){
+		var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
+		var _srces = mediaelement.srces(elem);
+		var parent = elem.parentNode;
+		
+		clearTimeout(baseData.loadTimer);
+		$.data(elem, 'mediaerror', false);
+		
+		if(!_srces.length || !parent || parent.nodeType != 1 || stopParent.test(parent.nodeName || '')){return;}
+		data = data || webshims.data(elem, 'mediaelement');
+		stepSources(elem, data, options.preferFlash || undefined, _srces);
+	};
+	
+	
+	$(document).on('ended', function(e){
+		var data = webshims.data(e.target, 'mediaelement');
+		if( supportsLoop && (!data || data.isActive == 'html5') && !$.prop(e.target, 'loop')){return;}
+		setTimeout(function(){
+			if( $.prop(e.target, 'paused') || !$.prop(e.target, 'loop') ){return;}
+			$(e.target).prop('currentTime', 0).play();
+		}, 1);
+		
+	});
+	if(!supportsLoop){
+		webshims.defineNodeNamesBooleanProperty(['audio', 'video'], 'loop');
+	}
+	
+	['audio', 'video'].forEach(function(nodeName){
+		var supLoad = webshims.defineNodeNameProperty(nodeName, 'load',  {
+			prop: {
+				value: function(){
+					var data = webshims.data(this, 'mediaelement');
+					selectSource(this, data);
+					if(hasNative && (!data || data.isActive == 'html5') && supLoad.prop._supvalue){
+						supLoad.prop._supvalue.apply(this, arguments);
+					}
+				}
+			}
+		});
+		nativeCanPlayType[nodeName] = webshims.defineNodeNameProperty(nodeName, 'canPlayType',  {
+			prop: {
+				value: function(type){
+					var ret = '';
+					if(hasNative && nativeCanPlayType[nodeName].prop._supvalue){
+						ret = nativeCanPlayType[nodeName].prop._supvalue.call(this, type);
+						if(ret == 'no'){
+							ret = '';
+						}
+					}
+					if(!ret && hasSwf){
+						type = $.trim((type || '').split(';')[0]);
+						if(mediaelement.swfMimeTypes.indexOf(type) != -1){
+							ret = 'maybe';
+						}
+					}
+					return ret;
+				}
+			}
+		});
+	});
+	webshims.onNodeNamesPropertyModify(['audio', 'video'], ['src', 'poster'], {
+		set: function(){
+			var elem = this;
+			var baseData = webshims.data(elem, 'mediaelementBase') || webshims.data(elem, 'mediaelementBase', {});
+			clearTimeout(baseData.loadTimer);
+			baseData.loadTimer = setTimeout(function(){
+				selectSource(elem);
+				elem = null;
+			}, 9);
+		}
+	});
+		
+	var initMediaElements = function(){
+		
+		webshims.addReady(function(context, insertedElement){
+			var media = $('video, audio', context)
+				.add(insertedElement.filter('video, audio'))
+				.each(function(){
+					if($.browser.msie && webshims.browserVersion > 8 && $.prop(this, 'paused') && !$.prop(this, 'readyState') && $(this).is('audio[preload="none"][controls]:not([autoplay])')){
+						$(this).prop('preload', 'metadata').mediaLoad();
+					} else {
+						selectSource(this);
+					}
+					
+					
+					
+					if(hasNative){
+						var bufferTimer;
+						var lastBuffered;
+						var elem = this;
+						var getBufferedString = function(){
+							var buffered = $.prop(elem, 'buffered');
+							if(!buffered){return;}
+							var bufferString = "";
+							for(var i = 0, len = buffered.length; i < len;i++){
+								bufferString += buffered.end(i);
+							}
+							return bufferString;
+						};
+						var testBuffer = function(){
+							var buffered = getBufferedString();
+							if(buffered != lastBuffered){
+								lastBuffered = buffered;
+								$(elem).triggerHandler('progress');
+							}
+						};
+						
+						$(this)
+							.on({
+								'play loadstart progress': function(e){
+									if(e.type == 'progress'){
+										lastBuffered = getBufferedString();
+									}
+									clearTimeout(bufferTimer);
+									bufferTimer = setTimeout(testBuffer, 999);
+								},
+								'emptied stalled mediaerror abort suspend': function(e){
+									if(e.type == 'emptied'){
+										lastBuffered = false;
+									}
+									clearTimeout(bufferTimer);
+								}
+							})
+						;
+					}
+					
+				})
+			;
+			if(!loadTrackUi.loaded && $('track', media).length){
+				loadTrackUi();
+			}
+			media = null;
+		});
+	};
+	
+	if(Modernizr.track && !bugs.track){
+		webshims.defineProperty(TextTrack.prototype, 'shimActiveCues', {
+			get: function(){
+				return this._shimActiveCues || this.activeCues;
+			}
+		});
+	}
+	//set native implementation ready, before swf api is retested
+	if(hasNative){
+		webshims.isReady('mediaelement-core', true);
+		initMediaElements();
+		webshims.ready('WINDOWLOAD mediaelement', loadThird);
+	} else {
+		webshims.ready(swfType, initMediaElements);
+	}
+	webshims.ready('WINDOWLOAD mediaelement', loadTrackUi);
+});
+})(jQuery, Modernizr, jQuery.webshims);
+/*
+ * todos: 
+ * - decouple muted/volume (needs improvement)
+ * - implement video <-> flashcanvas pro API
+ * - improve buffered-property with youtube/rtmp
+ * - use jwplayer5 api instead of old flash4 api
+ */
+
+jQuery.webshims.register('mediaelement-swf', function($, webshims, window, document, undefined, options){
+	"use strict";
+	var SENDEVENT = 'sendEvent';
+	var mediaelement = webshims.mediaelement;
+	var swfobject = window.swfobject;
+	var hasNative = Modernizr.audio && Modernizr.video;
+	var hasFlash = swfobject.hasFlashPlayerVersion('9.0.115');
+	var loadedSwf = 0;
+	var getProps = {
+		paused: true,
+		ended: false,
+		currentSrc: '',
+		duration: window.NaN,
+		
+		readyState: 0,
+		networkState: 0,
+		videoHeight: 0,
+		videoWidth: 0,
+		error: null,
+		buffered: {
+			start: function(index){
+				if(index){
+					webshims.error('buffered index size error');
+					return;
+				}
+				return 0;
+			},
+			end: function(index){
+				if(index){
+					webshims.error('buffered index size error');
+					return;
+				}
+				return 0;
+			},
+			length: 0
+		}
+	};
+	var getPropKeys = Object.keys(getProps);
+	
+	var getSetProps = {
+		currentTime: 0,
+		volume: 1,
+		muted: false
+	};
+	var getSetPropKeys = Object.keys(getSetProps);
+	
+	var playerStateObj = $.extend({
+		isActive: 'html5',
+		activating: 'html5',	
+		wasSwfReady: false,
+		_bufferedEnd: 0,
+		_bufferedStart: 0,
+		_metadata: false,
+		_durationCalcs: -1,
+		_callMeta: false,
+		currentTime: 0,
+		_ppFlag: undefined
+	}, getProps, getSetProps);
+	
+	var idRep = /^jwplayer-/;
+	var getSwfDataFromID = function(id){
+		
+		var elem = document.getElementById(id.replace(idRep, ''));
+		if(!elem){return;}
+		var data = webshims.data(elem, 'mediaelement');
+		return data.isActive == 'third' ? data : null;
+	};
+	
+	
+	var getSwfDataFromElem = function(elem){
+		try {
+			(elem.nodeName);
+		} catch(er){
+			return null;
+		}
+		var data = webshims.data(elem, 'mediaelement');
+		return (data && data.isActive== 'third') ? data : null;
+	};
+	
+	var trigger = function(elem, evt){
+		evt = $.Event(evt);
+		evt.preventDefault();
+		$.event.trigger(evt, undefined, elem);
+	};
+	
+	var playerSwfPath = options.playerPath || webshims.cfg.basePath + "jwplayer/" + (options.playerName || "player.swf");
+	var jwplugin = options.pluginPath || webshims.cfg.basePath +'swf/jwwebshims.swf';
+	
+	webshims.extendUNDEFProp(options.params, {
+		allowscriptaccess: 'always',
+		allowfullscreen: 'true',
+		wmode: 'transparent'
+	});
+	webshims.extendUNDEFProp(options.vars, {
+		screencolor: 'ffffffff'
+	});
+	webshims.extendUNDEFProp(options.attrs, {
+		bgcolor: '#000000'
+	});
+	
+	var getDuration = function(data, obj){
+		var curDuration = data.duration;
+		if(curDuration && data._durationCalcs > 0){return;}
+		try {
+			data.duration = data.jwapi.getPlaylist()[0].duration;
+			if(!data.duration || data.duration <= 0 || data.duration === data._lastDuration){
+				data.duration = curDuration;
+			}
+		} catch(er){}
+		if(data.duration && data.duration != data._lastDuration){
+			trigger(data._elem, 'durationchange');
+			if(data._elemNodeName == 'audio' || data._callMeta){
+				mediaelement.jwEvents.Model.META($.extend({duration: data.duration}, obj), data);
+			}
+			data._durationCalcs--;
+		} else {
+			data._durationCalcs++;
+		}
+	};
+	var setReadyState = function(readyState, data){
+		if(readyState < 3){
+			clearTimeout(data._canplaythroughTimer);
+		}
+		if(readyState >= 3 && data.readyState < 3){
+			data.readyState = readyState;
+			trigger(data._elem, 'canplay');
+			clearTimeout(data._canplaythroughTimer);
+			data._canplaythroughTimer = setTimeout(function(){
+				setReadyState(4, data);
+			}, 4000);
+		}
+		if(readyState >= 4 && data.readyState < 4){
+			data.readyState = readyState;
+			trigger(data._elem, 'canplaythrough');
+		}
+		data.readyState = readyState;
+	};
+	
+	$.extend($.event.customEvent, {
+		updatemediaelementdimensions: true,
+		flashblocker: true,
+		swfstageresize: true,
+		mediaelementapichange: true
+	});
+	
+	mediaelement.jwEvents = {
+		View: {
+			
+			PLAY: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data || data.stopPlayPause){return;}
+				data._ppFlag = true;
+				if(data.paused == obj.state){
+					data.paused = !obj.state;
+					if(data.ended){
+						data.ended = false;
+					}
+					trigger(data._elem, obj.state ? 'play' : 'pause');
+				}
+			}
+		},
+		Model: {
+			
+			BUFFER: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data || !('percentage' in obj) || data._bufferedEnd == obj.percentage){return;}
+				data.networkState = (obj.percentage == 100) ? 1 : 2;
+				if(isNaN(data.duration) || (obj.percentage > 5 && obj.percentage < 25) || (obj.percentage === 100)){
+					getDuration(data, obj);
+				}
+				
+				if(data.ended){
+					data.ended = false;
+				}
+				if(!data.duration){
+					return;
+				}
+				if(obj.percentage > 2 && obj.percentage < 20){
+					setReadyState(3, data);
+				} else if(obj.percentage > 20){
+					setReadyState(4, data);
+				}
+				if(data._bufferedEnd && (data._bufferedEnd > obj.percentage)){
+					data._bufferedStart = data.currentTime || 0;
+				}
+				
+				data._bufferedEnd = obj.percentage;
+				data.buffered.length = 1;
+				if(obj.percentage == 100){
+					data.networkState = 1;
+					setReadyState(4, data);
+				}
+				$.event.trigger('progress', undefined, data._elem, true);
+			},
+			META: function(obj, data){
+				
+				data = data && data.networkState ? data : getSwfDataFromID(obj.id);
+
+				if(!data){return;}
+				if( !('duration' in obj) ){
+					data._callMeta = true;
+					return;
+				}
+				
+				if( data._metadata && (!obj.height || data.videoHeight == obj.height) && (obj.duration === data.duration) ){return;}
+				
+				data._metadata = true;
+								
+				var oldDur = data.duration;
+				if(obj.duration){
+					data.duration = obj.duration;
+				}
+				data._lastDuration = data.duration;
+				if(obj.height || obj.width){
+					data.videoHeight = obj.height || 0;
+					data.videoWidth = obj.width || 0;
+				}
+				if(!data.networkState){
+					data.networkState = 2;
+				}
+				if(data.readyState < 1){
+					setReadyState(1, data);
+				}
+				if(data.duration && oldDur !== data.duration){
+					trigger(data._elem, 'durationchange');
+				}
+				
+				trigger(data._elem, 'loadedmetadata');
+			},
+			TIME: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data || data.currentTime === obj.position){return;}
+				data.currentTime = obj.position;
+				if(data.duration && data.duration < data.currentTime){
+					getDuration(data, obj);
+				}
+				if(data.readyState < 2){
+					setReadyState(2, data);
+				}
+				if(data.ended){
+					data.ended = false;
+				}
+				trigger(data._elem, 'timeupdate');
+				
+			},
+			STATE: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				switch(obj.newstate) {
+					case 'BUFFERING':
+						
+						if(data.ended){
+							data.ended = false;
+						}
+						setReadyState(1, data);
+						trigger(data._elem, 'waiting');
+						break;
+					case 'PLAYING':
+						data.paused = false;
+						data._ppFlag = true;
+						if(!data.duration){
+							getDuration(data, obj);
+						}
+						if(data.readyState < 3){
+							setReadyState(3, data);
+						}
+						if(data.ended){
+							data.ended = false;
+						}
+						trigger(data._elem, 'playing');
+						break;
+					case 'PAUSED':
+						if(!data.paused && !data.stopPlayPause){
+							data.paused = true;
+							data._ppFlag = true;
+							trigger(data._elem, 'pause');
+						}
+						break;
+					case 'COMPLETED':
+						if(data.readyState < 4){
+							setReadyState(4, data);
+						}
+						data.ended = true;
+						trigger(data._elem, 'ended');
+						break;
+				}
+			}
+		}
+		,Controller: {
+			
+			ERROR: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				mediaelement.setError(data._elem, obj.message);
+			},
+			SEEK: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				if(data.ended){
+					data.ended = false;
+				}
+				if(data.paused){
+					try {
+						data.jwapi[SENDEVENT]('play', 'false');
+					} catch(er){}
+				}
+				if(data.currentTime != obj.position){
+					data.currentTime = obj.position;
+					trigger(data._elem, 'timeupdate');
+				}
+				
+				
+			},
+			VOLUME: function(obj){
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				var newVolume = obj.percentage / 100;
+				if(data.volume == newVolume){return;}
+				data.volume = newVolume;
+				trigger(data._elem, 'volumechange');
+			},
+			MUTE: function(obj){
+				if(obj.state){return;}
+				var data = getSwfDataFromID(obj.id);
+				if(!data){return;}
+				if(data.muted == obj.state){return;}
+				data.muted = obj.state;
+				trigger(data._elem, 'volumechange');
+			}
+		}
+	};
+	
+	var initEvents = function(data){
+		var passed = true;
+		$.each(mediaelement.jwEvents, function(mvcName, evts){
+			$.each(evts, function(evtName){
+				try {
+					data.jwapi['add'+ mvcName +'Listener'](evtName, 'jQuery.webshims.mediaelement.jwEvents.'+ mvcName +'.'+ evtName);
+				} catch(er){
+					passed = false;
+					return false;
+				}
+			});
+		});
+		return passed;
+	};
+	
+	var workActionQueue = function(data){
+		var actionLen = data.actionQueue.length;
+		var i = 0;
+		var operation;
+		if(actionLen && data.isActive == 'third'){
+			while(data.actionQueue.length && actionLen > i){
+				i++;
+				operation = data.actionQueue.shift();
+				data.jwapi[operation.fn].apply(data.jwapi, operation.args);
+			}
+		}
+		if(data.actionQueue.length){
+			data.actionQueue = [];
+		}
+	};
+	var startAutoPlay = function(data){
+		if(!data){return;}
+		if( (data._ppFlag === undefined && ($.prop(data._elem, 'autoplay')) || !data.paused)){
+			setTimeout(function(){
+				if(data.isActive == 'third' && (data._ppFlag === undefined || !data.paused)){
+					try {
+						$(data._elem).play();
+					} catch(er){}
+				}
+			}, 1);
+		}
+	};
+	
+	
+	mediaelement.playerResize = function(id){
+		if(!id){return;}
+		var elem = document.getElementById(id.replace(idRep, ''));
+		
+		if(elem){
+			$(elem).triggerHandler('swfstageresize');
+		}
+		elem = null;
+	};
+	
+	
+	$(document).on('emptied', function(e){
+		var data = getSwfDataFromElem(e.target);
+		startAutoPlay(data);
+	});
+	
+	var localConnectionTimer;
+	mediaelement.jwPlayerReady = function(jwData){
+		var data = getSwfDataFromID(jwData.id);
+		var passed = true;
+		var i = 0;
+		var doneFn = function(){
+			if(i > 9){return;}
+			i++;
+			if(initEvents(data)){
+				if(!data.wasSwfReady){
+					var version = parseFloat( jwData.version, 10);
+					if(version < 5.1 || version >= 6){
+						webshims.warn('mediaelement-swf is only testet with jwplayer 5.6+');
+					}
+				} else {
+					$(data._elem).mediaLoad();
+					
+				}
+				data.wasSwfReady = true;
+				data.tryedReframeing = 0;
+				workActionQueue(data);
+				startAutoPlay(data);
+			} else {
+				clearTimeout(data.reframeTimer);
+				data.reframeTimer = setTimeout(doneFn, 9 * i);
+				if(i > 2 && data.tryedReframeing < 9){
+					data.tryedReframeing++;
+					data.shadowElem.css({overflow: 'visible'});
+					setTimeout(function(){
+						data.shadowElem.css({overflow: 'hidden'});
+					}, 16);
+				}
+			}
+		};
+		if(!data || !data.jwapi){return;}
+		if(!data.tryedReframeing){
+			data.tryedReframeing = 0;
+		}
+		clearTimeout(localConnectionTimer);
+		data.jwData = jwData;
+		data.shadowElem.removeClass('flashblocker-assumed');
+		$.prop(data._elem, 'volume', data.volume);
+		$.prop(data._elem, 'muted', data.muted);
+		doneFn();
+		
+	};
+	
+	var addMediaToStopEvents = $.noop;
+	if(hasNative){
+		var stopEvents = {
+			play: 1,
+			playing: 1
+		};
+		var hideEvtArray = ['play', 'pause', 'playing', 'canplay', 'progress', 'waiting', 'ended', 'loadedmetadata', 'durationchange', 'emptied'];
+		var hidevents = hideEvtArray.map(function(evt){
+			return evt +'.webshimspolyfill';
+		}).join(' ');
+		
+		var hidePlayerEvents = function(event){
+			var data = webshims.data(event.target, 'mediaelement');
+			if(!data){return;}
+			var isNativeHTML5 = ( event.originalEvent && event.originalEvent.type === event.type );
+			if( isNativeHTML5 == (data.activating == 'third') ){
+				event.stopImmediatePropagation();
+				if(stopEvents[event.type] && data.isActive != data.activating){
+					$(event.target).pause();
+				}
+			}
+		};
+		
+		addMediaToStopEvents = function(elem){
+			$(elem)
+				.off(hidevents)
+				.on(hidevents, hidePlayerEvents)
+			;
+			hideEvtArray.forEach(function(evt){
+				webshims.moveToFirstEvent(elem, evt);
+			});
+		};
+		addMediaToStopEvents(document);
+	}
+	
+	
+	mediaelement.setActive = function(elem, type, data){
+		if(!data){
+			data = webshims.data(elem, 'mediaelement');
+		}
+		if(!data || data.isActive == type){return;}
+		if(type != 'html5' && type != 'third'){
+			webshims.warn('wrong type for mediaelement activating: '+ type);
+		}
+		var shadowData = webshims.data(elem, 'shadowData');
+		data.activating = type;
+		$(elem).pause();
+		data.isActive = type;
+		if(type == 'third'){
+			shadowData.shadowElement = shadowData.shadowFocusElement = data.shadowElem[0];
+			$(elem).addClass('swf-api-active nonnative-api-active').hide().getShadowElement().show();
+		} else {
+			$(elem).removeClass('swf-api-active nonnative-api-active').show().getShadowElement().hide();
+			shadowData.shadowElement = shadowData.shadowFocusElement = false;
+		}
+		$(elem).trigger('mediaelementapichange');
+	};
+	
+	
+	
+	var resetSwfProps = (function(){
+		var resetProtoProps = ['_bufferedEnd', '_bufferedStart', '_metadata', '_ppFlag', 'currentSrc', 'currentTime', 'duration', 'ended', 'networkState', 'paused', 'videoHeight', 'videoWidth', '_callMeta', '_durationCalcs'];
+		var len = resetProtoProps.length;
+		return function(data){
+			
+			if(!data){return;}
+			var lenI = len;
+			var networkState = data.networkState;
+			setReadyState(0, data);
+			while(--lenI){
+				delete data[resetProtoProps[lenI]];
+			}
+			data.actionQueue = [];
+			data.buffered.length = 0;
+			if(networkState){
+				trigger(data._elem, 'emptied');
+			}
+		};
+	})();
+	
+	var setElementDimension = function(data, hasControls){
+		var elem = data._elem;
+		var box = data.shadowElem;
+		$(elem)[hasControls ? 'addClass' : 'removeClass']('webshims-controls');
+		if(data._elemNodeName == 'audio' && !hasControls){
+			box.css({width: 0, height: 0});
+		} else {
+			box.css({
+				width: elem.style.width || $(elem).width(),
+				height: elem.style.height || $(elem).height()
+			});
+		}
+	};
+	
+	mediaelement.createSWF = function( elem, canPlaySrc, data ){
+		if(!hasFlash){
+			setTimeout(function(){
+				$(elem).mediaLoad(); //<- this should produce a mediaerror
+			}, 1);
+			return;
+		}
+		
+		if(loadedSwf < 1){
+			loadedSwf = 1;
+		} else {
+			loadedSwf++;
+		}
+		var vars = $.extend({}, options.vars, {
+				image: $.prop(elem, 'poster') || '',
+				file: canPlaySrc.streamId || canPlaySrc.srcProp
+		});
+		var elemVars = $(elem).data('vars') || {};
+		
+		if(canPlaySrc.server){
+			vars.streamer = canPlaySrc.server;
+		}
+		if(!data){
+			data = webshims.data(elem, 'mediaelement');
+		}
+		
+		if(data && data.swfCreated){
+			mediaelement.setActive(elem, 'third', data);
+			resetSwfProps(data);
+			data.currentSrc = canPlaySrc.srcProp;
+			$.extend(vars, elemVars);
+			options.changeSWF(vars, elem, canPlaySrc, data, 'load');
+			queueSwfMethod(elem, SENDEVENT, ['LOAD', vars]);
+			return;
+		}
+		
+		
+		var hasControls = $.prop(elem, 'controls');
+		var elemId = 'jwplayer-'+ webshims.getID(elem);
+		var params = $.extend(
+			{},
+			options.params,
+			$(elem).data('params')
+		);
+		var elemNodeName = elem.nodeName.toLowerCase();
+		var attrs = $.extend(
+			{},
+			options.attrs,
+			{
+				name: elemId,
+				id: elemId
+			},
+			$(elem).data('attrs')
+		);
+		var box = $('<div class="polyfill-'+ (elemNodeName) +' polyfill-mediaelement" id="wrapper-'+ elemId +'"><div id="'+ elemId +'"></div>')
+			.css({
+				position: 'relative',
+				overflow: 'hidden'
+			})
+		;
+		data = webshims.data(elem, 'mediaelement', webshims.objectCreate(playerStateObj, {
+			actionQueue: {
+				value: []
+			},
+			shadowElem: {
+				value: box
+			},
+			_elemNodeName: {
+				value: elemNodeName
+			},
+			_elem: {
+				value: elem
+			},
+			currentSrc: {
+				value: canPlaySrc.srcProp
+			},
+			swfCreated: {
+				value: true
+			},
+			buffered: {
+				value: {
+					start: function(index){
+						if(index >= data.buffered.length){
+							webshims.error('buffered index size error');
+							return;
+						}
+						return 0;
+					},
+					end: function(index){
+						if(index >= data.buffered.length){
+							webshims.error('buffered index size error');
+							return;
+						}
+						return ( (data.duration - data._bufferedStart) * data._bufferedEnd / 100) + data._bufferedStart;
+					},
+					length: 0
+				}
+			}
+		}));
+		
+		setElementDimension(data, hasControls);
+		
+		box.insertBefore(elem);
+		
+		if(hasNative){
+			$.extend(data, {volume: $.prop(elem, 'volume'), muted: $.prop(elem, 'muted')});
+		}
+		
+		$.extend(vars, 
+			{
+				id: elemId,
+				controlbar: hasControls ? options.vars.controlbar || (elemNodeName == 'video' ? 'over' : 'bottom') : (elemNodeName == 'video') ? 'none' : 'bottom',
+				icons: ''+ (hasControls && elemNodeName == 'video')
+			},
+			elemVars,
+			{playerready: 'jQuery.webshims.mediaelement.jwPlayerReady'}
+		);
+		if(vars.plugins){
+			vars.plugins += ','+jwplugin;
+		} else {
+			vars.plugins = jwplugin;
+		}
+		
+		
+		webshims.addShadowDom(elem, box);
+		
+		addMediaToStopEvents(elem);
+		
+		mediaelement.setActive(elem, 'third', data);
+		
+		options.changeSWF(vars, elem, canPlaySrc, data, 'embed');
+		
+		$(elem).on('updatemediaelementdimensions updateshadowdom', function(){
+			setElementDimension(data, $.prop(elem, 'controls'));
+		});
+		
+		
+		swfobject.embedSWF(playerSwfPath, elemId, "100%", "100%", "9.0.0", false, vars, params, attrs, function(swfData){
+			
+			if(swfData.success){
+				data.jwapi = swfData.ref;
+				
+				if(!hasControls){
+					$(swfData.ref).attr('tabindex', '-1').css('outline', 'none');
+				}
+				setTimeout(function(){
+					if((!swfData.ref.parentNode && box[0].parentNode) || swfData.ref.style.display == "none"){
+						box.addClass('flashblocker-assumed');
+						$(elem).trigger('flashblocker');
+						webshims.warn("flashblocker assumed");
+					}
+					$(swfData.ref).css({'minHeight': '2px', 'minWidth': '2px', display: 'block'});
+				}, 9);
+				if(!localConnectionTimer){
+					clearTimeout(localConnectionTimer);
+					localConnectionTimer = setTimeout(function(){
+						var flash = $(swfData.ref);
+						if(flash[0].offsetWidth > 1 && flash[0].offsetHeight > 1 && location.protocol.indexOf('file:') === 0){
+							webshims.error("Add your local development-directory to the local-trusted security sandbox:  http://www.macromedia.com/support/documentation/en/flashplayer/help/settings_manager04.html");
+						} else if(flash[0].offsetWidth < 2 || flash[0].offsetHeight < 2) {
+							webshims.warn("JS-SWF connection can't be established on hidden or unconnected flash objects");
+						}
+						flash = null;
+					}, 8000);
+				}
+			}
+		});
+	};
+	
+	
+	var queueSwfMethod = function(elem, fn, args, data){
+		data = data || getSwfDataFromElem(elem);
+		if(data){
+			if(data.jwapi && data.jwapi[fn]){
+				data.jwapi[fn].apply(data.jwapi, args || []);
+			} else {
+				//todo add to queue
+				data.actionQueue.push({fn: fn, args: args});
+				if(data.actionQueue.length > 10){
+					setTimeout(function(){
+						if(data.actionQueue.length > 5){
+							data.actionQueue.shift();
+						}
+					}, 99);
+				}
+			}
+			return data;
+		}
+		return false;
+	};
+	
+	['audio', 'video'].forEach(function(nodeName){
+		var descs = {};
+		var mediaSup;
+		var createGetProp = function(key){
+			if(nodeName == 'audio' && (key == 'videoHeight' || key == 'videoWidth')){return;}
+			
+			descs[key] = {
+				get: function(){
+					var data = getSwfDataFromElem(this);
+					if(data){
+						return data[key];
+					} else if(hasNative && mediaSup[key].prop._supget) {
+						return mediaSup[key].prop._supget.apply(this);
+					} else {
+						return playerStateObj[key];
+					}
+				},
+				writeable: false
+			};
+		};
+		var createGetSetProp = function(key, setFn){
+			createGetProp(key);
+			delete descs[key].writeable;
+			descs[key].set = setFn;
+		};
+		
+		createGetSetProp('volume', function(v){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				v *= 100;
+				if(!isNaN(v)){
+					var muted = data.muted;
+					if(v < 0 || v > 100){
+						webshims.error('volume greater or less than allowed '+ (v / 100));
+					}
+					
+					queueSwfMethod(this, SENDEVENT, ['VOLUME', v], data);
+					if(muted){
+						try {
+							data.jwapi.sendEvent('mute', 'true');
+						} catch(er){}
+					}
+					v /= 100;
+					if(data.volume == v || data.isActive != 'third'){return;}
+					data.volume = v;
+					trigger(data._elem, 'volumechange');
+					data = null;
+				} 
+			} else if(mediaSup.volume.prop._supset) {
+				return mediaSup.volume.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		createGetSetProp('muted', function(m){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				m = !!m;
+				queueSwfMethod(this, SENDEVENT, ['mute', ''+m], data);
+				if(data.muted == m || data.isActive != 'third'){return;}
+				data.muted = m;
+				trigger(data._elem, 'volumechange');
+				data = null;
+			} else if(mediaSup.muted.prop._supset) {
+				return mediaSup.muted.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		
+		createGetSetProp('currentTime', function(t){
+			var data = getSwfDataFromElem(this);
+			if(data){
+				t *= 1;
+				if (!isNaN(t)) {
+					if(data.paused){
+						clearTimeout(data.stopPlayPause);
+						data.stopPlayPause = setTimeout(function(){
+							data.paused = true;
+							data.stopPlayPause = false;
+						}, 50);
+					}
+					queueSwfMethod(this, SENDEVENT, ['SEEK', '' + t], data);
+					
+					if(data.paused){
+						if(data.readyState > 0){
+							data.currentTime = t;
+							trigger(data._elem, 'timeupdate');
+						}
+						try {
+							data.jwapi[SENDEVENT]('play', 'false');
+						} catch(er){}
+						
+					}
+				}
+				 
+			} else if(mediaSup.currentTime.prop._supset) {
+				return mediaSup.currentTime.prop._supset.apply(this, arguments);
+			}
+		});
+		
+		['play', 'pause'].forEach(function(fn){
+			descs[fn] = {
+				value: function(){
+					var data = getSwfDataFromElem(this);
+					if(data){
+						if(data.stopPlayPause){
+							clearTimeout(data.stopPlayPause);
+						}
+						queueSwfMethod(this, SENDEVENT, ['play', fn == 'play'], data);
+						setTimeout(function(){
+							if(data.isActive == 'third'){
+								data._ppFlag = true;
+								if(data.paused != (fn != 'play')){
+									data.paused = fn != 'play';
+									trigger(data._elem, fn);
+								}
+							}
+						}, 1);
+					} else if(mediaSup[fn].prop._supvalue) {
+						return mediaSup[fn].prop._supvalue.apply(this, arguments);
+					}
+				}
+			};
+		});
+		
+		getPropKeys.forEach(createGetProp);
+		
+		webshims.onNodeNamesPropertyModify(nodeName, 'controls', function(val, boolProp){
+			var data = getSwfDataFromElem(this);
+			$(this)[boolProp ? 'addClass' : 'removeClass']('webshims-controls');
+			
+			if(data){
+				try {
+					queueSwfMethod(this, boolProp ? 'showControls' : 'hideControls', [nodeName], data);
+				} catch(er){
+					webshims.warn("you need to generate a crossdomain.xml");
+				}
+				if(nodeName == 'audio'){
+					setElementDimension(data, boolProp);
+				}
+				$(data.jwapi).attr('tabindex', boolProp ? '0' : '-1');
+			}
+		});
+		
+		mediaSup = webshims.defineNodeNameProperties(nodeName, descs, 'prop');
+	});
+	
+	if(hasFlash){
+		var oldClean = $.cleanData;
+		var gcBrowser = $.browser.msie && webshims.browserVersion < 9;
+		var flashNames = {
+			object: 1,
+			OBJECT: 1
+		};
+		$.cleanData = function(elems){
+			var i, len, prop;
+			if(elems && (len = elems.length) && loadedSwf){
+				
+				for(i = 0; i < len; i++){
+					if(flashNames[elems[i].nodeName]){
+						if(SENDEVENT in elems[i]){
+							loadedSwf--;
+							try {
+								elems[i][SENDEVENT]('play', false);
+							} catch(er){}
+						}
+						if(gcBrowser){
+							try {
+								for (prop in elems[i]) {
+									if (typeof elems[i][prop] == "function") {
+										elems[i][prop] = null;
+									}
+								}
+							} catch(er){}
+						}
+					}
+				}
+				
+			}
+			return oldClean.apply(this, arguments);
+		};
+	}
+
+	if(!hasNative){
+		
+		['poster', 'src'].forEach(function(prop){
+			webshims.defineNodeNamesProperty(prop == 'src' ? ['audio', 'video', 'source'] : ['video'], prop, {
+				//attr: {},
+				reflect: true,
+				propType: 'src'
+			});
+		});
+		
+		
+		['autoplay', 'controls'].forEach(function(name){
+			webshims.defineNodeNamesBooleanProperty(['audio', 'video'], name);
+		});
+			
+		webshims.defineNodeNamesProperties(['audio', 'video'], {
+			HAVE_CURRENT_DATA: {
+				value: 2
+			},
+			HAVE_ENOUGH_DATA: {
+				value: 4
+			},
+			HAVE_FUTURE_DATA: {
+				value: 3
+			},
+			HAVE_METADATA: {
+				value: 1
+			},
+			HAVE_NOTHING: {
+				value: 0
+			},
+			NETWORK_EMPTY: {
+				value: 0
+			},
+			NETWORK_IDLE: {
+				value: 1
+			},
+			NETWORK_LOADING: {
+				value: 2
+			},
+			NETWORK_NO_SOURCE: {
+				value: 3
+			}
+					
+		}, 'prop');
+	}
+});

@@ -2,7 +2,7 @@
  * GLOBAL STYLES
  *********************************************/
 
-html, 
+html,
 body {
 	padding: 0;
 	margin: 0;
@@ -42,7 +42,7 @@ body {
 	/* preserve aspect ratio and scale image so it's bound within the section */
 	max-width: 100%;
 	max-height: 100%;
-} 
+}
 
 
 /*********************************************
@@ -62,8 +62,8 @@ body {
 .reveal .controls div {
 	position: absolute;
 	opacity: 0.1;
-	width: 0; 
-	height: 0; 
+	width: 0;
+	height: 0;
 	border: 12px solid transparent;
 
 	-webkit-transition: opacity 0.2s ease;
@@ -196,7 +196,7 @@ body {
 	margin-top: -320px;
 	padding: 20px 0px;
 	overflow: visible;
-	
+
 	overflow: visible;
 	z-index: 1;
 	text-align: center;
@@ -206,7 +206,7 @@ body {
 	    -ms-transition: -ms-perspective .4s ease;
 	     -o-transition: -o-perspective .4s ease;
 	        transition: perspective .4s ease;
-	
+
 	-webkit-perspective: 600px;
 	   -moz-perspective: 600px;
 	    -ms-perspective: 600px;
@@ -226,12 +226,12 @@ body {
 	padding: 20px 0px;
 
 	z-index: 10;
-	
+
 	-webkit-transform-style: preserve-3d;
 	   -moz-transform-style: preserve-3d;
 	    -ms-transform-style: preserve-3d;
 	        transform-style: preserve-3d;
-	
+
 	-webkit-transition: -webkit-transform-origin 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985),
 						-webkit-transform 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985),
 	                    visibility 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985),
@@ -267,8 +267,9 @@ body {
 }
 
 .reveal.center,
-.reveal.center .slides {
-	min-height: auto;
+.reveal.center .slides
+.reveal.center .slides section {
+	min-height: auto !important;
 }
 
 /*********************************************
@@ -310,6 +311,10 @@ body {
  *********************************************/
 
 .reveal.overview .slides {
+	-webkit-perspective-origin: 0% 0%;
+     -moz-perspective-origin: 0% 0%;
+      -ms-perspective-origin: 0% 0%;
+          perspective-origin: 0% 0%;
 	-webkit-perspective: 700px;
 	   -moz-perspective: 700px;
 	    -ms-perspective: 700px;
