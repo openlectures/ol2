@@ -13,16 +13,15 @@
   </h3>
   <h6><small><%=topic.description%></small></h6>
   <%topic.seab_sub_topics.each do |sub_topic|%>
-    <p><%=sub_topic.topic%>
+    <%=sub_topic.topic%>
       <% if user_signed_in? %>
       <% if current_user.role = "admin" || current_user.role = "lecturer"%>
       <div class="btn-group pull-right">
         <%=link_to '<i class="icon-pencil"></i> Edit'.html_safe, edit_seab_sub_topic_path(sub_topic), :class => "btn"%>
-        <%=link_to '<i class="icon-trash"></i>'.html_safe, seab_sub_topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "btn btn-danger"%>
+        <%=link_to '<i class="icon-trash"></i>'.html_safe, seab_sub_topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "btn btn-danger "%>
       </div><!--btngroup-->
     <%end%>
     <%end%>
-    </p>
     <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%>>
     <thead>
       <tr>
@@ -31,8 +30,8 @@
             <th></th>
           <%end%>
         <%end%>
-        <th><i class="icon-lesson"></i> Topic</th>
-        <th><i class="icon-checkpoint"></i> Checkpoints</th>
+        <th><i class="icon-topic"></i> Topic</th>
+        <th><i class="icon-lesson"></i> Lessons</th>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <th class="alignright">Modify</th>
@@ -40,16 +39,16 @@
         <%end%>
       </tr>
     </thead>
-  <tbody >
+  <tbody>
       <%sub_topic.topics.order("position").each do |sub_topic|%>
         <%=content_tag_for :tr, sub_topic do%>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-            <td><span class="handle" style="cursor:ns-resize"><i class="icon-sort"></i></span></td>
+            <td><span class="handle"><i class="icon-sort"></i></span></td>
           <%end%>
         <%end%>
         <td><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
-        <td><%=sub_topic.checkpoints.count%></td>
+        <td><%=sub_topic.lessons.count%></td>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
             <td>
@@ -73,9 +72,6 @@
     <%content_for :javascripts do%>
       <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
       <%=javascript_include_tag "sortable.js"%>
-      <script type="text/javascript" charset="utf-8">
-        $('.sortable').sortable();
-      </script>
     <%end%>
   <%end%>
 <%end%>
