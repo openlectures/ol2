@@ -80,4 +80,11 @@ class SeabTopicsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def display_topic
+    @topic = SeabTopic.find(params[:id])
+    respond_to do |format|
+      format.js
+    end
+  end
 end

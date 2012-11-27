@@ -1,4 +1,11 @@
 <div class="tab-pane active fade in" id="seab">
+  <ul class="thumbnails">
+  <%@subject.seab_topics.each do |topic|%>
+    <%=content_tag_for :li, topic, :class=> "span4" do%>
+      <h3><%=link_to topic.topic, display_topic_path(:id => topic.id), :remote => :true%></h3>
+    <%end%>
+  <%end%>
+  </ul>
   <%@subject.seab_topics.each do |topic|%>
     <hr>
     <h3><%=topic.topic%>

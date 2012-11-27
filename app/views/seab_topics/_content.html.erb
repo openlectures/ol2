@@ -1,0 +1,53 @@
+<h6><small><%=topic.description%></small></h6>
+<%topic.seab_sub_topics.each do |sub_topic|%>
+  <%=sub_topic.topic%>
+    <% if user_signed_in? %>
+    <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+    <div class="btn-group pull-right">
+      <%=link_to '<i class="icon-pencil"></i> Edit'.html_safe, edit_seab_sub_topic_path(sub_topic), :class => "btn"%>
+      <%=link_to '<i class="icon-trash"></i>'.html_safe, seab_sub_topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "btn btn-danger "%>
+    </div><!--btngroup-->
+  <%end%>
+  <%end%>
+  <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%>>
+  <thead>
+    <tr>
+      <% if user_signed_in? %>
+        <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+          <th></th>
+        <%end%>
+      <%end%>
+      <th><i class="icon-topic"></i> Topic</th>
+      <th><i class="icon-lesson"></i> Lessons</th>
+      <% if user_signed_in? %>
+        <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+          <th class="alignright">Modify</th>
+        <%end%>
+      <%end%>
+    </tr>
+  </thead>
+<tbody>
+    <%sub_topic.topics.order("position").each do |sub_topic|%>
+      <%=content_tag_for :tr, sub_topic do%>
+      <% if user_signed_in? %>
+        <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+          <td><span class="handle"><i class="icon-sort"></i></span></td>
+        <%end%>
+      <%end%>
+      <td><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
+      <td><%=sub_topic.lessons.count%></td>
+      <% if user_signed_in? %>
+        <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+          <td>
+            <div class="btn-group pull-right">
+              <%=link_to('<i class="icon-pencil"></i> Edit'.html_safe, edit_topic_path(topic), :class => "btn")%>
+              <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",:class => "btn btn-danger")%>
+            </div><!--btngroup-->
+          </td>
+        <%end%>
+      <%end%>
+    <%end%>
+  </tbody>
+  <%end%>
+</table>
+<%end%>

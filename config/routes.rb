@@ -1,9 +1,6 @@
 Ol2::Application.routes.draw do
   resources :seab_sub_topics
-
-
   resources :seab_topics
-
 
   #Usr Controller
   match  "/manage" => "usr#manage", as: :manage
@@ -30,6 +27,8 @@ Ol2::Application.routes.draw do
     collection {post :sort}
   end
   resources :subjects, except: :edit
+
+  match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 
   #Pages Controller
   match "/contact" => "pages#contact", as: :contact

@@ -1,0 +1,2 @@
+$("<%="li#seab_topic_#{@topic.id}"%>").removeClass("span4").addClass("span12");
+$("<%="li#seab_topic_#{@topic.id}"%> h3").after('<%= escape_javascript(render 'seab_topics/content', :topic => @topic) %>');

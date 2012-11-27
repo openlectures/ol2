@@ -25,7 +25,7 @@ gem 'omniauth-facebook'
 
 #For sanity
 group :development do
-
+  gem 'quiet_assets'
 end
 
 #User avatar
