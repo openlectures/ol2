@@ -31,7 +31,7 @@
             <th></th>
           <%end%>
         <%end%>
-        <th><i class="icon-lesson"></i> Lesson</th>
+        <th><i class="icon-lesson"></i> Topic</th>
         <th><i class="icon-checkpoint"></i> Checkpoints</th>
         <% if user_signed_in? %>
           <% if current_user.role = "admin" || current_user.role = "lecturer"%>
@@ -40,7 +40,7 @@
         <%end%>
       </tr>
     </thead>
-  <tbody>
+  <tbody >
       <%sub_topic.topics.order("position").each do |sub_topic|%>
         <%=content_tag_for :tr, sub_topic do%>
         <% if user_signed_in? %>
