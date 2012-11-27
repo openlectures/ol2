@@ -1,2 +1,16 @@
-$("<%="li#seab_topic_#{@topic.id}"%>").removeClass("span4").addClass("span12");
-$("<%="li#seab_topic_#{@topic.id}"%> h3").after('<%= escape_javascript(render 'seab_topics/content', :topic => @topic) %>');
+//Show/Hide
+if ($("<%="li#seab_topic_#{@topic.id}"%>").hasClass('active')) {
+  $("<%="li#seab_topic_#{@topic.id}"%>").addClass("span4").removeClass("span12 active");
+} else {
+  $("<%="li#seab_topic_#{@topic.id}"%>").removeClass("span4").addClass("span12 active");
+}
+
+//Add content if first time clicking
+if ($("<%="li#seab_topic_#{@topic.id}"%>").hasClass('toggled')) {
+  $("<%="li#seab_topic_#{@topic.id} div"%>").toggle();
+}
+else {
+  $("<%="li#seab_topic_#{@topic.id}"%>").addClass("toggled");
+  $("<%="li#seab_topic_#{@topic.id}"%>").css("margin-left", 0);
+  $("<%="li#seab_topic_#{@topic.id}"%> h3").after('<%= escape_javascript(render 'seab_topics/content', :topic => @topic) %>');
+}
