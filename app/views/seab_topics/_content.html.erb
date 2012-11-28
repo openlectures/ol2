@@ -35,7 +35,7 @@
           <td><span class="handle"><i class="icon-sort"></i></span></td>
         <%end%>
       <%end%>
-      <td><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
+      <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
       <td><%=sub_topic.lessons.count%></td>
       <% if user_signed_in? %>
         <% if current_user.role = "admin" || current_user.role = "lecturer"%>
