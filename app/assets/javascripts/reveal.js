@@ -36,7 +36,7 @@ var Reveal = (function(){
 			// Loop the presentation
 			loop: false,
 
-			// Experimental support for RTL
+			// Change the presentation direction to be RTL
 			rtl: false,
 
 			// Number of milliseconds between automatically proceeding to the
@@ -48,13 +48,13 @@ var Reveal = (function(){
 			mouseWheel: false,
 
 			// Apply a 3D roll to links on hover
-			rollingLinks: true,
+			rollingLinks: false,
 
 			// Transition style (see /css/theme)
 			theme: null,
 
 			// Transition style
-			transition: 'default', // default/cube/page/concave/zoom/linear/none
+			transition: 'linear', // default/cube/page/concave/zoom/linear/none
 
 			// Script dependencies to load
 			dependencies: []
@@ -521,7 +521,7 @@ var Reveal = (function(){
 					continue;
 				}
 
-				// Vertical stacks are not centered since their section 
+				// Vertical stacks are not centered since their section
 				// children will be
 				if( slide.classList.contains( 'stack' ) ) {
 					slide.style.top = 0;
@@ -536,10 +536,10 @@ var Reveal = (function(){
 	}
 
 	/**
-	 * Stores the vertical index of a stack so that the same 
-	 * vertical slide can be selected when navigating to and 
+	 * Stores the vertical index of a stack so that the same
+	 * vertical slide can be selected when navigating to and
 	 * from the stack.
-	 * 
+	 *
 	 * @param {HTMLElement} stack The vertical stack element
 	 * @param {int} v Index to memorize
 	 */
@@ -550,7 +550,7 @@ var Reveal = (function(){
 	}
 
 	/**
-	 * Retrieves the vertical index which was stored using 
+	 * Retrieves the vertical index which was stored using
 	 * #setPreviousVerticalIndex() or 0 if no previous index
 	 * exists.
 	 *
@@ -580,8 +580,8 @@ var Reveal = (function(){
 
 			clearTimeout( activateOverviewTimeout );
 
-			// Not the pretties solution, but need to let the overview 
-			// class apply first so that slides are measured accurately 
+			// Not the pretties solution, but need to let the overview
+			// class apply first so that slides are measured accurately
 			// before we can positon them
 			activateOverviewTimeout = setTimeout( function(){
 
@@ -762,7 +762,7 @@ var Reveal = (function(){
 	 *
 	 * @param {int} h Horizontal index of the target slide
 	 * @param {int} v Vertical index of the target slide
-	 * @param {int} f Optional index of a fragment within the 
+	 * @param {int} f Optional index of a fragment within the
 	 * target slide to activate
 	 */
 	function slide( h, v, f ) {
@@ -772,13 +772,13 @@ var Reveal = (function(){
 		// Query all horizontal slides in the deck
 		var horizontalSlides = document.querySelectorAll( HORIZONTAL_SLIDES_SELECTOR );
 
-		// If no vertical index is specified and the upcoming slide is a 
+		// If no vertical index is specified and the upcoming slide is a
 		// stack, resume at its previous vertical index
 		if( v === undefined ) {
 			v = getPreviousVerticalIndex( horizontalSlides[ h ] );
 		}
 
-		// If we were on a vertical stack, remember what vertical index 
+		// If we were on a vertical stack, remember what vertical index
 		// it was on so we can resume at the same position when returning
 		if( previousSlide && previousSlide.parentNode && previousSlide.parentNode.classList.contains( 'stack' ) ) {
 			setPreviousVerticalIndex( previousSlide.parentNode, indexv );
@@ -1106,7 +1106,7 @@ var Reveal = (function(){
 	 * Updates the page URL (hash) to reflect the current
 	 * state.
 	 *
-	 * @param {Number} delay The time in ms to wait before 
+	 * @param {Number} delay The time in ms to wait before
 	 * writing the hash
 	 */
 	function writeURL( delay ) {
@@ -1329,12 +1329,12 @@ var Reveal = (function(){
 	 * @param {Object} event
 	 */
 	function onDocumentKeyDown( event ) {
-		// Check if there's a focused element that could be using 
+		// Check if there's a focused element that could be using
 		// the keyboard
 		var activeElement = document.activeElement;
 		var hasFocus = !!( document.activeElement && ( document.activeElement.type || document.activeElement.href || document.activeElement.contentEditable !== 'inherit' ) );
 
-		// Disregard the event if there's a focused element or a 
+		// Disregard the event if there's a focused element or a
 		// keyboard modifier key is present
 		if ( hasFocus || event.shiftKey || event.altKey || event.ctrlKey || event.metaKey ) return;
 

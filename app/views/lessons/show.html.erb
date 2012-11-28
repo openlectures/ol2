@@ -5,7 +5,7 @@
       <div class="row-fluid alignleft">
       <div class="span4">
         <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-          <li><a href="#/">Back to Start</a></li>
+          <li><%=link_to 'Back to Topic Overview', topic_path(checkpoint.lesson.topic)%></a></li>
         </ul>
         <h5 class="muted"><%=checkpoint.position%></h5>
         <h2><%=checkpoint.checkpoint%></h2>
@@ -43,21 +43,46 @@
       <div class="row-fluid">
         <div class="span4">
           <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-            <li><a href="#" onclick="Reveal.navigateUp();return false">Back to Lecture</a></li>
+            <li><a href="#" class="navigate-up">Back to Lecture</a></li>
           </ul>
           <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
           <h2>Question</h2>
           <hr>
           <p><%=qa.question%></p>
           <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
-            <li><a href="#" onclick="Reveal.navigateNext();return false">Next</a></li>
+            <li><a href="#" class="navigate-next">Show Answer / Next</a></li>
           </ul>
         </div><!--span4-->
         <div class="span7 offset1">
-          <p class="lead"><%=qa.answer%></p>
+          <p class="fragment lead"><%=qa.answer%></p>
         </div><!--span7-->
       </div><!--row-->
     </section>
   <%end%>
   </section>
 <%end%>
+<section>
+  <section>
+    <h1>anddd you're done!</h1>
+    <h3><%=link_to 'Go back to the topic overview', topic_path(@lesson.topic)%></h3>
+    <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
+            <li><a href="#" class="navigate-next">View Summary</a></li>
+          </ul>
+  </section>
+  <section>
+    <%@lesson.summaries.each do |l|%>
+      <li><i class="icon-check"></i> <%=l.summary%></li>
+    <%end%>
+  </section>
+</section>
+<script>
+Reveal.initialize({
+    history: true,
+    rollingLinks: false,
+    transition: 'linear'
+    dependencies: [
+        { src: '<%=asset_path("classList.js")%>', condition: function() { return !document.body.classList; } },
+        { src: '<%=asset_path("zoom.js")%>', async: true, condition: function() { return !!document.body.classList; } },
+    ]
+});
+</script>
