@@ -11,35 +11,11 @@
         <![endif]-->
       </div><!--page-alert-->
       <div class="row-fluid">
-      <nav class="span3 dim">
-        <%=render 'shared/logo'%>
-        <ul id="navbar" class="nav nav-pills nav-stacked hidden-phone">
-        <%=render 'shared/search'%>
-        <%=render 'shared/start'%>
-        <% if content_for?(:sidebar) %>
-          <hr>
-          <%=yield :sidebar %>
-        <%end%>
-        <% if controller.controller_name == 'pages'%>
-          <hr>
-          <%=render 'shared/pages'%>
-        <%end%>
-        <% if controller.controller_name == 'subjects'%>
-          <hr>
-          <%=render 'shared/navsubjects'%>
-        <%end%>
-        <% if user_signed_in? %>
-          <hr>
-          <%=render 'shared/navmanage'%>
-        <%end%>
-        <%=render 'shared/last'%>
-        </ul>
-      </nav><!--span3-->
-      <div class="span7 offset1">
+      <div class="span8 offset2">
       <%=yield%>
-      </div><!--span7-->
+      </div><!--span8-->
       </div><!--rowfluid-->
-    </div><!--containerfluid-->
+    </div><!--container-->
     <div id="push"></div>
   </div><!--wrap-->
   <%=render 'shared/footer'%>
