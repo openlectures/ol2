@@ -122,22 +122,30 @@ input[type="radio"], input[type="checkbox"] {
 /* Font Size Settings */
 
 h3 {
-  font-size: 1.149em;
+  font-size: 1.149em; // 36.775px
   line-height:1.4;
 }
 
 h2 {
-  font-size: 1.414em;
+  font-size: 1.414em; // 45.248px
   line-height:1.3;
 }
 
 h1 {
-  font-size: 2.827em;
+  font-size: 2.827em; // 90.469px
   line-height:1.2;
 }
 
 .lead {
   font-weight: 200;
+}
+
+@media (min-width: 481px) and (max-width: 979px) {
+  body { font-size:20px; }
+}
+
+@media screen and (max-width: 480px) {
+  body { font-size:16px; }
 }
 
 /* Font Rendering Hacks */

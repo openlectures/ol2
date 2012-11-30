@@ -3,21 +3,15 @@
   <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
 
-<h1 class="aligncenter" style="font-size:10em; line-height:1.2;"><i class="icon-video icon-large"></i></h1>
-<h1 class="aligncenter">We believe that education should be free and accessible</h1>
-<p class="cmun"><br/><span class="helvetica"><strong>open</strong>lectures</span> provides free online lectures based on the Singapore syllabus. It was founded in 2011 by <a href="#linan">Qiu Linan</a> and <a href="#yitao">Zhang Yitao</a>, two students who strongly believed in making quality education free and accessible to every one.</p>
-<p class="cmun">Today, over a hundred staff and lecturers across the globe contribute their time and expertise to this effort. Everyone works for free, at nights, and on weekends, because we love what we do.</p>
-<hr>
+<div class="aligncenter">
+  <h1>
+    <i class="icon-video icon-fuckingbig"></i><br/>
+    We believe that education should be<br/>
+    <span class="salmon">free and accessible</span>
+  </h1>
+</div><!--aligncenter-->
 
-<div class="hidden-phone">
-  <ul class="thumbnails">
-  <%@thumbs.each do |thumb|%>
-    <li class="span2">
-      <a class="thumbnail" rel="popover" data-placement="top" data-trigger="hover" data-content=<%=thumb.gsub("app/assets/images/profile/","").gsub(".jpg","").capitalize%>>
-        <%=image_tag thumb.gsub("app/assets/images/", "")%>
-      </a>
-    </li>
-  <%end%>
-  </ul>
-</div><!--hidden-phone-->
-<h1 class="aligncenter">Got something special? <%=link_to "Join Us!", opportunities_path%></h1>
+<h3 class="cmun">
+  openlectures provides free online lectures based on the Singapore syllabus. It was founded in 2011 by Linan Qiu, a student who strongly believed in making quality education free and accessible to every one.
+</h3>
+<p>Today, over a hundred staff and lecturers across the globe contribute their time and expertise to this effort. Everyone works for free, at nights, and on weekends, because we love what we do.</p>

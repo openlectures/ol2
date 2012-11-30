@@ -20,7 +20,7 @@ Ol2::Application.routes.draw do
   resources :questionanswers
   resources :summaries
   resources :checkpoints
-  resources :lessons do 
+  resources :lessons do
     collection {post :sort}
   end
   resources :topics do
@@ -36,5 +36,4 @@ Ol2::Application.routes.draw do
   match "/partners"=> "pages#partners", as: :partners
   match "/presskit"=>"pages#presskit", as: :presskit
   match "/team"=> "pages#team", as: :team
-  match "/privacy"=> "pages#privacy", as: :privacy
 end
