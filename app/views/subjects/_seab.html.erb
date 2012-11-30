@@ -1,16 +1,11 @@
 <div class="tab-pane active fade in" id="seab">
-  <div class="row-fluid">
-    <div class="span8 offset4">
-  <h4>This is a good place to start!</h4>
-  <h5>In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</h5>
-</div>
-  </div><!--row-->
+  <p class="cmun">In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
   <div class="accordion" id="syllabus">
   <%@subject.seab_topics.each do |topic|%>
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse" data-parent="#syllabus" href="#<%=topic.id%>">
-          <%=topic.topic%>
+          <h3 class="marginbot0 margintop0"><%=topic.topic%></h3>
         </a>
       </div><!--accordionheading-->
       <div id="<%=topic.id%>" class="accordion-body collapse">
@@ -20,7 +15,7 @@
             <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%>>
               <caption class="alignleft"><%=sub_topic.topic%></caption>
               <tbody>
-                <%sub_topic.topics.order("position").each do |sub_topic|%>
+                <%sub_topic.topics.order("position").each do |sub_topic| %>
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin" || current_user.role = "lecturer"%>
