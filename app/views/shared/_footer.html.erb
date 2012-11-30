@@ -1,16 +1,12 @@
 <footer class="container">
   <hr>
-    <div class="element-center">
-    <ul class="nav nav-pills marginbot0">
-      <%=render 'shared/pages'%>
-      <li class="<%= current_page?(privacy_path) ? "active" : "" %>">
-        <%=link_to('Privacy Policy', privacy_path)%>
-      </li>
-      <li class="<%= current_page?(privacy_path) ? "active" : "" %>">
-        <%=link_to('Terms and Conditions', privacy_path)%>
-      </li>
-      <li><a class="reView" href="<%=root_path%>">Switch View</a></li>
-    </ul>
-    </div><!--element-center-->
-    <p><span class="helvetica" style="font-size:0.9em;"><strong>open</strong>lectures</span> is designed and produced in <%=link_to "a small room", team_path%> on the sunny island of Singapore</p>
+  <div class="element-center">
+  <ul class="nav nav-pills marginbot0">
+    <%=render 'shared/pages'%>
+    <li><a class="reView" href="<%=root_path%>">Switch View</a></li>
+  </ul>
+  </div><!--element-center-->
+  <h3>
+    <span class="helvetica" style="font-size:0.9em;"><strong>open</strong>lectures</span> is designed and produced in <%=link_to "a small room", team_path%> on the sunny island of Singapore
+  </h3>
 </footer>

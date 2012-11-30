@@ -15,4 +15,5 @@
 //= require modernizr
 //= require polyfiller
 //= require tinynav
+//= require meny
 //= require iosfix

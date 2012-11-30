@@ -1,23 +1,46 @@
 <%=render 'shared/head'%>
 <body>
-  <div id="wrap">
-    <div class="container-fluid">
-      <div class="page-alert">
-        <%= bootstrap_flash %>
-        <!--[if lt IE 7]>
-          <div class="alert">
-          You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
-          </div>
-        <![endif]-->
-      </div><!--page-alert-->
-      <div class="row-fluid">
-      <div class="span8 offset2">
-      <%=yield%>
-      </div><!--span8-->
-      </div><!--rowfluid-->
-    </div><!--container-->
-    <div id="push"></div>
-  </div><!--wrap-->
+  <nav class="meny">
+    <ul id="navbar" class="nav nav-list">
+    <%=render 'shared/start'%>
+    <% if content_for?(:sidebar) %>
+      <li class="divider"></li>
+      <%=yield :sidebar %>
+    <%end%>
+    <% if controller.controller_name == 'pages'%>
+      <li class="divider"></li>
+      <li class="nav-header">Pages</li>
+      <%=render 'shared/pages'%>
+    <%end%>
+    <% if controller.controller_name == 'subjects'%>
+      <li class="divider"></li>
+      <li class="nav-header">Subjects</li>
+      <%=render 'shared/navsubjects'%>
+    <%end%>
+    <% if user_signed_in? %>
+      <li class="divider"></li>
+      <li class="nav-header">Manage</li>
+      <%=render 'shared/navmanage'%>
+    <%end%>
+    <%=render 'shared/last'%>
+    </ul>
+  </nav><!--span3-->
+  <div class="meny-arrow"></div>
+  <div class="container-fluid">
+    <div class="page-alert">
+      <%= bootstrap_flash %>
+      <!--[if lt IE 7]>
+        <div class="alert">
+        You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
+        </div>
+      <![endif]-->
+    </div><!--page-alert-->
+    <div class="row-fluid">
+    <div class="span8 offset2">
+    <%=yield%>
+    </div><!--span10-->
+    </div><!--row-->
+  </div><!--container-->
   <%=render 'shared/footer'%>
   <%= jquery_include_tag :google %>
   <%= javascript_include_tag "application"%>
@@ -25,7 +48,14 @@
   <script>
     $.webshims.polyfill();
     $('#navbar').tinyNav();
-    $("a[rel=popover]").popover();
+    var meny = Meny.create({
+      menuElement: document.querySelector( '.meny' ),
+      contentsElement: document.querySelector( '.container-fluid' ),
+      position: 'left',
+      // height: 200,
+      width: 250,
+      threshold: 100
+    });
   </script>
 </body>
 </html>
