@@ -11,4 +11,5 @@
 //= require twitter/bootstrap/bootstrap-typeahead
 //= require twitter/bootstrap/bootstrap-dropdown
 //= require twitter/bootstrap/bootstrap-collapse
+//= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .
