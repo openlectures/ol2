@@ -2,40 +2,47 @@
   <%@lesson.checkpoints.each do |checkpoint|%>
   <section>
     <section>
-      <div class="row-fluid alignright">
-      <div class="span4">
-        <h5 class="muted margintop0 marginbot0" style="line-height:1">CHECKPOINT <%=checkpoint.position%></h5>
-        <h2 class="margintop0" style="line-height:1"><%=checkpoint.checkpoint%></h2>
-        <p class="margintop0"><%=checkpoint.description%></p>
-      </div><!--span4-->
-      <div class="span8">
-        <div class="videoWrapper">
-          <iframe seamless src="<%=checkpoint.parsed_url%>" frameborder="0" allowfullscreen >
-          </iframe>
-        </div><!--videoWrapper-->
-      </div><!--span8-->
-      </div><!--row-->
+    	<h3 style="line-height:0.8; margin-bottom: 2em"><%=link_to '<i class="icon-arrow-up"></i><br/><small>Back to Topic Overview</small>'.html_safe, topic_path(checkpoint.lesson.topic)%></h3>
+      <div class="row-fluid">
+      	<div class="span1">
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-left"><i class="icon-arrow-left"></i><br/><small>Previous</small></a></h3>
+      	</div><!--span1-->
+	      <div class="span3 alignright">
+	        <h5 class="muted margintop0 marginbot0" style="line-height:1">CHECKPOINT <%=checkpoint.position%></h5>
+	        <h2 class="margintop0" style="line-height:1"><%=checkpoint.checkpoint%></h2>
+	        <p class="margintop0" ><%=checkpoint.description%></p>
+	      </div><!--span3-->
+	      <div class="span7">
+	        <div class="videoWrapper">
+	          <iframe seamless src="<%=checkpoint.parsed_url%>"></iframe>
+	        </div><!--videoWrapper-->
+	      </div><!--span7-->
+	      <div class="span1">
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-arrow-right"></i><br/><small>Next</small></a></h3>
+	    	</div><!--span1-->
+      </div><!--rowfluid-->
+      <h3 style="margin-top:1.5em;"><a href="#" class="navigate-down"><small>Question</small><br/><i class="icon-arrow-down"></i></a></h3>
     </section>
 
   <%checkpoint.questionanswers.each do |qa|%>
-    <section class="alignleft">
-      <div class="row-fluid">
-        <div class="span4">
-          <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-            <li><a href="#" class="navigate-up">Back to Lecture</a></li>
-          </ul>
-          <h5 class="muted"><%=checkpoint.position.to_s + ": "+checkpoint.checkpoint%></h5>
-          <h2>Question</h2>
-          <hr>
-          <p><%=qa.question%></p>
-          <ul class="nav nav-pills nav-stacked aligncenter margintop20p">
-            <li><a href="#" class="navigate-next">Show Answer / Next</a></li>
-          </ul>
-        </div><!--span4-->
-        <div class="span7 offset1">
-          <p class="fragment lead"><%=qa.answer%></p>
-        </div><!--span7-->
-      </div><!--row-->
+    <section>
+      <h3 style="line-height:0.8;"><a href="#" class="navigate-up"><i class="icon-arrow-up"></i><br/><small>Back to Lecture</small></a></h3>
+      <div class="row-fluid" style="margin-top:5em; margin-bottom:7em;">
+      	<div class="span1">
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-left"><i class="icon-arrow-left"></i><small>Previous</small></a><br/></h3>
+      	</div><!--span1-->
+        <div class="span3 alignright">
+        	<h5 class="muted margintop0 marginbot0" style="line-height:1">QUESTION <%=checkpoint.position%></h5>
+        	<h2 class="margintop0" style="line-height:1"><%=checkpoint.checkpoint%></h2>
+          <p class="margintop0"><%=qa.question%></p>
+        </div><!--span3-->
+        <div class="span6 offset1 alignleft">
+          <p><%=qa.answer%></p>
+        </div><!--span6-->
+        <div class="span1">
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-arrow-right"></i><br/><small>Next</small></a></h3>
+	    	</div><!--span1-->
+      </div><!--rowfluid-->
     </section>
   <%end%>
   </section>
@@ -54,16 +61,3 @@
     <%end%>
   </section>
 </section>
-<script>
-Reveal.initialize({
-    history: true,
-    rollingLinks: false,
-    controls: false,
-    mouseWheel: true,
-    transition: 'linear'
-    dependencies: [
-        { src: '<%=asset_path("classList.js")%>', condition: function() { return !document.body.classList; } },
-        { src: '<%=asset_path("zoom.js")%>', async: true, condition: function() { return !!document.body.classList; } },
-    ]
-});
-</script>

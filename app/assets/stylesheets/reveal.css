@@ -14,18 +14,6 @@ body {
 	line-height: 1;
 }
 
-@media screen and (max-width: 900px), (max-height: 600px) {
-	.reveal .slides {
-		font-size: 0.82em;
-	}
-}
-
-@media screen and (max-width: 700px), (max-height: 400px) {
-	.reveal .slides {
-		font-size: 0.66em;
-	}
-}
-
 /*********************************************
  * HEADERS
  *********************************************/
@@ -263,9 +251,9 @@ body {
 
 .reveal .slides {
 	position: absolute;
-	max-width: 1200px;
+	max-width: inherit;
 	min-height: 600px;
-	width: 90%;
+	width: 100%;
 	left: 50%;
 	top: 50%;
 
@@ -419,10 +407,10 @@ body {
 .reveal.overview .slides section {
 	height: 600px;
 	overflow: hidden;
-	opacity: 1!important;
-	visibility: visible!important;
+	opacity: 1 !important;
+	visibility: visible !important;
 	cursor: pointer;
-	background: rgba(0,0,0,0.1);
+	background: inherit;
 }
 .reveal.overview .slides section .fragment {
 	opacity: 1;
@@ -543,61 +531,4 @@ body {
 }
 .blackout .reveal .state-background {
 	background: rgba( 0, 0, 0, 0.6 );
-}
-
-
-/*********************************************
- * RTL SUPPORT
- *********************************************/
-
-.reveal.rtl .slides,
-.reveal.rtl .slides h1,
-.reveal.rtl .slides h2,
-.reveal.rtl .slides h3,
-.reveal.rtl .slides h4,
-.reveal.rtl .slides h5,
-.reveal.rtl .slides h6 {
-	direction: rtl;
-	font-family: sans-serif;
-}
-
-.reveal.rtl pre,
-.reveal.rtl code {
-	direction: ltr;
-}
-
-.reveal.rtl ol,
-.reveal.rtl ul {
-	text-align: right;
-}
-
-/*********************************************
- * ZOOM PLUGIN
- *********************************************/
-
-.zoomed .reveal *,
-.zoomed .reveal *:before,
-.zoomed .reveal *:after {
-	-webkit-transform: none !important;
-	   -moz-transform: none !important;
-	    -ms-transform: none !important;
-	        transform: none !important;
-
-	-webkit-backface-visibility: visible !important;
-	   -moz-backface-visibility: visible !important;
-	    -ms-backface-visibility: visible !important;
-	        backface-visibility: visible !important;
-}
-
-.zoomed .reveal .progress,
-.zoomed .reveal .controls {
-	opacity: 0;
-}
-
-.zoomed .reveal .roll span {
-	background: none;
-}
-
-.zoomed .reveal .roll span:after {
-	visibility: hidden;
 }

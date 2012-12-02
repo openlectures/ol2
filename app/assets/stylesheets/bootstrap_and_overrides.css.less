@@ -1,4 +1,4 @@
-/* Import Bootstrap Core and Font Awesome */
+/* Import Bootstrap Core */
 // CSS Reset
 @import "twitter/bootstrap/reset.less";
 
@@ -63,7 +63,7 @@
 
 /* Bootstrap Variables */
 @bodyBackground:        #F3F3F3;
-@accent:                #33cccc; /* #2eb8b8; */
+@accent:                #33cccc;
 @salmon:                #ff6666;
 @honeydew:              #ccff66;
 @cantaloupe:            #ffcc66;
@@ -75,13 +75,19 @@
 @baseLineHeight:        1.5;
 @sansFontFamily:        "miso", "Helvetica Neue", Helvetica, Arial, sans-serif;
 @serifFontFamily:       "cmun", Georgia, "Times New Roman", Times, serif;
-
 @altFontFamily:         @sansFontFamily;
+@headingsFontWeight:    normal;
 
-@headingsFontWeight:    normal;    // instead of browser default, bold
+[class^="navigate-"],
+[class*=" navigate-"] {
+	display:none;
+}
 
-@warningBackground:     #fcf8e3;
-@errorBackground:       #f2dede;
+.enabled {
+	display:block;
+}
+
+/* Meny Classes */
 
 html,
 body {
@@ -92,8 +98,6 @@ body {
 .container-fluid {
 	min-height: 100%;
 }
-
-/* Meny Classes */
 
 .meny-arrow {
   position: absolute;
@@ -182,6 +186,7 @@ input[type="radio"], input[type="checkbox"] {
 p {
   font-size: 0.75em; // 16.973px
 }
+
 h3 {
   font-size: 1.149em; // 36.775px
   line-height:1.4;
@@ -206,7 +211,7 @@ h1 {
 }
 
 @media screen and (max-width: 480px) {
-  body { font-size:16px; }
+  body { font-size:18px; }
 }
 
 /* Font Rendering Hacks */

@@ -41,7 +41,8 @@
     </div><!--span10-->
     </div><!--row-->
   </div><!--containerfluid-->
-  <%= javascript_include_tag "application"%>
+  <%=jquery_include_tag :google%>
+  <%=javascript_include_tag "application"%>
   <%= yield :javascripts %>
   <script>
     var meny = Meny.create({

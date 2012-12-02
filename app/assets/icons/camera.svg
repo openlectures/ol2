@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
+You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path id="photo-camera-5-icon" d="M275.29,196.625c-54.669,0-99.146,42.185-99.146,96.854c0,54.67,44.477,99.146,99.146,99.146
+	c54.67,0,99.146-44.477,99.146-99.146C374.437,238.81,329.96,196.625,275.29,196.625z M275.29,346.777
+	c-29.389,0-53.298-23.909-53.298-53.299c0-29.389,23.909-53.298,53.298-53.298c29.39,0,53.299,23.909,53.299,53.298
+	C328.589,322.868,304.68,346.777,275.29,346.777z M462,148.125v267H349.518c16.334-10.343,31.371-23.994,42.175-40H422v-187h-23.502
+	c-46.532,0-62.771-38.856-69.635-51.25H223.209c-13.073,25.489-29.337,51.25-69.053,51.25H90v187h68.877
+	c10.805,16.01,25.854,29.656,42.192,40H50v-267h104.156c23.597,0,29.04-20.885,44.613-51.25h153.665
+	c18.078,32.642,23.33,51.25,46.063,51.25H462z M162.831,232.375c0-11.322-9.178-20.5-20.5-20.5s-20.5,9.178-20.5,20.5
+	s9.178,20.5,20.5,20.5S162.831,243.697,162.831,232.375z"/>
+</svg>

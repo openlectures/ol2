@@ -22,7 +22,7 @@
                     <%end%>
                   <%end%>
                   <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
-                  <td>
+                  <td class="alignright">
                     <%=sub_topic.lessons.count%> Lessons
                   </td>
                   <% if user_signed_in? %>
