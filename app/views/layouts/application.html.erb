@@ -40,12 +40,12 @@
     <%=yield%>
     </div><!--span10-->
     </div><!--row-->
-  </div><!--containerfluid-->
-  <%= jquery_include_tag :google %>
+  </div><!--container-->
+  <%=render 'shared/footer'%>
   <%= javascript_include_tag "application"%>
   <%= yield :javascripts %>
   <script>
-    $.webshims.polyfill();
+    $('#navbar').tinyNav();
     var meny = Meny.create({
       menuElement: document.querySelector( '.meny' ),
       contentsElement: document.querySelector( '.container-fluid' ),
