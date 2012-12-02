@@ -40,12 +40,10 @@
     <%=yield%>
     </div><!--span10-->
     </div><!--row-->
-  </div><!--container-->
-  <%=render 'shared/footer'%>
+  </div><!--containerfluid-->
   <%= javascript_include_tag "application"%>
   <%= yield :javascripts %>
   <script>
-    $('#navbar').tinyNav();
     var meny = Meny.create({
       menuElement: document.querySelector( '.meny' ),
       contentsElement: document.querySelector( '.container-fluid' ),
