@@ -2,32 +2,11 @@
   <%@lesson.checkpoints.each do |checkpoint|%>
   <section>
     <section>
-      <div class="row-fluid alignleft">
+      <div class="row-fluid alignright">
       <div class="span4">
-        <ul class="nav nav-pills nav-stacked aligncenter marginbot20p hidden-phone">
-          <li><%=link_to 'Back to Topic Overview', topic_path(checkpoint.lesson.topic)%></a></li>
-        </ul>
-        <h5 class="muted"><%=checkpoint.position%></h5>
-        <h2><%=checkpoint.checkpoint%></h2>
-        <hr>
-        <p><%=checkpoint.description%></p>
-        <div class="row-fluid margintop20p hidden-phone">
-          <div class="span4">
-            <ul class="nav nav-pills nav-stacked aligncenter">
-              <li><a href="#" class="navigate-left">Back</a></li>
-            </ul>
-          </div><!--span4-->
-          <div class="span4">
-            <ul class="nav nav-pills nav-stacked aligncenter">
-              <li><a href="#" class="navigate-down">Question</a></li>
-            </ul>
-          </div><!--span4-->
-          <div class="span4">
-            <ul class="nav nav-pills nav-stacked aligncenter">
-              <li><a href="#" class="navigate-right">Next</a></li>
-            </ul>
-          </div><!--span4-->
-        </div><!--row-->
+        <h5 class="muted margintop0 marginbot0" style="line-height:1">CHECKPOINT <%=checkpoint.position%></h5>
+        <h2 class="margintop0" style="line-height:1"><%=checkpoint.checkpoint%></h2>
+        <p class="margintop0"><%=checkpoint.description%></p>
       </div><!--span4-->
       <div class="span8">
         <div class="videoWrapper">
@@ -79,6 +58,8 @@
 Reveal.initialize({
     history: true,
     rollingLinks: false,
+    controls: false,
+    mouseWheel: true,
     transition: 'linear'
     dependencies: [
         { src: '<%=asset_path("classList.js")%>', condition: function() { return !document.body.classList; } },

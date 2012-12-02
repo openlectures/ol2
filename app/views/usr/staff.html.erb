@@ -1,9 +1,8 @@
 <%title "Staff"%>
 
 <h1>Staff Database</h1>
-<hr>
 <div id="staff-list">
-<input type="search" class="search input-block-level" placeholder="Filter List">
+<input type="search" class="search span10 offset1 aligncenter" style="margin-bottom:1.414em" placeholder="Filter List">
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
@@ -19,7 +18,7 @@
       <td class="name"><%=s.fullname%></td>
       <td class="email"><%=mail_to(s.email, nil, :encode => "javascript") %></td>
       <td class="phone"><a href="callto:<%=s.phone%>"><%=s.phone%></a></td>
-      <td class="location"></td>
+      <td class="location">Singapore</td>
     </tr>
   <%end%>
   </tbody>

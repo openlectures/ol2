@@ -1,10 +1,9 @@
 <div class="tab-pane active fade in" id="seab">
-  <p class="cmun">In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
   <div class="accordion" id="syllabus">
   <%@subject.seab_topics.each do |topic|%>
     <div class="accordion-group">
       <div class="accordion-heading">
-        <a class="accordion-toggle" data-toggle="collapse" data-parent="#syllabus" href="#<%=topic.id%>">
+        <a class="accordion-toggle" data-toggle="collapse"  href="#<%=topic.id%>">
           <h3 class="marginbot0 margintop0"><%=topic.topic%></h3>
         </a>
       </div><!--accordionheading-->
@@ -12,9 +11,9 @@
         <div class="accordion-inner">
             <p class="muted" style="font-size:0.9em"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
-            <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%>>
+            <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%> style="margin-bottom:1.5em;">
               <caption class="alignleft"><%=sub_topic.topic%></caption>
-              <tbody>
+              <tbody">
                 <%sub_topic.topics.order("position").each do |sub_topic| %>
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
@@ -28,11 +27,9 @@
                   </td>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-                      <td>
-                        <div class="btn-group pull-right">
-                          <%=link_to('<i class="icon-pencil"></i>'.html_safe, edit_topic_path(topic), :class => "btn btn-small")%>
-                          <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",:class => "btn btn-danger btn-small")%>
-                        </div><!--btngroup-->
+                      <td class="alignright">
+                        <%=link_to('<i class="icon-pencil"></i>'.html_safe, edit_topic_path(topic), :class => "gray")%>
+                        <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
                       </td>
                     <%end%>
                   <%end%>

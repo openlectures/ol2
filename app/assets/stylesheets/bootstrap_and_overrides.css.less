@@ -60,7 +60,6 @@
 @import "buttons";
 @import "button-groups";
 @import "icons";
-@import "footer";
 
 /* Bootstrap Variables */
 @bodyBackground:        #F3F3F3;
@@ -70,6 +69,7 @@
 @cantaloupe:            #ffcc66;
 
 @linkColor:             @accent;
+@linkColorHover:        @grayLight;
 
 @baseFontSize:          24px;
 @baseLineHeight:        1.5;
@@ -83,6 +83,8 @@
 @warningBackground:     #fcf8e3;
 @errorBackground:       #f2dede;
 
+/* Meny Classes */
+
 .meny-arrow {
   position: absolute;
   z-index: 10;
@@ -95,65 +97,56 @@
        -o-transition: opacity 0.4s ease 0.4s;
           transition: opacity 0.4s ease 0.4s;
 }
-  .meny-left .meny-arrow {
-    left: 14px;
-    top: 50%;
-    margin-top: -16px;
-    border-left: 16px solid #333;
-  }
-  .meny-right .meny-arrow {
-    right: 14px;
-    top: 50%;
-    margin-top: -16px;
-    border-right: 16px solid #333;
-  }
-  .meny-top .meny-arrow {
-    left: 50%;
-    top: 14px;
-    margin-left: -16px;
-    border-top: 16px solid #333;
-  }
-  .meny-bottom .meny-arrow {
-    left: 50%;
-    bottom: 14px;
-    margin-left: -16px;
-    border-bottom: 16px solid #333;
-  }
-  .meny-active .meny-arrow {
-    opacity: 0;
+.meny-left .meny-arrow {
+  left: 14px;
+  top: 50%;
+  margin-top: -16px;
+  border-left: 16px solid #333;
+}
+.meny-right .meny-arrow {
+  right: 14px;
+  top: 50%;
+  margin-top: -16px;
+  border-right: 16px solid #333;
+}
+.meny-top .meny-arrow {
+  left: 50%;
+  top: 14px;
+  margin-left: -16px;
+  border-top: 16px solid #333;
+}
+.meny-bottom .meny-arrow {
+  left: 50%;
+  bottom: 14px;
+  margin-left: -16px;
+  border-bottom: 16px solid #333;
+}
+.meny-active .meny-arrow {
+  opacity: 0;
 
-    -webkit-transition: opacity 0.2s ease;
-       -moz-transition: opacity 0.2s ease;
-        -ms-transition: opacity 0.2s ease;
-         -o-transition: opacity 0.2s ease;
-            transition: opacity 0.2s ease;
-  }
+  -webkit-transition: opacity 0.2s ease;
+     -moz-transition: opacity 0.2s ease;
+      -ms-transition: opacity 0.2s ease;
+       -o-transition: opacity 0.2s ease;
+          transition: opacity 0.2s ease;
+}
+.meny {
+	display: none;
+	overflow: auto;
 
-  .meny {
-  display: none;
-  // padding-right: 10px;
-  overflow: auto;
-
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	   -moz-box-sizing: border-box;
+	        box-sizing: border-box;
 }
 
 /* Make colors accessible via CSS selectors */
 
 .olgreen {color:@accent;}
 .salmon {color:@salmon;}
+.honeydew {color:@honeydew;}
 .cantaloupe {color:@cantaloupe;}
 .white {color:@white;}
 .gray {color:@grayDark;}
-
-/* Hides menu dropdown on large screens and shows on small */
-
-.tinynav { display: none }
-
-@media screen and (max-width: 768px) {
-  .tinynav { display: block; width:100%; }
-}
 
 /* Increase the clickable area around paragraph links */
 
@@ -176,7 +169,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 /* Font Size Settings */
-
+p {
+  font-size: 0.75em; // 16.973px
+}
 h3 {
   font-size: 1.149em; // 36.775px
   line-height:1.4;

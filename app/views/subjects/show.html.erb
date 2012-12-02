@@ -1,14 +1,17 @@
 <%title @subject.subject%>
-
-<h1><%=@subject.subject%></h1>
-<h3><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</h3>
-
-<ul class="nav nav-pills" style="margin-bottom:5px;">
-  <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
-  <li class="disabled"><a>Subway Map</a></li>
-  <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
-</ul>
-
+<div class="row-fluid">
+  <div class="span6">
+    <h1><%=@subject.subject%></h1>
+    <h3><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</h3>
+  </div><!--span6-->
+  <div class="span6">
+    <ul class="nav nav-pills" style="margin-bottom:5px;">
+      <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
+      <li class="disabled"><a>Subway Map</a></li>
+      <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
+    </ul>
+  </div><!--span6-->
+</div><!--row-->
 <div class="tab-content">
   <%= render 'seab' %>
   <%= render 'listcheckpoints' %>
