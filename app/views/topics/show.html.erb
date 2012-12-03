@@ -2,9 +2,9 @@
 <h1></h1>
 <div class="aligncenter">
   <h1 class="marginbot0" style="font-size:4em;"><%=@topic.topic%></h1>
-  <h5 class="miso muted margintop0 marginbot0">9 checkpoints in 5 minutes</h5>
+  <h5 class="miso muted margintop0 marginbot0"><%=@topic.checkpoints.count%> checkpoints in 5 minutes</h5>
 </div><!--aligncenter-->
-<ul class="nav nav-pills nav-stacked aligncenter">
+<ul class="nav nav-pills nav-stacked aligncenter" style="margin-top:6em;">
 <%@topic.lessons.each do |lesson|%>
   <li><h4 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h4></li>
 <%end%>

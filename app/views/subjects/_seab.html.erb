@@ -11,12 +11,13 @@
         <div class="accordion-inner">
             <p class="muted" style="font-size:0.9em"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
-              <%if sub_topic.topics.count ==0%>
-                <h3 class="muted"><%=sub_topic.topic%> - No Lectures Yet! Coming Soon!</h3><br />
-              <%else%>
             <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%> style="margin-bottom:1.5em;">
+
               <caption class="alignleft"><%=sub_topic.topic%></caption>
               <tbody>
+              	<%if sub_topic.topics.count ==0%>
+              	<td class="aligncenter">Coming Soon</td>
+	              <%else%>
                 <%sub_topic.topics.order("position").each do |sub_topic| %>
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
