@@ -1,30 +1,3 @@
-<%title "Manage Subjects"%>
-<h1>Subjects</h1>
-<h3 class="lead"><%=Checkpoint.all.count%> checkpoints in <%=Lesson.all.count%> lessons</h3>
-<hr>
-<table class="table table-hover table-condensed">
-  <thead>
-    <tr>
-      <th><i class="icon-subject"></i> Subject</th>
-      <th><i class="icon-lesson"></i> Lessons</th>
-      <th><i class="icon-checkpoint"></i> Checkpoints</th>
-      <th><i class="icon-calendar-date"></i> Last Updated</th>
-    </tr>
-  </thead>
-  <tbody class="list">
-  <%Subject.all.each do |subject|%>
-    <tr>
-      <td class="subject"><%=link_to subject.subject, edit_subject_path(subject)%></td>
-      <td class="lessons"><%=subject.lessons.count%></td>
-      <td class="checkpoints"><%=subject.checkpoints.count%></td>
-      <td class="date">
-        <%if subject.checkpoints.count != 0%>
-          <%=subject.checkpoints.last.created_at.to_formatted_s(:short)%>
-        <%else%>
-          N/A
-        <%end%>
-        </td>
-    </tr>
-  <%end%>
-  </tbody>
-</table>
+<%title "Admin Panel"%>
+<h1>What would you like to do today?</h1>
+*Insert Thumbnails for actionables, eg. manage users, manage subjects, create new item*

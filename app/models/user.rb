@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
-  ROLES = %w[admin lecturer user]
+  ROLES = %w[admin user]
 
   attr_accessible :email, :password, :password_confirmation, :remember_me, :role, :given_name, :surname, :school_email, :grad_year, :school, :title, :phone, :avatar
 

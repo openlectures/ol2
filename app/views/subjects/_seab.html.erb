@@ -11,7 +11,13 @@
         <div class="accordion-inner">
             <p class="muted" style="font-size:0.9em"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
-            <table class="table table-hover table-condensed sortable" data-update-url=<%=sort_topics_url%> style="margin-bottom:1.5em;">
+              <table class="table table-hover table-condensed
+              <% if user_signed_in? %>
+                <% if current_user.role = "admin" && sub_topic.topics.count !=0%>
+                  sortable
+                <%end%>
+              <%end%>
+  " data-update-url=<%=sort_topics_url%> style="margin-bottom:1.5em;">
 
               <caption class="alignleft"><%=sub_topic.topic%></caption>
               <tbody>
@@ -21,7 +27,7 @@
                 <%sub_topic.topics.order("position").each do |sub_topic| %>
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
-                    <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+                    <% if current_user.role = "admin"%>
                       <td><span class="handle"><i class="icon-sort"></i></span></td>
                     <%end%>
                   <%end%>
@@ -30,7 +36,7 @@
                     <%=sub_topic.lessons.count%> Lessons
                   </td>
                   <% if user_signed_in? %>
-                    <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+                    <% if current_user.role = "admin"%>
                       <td class="alignright">
                         <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(topic), :class => "gray")%>
                         <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
@@ -51,7 +57,7 @@
 </div><!--tabpane-->
 
 <%if user_signed_in?%>
-  <%if current_user.role = "admin" || current_user.role = "lecturer"%>
+  <%if current_user.role = "admin"%>
     <%content_for :javascripts do%>
       <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {

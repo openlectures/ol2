@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <% if current_user.role = "admin" || current_user.role = "lecturer"%>
+  <% if current_user.role = "admin"%>
     <li><%=link_to('<i class="icon-inbox"></i> '.html_safe + current_user.fullname, profile_path)%></li>
   <%end%>
 <% else %>
