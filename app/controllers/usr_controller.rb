@@ -9,6 +9,8 @@ class UsrController < ApplicationController
     @topic = Topic.new
     @lesson = Lesson.new
     @checkpoint = Checkpoint.new
+    @questionanswer = Questionanswer.new
+    @summary = Summary.new
   end
 
   def profile

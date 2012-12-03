@@ -7,6 +7,8 @@
   <li><a href="#topic" data-toggle="tab">Topic</a></li>
   <li><a href="#lesson" data-toggle="tab">Lesson</a></li>
   <li><a href="#checkpoint" data-toggle="tab">Checkpoint</a></li>
+  <li><a href="#questionanswer" data-toggle="tab">Q&A</a></li>
+  <li><a href="#summary" data-toggle="tab">Summary</a></li>
 </ul>
 <div class="tab-content">
   <div class="tab-pane active fade in" id="subject">
@@ -26,5 +28,11 @@
   </div>
   <div class="tab-pane fade in" id="checkpoint">
     <%=render "checkpoints/form"%>
+  </div>
+  <div class="tab-pane fade in" id="questionanswer">
+    <%=render "questionanswers/form"%>
+  </div>
+  <div class="tab-pane fade in" id="summary">
+    <%=render "summaries/form"%>
   </div>
 </div>
