@@ -1,20 +1,38 @@
-<p id="notice"><%= notice %></p>
+<h2><%=@seab_topic.topic%></h2>
+<p><%= @seab_topic.description %></p>
 
-<p>
-  <b>Description:</b>
-  <%= @seab_topic.description %>
-</p>
+<h2>SEAB_sub topics</h2>
+<ul>
+  <%@seab_sub_topics.each do |s|%>
+    <li><%=s.topic%></li>
+  <%end%>
+</ul>
+<%= simple_form_for(@seab_sub_topic) do |f| %>
+  <% if @seab_sub_topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@seab_sub_topic.errors.count, "error") %> prohibited this seab_sub_topic from being saved:</h2>
+      <ul>
+      <% @seab_sub_topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= f.hidden_field :seab_topic_id, value: params[:id]%>
+    <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic" %>
+    <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
+  <% end %>
 
-<p>
-  <b>Position:</b>
-  <%= @seab_topic.position %>
-</p>
+<%-content_for :javascripts do%>
+  <%=javascript_include_tag "select2"%>
+    <script>
+        $(document).ready(function() { $(".el").select2(); });
+    </script>
+  <%-end%>
 
-<p>
-  <b>Topic:</b>
-  <%= @seab_topic.topic %>
-</p>
-
+<%-content_for :styles do%>
+  <%=stylesheet_link_tag "select2"%>
+<%-end%>
 
 <%= link_to 'Edit', edit_seab_topic_path(@seab_topic) %> |
-<%= link_to 'Back', seab_topics_path %>
+<%= link_to 'Back', :back%>

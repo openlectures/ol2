@@ -10,28 +10,6 @@ class SeabSubTopicsController < ApplicationController
     end
   end
 
-  # GET /seab_sub_topics/1
-  # GET /seab_sub_topics/1.json
-  def show
-    @seab_sub_topic = SeabSubTopic.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @seab_sub_topic }
-    end
-  end
-
-  # GET /seab_sub_topics/new
-  # GET /seab_sub_topics/new.json
-  def new
-    @seab_sub_topic = SeabSubTopic.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @seab_sub_topic }
-    end
-  end
-
   # GET /seab_sub_topics/1/edit
   def edit
     @seab_sub_topic = SeabSubTopic.find(params[:id])
@@ -44,7 +22,7 @@ class SeabSubTopicsController < ApplicationController
 
     respond_to do |format|
       if @seab_sub_topic.save
-        format.html { redirect_to @seab_sub_topic, notice: 'Seab sub topic was successfully created.' }
+        format.html { redirect_to @seab_sub_topic.seab_topic, notice: 'Seab sub topic was successfully created.' }
         format.json { render json: @seab_sub_topic, status: :created, location: @seab_sub_topic }
       else
         format.html { render action: "new" }

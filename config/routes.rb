@@ -1,5 +1,5 @@
 Ol2::Application.routes.draw do
-  resources :seab_sub_topics
+  resources :seab_sub_topics, :except => [:new, :show]
   resources :seab_topics
 
   #Usr Controller
