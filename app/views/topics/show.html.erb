@@ -1,30 +1,12 @@
 <%title @topic.topic%>
-<h1><%=@topic.topic%></h1>
-<hr>
-<div id="checkpoints-list">
-<input type="search" class="search input-block-level" placeholder="Filter List">
-<table class="table table-hover table-condensed">
-<thead>
-    <tr>
-      <th><a href="#" data-sort="title">Lessons</a></th>
-    </tr>
-</thead>
-<tbody>
+<h1></h1>
+<div class="aligncenter">
+  <h1 class="marginbot0" style="font-size:4em;"><%=@topic.topic%></h1>
+  <h5 class="miso muted margintop0 marginbot0">9 checkpoints in 5 minutes</h5>
+</div><!--aligncenter-->
+<ul class="nav nav-pills nav-stacked aligncenter">
 <%@topic.lessons.each do |lesson|%>
-    <tr>
-      <td><%=link_to lesson.lesson, lesson_path(lesson)%></td>
-    </tr>
+  <li><h4 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h4></li>
 <%end%>
-</tbody>
-</table>
-
-<%content_for :javascripts do%>
-  <%=javascript_include_tag "list.min"%>
-  <script>
-  var options = {
-      valueNames: ['title']
-  };
-
-  var topicList = new List('checkpoints-list', options);
-  </script>
-<%end%>
+</ul>
+</div>

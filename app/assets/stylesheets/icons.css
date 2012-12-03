@@ -29,7 +29,7 @@ a [class*=" icon-"] {
   [class^="icon-"],
   [class*=" icon-"] {
   /* keeps button heights with and without icons the same */
-    line-height: .9em;
+    line-height: 0.9em;
   }
 }
 

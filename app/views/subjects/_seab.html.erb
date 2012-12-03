@@ -4,7 +4,7 @@
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse"  href="#<%=topic.id%>">
-          <h3 class="marginbot0 margintop0"><%=topic.topic%></h3>
+          <h3 class="marginbot0 margintop0"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i> <%=topic.topic%></h3>
         </a>
       </div><!--accordionheading-->
       <div id="<%=topic.id%>" class="accordion-body collapse">
@@ -48,9 +48,6 @@
 <%if user_signed_in?%>
   <%if current_user.role = "admin" || current_user.role = "lecturer"%>
     <%content_for :javascripts do%>
-      <%=javascript_include_tag "jquery-ui-1.9.1.custom.min"%>
-      <%=javascript_include_tag "sortable.js"%>
-
       <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
           $('.sortable').sortable();
