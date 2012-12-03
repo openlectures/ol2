@@ -18,7 +18,7 @@
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-                      <td><span class="handle"><i class="icon-sort"></i></span></td>
+                      <td><span class="handle"><i class="icon-arrow-combo"></i></span></td>
                     <%end%>
                   <%end%>
                   <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>

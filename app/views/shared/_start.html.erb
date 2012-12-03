@@ -1,11 +1,11 @@
 <% if user_signed_in? %>
   <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-    <li><%=link_to(current_user.fullname, profile_path)%></li>
+    <li><%=link_to('<i class="icon-vcard"></i>'.html_safe + current_user.fullname, profile_path)%></li>
   <%else%>
-    <li><%=link_to(current_user.fullname, "#")%></li>
+    <li><%=link_to('<i class="icon-vcard"></i>'.html_safe + current_user.fullname, "#")%></li>
   <%end%>
 <% else %>
-  <li><%=link_to('Log In', new_user_session_path)%>
+  <li><%=link_to('<i class="icon-login"></i> Log In'.html_safe, new_user_session_path)%>
   <li><%=link_to('Get Started', new_user_registration_path)%></li>
 <% end %>
 <% if controller.controller_name != 'pages'%>
