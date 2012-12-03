@@ -117,6 +117,7 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.4.0)
       mime-types
+    pg (0.14.1)
     pg_search (0.5.7)
       activerecord (>= 3)
       activesupport (>= 3)
@@ -210,6 +211,7 @@ DEPENDENCIES
   less-rails
   omniauth-facebook
   paperclip
+  pg
   pg_search
   quiet_assets
   rails (= 3.2.9)
