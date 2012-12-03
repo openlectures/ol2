@@ -38,8 +38,8 @@
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin"%>
                       <td class="alignright">
-                        <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(topic), :class => "gray")%>
-                        <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
+                        <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(sub_topic), :class => "gray")%>
+                        <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
                       </td>
                     <%end%>
                   <%end%>
