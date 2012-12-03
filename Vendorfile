@@ -1,3 +1,7 @@
+folder 'vendor/assets/stylesheets' do
+  file 'select2.css', 'https://raw.github.com/ivaynberg/select2/master/select2.css'
+end
+
 folder 'vendor/assets/javascripts' do
   file 'chroma-hash.js', 'https://raw.github.com/mattt/Chroma-Hash/master/jquery.chroma-hash.js'
   file 'select2.js', 'https://raw.github.com/ivaynberg/select2/master/select2.js'

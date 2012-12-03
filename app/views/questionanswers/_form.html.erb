@@ -17,12 +17,7 @@
 <% end %>
 
 <%-content_for :javascripts do%>
-  <%=javascript_include_tag "select2"%>
     <script>
         $(document).ready(function() { $(".el").select2(); });
     </script>
   <%-end%>
-
-<%-content_for :styles do%>
-  <%=stylesheet_link_tag "select2"%>
-<%-end%>
