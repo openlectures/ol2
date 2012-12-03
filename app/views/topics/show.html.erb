@@ -2,7 +2,9 @@
 <h1></h1>
 <div class="aligncenter">
   <h1 class="marginbot0" style="font-size:4em;"><%=@topic.topic%></h1>
+  <p class="muted"><%=@topic.description%></p><br>
   <h5 class="miso muted margintop0 marginbot0"><%=@topic.checkpoints.count%> checkpoints in 5 minutes</h5>
+
 </div><!--aligncenter-->
 <ul class="nav nav-pills nav-stacked aligncenter" style="margin-top:6em;">
 <%@topic.lessons.each do |lesson|%>
