@@ -14,6 +14,8 @@ class SeabTopicsController < ApplicationController
   # GET /seab_topics/1.json
   def show
     @seab_topic = SeabTopic.find(params[:id])
+    @seab_sub_topics = SeabSubTopic.all
+    @seab_sub_topic = SeabSubTopic.new
 
     respond_to do |format|
       format.html # show.html.erb
