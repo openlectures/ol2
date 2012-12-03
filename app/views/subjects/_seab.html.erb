@@ -18,7 +18,7 @@
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin" || current_user.role = "lecturer"%>
-                      <td><span class="handle"><i class="icon-arrow-combo"></i></span></td>
+                      <td><span class="handle"><i class="icon-sort"></i></span></td>
                     <%end%>
                   <%end%>
                   <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
@@ -28,7 +28,7 @@
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin" || current_user.role = "lecturer"%>
                       <td class="alignright">
-                        <%=link_to('<i class="icon-pencil"></i>'.html_safe, edit_topic_path(topic), :class => "gray")%>
+                        <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(topic), :class => "gray")%>
                         <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
                       </td>
                     <%end%>
