@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-    <%= f.association :seab_topic, label_method: :topic, input_html:{class: "input-block-level el"}, label: false%>
+    <%= f.association :seab_topic, label_method: :topic, input_html:{class: "input-block-level el", placeholder: "SEAB Topic"}, label: false%>
     <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic" %>
     <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
   <% end %>

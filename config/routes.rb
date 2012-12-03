@@ -4,6 +4,7 @@ Ol2::Application.routes.draw do
 
   #Usr Controller
   match  "/manage" => "usr#manage", as: :manage
+  match  "/manage/create" => "usr#create_item", as: :create_item
   match   "/profile" => "usr#profile", as: :profile
   match   "/staff" => "usr#staff", as: :staff
   match "manage/:id" => "subjects#edit", as: :edit_subject
