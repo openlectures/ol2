@@ -303,6 +303,8 @@ schools.json: schools-2373b2409ff70950c242b231819fa022.json
 schools/index.json: schools-2373b2409ff70950c242b231819fa022.json
 application.css: application-99cf646effd4f7a08df59a5a6876e92a.css
 application/index.css: application-99cf646effd4f7a08df59a5a6876e92a.css
+classList.js: classList-9060e3033c48a5b8d7043a9bba0e5014.js
+classList/index.js: classList-9060e3033c48a5b8d7043a9bba0e5014.js
 twitter/bootstrap/glyphicons-halflings-white.png: twitter/bootstrap/glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
 twitter/bootstrap/glyphicons-halflings-white/index.png: twitter/bootstrap/glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
 twitter/bootstrap/glyphicons-halflings.png: twitter/bootstrap/glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png
