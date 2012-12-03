@@ -45,3 +45,5 @@ gem 'jquery-turbolinks'
 gem 'jquery-rails-cdn'
 
 gem 'secretive'
+
+gem 'vendorer', :group => :development
