@@ -192,9 +192,9 @@ var Meny = {
 				// Silence unimportant errors in IE8
 				try {
 					dom.cover.style.background = 'rgba( 0, 0, 0, 0.4 )';
-					dom.cover.style.background = '-ms-linear-gradient('+ config.position +', rgba(0,0,0,0.10) 0%,rgba(0,0,0,0.25) 100%)';
-					dom.cover.style.background = '-moz-linear-gradient('+ config.position +', rgba(0,0,0,0.10) 0%,rgba(0,0,0,0.25) 100%)';
-					dom.cover.style.background = '-webkit-linear-gradient('+ config.position +', rgba(0,0,0,0.10) 0%,rgba(0,0,0,0.25) 100%)';
+					dom.cover.style.background = '-ms-linear-gradient('+ config.position +', rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.10) 100%)';
+					dom.cover.style.background = '-moz-linear-gradient('+ config.position +', rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.10) 100%)';
+					dom.cover.style.background = '-webkit-linear-gradient('+ config.position +', rgba(0,0,0,0.05) 0%,rgba(0,0,0,0.10) 100%)';
 				}
 				catch( e ) {}
 				

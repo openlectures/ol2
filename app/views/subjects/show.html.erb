@@ -19,3 +19,9 @@
   <%= render 'seab' %>
   <%= render 'listcheckpoints' %>
 </div><!--tabcontent-->
+
+<%content_for :javascripts do%>
+  <script type="text/javascript" charset="utf-8">
+    $('.sortable').sortable();
+  </script>
+<%end%>
