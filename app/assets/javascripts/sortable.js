@@ -1,7 +1,7 @@
 $(document).ready(function() {
   return $('.sortable').sortable({
     axis: 'y',
-    handle: '.handle',
+    // handle: '.handle',
     items: 'tr',
     cursor: 'ns-resize',
     update: function() {
@@ -14,7 +14,7 @@ $(document).ready(function() {
         $helper.children().each(function(index)
         {
           // Set helper cell sizes to match the original sizes
-          $(this).width($originals.eq(index).width())
+          $(this).width($originals.eq(index).width());
         });
         return $helper;
     }
