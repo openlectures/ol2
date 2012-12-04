@@ -57,15 +57,17 @@
 
 // Utility classes
 @import "twitter/bootstrap/utilities.less";
+
+// Plugin Imports
 @import "buttons";
 @import "button-groups";
 
-/* Bootstrap Variables */
+/* Bootstrap Override Variables */
 @bodyBackground:        #F3F3F3;
-@accent:                #2F8C7F;
-@salmon:                #ff6666;
-@honeydew:              #ccff66;
-@cantaloupe:            #ffcc66;
+@accent:                #33CCCC;
+@salmon:                #FF6666;
+@honeydew:              #CCFF66;
+@cantaloupe:            #FFCC66;
 
 @linkColor:             @accent;
 @linkColorHover:        @grayLight;
@@ -77,9 +79,14 @@
 @altFontFamily:         @sansFontFamily;
 @headingsFontWeight:    normal;
 
+/* Universal Bottom Push */
+
 body {
 	padding-bottom:50px;
 }
+
+/* Prevent invalid Reveal links from showing up */
+
 [class^="navigate-"],
 [class*=" navigate-"] {
 	display:none;
@@ -88,27 +95,6 @@ body {
 .enabled {
 	display:block;
 }
-
-/* Meny Classes */
-
-html,
-body {
-	height: 100%;
-}
-
-.container-fluid {
-	min-height: 100%;
-}
-
-
-/* Make colors accessible via CSS selectors */
-
-.olgreen {color:@accent;}
-.salmon {color:@salmon;}
-.honeydew {color:@honeydew;}
-.cantaloupe {color:@cantaloupe;}
-.white {color:@white;}
-.gray {color:@grayDark;}
 
 /* Increase the clickable area around paragraph links */
 
@@ -122,30 +108,6 @@ p a {
 
 .table, td {
   vertical-align: middle !important;
-}
-
-/* Unfuck the line-height of Checkboxes and Radios. Who invented those things anyway?! */
-
-input[type="radio"], input[type="checkbox"] {
-  margin: 10px 0 0;
-}
-
-/* Font Rendering Hacks */
-
-p {
-  -webkit-hyphens: auto;
-  -webkit-hyphenate-limit-after: 1;
-  -webkit-hyphenate-limit-before: 3;
-  -moz-hyphens: auto;
-  hyphens: auto;
-}
-
-html {
-  -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: antialiased;
-  -ms-font-smoothing: antialiased;
-  -o-font-smoothing: antialiased;
-  font-smoothing: antialiased;
 }
 
 /* Adds a nice fade effect to links */
@@ -201,12 +163,6 @@ input[type="color"],
 .dl-horizontal dt {
   margin-right: 20px;
   width: 200px;
-}
-
-/* Fix spacey hr */
-
-hr {
-  margin: 12px 0;
 }
 
 /* Fix Input Block Overflow */

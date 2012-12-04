@@ -15,30 +15,6 @@ body {
 }
 
 /*********************************************
- * HEADERS
- *********************************************/
-
-.reveal h1,
-.reveal h2,
-.reveal h3,
-.reveal h4,
-.reveal h5,
-.reveal h6 {
-	-webkit-hyphens: auto;
-	   -moz-hyphens: auto;
-	        hyphens: auto;
-
-	word-break: break-all;
-	word-break: break-word;
-}
-
-.reveal h1 { font-size: 3.77em; }
-.reveal h2 { font-size: 2.11em;	}
-.reveal h3 { font-size: 1.55em;	}
-.reveal h4 { font-size: 1em;	}
-
-
-/*********************************************
  * VIEW FRAGMENTS
  *********************************************/
 
@@ -478,6 +454,8 @@ body {
 	background: rgba( 0, 0, 0, 0.6 );
 }
 
+/* Mobile Fixes */
+
 #overview {
   margin-bottom: 1em;
 }
@@ -497,8 +475,8 @@ line-height:0.8em;
 
 @media screen and (max-width: 768px) {
   #row-margin {
-  margin:0;
-}
+	  margin:0;
+	}
   #question {
     margin-top:0
   }

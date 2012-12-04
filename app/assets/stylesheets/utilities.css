@@ -1,37 +1,64 @@
-/* Font Size Settings */
+/* Make colors accessible via CSS selectors */
+
+.olgreen 		{color:	@accent;}
+.salmon 		{color:	@salmon;}
+.honeydew 	{color:	@honeydew;}
+.cantaloupe {color:	@cantaloupe;}
+.white 			{color:	@white;}
+.gray 			{color:	@grayDark;}
+
+/* Font Settings */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: 		antialiased;
+  -ms-font-smoothing: 		antialiased;
+  -o-font-smoothing: 			antialiased;
+  font-smoothing: 				antialiased;
+}
+
 p {
-  font-size: 0.75em; /* 16.973px */
+  font-size: 		0.75em; /* 16.973px */
+  -webkit-hyphens: auto;
+  -webkit-hyphenate-limit-after: 1;
+  -webkit-hyphenate-limit-before: 3;
+  -moz-hyphens: auto;
+  hyphens: auto;
 }
 
 h3 {
-  font-size: 1.149em; /* 36.775px */
-  line-height:1.4;
+  font-size: 		1.149em; /* 36.775px */
+  line-height:	1.4;
 }
 
 h2 {
-  font-size: 1.414em; /* 45.248px */
-  line-height:1.3;
+  font-size: 		1.414em; /* 45.248px */
+  line-height:	1.3;
 }
 
 h1 {
-  font-size: 2.827em; /* 90.469px */
-  line-height:1.2;
+  font-size: 		2.827em; /* 90.469px */
+  line-height:	1.2;
 }
 
 .fuckingbig {
-	font-size: 4em;
+	font-size: 		4em;
 }
 
 .lead {
-  font-weight: 200;
+  font-weight: 	200;
 }
 
 @media (min-width: 481px) and (max-width: 979px) {
-  body { font-size:20px; }
+  body {
+  	font-size:	20px;
+  }
 }
 
 @media screen and (max-width: 480px) {
-  body { font-size:18px; }
+  body {
+  	font-size:18px;
+  }
 }
 
 /* Padding Reset Classes */
@@ -66,8 +93,8 @@ h1 {
 /* Responsive Video Hack */
 .videoWrapper {
   position: relative;
-  padding-bottom: 53.25%; /* 16:9 */
-  padding-top: 25px;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 35px; /* Size of YouTube Player Bar */
   height: 0;
 }
 
@@ -134,10 +161,6 @@ body > .page-alert {
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box;
-}
-
-textarea.editor-html {
-  visibility: hidden;
 }
 
 textarea,
