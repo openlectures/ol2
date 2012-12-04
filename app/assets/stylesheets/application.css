@@ -6,7 +6,6 @@
  *= require meny
  *= require bootstrap_and_overrides
  *= require fonts
- *= require utilities
  *= require icons
  *= require select2
 */
