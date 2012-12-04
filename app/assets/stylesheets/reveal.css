@@ -203,41 +203,6 @@ body {
 	border-top-width: 22px;
 	border-top-color: #eee;
 }
-
-
-/*********************************************
- * PROGRESS BAR
- *********************************************/
-
-.reveal .progress {
-	position: fixed;
-	display: none;
-	height: 3px;
-	width: 100%;
-	bottom: 0;
-	left: 0;
-	z-index: 10;
-}
-	.reveal .progress:after {
-		content: '';
-		display: 'block';
-		position: absolute;
-		height: 20px;
-		width: 100%;
-		top: -20px;
-	}
-	.reveal .progress span {
-		display: block;
-		height: 100%;
-		width: 0px;
-
-		-webkit-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		   -moz-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		    -ms-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		     -o-transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-		        transition: width 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
-	}
-
 /*********************************************
  * SLIDES
  *********************************************/
@@ -367,26 +332,6 @@ body {
 	     -o-transform: translate(0, 150%);
 	        transform: translate(0, 150%);
 }
-
-
-/*********************************************
- * NO TRANSITION
- *********************************************/
-
-.reveal.none .slides section {
-	-webkit-transform: none;
-	   -moz-transform: none;
-	    -ms-transform: none;
-	     -o-transform: none;
-	        transform: none;
-
-	-webkit-transition: none;
-	   -moz-transition: none;
-	    -ms-transition: none;
-	     -o-transition: none;
-	        transition: none;
-}
-
 
 /*********************************************
  * OVERVIEW
@@ -531,4 +476,47 @@ body {
 }
 .blackout .reveal .state-background {
 	background: rgba( 0, 0, 0, 0.6 );
+}
+
+#overview {
+  margin-bottom: 1em;
+}
+
+#question {
+  margin-top:1em;
+}
+
+#row-margin {
+ margin-top:6em;
+ margin-bottom:7em;
+}
+
+h3 {
+line-height:0.8em;
+}
+
+@media screen and (max-width: 768px) {
+  #row-margin {
+  margin:0;
+}
+  #question {
+    margin-top:0
+  }
+  h3 {
+    font-size:0.3em;
+    margin:0;
+    /* padding:10px; */
+  }
+  h5,h2,p {
+    text-align:center;
+    padding: 0 1.5em;
+  }
+.reveal .slides > section, .reveal .slides > section > section {
+  width:95%;
+  }
+
+.links {
+  color: #33cccc;
+  font-weight: bold;
+}
 }

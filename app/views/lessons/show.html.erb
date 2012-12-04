@@ -2,14 +2,14 @@
   <%@lesson.checkpoints.each do |checkpoint|%>
   <section>
     <section>
-    	<h3 style="line-height:0.8; margin-bottom: 2em"><%=link_to '<i class="icon-caret-up"></i><br/><small>Back to Topic Overview</small>'.html_safe, topic_path(checkpoint.lesson.topic)%></h3>
+    	<h3 style="line-height:0.8" id="overview" class="hidden-phone"><%=link_to '<i class="icon-caret-up"></i><br/><small>Back to Topic Overview</small>'.html_safe, topic_path(checkpoint.lesson.topic)%></h3>
       <div class="row-fluid">
       	<div class="span1">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-left"><i class="icon-caret-left"></i><br/><small>Previous</small></a></h3>
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-left"><i class="icon-caret-left hidden-phone"></i><br/><small class="links">Previous</small></a></h3>
       	</div><!--span1-->
 	      <div class="span3 alignright">
 	        <h5 class="muted margintop0 marginbot0" style="line-height:1">CHECKPOINT <%=checkpoint.position%></h5>
-	        <h2 class="margintop0" style="line-height:1"><%=checkpoint.checkpoint%></h2>
+          <h2 class="margintop0 hidden-phone" style="line-height:1"><%=checkpoint.checkpoint%></h2>
 	        <p class="margintop0" ><%=checkpoint.description%></p>
 	      </div><!--span3-->
 	      <div class="span7">
@@ -18,29 +18,29 @@
 	        </div><!--videoWrapper-->
 	      </div><!--span7-->
 	      <div class="span1">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-caret-right"></i><br/><small>Next</small></a></h3>
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-caret-right hidden-phone"></i><br/><small class="links">Next</small></a></h3>
 	    	</div><!--span1-->
       </div><!--rowfluid-->
-      <h3 style="margin-top:1.5em;"><a href="#" class="navigate-down"><small>Question</small><br/><i class="icon-caret-down"></i></a></h3>
+      <h3 id="question"><a href="#" class="navigate-down"><small class='links'>Question</small><br/><i class="icon-caret-down hidden-phone"></i></a></h3>
     </section>
 
   <%checkpoint.questionanswers.each do |qa|%>
     <section>
-      <h3 style="line-height:0.8;"><a href="#" class="navigate-up"><i class="icon-caret-up"></i><br/><small>Back to Lecture</small></a></h3>
-      <div class="row-fluid" style="margin-top:5em; margin-bottom:7em;">
-      	<div class="span1">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-left"><i class="icon-caret-left"></i><small>Previous</small></a><br/></h3>
+      <h3><a href="#" class="navigate-up"><i class="icon-caret-up hidden-phone"></i><br/><small class='links'>Back to Lecture</small></a></h3>
+      <div class="row-fluid" id="row-margin">
+      	<div class="span1 hidden-phone">
+      		<h3><a href="#" class="navigate-left"><i class="icon-caret-left hidden-phone"></i><br><small class='links'>Previous</small></a><br/></h3>
       	</div><!--span1-->
         <div class="span3 alignright">
-        	<h5 class="muted margintop0 marginbot0" style="line-height:1">QUESTION <%=checkpoint.position%></h5>
-        	<h2 class="margintop0" style="line-height:1"><%=checkpoint.checkpoint%></h2>
+          <h5 class="muted margintop0 marginbot0" >QUESTION <%=checkpoint.position%></h5>
+          <h2 class="margintop0 hidden-phone" style="line-height:1"><%=checkpoint.checkpoint%></h2>
           <p class="margintop0"><%=qa.question%></p>
         </div><!--span3-->
         <div class="span6 offset1 alignleft">
           <p><%=qa.answer%></p>
         </div><!--span6-->
-        <div class="span1">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-caret-right"></i><br/><small>Next</small></a></h3>
+        <div class="span1 hidden-phone">
+      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-caret-right hidden-phone"></i><br/><small class="links">Next</small></a></h3>
 	    	</div><!--span1-->
       </div><!--rowfluid-->
     </section>
