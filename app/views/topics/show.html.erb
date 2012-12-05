@@ -7,8 +7,12 @@
 
 </div><!--aligncenter-->
 <ul class="nav nav-pills nav-stacked aligncenter" style="margin-top:6em;">
-<%@topic.lessons.each do |lesson|%>
-  <li><h4 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h4></li>
+<%if @topic.lessons.count ==0%>
+  <p>More content coming soon!</p>
+<%else%>
+  <%@topic.lessons.each do |lesson|%>
+    <li><h4 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h4></li>
+  <%end%>
 <%end%>
 </ul>
 </div>
