@@ -17,7 +17,9 @@
 <% end %>
 
 <%-content_for :javascripts do%>
-    <script>
-        $(document).ready(function() { $(".el").select2(); });
-    </script>
-  <%-end%>
+  <script type="text/javascript" charset="utf-8">
+      $(document).ready(function() {
+        $(".el").select2();
+      });
+  </script>
+<%-end%>
