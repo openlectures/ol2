@@ -1,4 +1,6 @@
 <div class="tab-pane active fade in" id="seab">
+  <a href="#" id="expand">Expand All</a>
+  <a href="#" id="keep">Close All</a>
   <div class="accordion" id="syllabus">
   <%@subject.seab_topics.each do |topic|%>
     <div class="accordion-group">
@@ -59,9 +61,15 @@
 <%if user_signed_in?%>
   <%if current_user.role = "admin"%>
     <%content_for :javascripts do%>
-      <script type="text/javascript" charset="utf-8">
+      <script>
         $(document).ready(function() {
           $('.sortable').sortable();
+        });
+        $('#expand').on("click",function() {
+          $('.collapse').collapse('show');
+        });
+        $('#keep').on("click",function() {
+          $('.keep').collapse('hide');
         });
       </script>
     <%end%>
