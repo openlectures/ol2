@@ -1,21 +1,21 @@
 <%title "Profile"%>
 <div class="row">
   <div class="span3 hidden-phone">
-    <%= image_tag current_user.avatar.url %>
+    <%= image_tag current_user.avatar.url%>
   </div>
   <div class="span9">
-    <h1><%=current_user.fullname%></h1>
+    <h1 class="marginbot0"><%=current_user.fullname%></h1>
     <%if current_user.role == "admin"%>
-    <p class="lead"><%=current_user.title%></p>
+    <p class="margintop0"><%=current_user.title%></p>
     <%else%>
-    <p class="lead"><%=current_user.school%></p>
+    <p class="margintop0"><%=current_user.school%></p>
     <%end%>
   </div>
 </div>
   <%if current_user.role == "admin"%>
   <hr>
-  <h3>Registry</h3>
-  <h6 class="muted">A quick list of the people you will spam, beg and murder in the course of your servitude.</h6>
+  <h2 class="marginbot0">Registry</h2>
+  <h6 class="muted margintop0">A quick list of the people you will spam, beg and murder in the course of your servitude.</h6>
   <table class="table table-hover table-condensed">
     <thead>
       <tr>
@@ -77,9 +77,9 @@
     </tbody>
   </table>
   <hr>
-  <h3>Resources</h3>
-  <h6 class="muted">These items will assist your world domination. They're meant as starters, so feel free to build on them. Also, being the poor, miserly, misogynistic bastards we are, we actively exploit free online services and storage. </h6>
-  <h5>Documents</h5>
+  <h3 class="marginbot0">Resources</h3>
+  <h6 class="muted margintop0">These items will assist your world domination. They're meant as starters, so feel free to build on them. Also, being the poor, miserly, misogynistic bastards we are, we actively exploit free online services and storage. </h6>
+  <h2 class="marginbot0">Documents</h2>
   <ul class="nav nav-pills aligncenter">
     <li>
       <a href="https://docs.google.com/open?id=1aIbgF7cnrc4W-IXvQeTvCF2DGR20V3dOq37mskE_xAv7FhCm3xPH-QxL95wB" target="_blank">
@@ -95,7 +95,7 @@
     </li>
   </ul>
   <hr>
-  <h5>Services</h5>
+  <h2>Services</h2>
   <ul class="nav nav-pills aligncenter">
     <li>
       <a href="http://facebook.com/openlectures" target="_blank">

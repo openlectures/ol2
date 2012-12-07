@@ -20,32 +20,13 @@ body {
           transition: opacity 0.4s ease 0.4s;
 }
 
-.meny-left .meny-arrow {
+.meny-arrow {
   left: 14px;
   top: 50%;
-  margin-top: -16px;
-  border-left: 16px solid #333;
-}
-
-.meny-right .meny-arrow {
-  right: 14px;
-  top: 50%;
-  margin-top: -16px;
-  border-right: 16px solid #333;
-}
-
-.meny-top .meny-arrow {
-  left: 50%;
-  top: 14px;
-  margin-left: -16px;
-  border-top: 16px solid #333;
-}
-
-.meny-bottom .meny-arrow {
-  left: 50%;
-  bottom: 14px;
-  margin-left: -16px;
-  border-bottom: 16px solid #333;
+  margin-top:-40px;
+  width:80px;
+  height:80px;
+  background: transparent url(/assets/menu.png) center left no-repeat;
 }
 
 .meny-active .meny-arrow {
