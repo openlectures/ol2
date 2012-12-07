@@ -12,8 +12,10 @@ end
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
-  gem 'less-rails'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'less-rails'
+  gem 'libv8', '~> 3.11.8'
+  gem 'therubyracer'
   gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'select2-rails'
