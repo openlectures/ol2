@@ -3,17 +3,20 @@
 <div class="row-fluid">
   <div class="span5">
     <h1><%=@subject.subject%></h1>
-    <small class="lead"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</small>
   </div><!--span6-->
   <div class="span7">
-    <ul class="nav nav-pills pull-right" style="margin-top:2.7em;">
+    <h1><small><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</small></h1>
+  </div><!--span6-->
+</div><!--row-->
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="nav nav-pills">
       <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
       <li class="disabled"><a>Subway Map</a></li>
       <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
     </ul>
-    <p class="cmun alignright">In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
-  </div><!--span6-->
-</div><!--row-->
+  </div>
+</div>
 
 <div class="tab-content">
   <%= render 'seab' %>
