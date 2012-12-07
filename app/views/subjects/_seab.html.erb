@@ -1,7 +1,9 @@
 <div class="tab-pane active fade in" id="seab">
   <p> In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
-  <a href="#" id="expand">Expand All</a>
-  <a href="#" id="keep">Close All</a>
+  <div id="controls">
+    <a href="#" id="expand">Expand All</a>
+    <a href="#" id="keep">Close All</a>
+  </div>
   <div class="accordion" id="syllabus">
   <%@subject.seab_topics.each do |topic|%>
     <div class="accordion-group">

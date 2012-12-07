@@ -29,14 +29,14 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 
 .select2-container .select2-choice {
     display: block;
-    height: 26px;
+    height: 52px;
     padding: 0 0 0 8px;
     overflow: hidden;
     position: relative;
 
     border: 1px solid #aaa;
     white-space: nowrap;
-    line-height: 26px;
+    line-height: 52px;
     color: #444;
     text-decoration: none;
 
@@ -75,7 +75,7 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 }
 
 .select2-container .select2-choice span {
-    margin-right: 26px;
+    margin-right: 52px;
     display: block;
     overflow: hidden;
 
@@ -91,7 +91,7 @@ Version: @@ver@@ Timestamp: @@timestamp@@
     width: 12px;
     height: 12px;
     position: absolute;
-    right: 26px;
+    right: 52px;
     top: 8px;
 
     font-size: 1px;
@@ -181,7 +181,7 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 .select2-search {
     display: inline-block;
     width: 100%;
-    min-height: 26px;
+    min-height: 52px;
     margin: 0;
     padding-left: 4px;
     padding-right: 4px;
@@ -201,7 +201,7 @@ Version: @@ver@@ Timestamp: @@timestamp@@
 .select2-search input {
     width: 100%;
     height: auto !important;
-    min-height: 26px;
+    min-height: 52px;
     padding: 4px 20px 4px 5px;
     margin: 0;
 
@@ -416,7 +416,7 @@ disabled look for already selected choices in the results dropdown
 }
 
 .select2-container-multi .select2-choices {
-    min-height: 26px;
+    min-height: 52px;
 }
 
 .select2-container-multi.select2-container-active .select2-choices {

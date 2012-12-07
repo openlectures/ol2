@@ -8,4 +8,5 @@ folder 'vendor/assets/javascripts' do
   file 'list.min.js', 'https://raw.github.com/javve/list/master/list.min.js'
   file 'tinynav.js', 'https://raw.github.com/viljamis/TinyNav.js/master/tinynav.min.js'
   file 'piecon.min.js', 'https://raw.github.com/lipka/piecon/master/piecon.min.js'
+  file 'reveal.js', 'https://raw.github.com/hakimel/reveal.js/master/js/reveal.js'
 end
