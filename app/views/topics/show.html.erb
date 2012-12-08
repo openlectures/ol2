@@ -2,11 +2,11 @@
 <h1></h1>
 <div class="aligncenter">
   <h1 class="marginbot0" style="font-size:4em;"><%=@topic.topic%></h1>
-  <p class="muted"><%=@topic.description%></p><br>
+  <%if @topic.description != ""%><p class="muted"><%=@topic.description%></p><br><%end%>
   <h5 class="miso muted margintop0 marginbot0"><%=@topic.checkpoints.count%> checkpoints in 5 minutes</h5>
 
 </div><!--aligncenter-->
-<ul class="nav nav-pills nav-stacked aligncenter" style="margin-top:6em;">
+<ul class="nav nav-pills nav-stacked aligncenter margintop3">
 <%if @topic.lessons.count ==0%>
   <p>More content coming soon!</p>
 <%else%>

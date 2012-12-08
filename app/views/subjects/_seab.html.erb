@@ -1,4 +1,4 @@
-<div class="tab-pane active fade in" id="seab">
+<div class="tab-pane active fade in margintop0" id="seab">
   <p> In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
   <div id="controls">
     <a href="#" id="expand">Expand All</a>
@@ -38,7 +38,7 @@
                   <%end%>
                   <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
                   <td class="alignright">
-                    <%=sub_topic.lessons.count%> Lessons
+                    <%=sub_topic.lessons.count%> <span class="hidden-phone">Lessons</span>
                   </td>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin"%>

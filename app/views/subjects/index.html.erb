@@ -8,7 +8,11 @@
       <th><i class="icon-subject"></i> Subject</th>
       <th><i class="icon-lesson"></i> Lessons</th>
       <th><i class="icon-checkpoint"></i> Checkpoints</th>
-      <th><i class="icon-calendar-date"></i> Last Updated</th>
+      <% if user_signed_in? %>
+        <% if current_user.role = "admin"%>
+          <th><i class="icon-calendar-date"></i> Last Updated</th>
+        <%end%>
+      <%end%>
     </tr>
   </thead>
   <tbody class="list">
@@ -17,13 +21,18 @@
       <td class="subject"><%=link_to subject.subject, subject_path(subject)%></td>
       <td class="lessons"><%=subject.lessons.count%></td>
       <td class="checkpoints"><%=subject.checkpoints.count%></td>
-      <td class="date">
-        <%if subject.checkpoints.count != 0%>
-          <%=subject.checkpoints.last.created_at.to_formatted_s(:short)%>
-        <%else%>
-          N/A
-        <%end%>
+      <% if user_signed_in? %>
+        <% if current_user.role = "admin"%>
+        <td class="date">
+          <%if subject.checkpoints.count != 0%>
+            <%=subject.checkpoints.last.created_at.to_formatted_s(:short)%>
+          <%else%>
+            N/A
+          <%end%>
         </td>
+        <%end%>
+      <%end%>
+
     </tr>
   <%end%>
   </tbody>

@@ -146,23 +146,26 @@ body {
 	cursor: pointer;
 }
 
-.reveal .controls div.enabled:active {
+a.enabled:active {
 	margin-top: 1px;
 }
 
-.reveal .controls div.navigate-left {
-	top: 42px;
-
-	border-right-width: 22px;
-	border-right-color: #eee;
+h3.navigate-left {
+	position:absolute;
+  left: 30px;
+  top: 50%;
+  margin-top:-50px;
+  padding:0;
+  line-height: 0.8;
 }
 
-.reveal .controls div.navigate-right {
-	left: 74px;
-	top: 42px;
-
-	border-left-width: 22px;
-	border-left-color: #eee;
+h3.navigate-right {
+	position:absolute;
+  right: 30px;
+  top: 50%;
+  margin-top:-50px;
+  padding:0;
+  line-height: 0.8;
 }
 
 .reveal .controls div.navigate-up {

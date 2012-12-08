@@ -2,10 +2,10 @@
   <%@lesson.checkpoints.each do |checkpoint|%>
   <section>
     <section>
-    	<h3 style="line-height:0.8" id="overview" class="hidden-phone"><%=link_to '<i class="icon-caret-up"></i><br/><small>Back to Topic Overview</small>'.html_safe, topic_path(checkpoint.lesson.topic)%></h3>
+    	<h3 id="overview" class="hidden-phone"><%=link_to '<i class="icon-caret-up"></i><br/><small>Back to Topic Overview</small>'.html_safe, topic_path(checkpoint.lesson.topic)%></h3>
       <div class="row-fluid">
-      	<div class="span1">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-left"><i class="icon-caret-left hidden-phone"></i><br/><small class="links">Previous</small></a></h3>
+      	<div class="span1 visible-desktop">
+          <h3 class="navigate-left"><a href="#"><i class="icon-caret-left hidden-phone"></i><br/><small class="links">Previous</small></a></h3>
       	</div><!--span1-->
 	      <div class="span3 alignright">
 	        <h5 class="muted margintop0 marginbot0" style="line-height:1">CHECKPOINT <%=checkpoint.position%></h5>
@@ -17,8 +17,8 @@
 	          <iframe seamless src="<%=checkpoint.parsed_url%>"></iframe>
 	        </div><!--videoWrapper-->
 	      </div><!--span7-->
-	      <div class="span1">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-caret-right hidden-phone"></i><br/><small class="links">Next</small></a></h3>
+	      <div class="span1 visible-desktop">
+      		<h3 class="navigate-right"><a href="#"><i class="icon-caret-right hidden-phone"></i><br/><small class="links">Next</small></a></h3>
 	    	</div><!--span1-->
       </div><!--rowfluid-->
       <h3 id="question"><a href="#" class="navigate-down"><small class='links'>Question</small><br/><i class="icon-caret-down hidden-phone"></i></a></h3>
@@ -40,7 +40,7 @@
           <p><%=qa.answer%></p>
         </div><!--span6-->
         <div class="span1 hidden-phone">
-      		<h3 style="line-height:0.8;"><a href="#" class="navigate-right"><i class="icon-caret-right hidden-phone"></i><br/><small class="links">Next</small></a></h3>
+      		<h3 class="navigate-right"><a href="#"><i class="icon-caret-right hidden-phone"></i><br/><small class="links">Next</small></a></h3>
 	    	</div><!--span1-->
       </div><!--rowfluid-->
     </section>
