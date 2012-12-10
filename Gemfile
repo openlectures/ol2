@@ -27,6 +27,9 @@ gem 'omniauth-facebook'
 #For sanity
 group :development do
   gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'vendorer'
 end
 
 #User avatar
@@ -46,5 +49,3 @@ gem 'jquery-turbolinks'
 gem 'jquery-rails-cdn'
 
 gem 'secretive'
-
-gem 'vendorer', :group => :development
