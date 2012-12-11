@@ -1,7 +1,7 @@
 <%=render 'shared/head'%>
 <body>
   <nav class="meny">
-    <ul id="navbar" class="nav nav-list">
+    <ul class="nav nav-list">
     <%=render 'shared/start'%>
     <% if content_for?(:sidebar) %>
       <li class="divider"></li>
@@ -24,8 +24,8 @@
     <%end%>
     <%=render 'shared/last'%>
     </ul>
-  </nav><!--span3-->
-  <div class="meny-arrow"></div>
+  </nav><!--meny-->
+  <div class="meny-arrow"><h2><i class="icon-caret-right icon-large"></i> Menu</h2></div>
   <div class="container-fluid">
     <div class="page-alert">
       <%= bootstrap_flash %>
@@ -36,9 +36,24 @@
       <![endif]-->
     </div><!--page-alert-->
     <div class="row-fluid">
-    <div class="span8 offset2 contents">
+    <div class="span8 offset2">
+    <% if content_for?(:header) %>
+      <div class="aligncenter">
+        <%=yield :header %>
+      </div>
+    <%end%>
+    <% if content_for?(:slogan) %>
+      <div class="aligncenter">
+        <h1><%=yield :slogan %></h1>
+      </div>
+    <%end%>
+    <% if content_for?(:description) %>
+      <h3 class="cmun">
+        <%=yield :description %>
+      </h3>
+    <%end%>
     <%=yield%>
-    </div><!--span10-->
+    </div><!--span8-->
     </div><!--row-->
   </div><!--containerfluid-->
   <%=javascript_include_tag "application"%>

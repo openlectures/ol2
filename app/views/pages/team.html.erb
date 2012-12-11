@@ -3,7 +3,7 @@
   <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
 
-<div class="aligncenter">
+<%content_for :header do%>
 	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="271.515px" height="309px" viewBox="120.243 101.5 271.515 309" enable-background="new 120.243 101.5 271.515 309"
 	 xml:space="preserve" style="margin-top:2.827em;">
@@ -16,13 +16,15 @@
 		 M391.758,175.798v117.259l-74.861-38.092v-40.412L391.758,175.798z M320.058,390.604L300.082,410.5l-66.068-66.067V410.5H205.99
 		v-65.689L140.117,410.5l-19.874-19.757l78.313-78.286h43.258L320.058,390.604z"/>
 	</svg>
-  <h1>
-    We believe that education should be<br/>
-    <span class="salmon">free and accessible</span>
-  </h1>
-</div><!--aligncenter-->
+<%end%>
 
-<h3 class="cmun">
+<%content_for :slogan do%>
+  We believe that education should be<br/>
+  <span class="salmon">free and accessible</span>
+<%end%>
+
+<%content_for :description do%>
   openlectures provides free online lectures based on the Singapore syllabus. It was founded in 2011 by Linan Qiu, a student who strongly believed in making quality education free and accessible to every one.
-</h3>
+<%content_for :description do%>
+
 <p>Today, over a hundred staff and lecturers across the globe contribute their time and expertise to this effort. Everyone works for free, at nights, and on weekends, because we love what we do.</p>

@@ -3,7 +3,8 @@
   <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
 <div class="vcard" itemscope itemtype="http://data-vocabulary.org/Organization">
-<div class="aligncenter">
+
+<%content_for :header do%>
 	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="316.317px" height="309.605px" viewBox="-148.612 -104.5 316.317 309.605"
 	 enable-background="new -148.612 -104.5 316.317 309.605" xml:space="preserve" style="margin-top:2.827em;">
@@ -2276,7 +2277,9 @@
 		<polygon fill="#333333" points="-75.468,95.337 -123.327,203.185 9.104,203.185 9.104,95.337 	"/>
 	</g>
 	</svg>
-  <h1>
+<%end%>
+
+<%content_for :slogan do%>
     The Tesseract Headquarters<br/>
     <span class="fn org hidden" itemprop="name">openlectures</span>
     <span class="adr" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
@@ -2292,8 +2295,7 @@
       </span>
       103.7500° E
     </small>
-  </h1>
-</div><!--aligncenter-->
+<%end%>
 <hr>
 <dl class="dl-horizontal">
   <dt>General Enquiries</dt>

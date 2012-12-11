@@ -21,12 +21,9 @@ body {
 }
 
 .meny-arrow {
-  left: 14px;
+  left: 0.5em;
   top: 50%;
-  margin-top:-40px;
-  width:80px;
-  height:80px;
-  background: transparent url(/assets/menu.png) center left no-repeat;
+  margin-top:-3em;
 }
 
 .meny-active .meny-arrow {

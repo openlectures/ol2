@@ -3,7 +3,7 @@
   <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
 
-<div class="aligncenter">
+<%content_for :header do%>
 	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="392.926px" height="309px" viewBox="57.388 101.5 392.926 309" enable-background="new 57.388 101.5 392.926 309"
 	 xml:space="preserve" style="margin-top:2.827em;">
@@ -19,12 +19,13 @@
 		C322.673,185.062,320.465,186.513,316.618,186.513z M186.174,165.703l14.989,28.782h10.522v-42.09h-9.498v25.799l-13.892-25.799
 		h-11.62v42.09h9.499V165.703z"/>
 	</svg>
-<h1>
+<%end%>
+
+<%content_for :slogan do%>
   We can't pay you, but we can give you<br/>
   <span class="salmon">the experience of a lifetime</span>
-</h1>
-</div><!--aligncenter-->
+<%end%>
 
-<h3 class="cmun">
+<%content_for :description do%>
   It's never about what you have to do. When you join us, we ask you what you feel you can do for us. Lecturing's just one small part of the equation. You can help us spread the word, or make people look good. What are you waiting for?
-</h3>
+<%end%>
