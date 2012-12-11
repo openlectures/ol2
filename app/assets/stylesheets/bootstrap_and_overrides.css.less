@@ -31,7 +31,7 @@
 
 // Components: Nav
 @import "twitter/bootstrap/navs.less";
-// @import "twitter/bootstrap/navbar.less";
+@import "twitter/bootstrap/navbar.less";
 // @import "twitter/bootstrap/breadcrumbs.less";
 // @import "twitter/bootstrap/pagination.less";
 // @import "twitter/bootstrap/pager.less";
@@ -58,11 +58,10 @@
 
 // Utility classes
 @import "twitter/bootstrap/utilities.less";
-@import "font-awesome.less";
 
 // Plugin Imports
-@import "buttons";
-@import "button-groups";
+@import "buttons.less";
+@import "button-groups.less";
 @import "utility-overrides.less";
 
 /* Bootstrap Override Variables */
@@ -73,16 +72,16 @@
 @cantaloupe:            #FFCC66;
 
 @linkColor:             @accent;
-@linkColorHover:        darken(@accent, 15%);
+@linkColorHover:        @grayLight;
 
 @baseFontSize:          28px;
 @baseLineHeight:        1.5;
 @sansFontFamily:        "miso", "Helvetica Neue", Helvetica, Arial, sans-serif;
-@serifFontFamily:       "jura", Georgia, "Times New Roman", Times, serif;
+@serifFontFamily:       "cmun", Georgia, "Times New Roman", Times, serif;
 @altFontFamily:         @sansFontFamily;
 @headingsFontWeight:    normal;
 
-// Change muted colour
+/* Tweak muted colour */
 
 .muted {
   color: #888;
