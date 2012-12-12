@@ -2,10 +2,11 @@ class SubjectsController < ApplicationController
   # GET /subjects
   # GET /subjects.json
   def index
-    @subjects = Subject.all
+    @subjects = Subject.order(:subject)
 
     respond_to do |format|
       format.html # index.html.erb
+      format.csv { send_data @subjects.to_csv }
       format.json { render json: @subjects }
     end
   end
@@ -86,5 +87,10 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       format.js
     end
+  end
+
+  def import
+    Subject.import(params[:url])
+    redirect_to root_url, notice: "Imported!"
   end
 end

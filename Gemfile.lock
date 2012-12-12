@@ -214,6 +214,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
   devise
+  faraday
   friendly_id
   garlicjs-rails
   jquery-rails
