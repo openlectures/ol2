@@ -1,7 +1,7 @@
 <%=render 'shared/head'%>
 <body>
   <nav class="meny">
-    <ul class="nav nav-list">
+    <ul id="nav" class="nav nav-list">
     <%=render 'shared/start'%>
     <% if content_for?(:sidebar) %>
       <li class="divider"></li>
@@ -25,7 +25,7 @@
     <%=render 'shared/last'%>
     </ul>
   </nav><!--meny-->
-  <div class="meny-arrow"><h2><i class="icon-caret-right icon-large"></i> Menu</h2></div>
+  <div class="meny-arrow hidden-phone"><h2><i class="icon-caret-right icon-large"></i> Menu</h2></div>
   <div class="container-fluid">
     <div class="page-alert">
       <%= bootstrap_flash %>
@@ -61,13 +61,24 @@
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
   <script>
-    var meny = Meny.create({
-      menuElement: document.querySelector( '.meny' ),
-      contentsElement: document.querySelector( '.container-fluid' ),
-      position: 'left',
-      width: 250,
-      threshold: 100
-    });
+    enquire.register("screen and (max-width:768px)", {
+        match : function() {
+          $('#nav').unwrap();
+          $(function () {
+            $('#nav').tinyNav();
+          });
+        }
+    }).register("screen and (min-width:769px)", {
+        match : function() {
+          Meny.create({
+            menuElement: document.querySelector( '.meny' ),
+            contentsElement: document.querySelector( '.container-fluid' ),
+            position: 'left',
+            width: 250,
+            threshold: 100
+          });
+        }
+    }).listen();
   </script>
 </body>
 </html>

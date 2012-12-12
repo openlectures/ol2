@@ -87,6 +87,23 @@
   color: #888;
 }
 
+/* styles for desktop */
+.tinynav { display: none }
+
+/* styles for mobile */
+@media screen and (max-width: 768px) {
+    .tinynav {
+      display: block;
+      -webkit-box-sizing: border-box !important;
+      -moz-box-sizing: border-box !important;
+            box-sizing: border-box !important;
+      margin-top:1em;
+      width: 100%;
+      height: auto;
+    }
+    #nav { display: none }
+}
+
 /* Prevent invalid Reveal links from showing up */
 
 [class^="navigate-"],
