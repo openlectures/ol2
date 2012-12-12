@@ -1,12 +1,15 @@
 folder 'vendor/assets/stylesheets' do
-  file 'select2.css', 'https://raw.github.com/ivaynberg/select2/master/select2.css'
+  file 'select2.css',       'https://raw.github.com/ivaynberg/select2/master/select2.css'
 end
 
 folder 'vendor/assets/javascripts' do
-  file 'chroma-hash.js', 'https://raw.github.com/mattt/Chroma-Hash/master/jquery.chroma-hash.js'
-  file 'select2.js', 'https://raw.github.com/ivaynberg/select2/master/select2.js'
-  file 'list.min.js', 'https://raw.github.com/javve/list/master/list.min.js'
-  file 'tinynav.js', 'https://raw.github.com/viljamis/TinyNav.js/master/tinynav.min.js'
-  file 'piecon.min.js', 'https://raw.github.com/lipka/piecon/master/piecon.min.js'
-  file 'reveal.js', 'https://raw.github.com/hakimel/reveal.js/master/js/reveal.js'
+  file 'chroma-hash.js',    'https://raw.github.com/mattt/Chroma-Hash/master/jquery.chroma-hash.js'
+  file 'select2.js',        'https://raw.github.com/ivaynberg/select2/master/select2.js'
+  file 'list.min.js',       'https://raw.github.com/javve/list/master/list.min.js'
+  file 'tinynav.min.js',    'https://raw.github.com/viljamis/TinyNav.js/master/tinynav.min.js'
+  file 'piecon.min.js',     'https://raw.github.com/lipka/piecon/master/piecon.min.js'
+  file 'reveal.min.js',     'https://raw.github.com/hakimel/reveal.js/master/js/reveal.min.js'
+  file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
+  file 'head.min.js',       'https://raw.github.com/hakimel/reveal.js/master/lib/js/head.min.js'
+  file 'meny.min.js',       'https://raw.github.com/hakimel/Meny/master/js/meny.min.js'
 end

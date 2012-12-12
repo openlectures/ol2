@@ -2,12 +2,17 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.9'
 
-group :development, :test do
+group :development do
   gem 'sqlite3'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'vendorer'
 end
 
 group :production do
   gem 'pg'
+  # gem 'rack-protection'
 end
 
 group :assets do
@@ -19,33 +24,28 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
   gem 'select2-rails'
+  gem 'garlicjs-rails'
+  gem 'modernizr-rails'
+  gem 'jquery-rails'
+  gem 'jquery-rails-cdn'
+  gem 'jquery-ui-rails'
+  # gem 'jquery-ui-rails-cdn'
 end
 
-#Oauth
 gem 'omniauth-facebook'
+gem 'devise'
+gem 'cancan'
+gem 'secretive'
 
-#For sanity
-group :development do
-  gem 'quiet_assets'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'vendorer'
-end
-
-#User avatar
 gem "paperclip"
 
 gem 'thin'
-gem 'devise'
-gem 'cancan'
-gem 'jquery-rails'
+
 gem 'simple_form'
 gem 'acts_as_list'
 
 gem 'friendly_id'
 gem 'pg_search'
+
 # gem 'turbolinks'
 # gem 'jquery-turbolinks'
-gem 'jquery-rails-cdn'
-
-gem 'secretive'

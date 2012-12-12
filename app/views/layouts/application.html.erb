@@ -56,14 +56,15 @@
     </div><!--span8-->
     </div><!--row-->
   </div><!--containerfluid-->
-  <%=javascript_include_tag "application"%>
+  <%=jquery_include_tag :google%>
+  <%#=jquery_ui_include_tag :google%>
+  <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
   <script>
     var meny = Meny.create({
       menuElement: document.querySelector( '.meny' ),
       contentsElement: document.querySelector( '.container-fluid' ),
       position: 'left',
-      // height: 200,
       width: 250,
       threshold: 100
     });
