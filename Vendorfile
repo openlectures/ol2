@@ -12,4 +12,5 @@ folder 'vendor/assets/javascripts' do
   file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
   file 'head.min.js',       'https://raw.github.com/hakimel/reveal.js/master/lib/js/head.min.js'
   file 'meny.min.js',       'https://raw.github.com/hakimel/Meny/master/js/meny.min.js'
+  file 'enquire.min.js',    'https://raw.github.com/WickyNilliams/enquire.js/master/dist/enquire.min.js'
 end
