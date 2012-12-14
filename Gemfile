@@ -16,6 +16,7 @@ group :production do
 end
 
 group :assets do
+  gem 'turbo-sprockets-rails3'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'less-rails'
