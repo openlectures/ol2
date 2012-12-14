@@ -42,9 +42,15 @@ class SubjectsController < ApplicationController
   # POST /subjects.json
   def create
     @subject = Subject.new(params[:subject])
-
+    session = GoogleDrive.login("GMAIL ACCOUNT","GMAIL ACCOUNT PASSWORD")
+    ws = session.spreadsheet_by_key("GMAIL SPREADSHEET KEY").worksheets[0]
+    row = ws.num_rows() + 1
+    
     respond_to do |format|
       if @subject.save
+        ws[row,1] = @subject.id
+        ws[row,2] = @subject.subject
+        ws.save()
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render json: @subject, status: :created, location: @subject }
       else

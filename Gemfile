@@ -37,8 +37,13 @@ gem 'devise'
 gem 'cancan'
 gem 'secretive'
 
+#Avatar solution
 gem "paperclip"
 
+#Google Drive
+gem 'google_drive'
+
+#Web Server
 gem 'thin'
 
 gem 'simple_form'
