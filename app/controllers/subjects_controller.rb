@@ -58,9 +58,11 @@ class SubjectsController < ApplicationController
 
   def update
     @subject = Subject.find(params[:id])
-
+    row_no = @subject.id+1
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
+        @ws[row_no,2] = @subject.subject
+        @ws.save()
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { head :no_content }
       else
