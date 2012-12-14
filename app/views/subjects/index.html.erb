@@ -39,7 +39,4 @@
   </tbody>
 
 </table>
-  <%= form_tag import_subjects_path, multipart: true do%>
-    <%=text_field_tag :url%>
-    <%=submit_tag "Import"%>
-  <%end%>
+  <%= link_to "Update", import_subjects_path%>
