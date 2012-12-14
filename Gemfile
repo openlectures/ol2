@@ -32,7 +32,7 @@ group :assets do
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
 end
-
+gem 'faraday'
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'cancan'

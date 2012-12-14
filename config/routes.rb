@@ -27,7 +27,9 @@ Ol2::Application.routes.draw do
   resources :topics do
     collection {post :sort}
   end
-  resources :subjects
+  resources :subjects do
+    collection {post :import}
+  end
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 
