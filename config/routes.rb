@@ -29,7 +29,7 @@ Ol2::Application.routes.draw do
   end
   resources :subjects
 
-  match "subjects/actions/import" => "subjects#import", as: :import_subjects, method: :post
+  match "subjects/actions/import" => "subjects#import", as: :import_subjects
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 
