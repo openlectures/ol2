@@ -101,4 +101,9 @@ class CheckpointsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def import
+    Checkpoint.import(@ws)
+    redirect_to checkpoints_url, notice: "Imported!"
+  end
 end
