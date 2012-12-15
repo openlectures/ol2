@@ -31,19 +31,21 @@ group :assets do
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
 end
-gem 'faraday'
+
+# Authentication and Authorization
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'cancan'
 gem 'secretive'
 
-#Avatar solution
+# Avatar File Upload Solution
 gem "paperclip"
 
-#Google Drive
+# Google Drive Sync
 gem 'google_drive'
+gem 'faraday'
 
-#Web Server
+# Web Server
 gem 'thin'
 
 gem 'simple_form'

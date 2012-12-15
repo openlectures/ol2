@@ -5,23 +5,23 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 
 # Populated via http://github.com/gitignore/Rails.gitignore
-zeus.json
+**.orig
 *.rbc
 *.sassc
-.sass-cache
-capybara-*.html
 .rspec
+.sass-cache
 /.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-/db/*.sqlite3
-/public/system/*
 /coverage/
+/db/*.sqlite3
+/log/*
+/public/system/*
 /spec/tmp/*
-**.orig
-rerun.txt
+/tmp/*
+/vendor/bundle
+capybara-*.html
 pickle-email-*.html
+rerun.txt
+zeus.json
 
 # Populated via http://github.com/gitignore/Ruby.gitignore
 
@@ -29,7 +29,10 @@ pickle-email-*.html
 *.rbc
 .bundle
 .config
+.yardoc
+_yardoc
 coverage
+doc/
 InstalledFiles
 lib/bundler/man
 pkg
@@ -38,19 +41,16 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
-.yardoc
-_yardoc
-doc/
 
 # Populated via http://github.com/gitignore/global/OSX.gitignore
 
-.DS_Store
-.AppleDouble
-.LSOverride
-Icon
 ._*
+.AppleDouble
+.DS_Store
+.LSOverride
 .Spotlight-V100
 .Trashes
+Icon
 
 # Populated via http://github.com/gitignore/global/SublimeText.gitignore
 
@@ -58,10 +58,10 @@ Icon
 *.sublime-project
 
 # Populated via http://github.com/gitignore/global/Windows.gitignore
-Thumbs.db
-ehthumbs.db
-Desktop.ini
 $RECYCLE.BIN/
+Desktop.ini
+ehthumbs.db
+Thumbs.db
 
 # Sensitive API and password information.
 # Keep it secret. Keep it safe.
