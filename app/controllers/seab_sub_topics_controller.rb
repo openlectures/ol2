@@ -31,7 +31,7 @@ class SeabSubTopicsController < ApplicationController
         @ws[row,1] = @seab_sub_topic.id
         @ws[row,2] = @seab_sub_topic.topic
         @ws[row,3] = @seab_sub_topic.seab_topic_id
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @seab_sub_topic.seab_topic, notice: 'Seab sub topic was successfully created.' }
         format.json { render json: @seab_sub_topic, status: :created, location: @seab_sub_topic }
       else
@@ -50,7 +50,7 @@ class SeabSubTopicsController < ApplicationController
       if @seab_sub_topic.update_attributes(params[:seab_sub_topic])
         @ws[row,2] = @seab_sub_topic.topic
         @ws[row,3] = @seab_sub_topic.seab_topic_id
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @seab_sub_topic, notice: 'Seab sub topic was successfully updated.' }
         format.json { head :no_content }
       else

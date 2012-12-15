@@ -57,7 +57,7 @@ class LessonsController < ApplicationController
         @ws[row,2] = @lesson.lesson
         @ws[row,3] = @lesson.topic_id
         @ws[row,4] = @lesson.user_id
-        @lesson.save()
+        @ws.save!
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render json: @lesson, status: :created, location: @lesson }
       else
@@ -77,7 +77,7 @@ class LessonsController < ApplicationController
         @ws[row,2] = @lesson.lesson
         @ws[row,3] = @lesson.topic_id
         @ws[row,4] = @lesson.user_id
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.json { head :no_content }
       else

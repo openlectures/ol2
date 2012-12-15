@@ -46,7 +46,7 @@ class SubjectsController < ApplicationController
       if @subject.save
         @ws[row,1] = @subject.id
         @ws[row,2] = @subject.subject
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render json: @subject, status: :created, location: @subject }
       else
@@ -62,7 +62,7 @@ class SubjectsController < ApplicationController
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
         @ws[row_no,2] = @subject.subject
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { head :no_content }
       else

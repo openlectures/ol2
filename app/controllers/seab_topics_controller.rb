@@ -56,7 +56,7 @@ class SeabTopicsController < ApplicationController
         @ws[row,2] = @seab_topic.subject_id
         @ws[row,3] = @seab_topic.topic
         @ws[row,4] = @seab_topic.description
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @seab_topic, notice: 'Seab topic was successfully created.' }
         format.json { render json: @seab_topic, status: :created, location: @seab_topic }
       else
@@ -76,7 +76,7 @@ class SeabTopicsController < ApplicationController
         @ws[row,2] = @seab_topic.subject_id
         @ws[row,3] = @seab_topic.topic
         @ws[row,4] = @seab_topic.description
-        @ws.save()
+        @ws.save!
         format.html { redirect_to @seab_topic, notice: 'Seab topic was successfully updated.' }
         format.json { head :no_content }
       else
