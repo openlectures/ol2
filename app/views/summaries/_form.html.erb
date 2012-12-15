@@ -13,6 +13,7 @@
 
   <%= f.association :lesson, label_method: :lesson, placeholder: "Lesson", input_html: {class: "input-block-level el"}, label: false%>
   <%= f.text_field :summary, placeholder: "Summary", class: "input-block-level" %>
+  <hr>
   <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
 

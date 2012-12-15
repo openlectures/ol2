@@ -1,14 +1,15 @@
 <%= form_for(@subject) do |f| %>
   <% if @subject.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
-      <ul>
+    <div class="page-alert alert-block">
+      <%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
       <% @subject.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <%= msg %>
       <% end %>
-      </ul>
-    </div>
+    </div><!--pagealert-->
   <% end %>
+  <form>
   <%= f.text_field :subject, class: "input-block-level", placeholder: "Subject"%>
+  <hr>
   <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
+  </form>
 <% end %>

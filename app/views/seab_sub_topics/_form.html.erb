@@ -10,9 +10,12 @@
       </ul>
     </div>
   <% end %>
+  <form>
     <%= f.association :seab_topic, label_method: :topic, input_html:{class: "input-block-level el", placeholder: "SEAB Topic"}, label: false%>
     <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic" %>
+    <hr>
     <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
+  </form>
   <% end %>
 
 <%-content_for :javascripts do%>

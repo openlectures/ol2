@@ -1,14 +1,11 @@
 <%= simple_form_for(@seab_topic) do |f| %>
   <% if @seab_topic.errors.any? %>
-    <div id="error_explanation">
+    <div class="page-alert alert-block">
       <h2><%= pluralize(@seab_topic.errors.count, "error") %> prohibited this seab_topic from being saved:</h2>
-
-      <ul>
       <% @seab_topic.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <%= msg %>
       <% end %>
-      </ul>
-    </div>
+    </div><!--pagealert-->
   <% end %>
   <%= f.association :subject, label_method: :subject,input_html: {class: "input-block-level el", placeholder: "Topic"}, label: false%>
   <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Topic" %>

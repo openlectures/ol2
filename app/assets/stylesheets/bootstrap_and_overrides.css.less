@@ -39,7 +39,7 @@
 // Components: Popovers
 @import "twitter/bootstrap/popovers.less";
 // @import "twitter/bootstrap/modals.less";
-// @import "twitter/bootstrap/tooltip.less";
+@import "twitter/bootstrap/tooltip.less";
 
 // Components: Misc
 @import "twitter/bootstrap/accordion.less";
@@ -83,37 +83,53 @@
 
 /* Tweak muted colour */
 
-.muted {
-  color: #888;
-}
+.muted { color: #888; }
 
-/* styles for desktop */
+/* TinyNav Logic */
 .tinynav { display: none }
 
-/* styles for mobile */
 @media screen and (max-width: 768px) {
-    .tinynav {
-      display: block;
-      -webkit-box-sizing: border-box !important;
-      -moz-box-sizing: border-box !important;
+  .tinynav {
+    display: block;
+    -webkit-box-sizing: border-box !important;
+       -moz-box-sizing: border-box !important;
             box-sizing: border-box !important;
-      margin-top:1em;
-      width: 100%;
-      height: auto;
-    }
-    #nav { display: none }
+    margin-top:1em;
+    width: 100%;
+    height: auto;
+  }
+  #nav { display: none }
 }
 
 /* Prevent invalid Reveal links from showing up */
 
 [class^="navigate-"],
 [class*=" navigate-"] {
-	display:none;
+	display:  none;
+  position: absolute;
 }
 
-.enabled {
-	display:block;
+.navigate-right {
+  right: 1em;
+  top:50%;
 }
+
+.navigate-left {
+  left: 1em;
+  top:50%;
+}
+
+.navigate-down {
+  bottom: 1em;
+  left:50%;
+}
+
+.navigate-up {
+  top: 1em;
+  left:50%;
+}
+
+.enabled { display:block; }
 
 /* Increase the clickable area around paragraph links */
 
@@ -125,9 +141,7 @@ p a {
 
 /* Vertical center all table elements. Why Bootstrap no do this :( */
 
-.table, td {
-  vertical-align: middle !important;
-}
+.table, td { vertical-align: middle !important; }
 
 /* Adds a nice fade effect to links */
 
@@ -141,9 +155,7 @@ a {
 
 /* Fixes iOS textarea fail */
 
-textarea[contenteditable] {
-    -webkit-appearance: none;
-}
+textarea[contenteditable] { -webkit-appearance: none; }
 
 /* Match form border to color scheme */
 
@@ -190,20 +202,6 @@ input[type="color"],
   -webkit-box-sizing: border-box !important;
      -moz-box-sizing: border-box !important;
           box-sizing: border-box !important;
-}
-
-/* Fix the arse of the form field */
-
-form > *:last-child {
-  margin-bottom: 0;
-}
-
-form .well > *:last-child {
-  margin-bottom: 0;
-}
-
-.modal form {
-  margin-bottom: 0;
 }
 
 /* Fix label height problem */
@@ -277,21 +275,6 @@ body > .container.tabbable > .nav-tabs {
   padding: 0 0 10px 0;
 }
 
-.tabs-below.tabbable-bordered > .tab-content {
-  padding: 20px 20px 10px 20px;
-  border-width: 1px 1px 0 1px;
-  -webkit-border-radius: 4px 4px 0 0;
-     -moz-border-radius: 4px 4px 0 0;
-          border-radius: 4px 4px 0 0;
-}
-
-body > .container.tabs-below.tabbable-bodered > .tab-content {
-  border-top-width: 0;
-  -webkit-border-radius: 0;
-     -moz-border-radius: 0;
-          border-radius: 0;
-}
-
 .tabs-left,
 .tabs-right {
   margin-bottom: 20px;
@@ -324,25 +307,6 @@ body > .container.tabs-below.tabbable-bodered > .tab-content {
   border-left-width: 1px;
 }
 
-.tabs-left.tabbable-bordered {
-  border-width: 0 1px 0 0;
-}
-
-.tabs-left.tabbable-bordered > .tab-content {
-  padding: 20px 20px 10px 20px;
-  border-width: 1px 0 1px 1px;
-  -webkit-border-radius: 0 4px 4px 0;
-     -moz-border-radius: 0 4px 4px 0;
-          border-radius: 0 4px 4px 0;
-}
-
-body > .container.tabs-left.tabbable-bodered > .tab-content {
-  border-top-width: 0;
-  -webkit-border-radius: 0 0 4px 0;
-     -moz-border-radius: 0 0 4px 0;
-          border-radius: 0 0 4px 0;
-}
-
 .tabs-right > .nav-tabs {
   right: 1px;
 }
@@ -356,25 +320,6 @@ body > .container.tabs-left.tabbable-bodered > .tab-content {
 .tabs-right > .tab-content {
   padding: 0 19px 0 0;
   border-right-width: 1px;
-}
-
-.tabs-right.tabbable-bordered {
-  border-width: 0 0 0 1px;
-}
-
-.tabs-right.tabbable-bordered > .tab-content {
-  padding: 20px 20px 10px 20px;
-  border-width: 1px 1px 1px 0;
-  -webkit-border-radius: 4px 0 0 4px;
-     -moz-border-radius: 4px 0 0 4px;
-          border-radius: 4px 0 0 4px;
-}
-
-body > .container.tabs-right.tabbable-bodered > .tab-content {
-  border-top-width: 0;
-  -webkit-border-radius: 0 0 0 4px;
-     -moz-border-radius: 0 0 0 4px;
-          border-radius: 0 0 0 4px;
 }
 
 .nav-header {

@@ -1,5 +1,10 @@
+<%title "Create Item"%>
+<%content_for :header do%>
+<%end%>
+<%content_for :slogan do%>
 <h1>Create Item</h1>
-<ul class="nav nav-pills">
+<%end%>
+<ul class="nav nav-pills element-center">
   <li class="active"><a href="#subject" data-toggle="tab">Subject</a>
   </li>
   <li><a href="#seab_topic" data-toggle="tab">SEAB Topic</a></li>
@@ -12,27 +17,75 @@
 </ul>
 <div class="tab-content">
   <div class="tab-pane active fade in" id="subject">
-    <%=render "subjects/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "subjects/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="seab_topic">
-    <%=render "seab_topics/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "seab_topics/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="seab_sub_topic">
-    <%=render "seab_sub_topics/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "seab_sub_topics/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="topic">
-    <%=render "topics/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "topics/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="lesson">
-    <%=render "lessons/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "lessons/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="checkpoint">
-    <%=render "checkpoints/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "checkpoints/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="questionanswer">
-    <%=render "questionanswers/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "questionanswers/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="summary">
-    <%=render "summaries/form"%>
+    <div class="row-fluid">
+      <div class="span6">
+        <%=render "summaries/form"%>
+      </div><!--span6-->
+      <div class="span6">
+      </div><!--span6-->
+    </div><!--rowfluid-->
   </div>
 </div>

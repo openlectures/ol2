@@ -10,10 +10,15 @@
       </ul>
     </div>
   <% end %>
-  <%= f.association :checkpoint, label_method: :checkpoint, placeholder: "Checkpoint", input_html:{class: "input-block-level el"}, label: false%>
-  <%= f.text_area :question, class: "input-block-level", placeholder: "Question", rows: "4"%>
-  <%= f.text_area :answer, class: "input-block-level", placeholder: "Answer", rows: "4"%>
-  <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
+  <form>
+    <fieldset>
+      <%= f.association :checkpoint, label_method: :checkpoint, placeholder: "Checkpoint", input_html:{class: "input-block-level el"}, label: false%>
+      <%= f.text_field :question, class: "input-block-level", placeholder: "Question"%>
+      <%= f.text_area :answer, class: "input-block-level editor", placeholder: "Answer", rows: "8"%>
+      <hr>
+      <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
+    </fieldset>
+  </form>
 <% end %>
 
 <%-content_for :javascripts do%>
