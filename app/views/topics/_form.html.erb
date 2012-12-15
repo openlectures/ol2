@@ -11,7 +11,7 @@
   <% end %>
   <%=f.association :subject, label_method: :subject, value_method: :id, input_html: {class: "input-block-level el"}, label: false, placeholder: "Subject"%>
   <%= f.text_field :topic, class: "input-block-level", placeholder: "Topic Name"%>
-  <%= f.text_area :description, class: "editor input-block-level", :rows => '10', placeholder: "Description" %>
+  <%= f.text_area :description, class: "editor input-block-level", rows: "6", placeholder: "Description" %>
   <hr>
   <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>

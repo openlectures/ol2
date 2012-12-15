@@ -3,7 +3,7 @@
 <%= tag :meta, property: "og:description", content: "" %>
 <%end%>
 
-<div class="aligncenter">
+<%content_for :header do%>
 	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="397.96px" height="309.568px" viewBox="-148.329 -115.387 397.96 309.568"
 	 enable-background="new -148.329 -115.387 397.96 309.568" xml:space="preserve" style="margin-top:2.827em;">
@@ -34,14 +34,14 @@
 		c0,5.445,7.345,9.945,16.845,10.586h-0.144l0.083,11.571c4.024-1.485,27.778-10.765,30.477-11.472h28.043
 		C22.977-44.028,31.589-48.816,31.589-54.714z"/>
 	</svg>
-<h1>
+<%end%>
+<%content_for :slogan do%>
   We bring education to everyone.<br/>
   <span class="salmon">Help us achieve this dream.</span>
-</h1>
-</div><!--aligncenter-->
-<h3 class="cmun">
+<%end%>
+<%content_for :description do%>
   If there's a place for us in your organization's <abbr class="initialism" title="Corporate Social Responsibility">CSR</abbr> programme, or you'd just like to help, <a href='m&#97;&#105;lt&#111;&#58;%6&#56;e&#108;lo%40o%&#55;0&#37;6&#53;n&#108;&#101;c&#116;%&#55;5r&#101;%7&#51;&#46;&#111;rg'>we'd love to hear from you.</a></h3>
-<hr>
+<%end%>
 <p><span class="helvetica"><strong>open</strong>lectures</span> is supported by the following organizations:</p>
 <ul class="nav nav-pills nav-stacked">
   <li><a href="http://www.edb.gov.sg/content/edb/en.html?cmpid=edb_en38">EDB Singapore</a></li>

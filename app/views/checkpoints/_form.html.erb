@@ -10,13 +10,15 @@
       </ul>
     </div>
   <% end %>
+  <form>
   <%= f.association :lesson, label_method: :lesson, input_html: {class: "input-block-level el", placeholder: "Lesson"}, label: false%>
   <%= f.text_field :checkpoint, class: "input-block-level", placeholder: "Checkpoint"%>
   <%= f.text_area :description, class: "input-block-level", placeholder: "Description", rows: "4" %>
-  <%= f.text_field :videourl, class: "input-block-level", placeholder: "Video URL"%>
+  <%= f.text_field :videourl, class: "input-block-level", placeholder: "Video URL", type: "url"%>
   <%= f.text_area :objective, class: "input-block-level", placeholder: "Objective", rows: "4" %>
   <hr>
   <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
+</form>
 <% end %>
 
 <%-content_for :javascripts do%>

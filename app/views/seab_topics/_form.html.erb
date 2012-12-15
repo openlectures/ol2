@@ -9,8 +9,8 @@
   <% end %>
   <%= f.association :subject, label_method: :subject,input_html: {class: "input-block-level el", placeholder: "Topic"}, label: false%>
   <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Topic" %>
-  <%= f.text_area :description, class: "input-block-level", placeholder: "SEAB Description", rows: 8 %>
-    <hr />
+  <%= f.text_area :description, class: "input-block-level", placeholder: "SEAB Description", rows: "6" %>
+    <hr/>
     <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
   <% end %>
 
