@@ -1,5 +1,6 @@
 <%title "Create Item"%>
 <%content_for :header do%>
+<h1><i class="icon-plus-sign icon-fuckingbig"></i></h1>
 <%end%>
 <%content_for :slogan do%>
 <h1>Create Item</h1>
@@ -28,18 +29,86 @@
   <div class="tab-pane fade in" id="seab_topic">
     <div class="row-fluid">
       <div class="span6">
+        <h3 class="margintop0">Edit</h3>
         <%=render "seab_topics/form"%>
       </div><!--span6-->
       <div class="span6">
+        <h3 class="margintop0">Preview</h3>
+        <div class="accordion">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle">
+                <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+              </a>
+            </div><!--accordionheading-->
+            <div class="accordion-body in">
+              <div class="accordion-inner">
+                <p class="muted">Description</p>
+                <table class="table table-hover table-condensed sortable" style="margin-bottom:1.5em;">
+                  <caption class="alignleft">SEAB Sub Topic</caption>
+                  <tbody>
+                    <tr>
+                      <td><span class="handle"><i class="icon-sort"></i></span></td>
+                      <td style="width:50%;">Sub Topic</td>
+                      <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
+                      <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!--accordioninner-->
+            </div><!--accordionbody-->
+          </div><!--accordiongroup-->
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" href="#foo">
+                <h3 class="marginbot0 margintop0"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+              </a>
+            </div><!--accordionheading-->
+          </div><!--accordiongroup-->
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle" href="#foo">
+                <h3 class="marginbot0 margintop0"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+              </a>
+            </div><!--accordionheading-->
+          </div><!--accordiongroup-->
+        </div><!--accordion-->
       </div><!--span6-->
     </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="seab_sub_topic">
     <div class="row-fluid">
       <div class="span6">
+        <h3 class="margintop0">Edit</h3>
         <%=render "seab_sub_topics/form"%>
       </div><!--span6-->
       <div class="span6">
+        <h3 class="margintop0">Preview</h3>
+        <div class="accordion">
+          <div class="accordion-group">
+            <div class="accordion-heading">
+              <a class="accordion-toggle">
+                <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+              </a>
+            </div><!--accordionheading-->
+            <div id="foo" class="accordion-body">
+              <div class="accordion-inner">
+                <p class="muted">Description</p>
+                <table class="table table-hover table-condensed sortable" style="margin-bottom:1.5em;">
+                  <caption class="alignleft">SEAB Sub Topic</caption>
+                  <tbody>
+                    <tr>
+                      <td><span class="handle"><i class="icon-sort"></i></span></td>
+                      <td style="width:50%;">Sub Topic</td>
+                      <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
+                      <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div><!--accordioninner-->
+            </div><!--accordionbody-->
+          </div><!--accordiongroup-->
+        </div><!--accordion-->
       </div><!--span6-->
     </div><!--rowfluid-->
   </div>
