@@ -1,4 +1,10 @@
 class TopicsController < ApplicationController
+  before_filter :google_login, only: ["create","update", "import"]
+  def google_login
+    session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"], ENV["OL_GMAIL_PASSWORD"])
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_TOPICS_KEY"]).worksheets[0]
+  end
+
   # GET /topics
   # GET /topics.json
   def index
@@ -87,5 +93,10 @@ class TopicsController < ApplicationController
       Topic.update_all({position: index+1}, {id: id})
     end
     render nothing: true
+  end
+
+  def import
+    Topic.import(@ws)
+    redirect_to topics_url, notice: "Imported!"
   end
 end
