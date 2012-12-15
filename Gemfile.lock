@@ -62,10 +62,10 @@ GEM
     faraday (0.8.4)
       multipart-post (~> 1.1)
     friendly_id (4.0.9)
-    garlicjs-rails (1.0.2)
+    garlicjs-rails (1.0.3)
       railties (>= 3.1)
     hashie (1.2.0)
-    heroku (2.33.3)
+    heroku (2.33.5)
       heroku-api (~> 0.3.7)
       launchy (>= 0.3.2)
       netrc (~> 0.7.7)
@@ -155,7 +155,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
-    rake (10.0.2)
+    rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
     ref (1.0.2)
@@ -192,7 +192,10 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    twitter-bootstrap-rails (2.1.8)
+    turbo-sprockets-rails3 (0.3.4)
+      railties (> 3.2.8, < 4.0.0)
+      sprockets (>= 2.0.0)
+    twitter-bootstrap-rails (2.1.9)
       actionpack (>= 3.1)
       execjs
       railties (>= 3.1)
@@ -236,6 +239,7 @@ DEPENDENCIES
   sqlite3
   therubyracer
   thin
+  turbo-sprockets-rails3
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
   vendorer
