@@ -16,7 +16,6 @@ group :production do
 end
 
 group :assets do
-  gem 'turbo-sprockets-rails3'
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'less-rails'
@@ -32,15 +31,19 @@ group :assets do
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
 end
-
 gem 'faraday'
 gem 'omniauth-facebook'
 gem 'devise'
 gem 'cancan'
 gem 'secretive'
 
-gem 'paperclip'
+#Avatar solution
+gem "paperclip"
 
+#Google Drive
+gem 'google_drive'
+
+#Web Server
 gem 'thin'
 
 gem 'simple_form'

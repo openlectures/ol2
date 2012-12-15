@@ -1,6 +1,11 @@
 class SubjectsController < ApplicationController
-  # GET /subjects
-  # GET /subjects.json
+  before_filter :google_login, only: ["create","update","import"]
+
+  def google_login
+    session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_SUBJECTS_KEY"]).worksheets[0]
+  end
+
   def index
     @subjects = Subject.order(:subject)
 
@@ -11,8 +16,6 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /subjects/1
-  # GET /subjects/1.json
   def show
     @subject = Subject.find(params[:id])
 
@@ -22,8 +25,6 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /subjects/new
-  # GET /subjects/new.json
   def new
     @subject = Subject.new
 
@@ -33,18 +34,19 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # GET /subjects/1/edit
   def edit
     @subject = Subject.find(params[:id])
   end
 
-  # POST /subjects
-  # POST /subjects.json
   def create
     @subject = Subject.new(params[:subject])
-
+    row = @ws.num_rows() + 1
+    
     respond_to do |format|
       if @subject.save
+        @ws[row,1] = @subject.id
+        @ws[row,2] = @subject.subject
+        @ws.save()
         format.html { redirect_to @subject, notice: 'Subject was successfully created.' }
         format.json { render json: @subject, status: :created, location: @subject }
       else
@@ -54,13 +56,13 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # PUT /subjects/1
-  # PUT /subjects/1.json
   def update
     @subject = Subject.find(params[:id])
-
+    row_no = @subject.id+1
     respond_to do |format|
       if @subject.update_attributes(params[:subject])
+        @ws[row_no,2] = @subject.subject
+        @ws.save()
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
         format.json { head :no_content }
       else
@@ -70,8 +72,6 @@ class SubjectsController < ApplicationController
     end
   end
 
-  # DELETE /subjects/1
-  # DELETE /subjects/1.json
   def destroy
     @subject = Subject.find(params[:id])
     @subject.destroy
@@ -90,7 +90,7 @@ class SubjectsController < ApplicationController
   end
 
   def import
-    Subject.import(params[:url])
+    Subject.import(@ws)
     redirect_to root_url, notice: "Imported!"
   end
 end

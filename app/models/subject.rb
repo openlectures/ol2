@@ -12,12 +12,11 @@ class Subject < ActiveRecord::Base
   extend FriendlyId
   friendly_id :subject, use: :slugged
 
-  def self.import(url)
-    response = Csvi.get_csv(url)
-    csv = CSV.parse(response, headers: true)
-    csv.each do |row|
-      subject = find_by_id(row["id"]) || new
-      subject.attributes = row.to_hash.slice(*accessible_attributes)
+  def self.import(ws)
+    rows = ws.num_rows()
+    for i in 1..rows-1 do
+      subject = find_by_id(i) || new
+      subject.subject = ws[i+1,2]
       subject.save!
     end
   end
