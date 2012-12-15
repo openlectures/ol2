@@ -24,4 +24,17 @@ class Checkpoint < ActiveRecord::Base
     end
     return "https://www.youtube.com/embed/"+youtubeID+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080"
   end
+
+  def self.import(ws)
+    rows = ws.num_rows()
+    for i in 1..rows-1 do
+      checkpoint = find_by_id(i) || new
+      checkpoint.checkpoint = ws[i+1,2]
+      checkpoint.lesson_id = ws[i+1,3]
+      checkpoint.description = ws[i+1,4]
+      checkpoint.videourl = ws[i+1,5]
+      checkpoint.objective = ws[i+1,6]
+      checkpoint.save!
+    end
+  end
 end

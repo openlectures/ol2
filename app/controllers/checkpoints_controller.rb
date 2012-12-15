@@ -1,4 +1,11 @@
 class CheckpointsController < ApplicationController
+  before_filter :google_login, only: ["create", "update", "import"]
+
+  def google_login
+    session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_CHECKPOINTS_KEY"]).worksheets[0]
+  end
+
   # GET /checkpoints
   # GET /checkpoints.json
   def index
@@ -41,9 +48,17 @@ class CheckpointsController < ApplicationController
   # POST /checkpoints.json
   def create
     @checkpoint = Checkpoint.new(params[:checkpoint])
+    row = @ws.num_rows()+1
 
     respond_to do |format|
       if @checkpoint.save
+        @ws[row,1] = @checkpoint.id
+        @ws[row,2] = @checkpoint.checkpoint
+        @ws[row,3] = @checkpoint.lesson_id
+        @ws[row,4] = @checkpoint.description
+        @ws[row,5] = @checkpoint.videourl
+        @ws[row,6] = @checkpoint.objective
+        @ws.save!
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
         format.json { render json: @checkpoint, status: :created, location: @checkpoint }
       else
@@ -57,9 +72,15 @@ class CheckpointsController < ApplicationController
   # PUT /checkpoints/1.json
   def update
     @checkpoint = Checkpoint.find(params[:id])
-
+    row = @checkpoint.id+1
     respond_to do |format|
       if @checkpoint.update_attributes(params[:checkpoint])
+        @ws[row,2] = @checkpoint.checkpoint
+        @ws[row,3] = @checkpoint.lesson_id
+        @ws[row,4] = @checkpoint.description
+        @ws[row,5] = @checkpoint.videourl
+        @ws[row,6] = @checkpoint.objective
+        @ws.save!
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +100,10 @@ class CheckpointsController < ApplicationController
       format.html { redirect_to checkpoints_url }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    Checkpoint.import(@ws)
+    redirect_to checkpoints_url, notice: "Imported!"
   end
 end

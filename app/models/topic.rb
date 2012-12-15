@@ -15,4 +15,13 @@ class Topic < ActiveRecord::Base
 
   #Listing
   acts_as_list :scope => :seab_sub_topic
+
+  def self.import(ws)
+    rows = ws.num_rows()
+    for i in 1..rows-1 do
+      topic = find_by_id(i) || new
+      topic.subject = ws[i+1,2]
+      topic.save!
+    end
+  end
 end

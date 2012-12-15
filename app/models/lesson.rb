@@ -16,6 +16,17 @@ class Lesson < ActiveRecord::Base
   #Listing
   acts_as_list :scope => :topic
 
+  def self.import(ws)
+    rows = ws.num_rows()
+    for i in 1..rows-1 do
+      lesson = find_by_id(i) || new
+      lesson.lesson = ws[i+1,2]
+      lesson.topic_id = ws[i+1,3]
+      lesson.user_id = ws[i+1,4]
+      lesson.save!
+    end
+  end
+
   include PgSearch
   pg_search_scope :search, against: [:lesson],
   using: {tsearch: {dictionary: "english"}}

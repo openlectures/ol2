@@ -12,4 +12,14 @@ class Summary < ActiveRecord::Base
 
   #Listing
   acts_as_list scope: :lesson
+
+  def self.import(ws)
+    rows = ws.num_rows()
+    for i in 1..rows-1 do
+      summary = find_by_id(i) || new
+      summary.summary = ws[i+1,2]
+      summary.lesson_id = ws[i+1,3]
+      summary.save!
+    end
+  end
 end

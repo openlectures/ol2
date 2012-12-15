@@ -1,4 +1,11 @@
 class SummariesController < ApplicationController
+  before_filter :google_login, only: ["create","update","import"]
+  
+  def google_login
+    session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_SUMMARIES_KEY"])
+  end
+
   # GET /summaries
   # GET /summaries.json
   def index
@@ -41,9 +48,13 @@ class SummariesController < ApplicationController
   # POST /summaries.json
   def create
     @summary = Summary.new(params[:summary])
-
+    row = @ws.num_rows() +1
     respond_to do |format|
       if @summary.save
+        @ws[row,1] = @summary.id
+        @ws[row,2] = @summary.summary
+        @ws[row,3] = @summary.lesson_id
+        @ws.save!
         format.html { redirect_to @summary, notice: 'Summary was successfully created.' }
         format.json { render json: @summary, status: :created, location: @summary }
       else
@@ -57,9 +68,13 @@ class SummariesController < ApplicationController
   # PUT /summaries/1.json
   def update
     @summary = Summary.find(params[:id])
-
+    row = @summary.id+1
     respond_to do |format|
       if @summary.update_attributes(params[:summary])
+        @ws[row,1] = @summary.id
+        @ws[row,2] = @summary.summary
+        @ws[row,3] = @summary.lesson_id
+        @ws.save!
         format.html { redirect_to @summary, notice: 'Summary was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +94,10 @@ class SummariesController < ApplicationController
       format.html { redirect_to summaries_url }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    Summary.import(@ws)
+    redirect_to summaries_url, notice: "Imported!"
   end
 end

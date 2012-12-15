@@ -1,4 +1,11 @@
 class QuestionanswersController < ApplicationController
+  before_filter :google_login, only: ["create","update","import"]
+
+  def google_login
+    session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_QNA_KEY"]).worksheets[0]
+  end
+
   # GET /questionanswers
   # GET /questionanswers.json
   def index
@@ -41,9 +48,15 @@ class QuestionanswersController < ApplicationController
   # POST /questionanswers.json
   def create
     @questionanswer = Questionanswer.new(params[:questionanswer])
+    row = @ws.num_rows()+1
 
     respond_to do |format|
-      if @questionanswer.save
+      if @questionanswer.save!
+        @ws[row,1] = @questionanswer.id
+        @ws[row,2] = @questionanswer.question
+        @ws[row,3] = @questionanswer.answer
+        @ws[row,4] = @questionanswer.checkpoint_id
+        @ws.save!
         format.html { redirect_to @questionanswer, notice: 'Questionanswer was successfully created.' }
         format.json { render json: @questionanswer, status: :created, location: @questionanswer }
       else
@@ -57,9 +70,13 @@ class QuestionanswersController < ApplicationController
   # PUT /questionanswers/1.json
   def update
     @questionanswer = Questionanswer.find(params[:id])
-
+    row = @questionanswer.id+1
     respond_to do |format|
       if @questionanswer.update_attributes(params[:questionanswer])
+        @ws[row,2] = @questionanswer.question
+        @ws[row,3] = @questionanswer.answer
+        @ws[row,4] = @questionanswer.checkpoint_id
+        @ws.save!
         format.html { redirect_to @questionanswer, notice: 'Questionanswer was successfully updated.' }
         format.json { head :no_content }
       else
@@ -79,5 +96,10 @@ class QuestionanswersController < ApplicationController
       format.html { redirect_to questionanswers_url }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    Questionanswer.import(@ws)
+    redirect_to questionanswers_url, notice: "Imported!"
   end
 end

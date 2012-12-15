@@ -1,4 +1,11 @@
 class LessonsController < ApplicationController
+  before_filter :google_login, only: ["create","update","import"]
+
+  def google_login
+    session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_LESSONS_KEY"]).worksheets[0]
+  end
+
   # GET /lessons
   # GET /lessons.json
   def index
@@ -42,9 +49,15 @@ class LessonsController < ApplicationController
   # POST /lessons.json
   def create
     @lesson = Lesson.new(params[:lesson])
+    row = @ws.num_rows()+1
 
     respond_to do |format|
       if @lesson.save
+        @ws[row,1] = @lesson.id
+        @ws[row,2] = @lesson.lesson
+        @ws[row,3] = @lesson.topic_id
+        @ws[row,4] = @lesson.user_id
+        @ws.save!
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
         format.json { render json: @lesson, status: :created, location: @lesson }
       else
@@ -58,9 +71,13 @@ class LessonsController < ApplicationController
   # PUT /lessons/1.json
   def update
     @lesson = Lesson.find(params[:id])
-
+    row = @lesson.id+1
     respond_to do |format|
       if @lesson.update_attributes(params[:lesson])
+        @ws[row,2] = @lesson.lesson
+        @ws[row,3] = @lesson.topic_id
+        @ws[row,4] = @lesson.user_id
+        @ws.save!
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
         format.json { head :no_content }
       else
@@ -87,5 +104,10 @@ class LessonsController < ApplicationController
       Lesson.update_all({position: index+1}, {id: id})
     end
     render nothing: true
+  end
+
+  def import
+    Lesson.import(@ws)
+    redirect_to lessons_url, notice: "Imported!"
   end
 end
