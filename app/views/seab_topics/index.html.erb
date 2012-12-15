@@ -1,27 +1,26 @@
-<h1>Listing seab_topics</h1>
+<%title "SEAB Topics"%>
+<h1>SEAB Topics</h1>
+<hr>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th><i class="icon-lesson"></i> SEAB Topic</th>
+      <th><i class="icon-subject"></i> Subject</th>
+      <th><i class="icon-checkpoint"></i> Description</th>
+    </tr>
+  </thead>
+  <tbody class="list">
+  <%@seab_topics.each do |s|%>
+    <tr>
+      <td class="seab_topic"><%=link_to s.topic, seab_topic_path(s)%></td>
+      <td class="subject"><%=s.subject.subject%></td>
+      <td class="description"><%=truncate(s.description, length: 40)%></td>
+    </tr>
+  <%end%>
+  </tbody>
 
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Position</th>
-    <th>Topic</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-  <% @seab_topics.each do |seab_topic| %>
-  <tr>
-    <td><%= seab_topic.description %></td>
-    <td><%= seab_topic.position %></td>
-    <td><%= seab_topic.topic %></td>
-    <td><%= link_to 'Show', seab_topic %></td>
-    <td><%= link_to 'Edit', edit_seab_topic_path(seab_topic) %></td>
-    <td><%= link_to 'Destroy', seab_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
 </table>
-
 <br />
 
-<%= link_to 'New Seab topic', new_seab_topic_path %>
+<%= link_to 'New Seab topic', new_seab_topic_path %> <br />
+<%= link_to "Import", import_seab_topics_path%>

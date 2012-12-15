@@ -30,6 +30,7 @@ Ol2::Application.routes.draw do
   resources :subjects
 
   match "subjects/actions/import" => "subjects#import", as: :import_subjects
+  match "seab_topics/actions/import" => "seab_topics#import", as: :import_seab_topics
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 
