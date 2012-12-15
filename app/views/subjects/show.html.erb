@@ -1,9 +1,11 @@
 <%title @subject.subject%>
-<h1 class="marginbot0"><%=@subject.subject%></h1>
-<h3 class="muted margintop0"><%=@subject.checkpoints.count%> checkpoints in <%=@subject.lessons.count%> lessons</h3>
+<%content_for :slogan do%>
+  <%=@subject.subject%><br/>
+  <small><span class="salmon"><%=@subject.checkpoints.count%></span> checkpoints in <span class="salmon"><%=@subject.lessons.count%></span> lessons</small>
+<%end%>
 <div class="row-fluid">
   <div class="span12">
-    <ul class="nav nav-pills marginbot0">
+    <ul class="nav nav-pills marginbot0 element-center">
       <li class="active"><a href="#seab" data-toggle="tab">SEAB Syllabus</a></li>
       <li class="disabled"><a>Subway Map</a></li>
       <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>

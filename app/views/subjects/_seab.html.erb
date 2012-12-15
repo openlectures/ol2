@@ -1,5 +1,5 @@
 <div class="tab-pane active fade in margintop0" id="seab">
-  <p> In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr>SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
+  <p> In this mode, lectures are arranged according to the <a href="#">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr class="initialism">SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
   <div id="controls">
     <a href="#" id="expand">Expand All</a>
     <a href="#" id="keep">Close All</a>
@@ -14,7 +14,7 @@
       </div><!--accordionheading-->
       <div id="<%=topic.id%>" class="accordion-body collapse">
         <div class="accordion-inner">
-            <p class="muted" style="font-size:0.9em"><%=topic.description%></p>
+            <p class="muted"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
               <table class="table table-hover table-condensed
               <% if user_signed_in? %>
