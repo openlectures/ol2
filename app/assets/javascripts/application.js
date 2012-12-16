@@ -1,5 +1,5 @@
 //
-//= require modernizr.min
+// = require modernizr
 //= require jquery_ujs
 //= require jquery.ui.sortable
 //= require twitter/bootstrap/bootstrap-alert

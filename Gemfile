@@ -12,7 +12,6 @@ end
 
 group :production do
   gem 'pg'
-  # gem 'rack-protection'
 end
 
 group :assets do
@@ -25,7 +24,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'select2-rails'
   gem 'garlicjs-rails'
-  gem 'modernizr-rails'
+  # gem 'modernizr-rails'
   gem 'jquery-rails'
   gem 'jquery-rails-cdn'
   gem 'jquery-ui-rails'
