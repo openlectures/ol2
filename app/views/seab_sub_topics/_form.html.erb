@@ -1,26 +1,72 @@
-<%= simple_form_for(@seab_sub_topic) do |f| %>
+<div class="row-fluid">
+<div class="span6">
+  <h3 class="margintop0">Edit</h3>
+  <%= simple_form_for(@seab_sub_topic) do |f| %>
   <% if @seab_sub_topic.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@seab_sub_topic.errors.count, "error") %> prohibited this seab_sub_topic from being saved:</h2>
-
-      <ul>
+    <div class="page-alert alert-block">
+      <h2>Error</h2>
       <% @seab_sub_topic.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <%= msg %>
       <% end %>
-      </ul>
-    </div>
+    </div><!--pagealert-->
   <% end %>
   <form>
     <%= f.association :seab_topic, label_method: :topic, input_html:{class: "input-block-level el", placeholder: "SEAB Topic"}, label: false%>
-    <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic" %>
+    <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic"%>
     <hr>
     <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
   </form>
   <% end %>
-
-<%-content_for :javascripts do%>
-  <script>
-      $(document).ready(function() { $(".el").select2(); });
-  </script>
-<%-end%>
-
+  </div><!--span6-->
+  <div class="span6">
+    <h3 class="margintop0">Preview</h3>
+    <div class="accordion">
+      <div class="accordion-group">
+        <div class="accordion-heading">
+          <a class="accordion-toggle">
+            <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+          </a>
+        </div><!--accordionheading-->
+        <div id="foo" class="accordion-body">
+          <div class="accordion-inner">
+            <p class="muted">Existing Description</p>
+            <table class="table table-hover table-condensed">
+              <caption class="alignleft">SEAB Subtopic</caption>
+              <tbody>
+                <tr>
+                  <td><span class="handle muted"><i class="icon-sort"></i></span></td>
+                  <td style="width:50%;">Topic</td>
+                  <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
+                  <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-hover table-condensed">
+              <caption class="alignleft">Existing SEAB Subtopic</caption>
+              <tbody>
+                <tr>
+                  <td><span class="handle muted"><i class="icon-sort"></i></span></td>
+                  <td style="width:50%;">Existing Topic</td>
+                  <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
+                  <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
+                </tr>
+                <tr>
+                  <td><span class="handle muted"><i class="icon-sort"></i></span></td>
+                  <td style="width:50%;">Existing Topic</td>
+                  <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
+                  <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
+                </tr>
+                <tr>
+                  <td><span class="handle muted"><i class="icon-sort"></i></span></td>
+                  <td style="width:50%;">Existing Topic</td>
+                  <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
+                  <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
+                </tr>
+              </tbody>
+            </table>
+          </div><!--accordioninner-->
+        </div><!--accordionbody-->
+      </div><!--accordiongroup-->
+    </div><!--accordion-->
+  </div><!--span6-->
+</div><!--rowfluid-->

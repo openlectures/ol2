@@ -11,15 +11,8 @@
     </div>
   <% end %>
   <%= f.association :topic, label_method: :topic, input_html: {class: "input-block-level el", placeholder: "Topic"}, label: false%>
-  <%= f.association :user, label_method: :given_name, input_html: {class: "input-block-level el", placeholder: "User"}, label: false%>
-  <%= f.text_field :lesson, class: "input-block-level", placeholder: "Lesson Name"%>
+  <%= f.association :user, label_method: :given_name, input_html: {class: "input-block-level el", placeholder: "Lecturer"}, label: false%>
+  <%= f.text_field :lesson, class: "input-block-level", placeholder: "Lesson Title"%>
   <hr>
   <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 <% end %>
-
-  <%-content_for :javascripts do%>
-    <script>
-        $(document).ready(function() { $(".el").select2(); });
-    </script>
-  <%-end%>
-

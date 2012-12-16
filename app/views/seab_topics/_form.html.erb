@@ -1,22 +1,53 @@
-<%= simple_form_for(@seab_topic) do |f| %>
+<div class="row-fluid">
+<div class="span6">
+  <h3 class="margintop0">Edit</h3>
+  <%= simple_form_for(@seab_topic) do |f| %>
   <% if @seab_topic.errors.any? %>
     <div class="page-alert alert-block">
-      <h2><%= pluralize(@seab_topic.errors.count, "error") %> prohibited this seab_topic from being saved:</h2>
+      <h2>Error</h2>
       <% @seab_topic.errors.full_messages.each do |msg| %>
         <%= msg %>
       <% end %>
     </div><!--pagealert-->
   <% end %>
+  <form>
   <%= f.association :subject, label_method: :subject,input_html: {class: "input-block-level el", placeholder: "Subject"}, label: false%>
   <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Topic" %>
   <%= f.text_area :description, class: "input-block-level", placeholder: "SEAB Description", rows: "6" %>
-    <hr/>
-    <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
+  <hr/>
+  <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
+  </form>
   <% end %>
-
-<%-content_for :javascripts do%>
-  <script>
-      $(document).ready(function() { $(".el").select2(); });
-  </script>
-<%-end%>
-
+  </div><!--span6-->
+  <div class="span6">
+  <h3 class="margintop0">Preview</h3>
+  <div class="accordion">
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle">
+          <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+        </a>
+      </div><!--accordionheading-->
+      <div class="accordion-body in">
+        <div class="accordion-inner">
+          <p class="muted">SEAB Description</p>
+        </div><!--accordioninner-->
+      </div><!--accordionbody-->
+    </div><!--accordiongroup-->
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle">
+          <h3 class="marginbot0 margintop0 muted"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i>Existing SEAB Topic</h3>
+        </a>
+      </div><!--accordionheading-->
+    </div><!--accordiongroup-->
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle">
+          <h3 class="marginbot0 margintop0 muted"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i>Existing SEAB Topic</h3>
+        </a>
+      </div><!--accordionheading-->
+    </div><!--accordiongroup-->
+  </div><!--accordion-->
+</div><!--span6-->
+</div><!--rowfluid-->

@@ -1,13 +1,23 @@
 <%title "Create Item"%>
 <%content_for :header do%>
-<h1><i class="icon-plus-sign icon-fuckingbig"></i></h1>
+  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+   width="235.239px" height="307.263px" viewBox="-67.619 -103.631 235.239 307.263"
+   enable-background="new -67.619 -103.631 235.239 307.263" xml:space="preserve">
+  <path fill="#333333" d="M-60.494,36.075C-81.2-16.681-55.24-76.217-2.529-96.904c41.381-16.242,91.304-1.599,115.209,28.128
+    L-59.536,38.317C-59.851,37.562-60.192,36.836-60.494,36.075z"/>
+  <path fill="#333333" d="M139.901,1.546c0.538,1.719,1.034,3.441,1.435,5.175c2.012,8.559,4.229,30.913,4.229,30.913L167,91.607
+    c0.412,0.972,0.62,2.06,0.62,3.212c0,4.554-3.729,8.269-8.298,8.269H145.57v28.676c0,22.357-18.109,40.467-40.445,40.467H89.052
+    v31.401H-20.402v-87.075c-23.279-18.306-38.391-46.51-39.134-78.239L139.901,1.546z"/>
+  <path fill="#333333" d="M159.12-47.419c-0.403-0.031-9.901-0.702-23.749,1.925c-13.86,2.633-27.064,7.744-38.746,14.86L84.01-44.876
+    L67.859,3.521l49.979-10.205l-11.022-12.446c11.718-6.697,23.135-9.992,31.371-11.553c11.643-2.215,19.728-1.692,19.803-1.686
+    l5.986,0.411l0.48-5.972l0.692-9.036L159.12-47.419z"/>
+  </svg>
 <%end%>
 <%content_for :slogan do%>
-Create Item
+Create Something
 <%end%>
 <ul class="nav nav-pills element-center">
-  <li class="active"><a href="#subject" data-toggle="tab">Subject</a>
-  </li>
+  <li class="active"><a href="#subject" data-toggle="tab">Subject</a></li>
   <li><a href="#seab_topic" data-toggle="tab">SEAB Topic</a></li>
   <li><a href="#seab_sub_topic" data-toggle="tab">SEAB Sub Topic</a></li>
   <li><a href="#topic" data-toggle="tab">Topic</a></li>
@@ -21,106 +31,14 @@ Create Item
     <div class="row-fluid">
       <div class="span8 offset2">
         <%=render "subjects/form"%>
-      </div><!--span6-->
+      </div><!--span8-->
     </div><!--rowfluid-->
   </div>
   <div class="tab-pane fade in" id="seab_topic">
-    <div class="row-fluid">
-      <div class="span6">
-        <h3 class="margintop0">Edit</h3>
-        <%=render "seab_topics/form"%>
-      </div><!--span6-->
-      <div class="span6">
-        <h3 class="margintop0">Preview</h3>
-        <div class="accordion">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle">
-                <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
-              </a>
-            </div><!--accordionheading-->
-            <div class="accordion-body in">
-              <div class="accordion-inner">
-                <p class="muted">SEAB Description</p>
-                <table class="table table-hover table-condensed">
-                  <caption class="alignleft">SEAB Sub Topic</caption>
-                  <tbody>
-                    <tr>
-                      <td><span class="handle muted"><i class="icon-sort"></i></span></td>
-                      <td style="width:50%;">Sub Topic</td>
-                      <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
-                      <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div><!--accordioninner-->
-            </div><!--accordionbody-->
-          </div><!--accordiongroup-->
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle">
-                <h3 class="marginbot0 margintop0 muted"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i>Existing SEAB Topic</h3>
-              </a>
-            </div><!--accordionheading-->
-          </div><!--accordiongroup-->
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle">
-                <h3 class="marginbot0 margintop0 muted"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i>Existing SEAB Topic</h3>
-              </a>
-            </div><!--accordionheading-->
-          </div><!--accordiongroup-->
-        </div><!--accordion-->
-      </div><!--span6-->
-    </div><!--rowfluid-->
+    <%=render "seab_topics/form"%>
   </div>
   <div class="tab-pane fade in" id="seab_sub_topic">
-    <div class="row-fluid">
-      <div class="span6">
-        <h3 class="margintop0">Edit</h3>
-        <%=render "seab_sub_topics/form"%>
-      </div><!--span6-->
-      <div class="span6">
-        <h3 class="margintop0">Preview</h3>
-        <div class="accordion">
-          <div class="accordion-group">
-            <div class="accordion-heading">
-              <a class="accordion-toggle">
-                <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
-              </a>
-            </div><!--accordionheading-->
-            <div id="foo" class="accordion-body">
-              <div class="accordion-inner">
-                <p class="muted">Existing Description</p>
-                <table class="table table-hover table-condensed">
-                  <caption class="alignleft">SEAB Sub Topic</caption>
-                  <tbody>
-                    <tr>
-                      <td><span class="handle muted"><i class="icon-sort"></i></span></td>
-                      <td style="width:50%;">SEAB Subtopic</td>
-                      <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
-                      <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
-                    </tr>
-                    <tr>
-                      <td><span class="handle muted"><i class="icon-sort"></i></span></td>
-                      <td style="width:50%;">Existing Sub Topic</td>
-                      <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
-                      <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
-                    </tr>
-                    <tr>
-                      <td><span class="handle muted"><i class="icon-sort"></i></span></td>
-                      <td style="width:50%;">Existing Sub Topic</td>
-                      <td class="alignright">0 <span class="hidden-phone">Lessons</span></td>
-                      <td class="alignright"><i class="icon-edit muted"></i><i class="icon-trash muted"></i></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div><!--accordioninner-->
-            </div><!--accordionbody-->
-          </div><!--accordiongroup-->
-        </div><!--accordion-->
-      </div><!--span6-->
-    </div><!--rowfluid-->
+    <%=render "seab_sub_topics/form"%>
   </div>
   <div class="tab-pane fade in" id="topic">
     <div class="row-fluid">

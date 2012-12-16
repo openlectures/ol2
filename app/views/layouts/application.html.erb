@@ -38,7 +38,7 @@
     <div class="row-fluid">
     <div class="span8 offset2">
     <% if content_for?(:header) %>
-      <div class="aligncenter">
+      <div class="aligncenter" style="margin-top:2.827em;">
         <%=yield :header %>
       </div>
     <%end%>
@@ -79,6 +79,7 @@
           });
         }
     }).listen();
+    $(document).ready(function() { $(".el").select2(); });
   </script>
 </body>
 </html>

@@ -20,9 +20,3 @@
   <%= f.submit "Save", id: "submit", class: "btn btn-block"%>
 </form>
 <% end %>
-
-<%-content_for :javascripts do%>
-    <script>
-        $(document).ready(function() { $(".el").select2(); });
-    </script>
-  <%-end%>
