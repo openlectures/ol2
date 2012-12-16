@@ -22,7 +22,7 @@ class Checkpoint < ActiveRecord::Base
     def youtubeID
        return @@video_regexp.each { |m| return m.match(videourl)[1] unless m.nil? }
     end
-    return "https://www.youtube.com/embed/"+youtubeID+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080"
+    return "https://www.youtube.com/embed/"+youtubeID+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080&?enablejsapi=1"
   end
 
   def self.import(ws)

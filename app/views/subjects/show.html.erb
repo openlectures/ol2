@@ -1,7 +1,7 @@
 <%title @subject.subject%>
 <%content_for :slogan do%>
   <%=@subject.subject%><br/>
-  <small><span class="salmon"><%=@subject.checkpoints.count%></span> checkpoints in <span class="salmon"><%=@subject.lessons.count%></span> lessons</small>
+  <span class="lead"><span class="salmon"><%=@subject.checkpoints.count%></span> checkpoints in <span class="salmon"><%=@subject.lessons.count%></span> lessons</span>
 <%end%>
 <div class="row-fluid">
   <div class="span12">

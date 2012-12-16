@@ -25,7 +25,13 @@
 	});
   $('section').tooltip({
     selector: "a[rel=tooltip]"
-  })
+  });
+  Reveal.addEventListener( 'slidechanged', function( event ) {
+    callPlayer("player" + (Reveal.getIndices().h-1).toString(), "pauseVideo");
+    callPlayer("player" + (Reveal.getIndices().h).toString(), "pauseVideo");
+    callPlayer("player" + (Reveal.getIndices().h+1).toString(), "pauseVideo");
+  });
+  Reveal.getIndices();
   </script>
 </body>
 </html>

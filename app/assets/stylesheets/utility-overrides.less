@@ -111,12 +111,16 @@ h1 {
 /* Responsive Video Hack */
 .videoWrapper {
   position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 35px; /* Size of YouTube Player Bar */
+  padding-bottom: 56.25%; // 16:9
+  padding-top: 35px; // Size of YouTube Player Bar
   height: 0;
 }
 
 .videoWrapper>iframe {
+  border: 5px solid #F2F2F2;
+  -webkit-box-sizing: border-box !important;
+       -moz-box-sizing: border-box !important;
+            box-sizing: border-box !important;
   position: absolute;
   top: 0;
   left: 0;
