@@ -30,6 +30,7 @@ group :assets do
   gem 'jquery-rails-cdn'
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
+  gem 'turbo-sprockets-rails3'
 end
 
 # Authentication and Authorization
