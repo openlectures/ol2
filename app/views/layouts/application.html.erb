@@ -60,6 +60,13 @@
   <%#=jquery_ui_include_tag :google%>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
+  <% if user_signed_in? %>
+    <% if current_user.role = "admin"%>
+      <script>
+        $(document).ready(function() { $(".el").select2(); });
+      </script>
+    <%end%>
+  <%end%>
   <script>
     enquire.register("screen and (max-width:768px)", {
         match : function() {
@@ -79,7 +86,6 @@
           });
         }
     }).listen();
-    $(document).ready(function() { $(".el").select2(); });
   </script>
 </body>
 </html>
