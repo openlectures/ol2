@@ -3,16 +3,13 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.9'
 
 group :development do
-  gem 'sqlite3'
   gem 'quiet_assets'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'vendorer'
 end
 
-group :production do
-  gem 'pg'
-end
+gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
