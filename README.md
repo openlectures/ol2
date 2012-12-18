@@ -56,19 +56,11 @@ sudo gem update
 
 If this throws an error (i.e. it gives you something that doesn't look nice or cute), you should do a fresh install
 
-### Install Ruby
-
-Use [RailsInstaller](http://railsinstaller.org/) to do all the heavy lifting. Choose your OS, fall to your knees, and say 'Hallelujah' because it didn't use to be this easy.
-
-### Install Rubygems
-
-Clone and compile your poison from the [Rubygems Site](http://rubygems.org/pages/download).
-
-### Install Rails
-
 ```bash
-gem install rails
+curl -O https://raw.github.com/joshfng/railsready/master/railsready.sh && bash railsready.sh
 ```
+
+Have a coffee and feel the magic.
 
 ## Real Man's Installation (From Zero to Hero)
 
@@ -82,22 +74,10 @@ ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)"
 
 Install XCode from the [Mac App Store](http://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12). If you want to keep things lean, install only the command-line tools (Preferences > Downloads > Components). If you feel like proving your ultimate worth, find out how to install GCC.
 
-Install Ruby Version Manager (RVM)
+Install Ruby Version Manager (RVM), Ruby and Rails in one fell swoop
 
 ```bash
-\curl -L https://get.rvm.io | bash -s stable --ruby
-```
-
-Install Ruby
-
-```bash
-rvm install 1.9.3
-```
-
-Install Rails
-
-```bash
-sudo gem install rails
+curl -L https://get.rvm.io | bash -s stable --ruby --rails
 ```
 
 **Windows**
