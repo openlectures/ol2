@@ -126,7 +126,7 @@ A bird will poo-poo on you if you, without good reason, open an issue that has a
 
 ## Contributing
 
-Please submit all pull requests against *-wip branches. 
+Please submit all pull requests against *-wip branches.
 If your pull request contains JavaScript patches or features, you must include relevant unit tests.
 All markup should conform to their respective community style guidelines:
 + [HTML and CSS](http://github.com/mdo/code-guide)
