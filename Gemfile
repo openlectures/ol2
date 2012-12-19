@@ -10,6 +10,7 @@ group :development do
 end
 
 gem 'pg'
+gem 'pg_search'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -21,7 +22,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'select2-rails'
   gem 'garlicjs-rails'
-  # gem 'modernizr-rails'
+  gem 'modernizr-rails'
   gem 'jquery-rails'
   gem 'jquery-rails-cdn'
   gem 'jquery-ui-rails'
@@ -49,7 +50,6 @@ gem 'simple_form'
 gem 'acts_as_list'
 
 gem 'friendly_id'
-gem 'pg_search'
 
 # gem 'turbolinks'
 # gem 'jquery-turbolinks'

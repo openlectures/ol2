@@ -1,6 +1,6 @@
 <div class="tab-pane fade" id="listcheckpoints">
   <div id="checkpoint-list">
-    <input type="search" class="search span10 offset1 aligncenter" style="margin-bottom:1.414em" placeholder="Filter List">
+    <input type="search" class="search span10 offset1 aligncenter marginbot-h3" placeholder="Filter List">
     <table class="table table-hover table-condensed">
       <thead>
         <tr>
@@ -23,7 +23,7 @@
         <% if current_user.role = "admin"%>
         <td class="date"><%=checkpoint.created_at.to_formatted_s(:short)%></td>
         <td class="alignright">
-          <%=link_to('<i class="icon-pencil"></i>'.html_safe, edit_checkpoint_path(checkpoint), class: "gray")%>
+          <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_checkpoint_path(checkpoint), class: "gray")%>
           <%=link_to('<i class="icon-trash"></i>'.html_safe, checkpoint_path(checkpoint), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",class: "salmon")%>
         </td>
         <%end%>

@@ -16,13 +16,13 @@
         <div class="accordion-inner">
             <p class="muted"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
-              <table class="table table-hover table-condensed
+              <table class="table table-hover table-condensed marginbot-h2
               <% if user_signed_in? %>
                 <% if current_user.role = "admin" && sub_topic.topics.count !=0%>
                   sortable
                 <%end%>
               <%end%>
-  " data-update-url=<%=sort_topics_url%> style="margin-bottom:1.5em;">
+  " data-update-url=<%=sort_topics_url%>>
 
               <caption class="alignleft"><%=sub_topic.topic%></caption>
               <tbody>

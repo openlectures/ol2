@@ -38,7 +38,7 @@
     <div class="row-fluid">
     <div class="span8 offset2">
     <% if content_for?(:header) %>
-      <div class="aligncenter" style="margin-top:2.827em;">
+      <div class="aligncenter margintop-h1">
         <%=yield :header %>
       </div>
     <%end%>
@@ -55,7 +55,9 @@
     <%=yield%>
     </div><!--span8-->
     </div><!--row-->
+    <%=render 'shared/footer' %>
   </div><!--containerfluid-->
+
   <%=jquery_include_tag :google%>
   <%#=jquery_ui_include_tag :google%>
   <%=javascript_include_tag 'application'%>
