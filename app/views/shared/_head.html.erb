@@ -49,5 +49,5 @@
   <% if controller.controller_name == 'lessons'%>
     <%=stylesheet_link_tag "reveal", :media => "all"%>
   <%end%>
-  <script>var _gaq=[['_setAccount','UA-26070822-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+  <%= analytics_init if Rails.env.production? %>
 </head>

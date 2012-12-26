@@ -26,7 +26,7 @@
 
               <caption class="alignleft"><%=sub_topic.topic%></caption>
               <tbody>
-              	<%if sub_topic.topics.count ==0%>
+              	<%if sub_topic.topics.count == 0%>
               	<td class="aligncenter">Coming Soon</td>
 	              <%else%>
                 <%sub_topic.topics.order("position").each do |sub_topic| %>

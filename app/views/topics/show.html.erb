@@ -1,18 +1,36 @@
 <%title @topic.topic%>
-<h1></h1>
-<div class="aligncenter">
-  <h1 class="marginbot0" style="font-size:4em;"><%=@topic.topic%></h1>
-  <%if @topic.description != ""%><p class="muted"><%=@topic.description%></p><br><%end%>
-  <h5 class="miso muted margintop0 marginbot0"><%=@topic.checkpoints.count%> checkpoints in 5 minutes</h5>
-
-</div><!--aligncenter-->
-<ul class="nav nav-pills nav-stacked aligncenter margintop3">
-<%if @topic.lessons.count ==0%>
-  <p>More content coming soon!</p>
-<%else%>
-  <%@topic.lessons.each do |lesson|%>
-    <li><h4 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h4></li>
-  <%end%>
+<%content_for :header do%>
 <%end%>
-</ul>
+<%content_for :slogan do%>
+<%=@topic.topic%><br/>
+<span class="lead"><span class="salmon"><%=@topic.checkpoints.count%></span> checkpoints in <span class="salmon">X</span> minutes</span>
+<%end%>
+<%if @topic.description != ""%>
+<%content_for :description do%>
+<%=@topic.description%>
+<%end%>
+<%end%>
+<div class="row-fluid">
+  <div class="span3">
+    <ul class="nav nav-tabs nav-stacked margintop0">
+      <li><a><i class="icon-arrow-left"></i> Back to Syllabus</a></li>
+      <li><a><i class="icon-info-sign"></i> How to Use</a></li>
+      <li><a><i class="icon-exclamation-sign"></i> Report Error</a></li>
+    </ul><!--nav-->
+    <ul class="nav nav-tabs nav-stacked">
+      <li><a><i class="icon-share"></i> Share</a></li>
+      <li><a><i class="icon-qrcode"></i> Send to Phone</a></li>
+    </ul><!--nav-->
+  </div><!--span3-->
+  <div class="span7 offset1">
+    <ol class="margintop0">
+    <%@topic.lessons.each do |lesson|%>
+      <li><h3 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h3>
+      <%lesson.checkpoints.each do |checkpoint|%>
+      <img src="http://img.youtube.com/vi/<%=checkpoint.youtubeID%>/lqdefault.jpg">
+      <%end%></li>
+    <%end%>
+  </ol>
+  </div><!--span7-->
+</div>
 </div>

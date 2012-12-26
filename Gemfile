@@ -28,6 +28,7 @@ group :assets do
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
   gem 'turbo-sprockets-rails3'
+  # gem 'visibilityjs'
 end
 
 # Authentication and Authorization
@@ -48,6 +49,7 @@ gem 'thin'
 
 gem 'simple_form'
 gem 'acts_as_list'
+gem 'google-analytics-rails'
 
 gem 'friendly_id'
 
