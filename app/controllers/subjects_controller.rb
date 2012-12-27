@@ -41,7 +41,7 @@ class SubjectsController < ApplicationController
   def create
     @subject = Subject.new(params[:subject])
     row = @ws.num_rows() + 1
-    
+
     respond_to do |format|
       if @subject.save
         @ws[row,1] = @subject.id

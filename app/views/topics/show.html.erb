@@ -2,8 +2,8 @@
 <%content_for :header do%>
 <%end%>
 <%content_for :slogan do%>
-<%=@topic.topic%><br/>
-<span class="lead"><span class="salmon"><%=@topic.checkpoints.count%></span> checkpoints in <span class="salmon">X</span> minutes</span>
+<%=link_to @topic.subject.subject, @topic.subject%><br/>
+<span class="lead"><%=@topic.topic%></span>
 <%end%>
 <%if @topic.description != ""%>
 <%content_for :description do%>
@@ -11,26 +11,19 @@
 <%end%>
 <%end%>
 <div class="row-fluid">
-  <div class="span3">
-    <ul class="nav nav-tabs nav-stacked margintop0">
-      <li><a><i class="icon-arrow-left"></i> Back to Syllabus</a></li>
-      <li><a><i class="icon-info-sign"></i> How to Use</a></li>
-      <li><a><i class="icon-exclamation-sign"></i> Report Error</a></li>
-    </ul><!--nav-->
-    <ul class="nav nav-tabs nav-stacked">
-      <li><a><i class="icon-share"></i> Share</a></li>
-      <li><a><i class="icon-qrcode"></i> Send to Phone</a></li>
-    </ul><!--nav-->
-  </div><!--span3-->
-  <div class="span7 offset1">
-    <ol class="margintop0">
+  <div class="span12">
+    <ul class="nav nav-pills marginbot0 element-center">
+      <li><a href="#">Back to Syllabus</a></li>
+      <li><a href="#">Report Error</a></li>
+      <li><a href="#">Send to Phone</a></li>
+    </ul>
+  </div>
+</div>
+    <ol>
     <%@topic.lessons.each do |lesson|%>
       <li><h3 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h3>
       <%lesson.checkpoints.each do |checkpoint|%>
-      <img src="http://img.youtube.com/vi/<%=checkpoint.youtubeID%>/lqdefault.jpg">
+      <img src="<%=checkpoint.thumb_url%>" width="20%">
       <%end%></li>
     <%end%>
   </ol>
-  </div><!--span7-->
-</div>
-</div>
