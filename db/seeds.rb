@@ -227,7 +227,7 @@ that consumer is willing to pay?",
 Checkpoint.create( checkpoint: "In The Real World",
                    lesson_id: "2",
                    description: "Now that you know what 1st degree price discrimination is in theory, find out how it happens in real life.",
-                   videourl: "https://www.youtube.com/watch?v=4NpBAik2FTI",
+                   videourl: "http://youtu.be/zmMPZfZLY2o",
                    objective: "How 1st degree price discrimination is like in the real world",
 )
 

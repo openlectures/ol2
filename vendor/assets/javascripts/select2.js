@@ -705,6 +705,9 @@ the specific language governing permissions and limitations under the Apache Lic
                     populate=function(results, container, depth) {
 
                         var i, l, result, selectable, compound, node, label, innerContainer, formatted;
+
+                        results = opts.sortResults(results, container, query);
+
                         for (i = 0, l = results.length; i < l; i = i + 1) {
 
                             result=results[i];
@@ -1246,6 +1249,15 @@ the specific language governing permissions and limitations under the Apache Lic
             }
             else if (opts.formatSearching()) {
                 render("<li class='select2-searching'>" + opts.formatSearching() + "</li>");
+            }
+
+            if (opts.maximumInputLength && search.val().length > opts.maximumInputLength) {
+                if (checkFormatter(opts.formatInputTooLong, "formatInputTooLong")) {
+                    render("<li class='select2-no-results'>" + opts.formatInputTooLong(search.val(), opts.maximumInputLength) + "</li>");
+                } else {
+                    render("");
+                }
+                return;
             }
 
             // give the tokenizer a chance to pre-process the input
@@ -2402,14 +2414,19 @@ the specific language governing permissions and limitations under the Apache Lic
         formatSelection: function (data, container) {
             return data ? data.text : undefined;
         },
+        sortResults: function (results, container, query) {
+            return results;
+        },
         formatResultCssClass: function(data) {return undefined;},
         formatNoMatches: function () { return "No matches found"; },
         formatInputTooShort: function (input, min) { var n = min - input.length; return "Please enter " + n + " more character" + (n == 1? "" : "s"); },
+        formatInputTooLong: function (input, max) { var n = input.length - max; return "Please enter " + n + " less character" + (n == 1? "" : "s"); },
         formatSelectionTooBig: function (limit) { return "You can only select " + limit + " item" + (limit == 1 ? "" : "s"); },
         formatLoadMore: function (pageNumber) { return "Loading more results..."; },
         formatSearching: function () { return "Searching..."; },
         minimumResultsForSearch: 0,
         minimumInputLength: 0,
+        maximumInputLength: null,
         maximumSelectionSize: 0,
         id: function (e) { return e.id; },
         matcher: function(term, text) {

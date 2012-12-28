@@ -14,21 +14,21 @@ class Checkpoint < ActiveRecord::Base
   #Listing
   acts_as_list :scope => :lesson
 
-  def youtubeID
-    @@video_regexp = [ /^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/,
-                     /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/,
-                     /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/
-                   ]
-     return @@video_regexp.each { |m| return m.match(videourl)[1] unless m.nil? }
-  end
-
   def parsed_url
+    @@video_regexp = [ /^(?:https?:\/\/)?(?:www\.)?youtube\.com(?:\/v\/|\/watch\?v=)([A-Za-z0-9_-]{11})/,
+                       /^(?:https?:\/\/)?(?:www\.)?youtu\.be\/([A-Za-z0-9_-]{11})/,
+                       /^(?:https?:\/\/)?(?:www\.)?youtube\.com\/user\/[^\/]+\/?#(?:[^\/]+\/){1,4}([A-Za-z0-9_-]{11})/
+                     ]
+    def youtubeID
+      return @@video_regexp.each { |m| return m.match(videourl)[1] unless m.nil? }
+    end
+
     return "https://www.youtube.com/embed/"+youtubeID+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080&?enablejsapi=1"
   end
 
-  def thumb_url
-    return "http://img.youtube.com/vi/"+youtubeID+"/mqdefault.jpg"
-  end
+  # def thumb_url
+  #   return "http://img.youtube.com/vi/"+youtubeID+"/mqdefault.jpg"
+  # end
 
   def self.import(ws)
     rows = ws.num_rows()

@@ -24,7 +24,8 @@
 		transition: 'linear',
 	});
   $('section').tooltip({
-    selector: "a[rel=tooltip]"
+    selector: "a[rel=tooltip]",
+    delay: {hide: 500}
   });
   Reveal.addEventListener( 'slidechanged', function( event ) {
     callPlayer("player" + (Reveal.getIndices().h-1).toString(), "pauseVideo");
