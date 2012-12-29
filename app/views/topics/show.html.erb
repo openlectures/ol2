@@ -10,20 +10,8 @@
 <%=@topic.description%>
 <%end%>
 <%end%>
-<div class="row-fluid">
-  <div class="span12">
-    <ul class="nav nav-pills marginbot0 element-center">
-      <li><a href="#">Back to Syllabus</a></li>
-      <li><a href="#">Report Error</a></li>
-      <li><a href="#">Send to Phone</a></li>
-    </ul>
-  </div>
-</div>
-    <ol>
-    <%@topic.lessons.each do |lesson|%>
-      <li><h3 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h3>
-      <%lesson.checkpoints.each do |checkpoint|%>
-      A
-      <%end%></li>
-    <%end%>
-  </ol>
+<%@topic.lessons.each do |lesson|%>
+  <h3 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h3>
+  <%lesson.checkpoints.each do |checkpoint|%>
+  <%end%>
+<%end%>

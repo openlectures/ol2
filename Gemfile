@@ -28,7 +28,6 @@ group :assets do
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
   gem 'turbo-sprockets-rails3'
-  # gem 'visibilityjs'
 end
 
 # Authentication and Authorization
