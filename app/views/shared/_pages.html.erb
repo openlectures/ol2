@@ -1,6 +1,9 @@
 <li class="<%= current_page?(root_path) ? "active" : "" %>">
   <%=link_to('Home', root_path)%>
 </li>
+<li class="<%= current_page?(subjects_path) ? "active" : "" %>">
+<%=link_to('Subjects',subjects_path)%>
+</li>
 <li class="<%= current_page?(team_path) ? "active" : "" %>">
   <%=link_to('The Team', team_path)%>
 </li>
@@ -9,9 +12,6 @@
 </li>
 <li class="<%= current_page?(partners_path) ? "active" : "" %>">
   <%=link_to('Partners', partners_path)%>
-</li>
-<li class="<%= current_page?(presskit_path) ? "active" : "" %>">
-  <%=link_to('Press Kit', presskit_path)%>
 </li>
 <li class="<%= current_page?(contact_path) ? "active" : "" %>">
   <%=link_to('Contact Us', contact_path)%>

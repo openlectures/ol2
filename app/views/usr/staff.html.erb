@@ -1,8 +1,22 @@
-<%title "Staff"%>
+<%title "User Database"%>
+<%content_for :header do%>
+<%end%>
+<%content_for :slogan do%>
+User Database
+<%end%>
+<div class="row-fluid">
+  <div class="span12">
+    <ul class="nav nav-pills marginbot0 element-center">
+      <li class="active"><a href="#staff" data-toggle="tab">Staff</a></li>
+      <li><a href="#users" data-toggle="tab">Users</a></li>
+    </ul><!--nav-->
+  </div><!--span12-->
+</div><!--rowfluid-->
 
-<h1>Staff Database</h1>
+<div class="tab-content">
+<div class="tab-pane active fade in margintop0" id="staff">
 <div id="staff-list">
-<input type="search" class="search span10 offset1 aligncenter" style="margin-bottom:1.414em" placeholder="Filter List">
+<input type="search" class="search span10 offset1 aligncenter marginbot-h2" placeholder="Filter List">
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
@@ -19,17 +33,55 @@
       <td class="email"><%=mail_to(s.email, nil, :encode => "javascript") %></td>
       <td class="phone"><a href="callto:<%=s.phone%>"><%=s.phone%></a></td>
       <td class="location">Singapore</td>
+      <td><i class="icon-edit"></i> <i class="icon-trash"></i></td>
     </tr>
   <%end%>
   </tbody>
 </table>
+</div><!--stafflist-->
+<%=link_to "Create New Staff", import_subjects_path, :class => "btn btn-block margintop-p"%>
+</div><!--tabpane-->
+<div class="tab-pane active fade margintop0" id="users">
+<div id="user-list">
+<input type="search" class="search aligncenter span10 offset1" style="margin-bottom:1.414em" placeholder="Filter List">
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email Address</th>
+      <th>School</th>
+      <th>Level</th>
+    </tr>
+  </thead>
+  <tbody class="list">
+  <%@users.each do |u|%>
+    <tr>
+      <td class="name"><%=u.fullname%></td>
+      <td class="email"><%=u.email%></td>
+      <td class="school"></td>
+      <td class="level"></td>
+      <td><i class="icon-edit"></i> <i class="icon-trash"></i></td>
+    </tr>
+  <%end%>
+  </tbody>
+</table>
+<%=link_to "Create New User", import_subjects_path, :class => "btn btn-block margintop-p"%>
+</div><!--userlist-->
+</div><!--tabpane-->
+</div><!--tabcontent-->
 
 <%content_for :javascripts do%>
 <script>
-var options = {
+var staff_options = {
     valueNames: [ 'name', 'email', 'phone', 'location' ]
 };
 
-var staffList = new List('staff-list', options);
+var staffList = new List('staff-list', staff_options);
+
+var user_options = {
+    valueNames: [ 'name', 'email', 'school', 'level' ]
+};
+
+var userList = new List('user-list', user_options);
 </script>
 <%end%>

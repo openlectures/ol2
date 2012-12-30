@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <% if current_user.role = "admin"%>
-    <li><%=link_to('<i class="icon-inbox"></i> '.html_safe, profile_path, :rel=>'tooltip', :title=> 'ABC', :data=>{:placement=>"right"},)%></li>
+    <li><%=link_to('<i class="icon-inbox"></i>'.html_safe, profile_path)%></li>
   <%end%>
 <% else %>
   <li><%=link_to('<i class="icon-login"></i>'.html_safe, new_user_session_path)%>

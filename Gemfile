@@ -42,6 +42,7 @@ gem 'paperclip'
 # Google Drive Sync
 gem 'google_drive'
 gem 'faraday'
+gem 'google-analytics-rails'
 
 # Web Server
 gem 'thin'

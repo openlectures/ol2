@@ -18,6 +18,7 @@ class UsrController < ApplicationController
 
   def staff
     @staff = User.where("role = ?", "admin")
+    @users = User.where("role = ?", "user")
   end
 
   def manage_users

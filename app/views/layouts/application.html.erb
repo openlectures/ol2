@@ -6,12 +6,6 @@
     <% if content_for?(:sidebar) %>
       <%=yield :sidebar %>
     <%end%>
-    <% if controller.controller_name == 'pages'%>
-      <%=render 'shared/pages'%>
-    <%end%>
-    <% if controller.controller_name == 'subjects'%>
-      <%=render 'shared/navsubjects'%>
-    <%end%>
     <% if user_signed_in? %>
       <%=render 'shared/navmanage'%>
     <%end%>
@@ -57,15 +51,12 @@
   <%= yield :javascripts %>
   <% if user_signed_in? %>
     <% if current_user.role = "admin"%>
+      <script>
         $(document).ready(function() { $(".el").select2(); });
       </script>
     <%end%>
   <%end%>
   <script>
-    $('').tooltip({
-      selector: "a[rel=tooltip]",
-      delay: {hide: 500}
-    });
     enquire.register("screen and (max-width:768px)", {
         match : function() {
           $('#nav').unwrap();
