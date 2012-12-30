@@ -37,7 +37,7 @@ gem 'cancan'
 gem 'secretive'
 
 # Avatar File Upload Solution
-gem "paperclip"
+gem 'paperclip'
 
 # Google Drive Sync
 gem 'google_drive'
@@ -48,7 +48,6 @@ gem 'thin'
 
 gem 'simple_form'
 gem 'acts_as_list'
-gem 'google-analytics-rails'
 
 gem 'friendly_id'
 

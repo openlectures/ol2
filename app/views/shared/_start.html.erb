@@ -1,14 +1,14 @@
 <% if user_signed_in? %>
   <% if current_user.role = "admin"%>
-    <li><%=link_to('<i class="icon-inbox"></i> '.html_safe + current_user.fullname, profile_path)%></li>
+    <li><%=link_to('<i class="icon-inbox"></i> '.html_safe, profile_path, :rel=>'tooltip', :title=> 'ABC', :data=>{:placement=>"right"},)%></li>
   <%end%>
 <% else %>
-  <li><%=link_to('<i class="icon-login"></i> Log In'.html_safe, new_user_session_path)%>
-  <li><%=link_to('<i class="icon-play-circle"></i> Get Started'.html_safe, new_user_registration_path)%></li>
+  <li><%=link_to('<i class="icon-login"></i>'.html_safe, new_user_session_path)%>
+  <li><%=link_to('<i class="icon-play-circle"></i>'.html_safe, new_user_registration_path)%></li>
 <% end %>
 <% if controller.controller_name != 'pages'%>
-  <li><%=link_to('<i class="icon-group"></i> About Us'.html_safe, team_path)%></li>
+  <li><%=link_to('<i class="icon-group"></i>'.html_safe, team_path)%></li>
 <%end%>
 <% if controller.controller_name != 'subjects'%>
-  <li><%=link_to('<i class="icon-sitemap"></i> Subjects'.html_safe,subjects_path)%></li>
+  <li><%=link_to('<i class="icon-sitemap"></i>'.html_safe,subjects_path)%></li>
 <%end%>

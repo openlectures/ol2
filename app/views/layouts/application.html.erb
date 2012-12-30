@@ -4,22 +4,15 @@
     <ul id="nav" class="nav nav-list">
     <%=render 'shared/start'%>
     <% if content_for?(:sidebar) %>
-      <li class="divider"></li>
       <%=yield :sidebar %>
     <%end%>
     <% if controller.controller_name == 'pages'%>
-      <li class="divider"></li>
-      <li class="nav-header">Pages</li>
       <%=render 'shared/pages'%>
     <%end%>
     <% if controller.controller_name == 'subjects'%>
-      <li class="divider"></li>
-      <li class="nav-header">Subjects</li>
       <%=render 'shared/navsubjects'%>
     <%end%>
     <% if user_signed_in? %>
-      <li class="divider"></li>
-      <li class="nav-header">Manage</li>
       <%=render 'shared/navmanage'%>
     <%end%>
     <%=render 'shared/last'%>
@@ -64,12 +57,15 @@
   <%= yield :javascripts %>
   <% if user_signed_in? %>
     <% if current_user.role = "admin"%>
-      <script>
         $(document).ready(function() { $(".el").select2(); });
       </script>
     <%end%>
   <%end%>
   <script>
+    $('').tooltip({
+      selector: "a[rel=tooltip]",
+      delay: {hide: 500}
+    });
     enquire.register("screen and (max-width:768px)", {
         match : function() {
           $('#nav').unwrap();
@@ -83,7 +79,7 @@
             menuElement: document.querySelector( '.meny' ),
             contentsElement: document.querySelector( '.container-fluid' ),
             position: 'left',
-            width: 250,
+            width: 57,
             threshold: 100
           });
         }
