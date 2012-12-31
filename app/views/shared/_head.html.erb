@@ -49,7 +49,7 @@
   <%= stylesheet_link_tag "application", :media => "all" %>
   <%= yield :styles%>
   <% if controller.controller_name == 'lessons'%>
-    <%=stylesheet_link_tag "reveal", :media => "all"%>
+    <%=stylesheet_link_tag "reveal", :media => "screen"%>
   <%end%>
   <%= analytics_init if Rails.env.production? %>
 </head>
