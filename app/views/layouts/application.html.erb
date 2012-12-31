@@ -1,21 +1,5 @@
 <%=render 'shared/head'%>
 <body>
-  <% if user_signed_in? %>
-  <% if current_user.role = "admin"%>
-  <nav class="meny">
-    <ul id="nav" class="nav nav-list aligncenter">
-    <%=render 'shared/start'%>
-    <%=render 'shared/navmanage'%>
-    <%=render 'shared/last'%>
-    </ul>
-  </nav><!--meny-->
-  <div class="meny-arrow hidden-phone">
-    <h2>
-      <i class="icon-caret-right icon-large"></i>
-    </h2>
-  </div><!--menyarrow-->
-  <%end%>
-  <%end%>
   <div class="container-fluid">
     <div class="page-alert">
       <%= bootstrap_flash %>
@@ -26,7 +10,14 @@
       <![endif]-->
     </div><!--page-alert-->
     <div class="row-fluid">
-    <div class="span8 offset2 marginbot-h1">
+    <div class="span8 offset2 margintop0 marginbot-h1">
+      <div class="navbar marginbot0">
+        <div class="element-center fade in">
+        <ul class="nav margin-reset">
+          <%=render 'shared/menu'%>
+        </ul>
+      </div>
+      </div>
     <% if content_for?(:header) %>
       <div class="aligncenter margintop-h1">
         <%=yield :header %>
@@ -56,26 +47,13 @@
     <% if current_user.role = "admin"%>
       <script>
         $(document).ready(function() { $(".el").select2(); });
-        enquire.register("screen and (max-width:768px)", {
-            match : function() {
-              $('#nav').unwrap();
-              $(function () {
-                $('#nav').tinyNav();
-              });
-            }
-        }).register("screen and (min-width:769px)", {
-            match : function() {
-              Meny.create({
-                menuElement: document.querySelector( '.meny' ),
-                contentsElement: document.querySelector( '.container-fluid' ),
-                position: 'left',
-                width: 57,
-                threshold: 100
-              });
-            }
-        }).listen();
       </script>
     <%end%>
   <%end%>
+  <script>
+  $('.navbar').tooltip({
+    selector: "a[rel=tooltip]",
+  });
+  </script>
 </body>
 </html>

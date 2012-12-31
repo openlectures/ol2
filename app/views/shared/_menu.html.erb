@@ -1,0 +1,15 @@
+<li><%=link_to('<i class="icon-sitemap"></i>'.html_safe,subjects_path,:rel=>'tooltip',:title=>'Subjects',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<li><%=link_to('<i class="icon-group"></i>'.html_safe,team_path,:rel=>'tooltip',:title=>'About Us',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<% if user_signed_in? %>
+<% if current_user.role = "admin"%>
+<li><%=link_to('<i class="icon-inbox"></i>'.html_safe,profile_path,:rel=>'tooltip',:title=>'Inbox',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<%end%>
+<% else %>
+<li><%=link_to('<i class="icon-login"></i>'.html_safe,new_user_session_path,:rel=>'tooltip',:title=>'Login',:data=>{:placement=>'bottom'},:class=>'padbot0')%>
+<li><%=link_to('<i class="icon-play-circle"></i>'.html_safe,new_user_registration_path,:rel=>'tooltip',:title=>'Hihi!',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<% end %>
+<li><%=link_to('<i class="icon-user"></i>'.html_safe,staff_path,:rel=>'tooltip',:title=>'Manage Users',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<li><%=link_to('<i class="icon-plus-sign"></i>'.html_safe,create_item_path,:rel=>'tooltip',:title=>'Create Item',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<% if user_signed_in? %>
+<li><%= link_to('<i class="icon-off"></i>'.html_safe,destroy_user_session_path,:rel=>'tooltip',:title=>'Byebye!',:data=>{:placement=>'bottom'},:class=>'padbot0',:method=>:delete,)%></li>
+<% end %>
