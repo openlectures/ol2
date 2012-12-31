@@ -92,11 +92,14 @@
   <%= yield :javascripts %>
   <script>
     $(document).ready(function() { $(".el").select2(); });
+    $('.navbar').tooltip({
+      selector: "a[rel=tooltip]",
+    });
   </script>
-  <script>
-  $('.navbar').tooltip({
-    selector: "a[rel=tooltip]",
-  });
-  </script>
+<script type="text/javascript" charset="utf-8">
+  $(".seab_topic").on("change", function(e) {
+    $("#h3_seab_header").text($("div.seab_topic span").text());
+  })
+</script>
 </body>
 </html>

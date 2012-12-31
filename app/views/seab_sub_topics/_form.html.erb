@@ -11,8 +11,8 @@
     </div><!--pagealert-->
   <% end %>
   <form>
-    <%= f.association :seab_topic, label_method: :topic, input_html:{class: "input-block-level el", placeholder: "SEAB Topic"}, label: false%>
-    <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic"%>
+    <%= f.association :seab_topic, label_method: :topic, input_html:{class: "input-block-level el seab_topic", placeholder: "SEAB Topic", "ng-model"=>"seab_sub_topic_seab_topic"}, label: false%>
+    <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Subtopic", "ng-model"=>"seab_sub_topic_seab_sub_topic"%>
     <hr>
     <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
   </form>
@@ -24,14 +24,14 @@
       <div class="accordion-group">
         <div class="accordion-heading">
           <a class="accordion-toggle">
-            <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>SEAB Topic</h3>
+            <h3 id="h3_seab_header" class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>{{seab_sub_topic_seab_topic}}</h3>
           </a>
         </div><!--accordionheading-->
         <div id="foo" class="accordion-body">
           <div class="accordion-inner">
-            <p class="muted">Existing Description</p>
+            <p class="muted">BLAHBLAH</p>
             <table class="table table-hover table-condensed">
-              <caption class="alignleft">SEAB Subtopic</caption>
+              <caption class="alignleft">{{seab_sub_topic_seab_sub_topic}}</caption>
               <tbody>
                 <tr>
                   <td><span class="handle muted"><i class="icon-sort"></i></span></td>
@@ -70,3 +70,4 @@
     </div><!--accordion-->
   </div><!--span6-->
 </div><!--rowfluid-->
+
