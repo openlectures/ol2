@@ -12,8 +12,8 @@
   <% end %>
   <form>
   <%= f.association :subject, label_method: :subject,input_html: {class: "input-block-level el", placeholder: "Subject"}, label: false%>
-  <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Topic", "ng-model" => "seab_topic"%>
-  <%= f.text_area :description, class: "input-block-level", placeholder: "SEAB Description", rows: "6" %>
+  <%= f.text_field :topic, class: "input-block-level", placeholder: "SEAB Topic", "ng-model" => "seab_topic_seab_topic"%>
+  <%= f.text_area :description, class: "input-block-level", placeholder: "SEAB Description", rows: "6", "ng-model" => "seab_topic_seab_topic_description" %>
   <hr/>
   <%= f.submit "Save", id: "submit", class: "btn btn-block" %>
   </form>
@@ -25,12 +25,12 @@
     <div class="accordion-group">
       <div class="accordion-heading">
         <a class="accordion-toggle">
-          <h3 class="marginbot0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>{{seab_topic}}</h3>
+          <h3 class="marginbo0 margintop0"><i class="icon-caret-down" style="margin-right:0.2em; line-height:0.45em;"></i>{{seab_topic_seab_topic}}</h3>
         </a>
       </div><!--accordionheading-->
       <div class="accordion-body in">
         <div class="accordion-inner">
-          <p class="muted">SEAB Description</p>
+          <p class="muted">{{seab_topic_seab_topic_description}}</p>
         </div><!--accordioninner-->
       </div><!--accordionbody-->
     </div><!--accordiongroup-->
@@ -51,3 +51,4 @@
   </div><!--accordion-->
 </div><!--span6-->
 </div><!--rowfluid-->
+
