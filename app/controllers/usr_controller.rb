@@ -11,7 +11,6 @@ class UsrController < ApplicationController
     @checkpoint = Checkpoint.new
     @questionanswer = Questionanswer.new
     @summary = Summary.new
-    render :layout => "preview"
   end
 
   def profile

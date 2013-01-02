@@ -1,59 +1,83 @@
 <%=render 'shared/head'%>
 <body>
+  <nav class="meny" role="navigation">
+    <ul id="nav" class="marginbot0 margintop-p nav nav-list align-center" role="menu">
+    <%=render 'shared/menu'%>
+    </ul>
+  </nav><!--meny-->
   <div class="container-fluid">
     <div class="page-alert">
       <%= bootstrap_flash %>
       <!--[if lt IE 7]>
-        <div class="alert">
+        <div class="alert" role="alert">
         You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.
         </div>
       <![endif]-->
     </div><!--page-alert-->
     <div class="row-fluid">
-    <div class="span8 offset2 margintop0 marginbot-h1">
-      <div class="navbar marginbot0">
-        <div class="element-center fade in">
-        <ul class="nav margin-reset">
-          <%=render 'shared/menu'%>
-        </ul>
-      </div>
-      </div>
+    <div class="span2 muted margintop-p hidden-phone">
+      <div class="menu fade in" style="position:fixed">
+      <i class="icon-reorder muted"></i> Menu
+      </div><!--fade-->
+    </div><!--span2-->
+    <div class="span8 margintop0 marginbot-h1">
     <% if content_for?(:header) %>
-      <div class="aligncenter margintop-h1">
+      <div class="align-center margintop-h1">
         <%=yield :header %>
       </div>
     <%end%>
     <% if content_for?(:slogan) %>
-      <div class="aligncenter">
-        <h1><%=yield :slogan %></h1>
-      </div>
+      <heading class="align-center">
+        <h1 role="banner"><%=yield :slogan %></h1>
+      </heading>
     <%end%>
     <% if content_for?(:description) %>
       <h3 class="cmun">
         <%=yield :description %>
       </h3>
     <%end%>
+    <article role="main">
     <%=yield%>
+    </article>
     </div><!--span8-->
     </div><!--row-->
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
-
   <%=jquery_include_tag :google%>
   <%#=jquery_ui_include_tag :google%>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
   <% if user_signed_in? %>
     <% if current_user.role = "admin"%>
+      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
       <script>
         $(document).ready(function() { $(".el").select2(); });
+        $(".seab_topic").on("change", function(e) {
+          $("#h3_seab_header").text($("div.seab_topic span").text());
+        });
       </script>
     <%end%>
   <%end%>
   <script>
-  $('.navbar').tooltip({
-    selector: "a[rel=tooltip]",
-  });
+  enquire.register("screen and (max-width:480px)", {
+        match : function() {
+          $('#nav').unwrap();
+          $(function () {
+            $('#nav').tinyNav();
+          });
+        }
+    }).register("screen and (min-width:481px)", {
+        match : function() {
+          Meny.create({
+            menuElement: document.querySelector( '.meny' ),
+            contentsElement: document.querySelector( '.container-fluid' ),
+            position: 'left',
+            width: 57,
+            threshold: 100
+          });
+        }
+    }).listen();
+    $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
   </script>
 </body>
 </html>

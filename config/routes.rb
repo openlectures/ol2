@@ -3,10 +3,10 @@ Ol2::Application.routes.draw do
   resources :seab_topics
 
   #Usr Controller
-  match  "/manage" => "usr#manage", as: :manage
-  match  "/manage/create" => "usr#create_item", as: :create_item
-  match   "/profile" => "usr#profile", as: :profile
-  match   "/staff" => "usr#staff", as: :staff
+  match "/manage" => "usr#manage", as: :manage
+  match "/manage/create" => "usr#create_item", as: :create_item
+  match "/profile" => "usr#profile", as: :profile
+  match "/staff" => "usr#staff", as: :staff
   match "manage/:id" => "subjects#edit", as: :edit_subject
   match "/manage_users" => "usr#manage_users", as: :manage_users
 

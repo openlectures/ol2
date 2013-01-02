@@ -76,10 +76,10 @@ h1 {
 .marginbot-h3  {margin-bottom:1.149em !important;}
 
 /* Text Alignment */
-.alignright   {text-align:right   !important;}
-.alignleft    {text-align:left    !important;}
-.aligncenter  {text-align:center  !important;}
-.alignjustify {text-align:justify !important;}
+.align-right   {text-align:right   !important;}
+.align-left    {text-align:left    !important;}
+.align-center  {text-align:center  !important;}
+.align-justify {text-align:justify !important;}
 
 /* Line Height Reset Classes */
 .line-04 {line-height:0.4;}
@@ -165,5 +165,44 @@ body > .page-alert {
   .page-alert .alert {
     width: 700px;
     margin-left: -375px;
+  }
+}
+
+/* Hover Buttons */
+
+.hover-grp {
+  .show-hover   { display: none; }
+  .cloak-hover  {
+    zoom: 1; // IE 7-
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+  }
+  &:hover {
+    .hide-hover   { display: none; }
+    .show-hover   { display: inherit; }
+    .cloak-hover  {
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+      filter: alpha(opacity=1);
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 1;
+    }
+  }
+}
+
+/* Show text field borders on hover */
+
+input[type="text"].hover-border {
+  border-color: transparent;
+  .box-shadow(inset 0px 0px 0px);
+  &:hover, &:focus { border-color: @grayLight; }
+}
+
+html.lt-ie8 {
+  .hover-grp {
+    &:hover { .show-hover   { display: inline-block; } }
   }
 }

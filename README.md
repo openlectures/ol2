@@ -4,7 +4,7 @@ Named after the Zoroastrian/Persian God of Victory - specifically the smiting of
 
 ## Introduction
 
-Verethragna manages and displays lectures in accordance with openlectures production guidelines and specifications. The database is bidirectionally synchronized to Google Drive. Subsequent updates will allow advanced user-tracking and extensive third-party API integration 
+Verethragna manages and displays lectures in accordance with openlectures production guidelines and specifications. The database is bidirectionally synchronized to Google Drive. Subsequent updates will allow advanced user-tracking and extensive third-party API integration
 
 The live (shipped) version of the site can be found at http://openlectures.org.
 
@@ -19,6 +19,8 @@ git clone https://github.com/jethrokuan/ol2.git
 ```
 
 Run ``bundle update`` to install all gems and rails dependencies. This pulls information from the ``ol2`` gemset.
+
+Run ``vendorer update`` to update all vendor CSS and JS dependencies. This pulls information from ``Vendorfile``. Damn have we made it easy for you.
 
 Migrate the database and seed:
 
@@ -50,8 +52,8 @@ Navigate to [http://localhost:3000](http://localhost:3000) to browse the site. L
 If you already have Ruby on Rails and all the related core dependencies on your system, just upgrade everything to the latest stable build by running:
 
 ```bash
-gem update --system
-sudo gem update
+sudo gem update --system
+gem update
 ```
 
 If this throws an error (i.e. it gives you something that doesn't look nice or cute), you should do a fresh install
@@ -116,6 +118,11 @@ We make it a habit to write Version History like Bryan Jones of [Codekit](http:/
 
 ## Roadmap
 
++ Upgrade to Ruby 2.0, Rails 4, Backbone, Grape, and all those things modern people create for post-modern people.
++ Use Ratchet for a mobile UI that isn't just scaled-down text and rearranged page elements (because Flexbox sucks so bad).
++ Identify users by school and dish out proper customized content.
++ A/B Testing because we can, and because everyone does it. We're bandwagon sluts, we know.
+
 ## Bug Tracking and Feature Requests
 
 Have a bug or a feature request? [Please open a new issue](https://github.com/jethrokuan/ol2/issues).
@@ -137,11 +144,13 @@ All markup should conform to their respective community style guidelines:
 
 ## Code Status
 
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/jethrokuan/ol2) 
-[![Build Status](https://secure.travis-ci.org/jethrokuan/ol2.png)](http://travis-ci.org/jethrokuan/ol2) 
+[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/jethrokuan/ol2)
+[![Build Status](https://secure.travis-ci.org/jethrokuan/ol2.png)](http://travis-ci.org/jethrokuan/ol2)
 [![Dependency Status](https://gemnasium.com/jethrokuan/ol2.png)](https://gemnasium.com/jethrokuan/ol2)
 
 DISCLAIMER: These nice badge things are provided as-is, because everyone seems to have them. They do not, in any way, reflect the real awesomeness of our code (Yeah right).
+
+DISCLAIMER to DISCLAIMER: It looks like these things always show that the build is failing, or that we're out of date. Really, we're not.
 
 ## Contact
 
