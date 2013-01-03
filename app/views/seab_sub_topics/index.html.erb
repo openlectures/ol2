@@ -12,7 +12,7 @@
 <% @seab_sub_topics.each do |seab_sub_topic| %>
   <tr>
     <td><%= seab_sub_topic.topic %></td>
-    <td><%= seab_sub_topic.seabtopic_id %></td>
+    <td><%= seab_sub_topic.seab_topic_id %></td>
     <td><%= link_to 'Show', seab_sub_topic %></td>
     <td><%= link_to 'Edit', edit_seab_sub_topic_path(seab_sub_topic) %></td>
     <td><%= link_to 'Destroy', seab_sub_topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -22,4 +22,3 @@
 
 <br />
 
-<%= link_to 'New Seab sub topic', new_seab_sub_topic_path %>

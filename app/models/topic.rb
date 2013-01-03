@@ -20,7 +20,10 @@ class Topic < ActiveRecord::Base
     rows = ws.num_rows()
     for i in 1..rows-1 do
       topic = find_by_id(i) || new
-      topic.subject = ws[i+1,2]
+      topic.topic = ws[i+1,2]
+      topic.subject_id = ws[i+1,3]
+      topic.seab_sub_topic_id = ws[i+1,4]
+      topic.description=ws[i+1,5]
       topic.save!
     end
   end
