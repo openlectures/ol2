@@ -12,8 +12,7 @@ folder 'vendor/assets/javascripts' do
 end
 
 folder 'app/assets/fonts' do
-  file 'fontawesome-webfont.eot', 'http://gregoryloucas.github.com/Font-Awesome-More/assets/font/Font-Awesome-More.eot'
-  file 'fontawesome-webfont.svg', 'http://gregoryloucas.github.com/Font-Awesome-More/assets/font/Font-Awesome-More.svg'
-  file 'fontawesome-webfont.ttf', 'http://gregoryloucas.github.com/Font-Awesome-More/assets/font/Font-Awesome-More.ttf'
-  file 'fontawesome-webfont.woff','http://gregoryloucas.github.com/Font-Awesome-More/assets/font/Font-Awesome-More.woff'
+  file 'fontawesome-webfont.eot', 'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.eot'
+  file 'fontawesome-webfont.ttf', 'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.ttf'
+  file 'fontawesome-webfont.woff','https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.woff'
 end

@@ -1,7 +1,7 @@
 <%=render 'shared/head'%>
 <body>
   <nav class="meny" role="navigation">
-    <ul id="nav" class="marginbot0 margintop-p nav nav-list align-center" role="menu">
+    <ul id="nav" class="marginbot0 margintop-p nav nav-list" role="menu">
     <%=render 'shared/menu'%>
     </ul>
   </nav><!--meny-->
@@ -15,7 +15,7 @@
       <![endif]-->
     </div><!--page-alert-->
     <div class="row-fluid">
-    <div class="span2 muted margintop-p hidden-phone">
+    <div class="span2 fuckinglightgray margintop-p hidden-phone">
       <div class="menu fade in" style="position:fixed">
       <i class="icon-reorder muted"></i> Menu
       </div><!--fade-->
@@ -32,9 +32,9 @@
       </heading>
     <%end%>
     <% if content_for?(:description) %>
-      <h3 class="cmun">
+      <h5 class="cmun">
         <%=yield :description %>
-      </h3>
+      </h5>
     <%end%>
     <article role="main">
     <%=yield%>
@@ -72,7 +72,7 @@
             menuElement: document.querySelector( '.meny' ),
             contentsElement: document.querySelector( '.container-fluid' ),
             position: 'left',
-            width: 57,
+            width: 150,
             threshold: 100
           });
         }

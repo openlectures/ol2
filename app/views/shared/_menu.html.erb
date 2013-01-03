@@ -1,19 +1,19 @@
 <li class="visible-phone muted"><i class="icon-iphone"></i></li>
 <li class="visible-tablet muted"><i class="icon-ipad"></i></li>
 <li class="visible-desktop muted"><i class="icon-imac"></i></li>
-<li><a href="<%=root_path%>"><i class="icon-home"></i></a></li>
-<li><%=link_to('<i class="icon-sitemap"></i>'.html_safe,subjects_path,:rel=>'tooltip',:title=>'Subjects',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
-<li><%=link_to('<i class="icon-info-sign"></i>'.html_safe,team_path,:rel=>'tooltip',:title=>'About Us',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<li><a href="<%=root_path%>"><i class="icon-home"></i> Home</a></li>
+<li><%=link_to('<i class="icon-sitemap"></i> Subjects'.html_safe,subjects_path)%></li>
+<li><%=link_to('<i class="icon-info-sign"></i> About Us'.html_safe,team_path)%></li>
 <% if user_signed_in? %>
 <% if current_user.role = "admin"%>
-<li><%=link_to('<i class="icon-inbox"></i>'.html_safe,profile_path,:rel=>'tooltip',:title=>'Inbox',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<li><%=link_to('<i class="icon-inbox"></i> Inbox'.html_safe,profile_path)%></li>
 <%end%>
 <% else %>
-<li><%=link_to('<i class="icon-key"></i>'.html_safe,new_user_session_path,:rel=>'tooltip',:title=>'Login',:data=>{:placement=>'bottom'},:class=>'padbot0')%>
-<li><%=link_to('<i class="icon-play-circle"></i>'.html_safe,new_user_registration_path,:rel=>'tooltip',:title=>'Hihi!',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
+<li><%=link_to('<i class="icon-key"></i> Log In'.html_safe,new_user_session_path)%>
+<li><%=link_to('<i class="icon-play-circle"></i> Sign Up'.html_safe,new_user_registration_path,)%></li>
 <% end %>
 <% if user_signed_in? %>
-<li><%=link_to('<i class="icon-group"></i>'.html_safe,staff_path,:rel=>'tooltip',:title=>'Manage Users',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
-<li><%=link_to('<i class="icon-plus-sign"></i>'.html_safe,create_item_path,:rel=>'tooltip',:title=>'Create Item',:data=>{:placement=>'bottom'},:class=>'padbot0')%></li>
-<li><%= link_to('<i class="icon-off"></i>'.html_safe,destroy_user_session_path,:rel=>'tooltip',:title=>'Byebye!',:data=>{:placement=>'bottom'},:class=>'padbot0',:method=>:delete,)%></li>
+<li><%=link_to('<i class="icon-group"></i> Manage'.html_safe,staff_path)%></li>
+<li><%=link_to('<i class="icon-plus-sign"></i> Create'.html_safe,create_item_path)%></li>
+<li><%= link_to('<i class="icon-off"></i> Log Out'.html_safe,destroy_user_session_path,:method=>:delete)%></li>
 <% end %>
