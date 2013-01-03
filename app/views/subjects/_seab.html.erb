@@ -1,19 +1,19 @@
-<div class="tab-pane active fade in margintop0" id="seab" style="overflow-x:hidden">
+<div class="tab-pane active fade in margintop0" id="seab" style="overflow-x:hidden" role="tabpanel">
   <p> In this mode, lectures are arranged according to the <a href="http://www.seab.gov.sg/aLevel/syllabus/schoolCandidates/2013_GCE_A.html" target="_blank">subject syllabus</a> provided by the Singapore Examinations and Assessment Board (<abbr class="initialism">SEAB</abbr>). This means it's likely to be close to something you'd see in school.</p>
   <div id="controls" style="margin:0 20px; bottom: 0px; right:0px; position:fixed;">
     <a href="#" id="expand">Expand All</a>
     <a href="#" id="keep">Close All</a>
   </div>
-  <div class="accordion" id="syllabus">
+  <div class="accordion" id="syllabus" role="tab">
   <%@subject.seab_topics.each do |topic|%>
-    <div class="accordion-group marginbot-p">
+    <div class="accordion-group marginbot-p" role="tabpanel">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse"  href="#<%=topic.id%>">
-          <h3 class="marginbot0 margintop0"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i> <%=topic.topic%></h3>
+          <h5 class="marginbot0 margintop0"><i class="icon-caret-right" style="margin-right:0.2em; line-height:0.45em;"></i> <%=topic.topic%></h5>
         </a>
       </div><!--accordionheading-->
       <div id="<%=topic.id%>" class="accordion-body collapse">
-        <div class="accordion-inner">
+        <div class="accordion-inner" role>
             <p class="muted"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
               <table class="table table-hover table-condensed marginbot-h2
@@ -24,10 +24,10 @@
               <%end%>
   " data-update-url=<%=sort_topics_url%>>
 
-              <caption class="alignleft"><%=sub_topic.topic%></caption>
-              <tbody>
+              <caption><%=sub_topic.topic%></caption>
+              <tbody class="rowgroup">
               	<%if sub_topic.topics.count == 0%>
-              	<td class="aligncenter">Coming Soon</td>
+              	<td class="align-center">Coming Soon</td>
 	              <%else%>
                 <%sub_topic.topics.order("position").each do |sub_topic| %>
                   <%=content_tag_for :tr, sub_topic do%>
@@ -37,12 +37,12 @@
                     <%end%>
                   <%end%>
                   <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
-                  <td class="alignright">
+                  <td class="align-right">
                     <%=sub_topic.lessons.count%> <span class="hidden-phone">Lessons</span>
                   </td>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin"%>
-                      <td class="alignright">
+                      <td class="align-right">
                         <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(sub_topic), :class => "gray")%>
                         <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
                       </td>

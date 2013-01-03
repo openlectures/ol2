@@ -2,18 +2,18 @@
   <%@lesson.checkpoints.each do |checkpoint|%>
   <section>
     <section>
-    	<h2 class="line08">
-        <%=link_to '<i class="icon-caret-up"></i>'.html_safe, topic_path(checkpoint.lesson.topic), :rel=>'tooltip', :title=>'Back to Topic Overview', :data=>{:placement=>"bottom"}, :class=>"salmon"%>
-      </h2>
+    	<h3 class="line08">
+        <%=link_to '<i class="icon-caret-up"></i>'.html_safe, topic_path(checkpoint.lesson.topic), :rel=>'tooltip', :title=>'BACK TO OVERVIEW', :data=>{:placement=>"bottom"}, :class=>"salmon"%>
+      </h3>
       <div class="row-fluid" style="margin-top:3.5em">
       	<div class="span1">
-          <h2>
-            <a href="#" class="navigate-left" rel="tooltip" title="Previous Checkpoint" data-placement="right"><i class="icon-caret-left line-04"></i></a>
-          </h2>
+          <h3>
+            <a href="#" class="navigate-left" rel="tooltip" title="PREVIOUS CHECKPOINT" data-placement="right"><i class="icon-caret-left line-04"></i></a>
+          </h3>
       	</div><!--span1-->
-	      <div class="span3 alignright">
+	      <div class="span3 align-right">
 	        <h5 class="muted margintop0 marginbot0 line-10">CHECKPOINT <%=checkpoint.position%></h5>
-          <h2 class="margintop0 hidden-phone line-10"><%=checkpoint.checkpoint.titlecase%></h2>
+          <h3 class="margintop0 hidden-phone line-10"><%=checkpoint.checkpoint.titlecase%></h3>
 	        <p class="margintop0 line-14"><%=checkpoint.description%></p>
 	      </div><!--span3-->
 	      <div class="span6 offset1">
@@ -22,43 +22,43 @@
 	        </div><!--videoWrapper-->
 	      </div><!--span6-->
 	      <div class="span1">
-      		<h2>
-            <a href="#" class="navigate-right" rel="tooltip" title="Next Checkpoint" data-placement="left"><i class="icon-caret-right line-04"></i></a>
-          </h2>
+      		<h3>
+            <a href="#" class="navigate-right" rel="tooltip" title="NEXT CHECKPOINT" data-placement="left"><i class="icon-caret-right line-04"></i></a>
+          </h3>
 	    	</div><!--span1-->
       </div><!--rowfluid-->
-      <h2>
-        <a href="#" class="navigate-down line10" rel="tooltip" title="Question" data-placement="top"><i class="icon-caret-down"></i></a>
-      </h2>
+      <h3>
+        <a href="#" class="navigate-down line-10" rel="tooltip" title="QUESTION" data-placement="top"><i class="icon-caret-down"></i></a>
+      </h3>
     </section>
 
   <%checkpoint.questionanswers.each do |qa|%>
     <section>
-      <h2>
-        <a href="#" class="navigate-up" rel="tooltip" title="Back to Lecture" data-placement="bottom"><i class="icon-caret-up"></i></a>
-      </h2>
+      <h3>
+        <a href="#" class="navigate-up" rel="tooltip" title="BACK TO LECTURE" data-placement="bottom"><i class="icon-caret-up"></i></a>
+      </h3>
       <div class="row-fluid" style="margin-top:6em">
       	<div class="span1">
-      		<h2>
-            <a href="#" class="navigate-left" rel="tooltip" title="Previous Question" data-placement="right">
+      		<h3>
+            <a href="#" class="navigate-left" rel="tooltip" title="PREVIOUS QUESTION" data-placement="right">
               <i class="icon-caret-left line-04"></i>
             </a>
-          </h2>
+          </h3>
       	</div><!--span1-->
-        <div class="span3 alignright">
+        <div class="span3 align-right">
           <h5 class="muted margintop0 marginbot0 line-10" style="line-height:1">QUESTION <%=checkpoint.position%></h5>
-          <h2 class="margintop0 line-10"><%=checkpoint.checkpoint%></h2>
+          <h3 class="margintop0 line-10"><%=checkpoint.checkpoint%></h3>
           <p class="margintop0 line-14"><%=qa.question%></p>
         </div><!--span3-->
-        <div class="span6 offset1 alignleft">
+        <div class="span6 offset1 align-left">
           <p class="line14"><%=qa.answer%></p>
         </div><!--span6-->
         <div class="span1">
-      		<h2>
-            <a href="#" class="navigate-right" rel="tooltip" title="Next Question" data-placement="left">
+      		<h3>
+            <a href="#" class="navigate-right" rel="tooltip" title="NEXT QUESTION" data-placement="left">
               <i class="icon-caret-right line-04"></i>
             </a>
-          </h2>
+          </h3>
 	    	</div><!--span1-->
       </div><!--rowfluid-->
     </section>

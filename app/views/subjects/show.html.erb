@@ -5,7 +5,7 @@
 <%end%>
 <div class="row-fluid">
   <div class="span12">
-    <ul class="nav nav-pills marginbot0 element-center">
+    <ul class="nav nav-pills marginbot0 element-center" role="tablist">
       <li class="disabled"><a>GCE O-Level Syllabus</a></li>
       <li class="active"><a href="#seab" data-toggle="tab">GCE A-Level Syllabus</a></li>
       <li class="disabled"><a>Subway Map</a></li>
@@ -14,8 +14,8 @@
   </div>
 </div>
 
-<div class="tab-content">
+<div class="tab-content" role="tab">
   <%= render 'seab' %>
   <%= render 'listcheckpoints' %>
 </div><!--tabcontent-->
-<%=link_to "Update from Google Drive", import_subjects_path, :class => "btn btn-block margintop-p"%>
+<%=link_to "<i class='icon-chrome'></i> Update".html_safe, import_subjects_path, :class => "btn btn-block margintop-p"%>

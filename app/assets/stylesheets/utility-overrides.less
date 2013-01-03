@@ -6,6 +6,7 @@
 .cantaloupe {color:	@cantaloupe;}
 .white 			{color:	@white;}
 .gray 			{color:	@grayDark;}
+.fuckinglightgray { color: #999; }
 
 /* Font Settings */
 
@@ -18,21 +19,30 @@ html {
 }
 
 p, pre {
-  font-size: 		0.707em; /* 16.973px */
+  font-size: 		0.667em; /* 16.973px */
+}
+
+h5 {
+  font-size:    1em;
+}
+
+h4 {
+  font-size:    1.333em;
+  line-height:  1.5;
 }
 
 h3, caption {
-  font-size:    1.149em; /* 36.775px */
+  font-size:    1.414em; /* 36.775px */
   line-height:	1.4;
 }
 
 h2 {
-  font-size: 		1.414em; /* 45.248px */
+  font-size: 		1.999em; /* 45.248px */
   line-height:	1.3;
 }
 
 h1 {
-  font-size: 		2.827em; /* 90.469px */
+  font-size: 		2.666em; /* 90.469px */
   line-height:	1;
 }
 
@@ -76,10 +86,10 @@ h1 {
 .marginbot-h3  {margin-bottom:1.149em !important;}
 
 /* Text Alignment */
-.alignright   {text-align:right   !important;}
-.alignleft    {text-align:left    !important;}
-.aligncenter  {text-align:center  !important;}
-.alignjustify {text-align:justify !important;}
+.align-right   {text-align:right   !important;}
+.align-left    {text-align:left    !important;}
+.align-center  {text-align:center  !important;}
+.align-justify {text-align:justify !important;}
 
 /* Line Height Reset Classes */
 .line-04 {line-height:0.4;}
@@ -165,5 +175,44 @@ body > .page-alert {
   .page-alert .alert {
     width: 700px;
     margin-left: -375px;
+  }
+}
+
+/* Hover Buttons */
+
+.hover-grp {
+  .show-hover   { display: none; }
+  .cloak-hover  {
+    zoom: 1; // IE 7-
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+    -moz-opacity: 0;
+    -khtml-opacity: 0;
+    opacity: 0;
+  }
+  &:hover {
+    .hide-hover   { display: none; }
+    .show-hover   { display: inherit; }
+    .cloak-hover  {
+      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
+      filter: alpha(opacity=1);
+      -moz-opacity: 1;
+      -khtml-opacity: 1;
+      opacity: 1;
+    }
+  }
+}
+
+/* Show text field borders on hover */
+
+input[type="text"].hover-border {
+  border-color: transparent;
+  .box-shadow(inset 0px 0px 0px);
+  &:hover, &:focus { border-color: @grayLight; }
+}
+
+html.lt-ie8 {
+  .hover-grp {
+    &:hover { .show-hover   { display: inline-block; } }
   }
 }
