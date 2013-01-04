@@ -36,9 +36,19 @@
                       <td><span class="handle"><i class="icon-sort"></i></span></td>
                     <%end%>
                   <%end%>
-                  <td style="width:400px;"><%=link_to sub_topic.topic, topic_path(sub_topic)%></td>
+                  <td style="width:400px;" <%if sub_topic.lessons.count == 0%>class="muted"<%end%>>
+                    <%if sub_topic.lessons.count !=0%>
+                      <%=link_to sub_topic.topic, topic_path(sub_topic)%>
+                    <%else%>
+                      <%=sub_topic.topic%>
+                    <%end%>
+                  </td>
                   <td class="align-right">
-                    <%=sub_topic.lessons.count%> <span class="hidden-phone">Lessons</span>
+                    <%if sub_topic.lessons.count !=0%>
+                      <%=sub_topic.lessons.count%> <span class="hidden-phone">Lessons</span>
+                   <%else%>
+                     Coming Soon!
+                    <%end%>
                   </td>
                   <% if user_signed_in? %>
                     <% if current_user.role = "admin"%>
