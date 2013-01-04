@@ -84,8 +84,6 @@ GEM
     jquery-rails (2.1.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-rails-cdn (0.3.0)
-      jquery-rails
     jquery-ui-rails (3.0.0)
       jquery-rails
       railties (>= 3.1.0)
@@ -222,7 +220,6 @@ DEPENDENCIES
   google-analytics-rails
   google_drive
   jquery-rails
-  jquery-rails-cdn
   jquery-ui-rails
   less-rails
   libv8 (~> 3.11.8)

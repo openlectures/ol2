@@ -24,7 +24,6 @@ group :assets do
   gem 'garlicjs-rails'
   gem 'modernizr-rails'
   gem 'jquery-rails'
-  gem 'jquery-rails-cdn'
   gem 'jquery-ui-rails'
   # gem 'jquery-ui-rails-cdn'
   gem 'turbo-sprockets-rails3'
