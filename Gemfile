@@ -33,7 +33,6 @@ end
 # Authentication and Authorization
 gem 'omniauth-facebook'
 gem 'devise'
-gem 'cancan'
 gem 'secretive'
 
 # Avatar File Upload Solution
