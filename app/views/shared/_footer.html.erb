@@ -1,14 +1,18 @@
 <footer class="container align-center">
   <hr class="margintop-h2">
-  <nav class="element-center" role="navigation" style="font-size: 70%;">
+  <nav class="element-center" role="navigation">
+    <small>
       <ul class="nav nav-pills margin-reset" role="menubar">
         <%=render 'shared/pages'%>
         <li><a class="reView fuckinglightgray" href="<%=root_path%>">Switch View</a></li>
       </ul>
+    </small>
   </nav><!--element-center-->
   <% if user_signed_in? %>
     <% if current_user.role = "admin"%>
-    <pre class="margintop0 muted"><small><span class="salmon">Administrator</span> on <abbr class="initialism">ol-verethragna</abbr> v1.0.0</small></pre>
+      <small class="margintop0 muted">
+        <span class="salmon">Administrator</span> on <abbr class="initialism">ol-verethragna</abbr> v1.0.0
+      </small>
     <%end%>
   <%end%>
 </footer>

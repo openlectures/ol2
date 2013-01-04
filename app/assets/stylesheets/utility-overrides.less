@@ -18,31 +18,31 @@ html {
   font-smoothing: 				antialiased;
 }
 
-p, pre {
-  font-size: 		0.667em; /* 16.973px */
+h6, p, pre {
+  font-size: 		0.667em; /* 16.005px */
 }
 
 h5 {
-  font-size:    1em;
+  font-size:    1em; /* 24px */
 }
 
 h4 {
-  font-size:    1.333em;
+  font-size:    1.333em; /* 32px */
   line-height:  1.5;
 }
 
 h3, caption {
-  font-size:    1.414em; /* 36.775px */
+  font-size:    1.414em; /* 33.936px */
   line-height:	1.4;
 }
 
 h2 {
-  font-size: 		1.999em; /* 45.248px */
+  font-size: 		1.999em; /* 47.986px */
   line-height:	1.3;
 }
 
 h1 {
-  font-size: 		2.666em; /* 90.469px */
+  font-size: 		2.666em; /* 63.981px */
   line-height:	1;
 }
 
@@ -73,17 +73,17 @@ h1 {
 .margintop0    {margin-top:   0 !important;}
 .marginbot0    {margin-bottom:0 !important;}
 
-.margintop-p   {margin-top:   0.707em !important;}
-.marginbot-p   {margin-bottom:0.707em !important;}
+.margintop-p   {margin-top:   0.667em !important;}
+.marginbot-p   {margin-bottom:0.667em !important;}
 
-.margintop-h1  {margin-top:   2.827em !important;}
-.marginbot-h1  {margin-bottom:2.827em !important;}
+.margintop-h1  {margin-top:   2.666em !important;}
+.marginbot-h1  {margin-bottom:2.666em !important;}
 
-.margintop-h2  {margin-top:   1.414em !important;}
-.marginbot-h2  {margin-bottom:1.414em !important;}
+.margintop-h2  {margin-top:   1.999em !important;}
+.marginbot-h2  {margin-bottom:1.999em !important;}
 
-.margintop-h3  {margin-top:   1.149em !important;}
-.marginbot-h3  {margin-bottom:1.149em !important;}
+.margintop-h3  {margin-top:   1.414em !important;}
+.marginbot-h3  {margin-bottom:1.414em !important;}
 
 /* Text Alignment */
 .align-right   {text-align:right   !important;}
@@ -134,7 +134,7 @@ h1 {
 /* Float alerts over the page */
 .page-alert {
   position: absolute;
-  top: 0;
+  top: 30px;
   left: 50%;
   z-index: 1020;
   width: 0;
@@ -143,10 +143,10 @@ h1 {
 .page-alert .alert {
   width: 550px;
   margin-left: -300px;
-  border-top-width: 0;
-  -webkit-border-radius: 0 0 4px 4px;
-     -moz-border-radius: 0 0 4px 4px;
-          border-radius: 0 0 4px 4px;
+  // border-top-width: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
 }
 
 body > .page-alert {

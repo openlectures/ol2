@@ -59,14 +59,14 @@
     <%end%>
   <%end%>
   <script>
-  enquire.register("screen and (max-width:480px)", {
+  enquire.register("screen and (max-width:767px)", {
         match : function() {
           $('#nav').unwrap();
           $(function () {
             $('#nav').tinyNav();
           });
         }
-    }).register("screen and (min-width:481px)", {
+    }).register("screen and (min-width:768px)", {
         match : function() {
           Meny.create({
             menuElement: document.querySelector( '.meny' ),
