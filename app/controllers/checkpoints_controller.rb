@@ -6,39 +6,6 @@ class CheckpointsController < ApplicationController
     @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[5]
   end
 
-  # GET /checkpoints
-  # GET /checkpoints.json
-  def index
-    @checkpoints = Checkpoint.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @checkpoints }
-    end
-  end
-
-  # GET /checkpoints/1
-  # GET /checkpoints/1.json
-  def show
-    @checkpoint = Checkpoint.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @checkpoint }
-    end
-  end
-
-  # GET /checkpoints/new
-  # GET /checkpoints/new.json
-  def new
-    @checkpoint = Checkpoint.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @checkpoint }
-    end
-  end
-
   # GET /checkpoints/1/edit
   def edit
     @checkpoint = Checkpoint.find(params[:id])

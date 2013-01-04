@@ -1,6 +1,6 @@
 Ol2::Application.routes.draw do
-  resources :seab_sub_topics, :except => [:new, :show]
-  resources :seab_topics
+  resources :seab_sub_topics, :except => [:new, :show, :index]
+  resources :seab_topics, :except=> [:new, :show, :index]
 
   #Usr Controller
   match "/manage" => "usr#manage", as: :manage
