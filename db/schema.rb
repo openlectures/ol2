@@ -19,6 +19,8 @@ ActiveRecord::Schema.define(:version => 20121125130303) do
     t.text     "description"
     t.string   "videourl"
     t.text     "objective"
+    t.text     "question"
+    t.text     "answer"
     t.integer  "position"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
@@ -38,18 +40,6 @@ ActiveRecord::Schema.define(:version => 20121125130303) do
   end
 
   add_index "lessons", ["slug"], :name => "index_lessons_on_slug", :unique => true
-
-  create_table "questionanswers", :force => true do |t|
-    t.text     "question"
-    t.text     "answer"
-    t.integer  "position"
-    t.integer  "checkpoint_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "slug"
-  end
-
-  add_index "questionanswers", ["slug"], :name => "index_questionanswers_on_slug", :unique => true
 
   create_table "seab_sub_topics", :force => true do |t|
     t.string   "topic"
@@ -76,17 +66,6 @@ ActiveRecord::Schema.define(:version => 20121125130303) do
   end
 
   add_index "subjects", ["slug"], :name => "index_subjects_on_slug", :unique => true
-
-  create_table "summaries", :force => true do |t|
-    t.string   "summary"
-    t.integer  "position"
-    t.integer  "lesson_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "slug"
-  end
-
-  add_index "summaries", ["slug"], :name => "index_summaries_on_slug", :unique => true
 
   create_table "topics", :force => true do |t|
     t.string   "topic"

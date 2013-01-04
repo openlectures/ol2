@@ -53,7 +53,7 @@ class SeabTopicsController < ApplicationController
     respond_to do |format|
       if @seab_topic.save
         @ws[row,1] = @seab_topic.id
-        @ws[row,2] = @seab_topic.subject_id
+        @ws[row,2] = @seab_topic.subject.subject
         @ws[row,3] = @seab_topic.topic
         @ws[row,4] = @seab_topic.description
         @ws.save()
@@ -73,7 +73,7 @@ class SeabTopicsController < ApplicationController
     row = @seab_topic.id + 1
     respond_to do |format|
       if @seab_topic.update_attributes(params[:seab_topic])
-        @ws[row,2] = @seab_topic.subject_id
+        @ws[row,2] = @seab_topic.subject.subject
         @ws[row,3] = @seab_topic.topic
         @ws[row,4] = @seab_topic.description
         @ws.save()

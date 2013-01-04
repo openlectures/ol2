@@ -16,7 +16,7 @@ class SeabSubTopic < ActiveRecord::Base
     for i in 1..rows-1 do
       subtopic = find_by_id(i) || new
       subtopic.topic = ws[i+1,2]
-      subtopic.seab_topic_id = ws[i+1,3]
+      subtopic.seab_topic = SeabTopic.find_by_topic(ws[i+1,3])
       subtopic.save!
     end
   end

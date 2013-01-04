@@ -54,10 +54,12 @@ class CheckpointsController < ApplicationController
       if @checkpoint.save
         @ws[row,1] = @checkpoint.id
         @ws[row,2] = @checkpoint.checkpoint
-        @ws[row,3] = @checkpoint.lesson_id
+        @ws[row,3] = @checkpoint.lesson.lesson
         @ws[row,4] = @checkpoint.description
         @ws[row,5] = @checkpoint.videourl
         @ws[row,6] = @checkpoint.objective
+        @ws[row,7] = @checkpoint.question
+        @ws[row,8] = @checkpoint.answer
         @ws.save()
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
         format.json { render json: @checkpoint, status: :created, location: @checkpoint }
@@ -76,10 +78,12 @@ class CheckpointsController < ApplicationController
     respond_to do |format|
       if @checkpoint.update_attributes(params[:checkpoint])
         @ws[row,2] = @checkpoint.checkpoint
-        @ws[row,3] = @checkpoint.lesson_id
+        @ws[row,3] = @checkpoint.lesson.lesson
         @ws[row,4] = @checkpoint.description
         @ws[row,5] = @checkpoint.videourl
         @ws[row,6] = @checkpoint.objective
+        @ws[row,7] = @checkpoint.question
+        @ws[row,8] = @checkpoint.answer
         @ws.save()
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully updated.' }
         format.json { head :no_content }

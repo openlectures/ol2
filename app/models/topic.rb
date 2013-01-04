@@ -22,7 +22,7 @@ class Topic < ActiveRecord::Base
       topic = find_by_id(i) || new
       topic.topic = ws[i+1,2]
       topic.subject = Subject.find_by_subject(ws[i+1,3])
-      topic.seab_sub_topic_id = ws[i+1,4]
+      topic.seab_sub_topic = SeabSubTopic.find_by_topic(ws[i+1,4])
       topic.description=ws[i+1,5]
       topic.save!
     end

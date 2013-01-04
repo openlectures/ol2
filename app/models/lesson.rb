@@ -21,7 +21,7 @@ class Lesson < ActiveRecord::Base
     for i in 1..rows-1 do
       lesson = find_by_id(i) || new
       lesson.lesson = ws[i+1,2]
-      lesson.topic_id = ws[i+1,3]
+      lesson.topic = Topic.find_by_topic(ws[i+1,3])
       lesson.user_id = ws[i+1,4]
       lesson.save!
     end
