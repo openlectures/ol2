@@ -1,6 +1,6 @@
 <%title @lesson.lesson%>
-  <%@lesson.checkpoints.each do |checkpoint|%>
-  <section>
+  <%@lesson.checkpoints.order("position").each do |checkpoint|%>
+    <section id="<%=checkpoint.checkpoint.parameterize%>">
     <section>
     	<h3 class="line08">
         <%=link_to '<i class="icon-caret-up"></i>'.html_safe, topic_path(checkpoint.lesson.topic), :rel=>'tooltip', :title=>'BACK TO OVERVIEW', :data=>{:placement=>"bottom"}, :class=>"salmon"%>
