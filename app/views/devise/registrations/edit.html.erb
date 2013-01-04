@@ -4,7 +4,6 @@
   <%= f.error_notification %>
 
     <%= f.input :email, label:false, placeholder: "Email", :required => true, :autofocus => true, input_html: {class: "input-block-level"} %>
-    <%= f.collection_select :role, User::ROLES, :to_s, :humanize, class: "input-block-level"%>
     <%= f.input :school_email, input_html: {class: "input-block-level"}, placeholder: "School Email", label: false, required: false, input_html: {class: "input-block-level"}%>
     <%= f.file_field :avatar, input_html: {class: "input-block-level"} %>
     <%= f.input :password, :autocomplete => "off", :placeholder => "leave it blank if you don't want to change it", :required => false, input_html: {class: "input-block-level"} %>

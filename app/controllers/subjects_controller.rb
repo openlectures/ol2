@@ -1,4 +1,5 @@
 class SubjectsController < ApplicationController
+  before_filter :authenticate_user!, except: [:index,:show]
   before_filter :google_login, only: ["create","update","import"]
 
   def google_login

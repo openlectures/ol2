@@ -1,4 +1,5 @@
 class SeabSubTopicsController < ApplicationController
+  before_filter :authenticate_user!
   before_filter :google_login, only: ["create","update","import"]
     def google_login
       session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])

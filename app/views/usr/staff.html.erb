@@ -4,31 +4,36 @@
 <%content_for :slogan do%>
 User Database
 <%end%>
-<div id="staff-list">
-<input type="search" class="search span10 offset1 aligncenter marginbot-h2" placeholder="Filter List">
-<table class="table table-hover table-condensed">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Email Address</th>
-      <th>Phone Number</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody class="list">
-  <%@staff.each do |s|%>
-    <tr>
-      <td class="name"><%=s.fullname%></td>
-      <td class="email"><%=mail_to(s.email, nil, :encode => "javascript") %></td>
-      <td class="phone"><a href="callto:<%=s.phone%>"><%=s.phone%></a></td>
-      <td class="location">Singapore</td>
-      <td><i class="icon-edit"></i> <i class="icon-trash"></i></td>
-    </tr>
-  <%end%>
-  </tbody>
-</table>
-</div><!--stafflist-->
-<%=link_to "Create New Staff", import_subjects_path, :class => "btn btn-block margintop-p"%>
+<div class="row-fluid">
+  <div class="span12">
+      <div id="staff-list">
+      <input type="search" class="search span10 offset1 aligncenter marginbot-h2" placeholder="Filter List">
+      <table class="table table-hover table-condensed">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th>Location</th>
+          </tr>
+        </thead>
+        <tbody class="list">
+        <%@users.each do |s|%>
+          <tr>
+            <td class="name"><%=s.fullname%></td>
+            <td class="email"><%=mail_to(s.email, nil, :encode => "javascript") %></td>
+            <td class="phone"><a href="callto:<%=s.phone%>"><%=s.phone%></a></td>
+            <td class="location">Singapore</td>
+            <td><i class="icon-edit"></i> <i class="icon-trash"></i></td>
+          </tr>
+        <%end%>
+        </tbody>
+      </table>
+      </div><!--stafflist-->
+      <%=link_to "Create New Staff", "#", :class => "btn btn-block margintop-p"%>
+  </div><!--span12-->
+</div><!--rowfluid-->
+
 
 <%content_for :javascripts do%>
 <script>
@@ -37,5 +42,11 @@ var staff_options = {
 };
 
 var staffList = new List('staff-list', staff_options);
+
+var user_options = {
+    valueNames: [ 'name', 'email', 'school', 'level' ]
+};
+
+var userList = new List('user-list', user_options);
 </script>
 <%end%>

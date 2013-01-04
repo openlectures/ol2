@@ -1,4 +1,5 @@
 class UsrController < ApplicationController
+  before_filter :authenticate_user! 
   def manage
   end
 
@@ -15,9 +16,6 @@ class UsrController < ApplicationController
   end
 
   def staff
-    @staff = User.all
-  end
-
-  def update
+    @users = User.all
   end
 end

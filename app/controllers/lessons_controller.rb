@@ -1,4 +1,5 @@
 class LessonsController < ApplicationController
+  before_filter :authenticate_user!, except: :show
   before_filter :google_login, only: ["create","update","import"]
 
   def google_login
