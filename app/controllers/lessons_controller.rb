@@ -84,6 +84,6 @@ class LessonsController < ApplicationController
 
   def import
     Lesson.import(@ws)
-    redirect_to lessons_url, notice: "Imported!"
+    redirect_to subjects_url, notice: "Imported!"
   end
 end
