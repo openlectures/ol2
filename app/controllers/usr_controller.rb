@@ -15,10 +15,6 @@ class UsrController < ApplicationController
   end
 
   def staff
-    @staff = User.all
-  end
-
-  def manage_users
     @users = User.all
   end
 end
