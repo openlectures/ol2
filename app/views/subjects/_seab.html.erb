@@ -67,20 +67,18 @@
   </div><!--accordion-->
 </div><!--tabpane-->
 
-<%if user_signed_in?%>
-  <%content_for :javascripts do%>
-    <script>
-      $(document).ready(function() {
-        $('.sortable').sortable();
-      });
-      $('#expand').on("click",function() {
-        $('.collapse').not(".in").collapse('show');
-        return false;
-      });
-      $('#keep').on("click",function() {
-        $('.collapse.in').collapse('hide');
-        return false;
-      });
-    </script>
-  <%end%>
+<%content_for :javascripts do%>
+  <script>
+    $(document).ready(function() {
+      $('.sortable').sortable();
+    });
+    $('#expand').on("click",function() {
+      $('.collapse').not(".in").collapse('show');
+      return false;
+    });
+    $('#keep').on("click",function() {
+      $('.collapse.in').collapse('hide');
+      return false;
+    });
+  </script>
 <%end%>
