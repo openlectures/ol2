@@ -10,11 +10,7 @@
       <th>Lessons</th>
       <th>Checkpoints</th>
       <% if user_signed_in? %>
-        <% if current_user.role = "admin"%>
           <th>Last Updated</th>
-        <%else%>
-          <th>Progress</th>
-        <%end%>
       <%end%>
     </tr>
   </thead>
@@ -25,23 +21,19 @@
       <td class="lessons"><%=subject.lessons.count%></td>
       <td class="checkpoints"><%=subject.checkpoints.count%></td>
       <% if user_signed_in? %>
-        <% if current_user.role = "admin"%>
-        <td class="date">
-          <%if subject.checkpoints.count != 0%>
-            <%=subject.checkpoints.last.created_at.strftime("%d %b %y")%>
-            <%=link_to "Update", import_subjects_path%>
-          <%else%>
-            N/A
-          <%end%>
-        </td>
+      <td class="date">
+        <%if subject.checkpoints.count != 0%>
+          <%=subject.checkpoints.last.created_at.strftime("%d %b %y")%>
+          <%=link_to "Update", import_subjects_path%>
+        <%else%>
+          N/A
         <%end%>
+      </td>
       <%end%>
     </tr>
   <%end%>
   </tbody>
 </table>
 <% if user_signed_in? %>
-  <% if current_user.role = "admin"%>
-    <%=link_to '<i class="icon-plus-sign"></i> Create'.html_safe, create_item_path, :class => "btn btn-block margintop-p"%>
-  <%end%>
+  <%=link_to '<i class="icon-plus-sign"></i> Create'.html_safe, create_item_path, :class => "btn btn-block margintop-p"%>
 <%end%>

@@ -47,14 +47,10 @@
 
 <%content_for :slogan do%>
   <%=current_user.fullname%><br/>
-  <%if current_user.role == "admin"%>
   <small><%=current_user.title%></small>
-  <%else%>
   <small><%=current_user.school%></small>
-  <%end%>
 <%end%>
 
-<%if current_user.role == "admin"%>
 <div class="aligncenter">
 <h2 class="marginbot0">Registry</h2>
 <p>A quick list of the people you will spam, beg and murder in the course of your servitude.</p>
@@ -171,4 +167,3 @@
     </ul>
   </div><!--span4-->
 </div><!--rowfluid-->
-<%end%>

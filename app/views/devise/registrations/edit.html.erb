@@ -13,12 +13,10 @@
       <%= f.input :current_password, placeholder: "required to save changes", :required => true, input_html: {class: "input-block-level"} %>
     <% end %>
 
-    <%-if current_user.role=="admin"%>
-      <h4>Staff Info:</h4>
-      <hr />
-      <%= f.input :title, input_html: {class: "input-block-level"}, placeholder: "Title", label: false%>
-      <%= f.input :phone, input_html: {class: "input-block-level"}, placeholder: "Phone", label: false, as: :string%>
-    <%-end%>
+    <h4>Staff Info:</h4>
+    <hr />
+    <%= f.input :title, input_html: {class: "input-block-level"}, placeholder: "Title", label: false%>
+    <%= f.input :phone, input_html: {class: "input-block-level"}, placeholder: "Phone", label: false, as: :string%>
 
   <%= f.submit "Update", id: "submit", class: "btn btn-block"%>
 <% end %>

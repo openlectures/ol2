@@ -9,18 +9,16 @@ class UsrController < ApplicationController
     @topic = Topic.new
     @lesson = Lesson.new
     @checkpoint = Checkpoint.new
-    @questionanswer = Questionanswer.new
   end
 
   def profile
   end
 
   def staff
-    @staff = User.where("role = ?", "admin")
-    @users = User.where("role = ?", "user")
+    @staff = User.all
   end
 
   def manage_users
-    @users = User.where("role = ?", "user")
+    @users = User.all
   end
 end
