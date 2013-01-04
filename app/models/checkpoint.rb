@@ -14,7 +14,7 @@ class Checkpoint < ActiveRecord::Base
   acts_as_list :scope => :lesson
 
   def parsed_url
-    @@video_regexp =/(?:https?:\/\/)?(?:www\.)?youtu(?:\.be|be\.com)\/(?:watch\?v=)?(\w{10,})/
+    @@video_regexp =/[v=|\/]([\w-]+)(&.+)?$/
     youtubeID = @@video_regexp.match(videourl)[1]
     return "https://www.youtube.com/embed/"+youtubeID+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080&?enablejsapi=1"
   end
