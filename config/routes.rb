@@ -14,7 +14,7 @@ Ol2::Application.routes.draw do
   root to: "pages#index"
 
   #User Authentication Solution
-  devise_for :users, path_names: {sign_in: "login", sign_out: "logout"},
+  devise_for :users, path_names: {sign_in: "login", registration: "startanadventure", sign_out: "logout"},
              controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   #Resources
