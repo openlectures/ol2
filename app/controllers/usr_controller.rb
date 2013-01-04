@@ -18,7 +18,6 @@ class UsrController < ApplicationController
     @staff = User.all
   end
 
-  def manage_users
-    @users = User.all
+  def update
   end
 end

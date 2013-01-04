@@ -8,7 +8,7 @@ Ol2::Application.routes.draw do
   match "/profile" => "usr#profile", as: :profile
   match "/staff" => "usr#staff", as: :staff
   match "manage/:id" => "subjects#edit", as: :edit_subject
-  match "/manage_users" => "usr#manage_users", as: :manage_users
+  match "/update" => "usr#update", as: :update
 
   #Root Page
   root to: "pages#index"
@@ -27,14 +27,13 @@ Ol2::Application.routes.draw do
   end
   resources :subjects, except: :new
 
-  match "subjects/actions/import" => "subjects#import", as: :import_subjects
-  match "seab_topics/actions/import" => "seab_topics#import", as: :import_seab_topics
-  match "seab_sub_topics/actions/import" => "seab_sub_topics#import", as: :import_seab_sub_topics
-  match "topics/actions/import" => "topics#import", as: :import_topics
-  match "lessons/actions/import" => "lessons#import", as: :import_lessons
-  match "checkpoints/actions/import" => "checkpoints#import", as: :import_checkpoints
-  match "summaries/actions/import" => "summaries#import", as: :import_summaries
-  match "questionanswers/actions/import" => "questionanswers#import", as: :import_questionanswers
+  match "subjects/import" => "subjects#import", as: :import_subjects
+  match "seab_topics/import" => "seab_topics#import", as: :import_seab_topics
+  match "seab_sub_topics/import" => "seab_sub_topics#import", as: :import_seab_sub_topics
+  match "topics/import" => "topics#import", as: :import_topics
+  match "lessons/import" => "lessons#import", as: :import_lessons
+  match "checkpoints/import" => "checkpoints#import", as: :import_checkpoints
+  match "summaries/import" => "summaries#import", as: :import_summaries
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 

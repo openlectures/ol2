@@ -1,0 +1,62 @@
+<%title "Update"%>
+<%content_for :header do%>
+<%end%>
+<%content_for :slogan do%>
+Update Content
+<%end%>
+<p>This page allows you to update content via a <a href="https://docs.google.com/spreadsheet/ccc?key=0AgaMT0yBV-pKdFVjUnF1S0JLM1Z5SVl2dUhXQzg3SHc#gid=0" target="_blank">Google Drive Spreadsheet</a>. As President Prime Minister Admiral General Haffaz Aladeen will affirm, things with a large button that can be pressed by idle hands tend to be capable of causing massive damage. Use this functionality with care. Apart from that, it's the most frickin' awesome thing we have yet.</p>
+<a href="#" class="btn btn-block"><i class="icon-refresh"></i> Batch Update</a>
+<div class="row-fluid">
+  <div class="span7">
+    <h3 class="marginbot0"><%=link_to 'Subjects',subjects_path%></h3>
+    <p>Contains everything below. Examples: Economics, Chemistry, Biology. It's unlikely you'll need to use this very often.</p>
+  </div><!--span7-->
+  <div class="span4 offset1">
+    <%=link_to '<i class="icon-refresh"></i> Update'.html_safe,import_subjects_path,:class=>"btn btn-block margintop-h1"%>
+  </div><!--span4-->
+</div><!--rowfluid-->
+<div class="row-fluid">
+  <div class="span7">
+    <h3 class="marginbot0">SEAB Topics</h3>
+    <p>You'll need to update this only if you're making modifications to the SEAB Syllabus. This is the accordion header on the subjects page</p>
+  </div><!--span7-->
+  <div class="span4 offset1">
+    <%=link_to '<i class="icon-refresh"></i> Update'.html_safe,import_seab_topics_path,:class=>"btn btn-block margintop-h1"%>
+  </div><!--span4-->
+</div><!--rowfluid-->
+<div class="row-fluid">
+  <div class="span7">
+    <h3 class="marginbot0">SEAB Sub Topics</h3>
+    <p>You'll need to update this only if you're making modifications to the SEAB Syllabus. This is the table header/caption for each table encapsulated in the accordions on the subjects page.</p>
+  </div><!--span7-->
+  <div class="span4 offset1">
+    <%=link_to '<i class="icon-refresh"></i> Update'.html_safe,import_seab_sub_topics_path,:class=>"btn btn-block margintop-h1"%>
+  </div><!--span4-->
+</div><!--rowfluid-->
+<div class="row-fluid">
+  <div class="span7">
+    <h3 class="marginbot0">Topics</h3>
+    <p>You'll use this quite often since we release by topic. Click the button, watch the magic.</p>
+  </div><!--span7-->
+  <div class="span4 offset1">
+    <%=link_to '<i class="icon-refresh"></i> Update'.html_safe,import_topics_path,:class=>"btn btn-block margintop-h1"%>
+  </div><!--span4-->
+</div><!--rowfluid-->
+<div class="row-fluid">
+  <div class="span7">
+    <h3 class="marginbot0">Lessons</h3>
+    <p>If you've created a topic with lessons, update topics prior to updating lessons.</p>
+  </div><!--span7-->
+  <div class="span4 offset1">
+    <%=link_to '<i class="icon-refresh"></i> Update'.html_safe,import_lessons_path,:class=>"btn btn-block margintop-h1"%>
+  </div><!--span4-->
+</div><!--rowfluid-->
+<div class="row-fluid">
+  <div class="span7">
+    <h3 class="marginbot0">Checkpoints</h3>
+    <p>Update lessons before attempting to update all the checkpoints. These things need a home y'know.</p>
+  </div><!--span7-->
+  <div class="span4 offset1">
+    <%=link_to '<i class="icon-refresh"></i> Update'.html_safe,import_checkpoints_path,:class=>"btn btn-block margintop-h1"%>
+  </div><!--span4-->
+</div><!--rowfluid-->
