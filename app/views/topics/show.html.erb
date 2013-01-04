@@ -6,12 +6,14 @@
 <span class="lead"><%=@topic.topic%></span>
 <%end%>
 <%if @topic.description != ""%>
-<%content_for :description do%>
-<%=@topic.description%>
-<%end%>
+  <%content_for :description do%>
+  <%=@topic.description%>
+  <%end%>
 <%end%>
 <%@topic.lessons.each do |lesson|%>
-  <h3 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%></h3>
-  <%lesson.checkpoints.each do |checkpoint|%>
+  <%if lesson.checkpoints.count == 0%>
+    <h3 class="margintop0 marginbot0"><%=lesson.lesson%> - Coming Soon!</h3>
+  <%else%>
+    <h3 class="margintop0 marginbot0"><%=link_to lesson.lesson, lesson_path(lesson)%> - <%=lesson.checkpoints.count%> Checkpoints</h3>
   <%end%>
 <%end%>
