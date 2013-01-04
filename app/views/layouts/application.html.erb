@@ -43,8 +43,6 @@
     </div><!--row-->
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
-  <%=jquery_include_tag :google%>
-  <%#=jquery_ui_include_tag :google%>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
   <% if user_signed_in? %>
