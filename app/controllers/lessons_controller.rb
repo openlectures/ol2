@@ -6,36 +6,12 @@ class LessonsController < ApplicationController
     @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[4]
   end
 
-  # GET /lessons
-  # GET /lessons.json
-  def index
-    @lessons = Lesson.text_search(params[:query])
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @lessons }
-    end
-  end
-
-  # GET /lessons/1
-  # GET /lessons/1.json
   def show
     @lesson = Lesson.find(params[:id])
 
     respond_to do |format|
       format.html {render layout: "reveal"}
       # format.html {render layout: "reveal"}
-      format.json { render json: @lesson }
-    end
-  end
-
-  # GET /lessons/new
-  # GET /lessons/new.json
-  def new
-    @lesson = Lesson.new
-
-    respond_to do |format|
-      format.html # new.html.erb
       format.json { render json: @lesson }
     end
   end

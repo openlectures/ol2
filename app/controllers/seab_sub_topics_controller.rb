@@ -5,17 +5,6 @@ class SeabSubTopicsController < ApplicationController
       @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[2]
     end
 
-  # GET /seab_sub_topics
-  # GET /seab_sub_topics.json
-  def index
-    @seab_sub_topics = SeabSubTopic.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @seab_sub_topics }
-    end
-  end
-
   # GET /seab_sub_topics/1/edit
   def edit
     @seab_sub_topic = SeabSubTopic.find(params[:id])

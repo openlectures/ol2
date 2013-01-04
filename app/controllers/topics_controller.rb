@@ -5,36 +5,12 @@ class TopicsController < ApplicationController
     @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[3]
   end
 
-  # GET /topics
-  # GET /topics.json
-  def index
-    @topics = Topic.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @topics }
-    end
-  end
-
-  # GET /topics/1
-  # GET /topics/1.json
   def show
     @topic = Topic.find(params[:id])
     @lessons = @topic.lessons
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @topic }
-    end
-  end
-
-  # GET /topics/new
-  # GET /topics/new.json
-  def new
-    @topic = Topic.new
-
-    respond_to do |format|
-      format.html # new.html.erb
       format.json { render json: @topic }
     end
   end
