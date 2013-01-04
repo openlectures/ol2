@@ -68,13 +68,13 @@ class CheckpointsController < ApplicationController
     @checkpoint.destroy
 
     respond_to do |format|
-      format.html { redirect_to checkpoints_url }
+      format.html { redirect_to root_url }
       format.json { head :no_content }
     end
   end
 
   def import
     Checkpoint.import(@ws)
-    redirect_to checkpoints_url, notice: "Imported!"
+    redirect_to root_url, notice: "Imported!"
   end
 end
