@@ -48,9 +48,16 @@ class TopicsController < ApplicationController
   # POST /topics.json
   def create
     @topic = Topic.new(params[:topic])
+    row = @ws.num_rows()+1
 
     respond_to do |format|
       if @topic.save
+        @ws[row,1] = @topic.id
+        @ws[row,2] = @topic.topic
+        @ws[row,3] = @topic.subject.subject
+        @ws[row,4] = @topic.seab_sub_topic_id
+        @ws[row,5] = @topic.description
+        @ws.save()
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
         format.json { render json: @topic, status: :created, location: @topic }
       else
@@ -64,9 +71,14 @@ class TopicsController < ApplicationController
   # PUT /topics/1.json
   def update
     @topic = Topic.find(params[:id])
-
+    row = @topic.id+1
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
+        @ws[row,2] = @topic.topic
+        @ws[row,3] = @topic.subject.subject
+        @ws[row,4] = @topic.seab_sub_topic_id
+        @ws[row,5] = @topic.description
+        @ws.save()
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }
         format.json { head :no_content }
       else

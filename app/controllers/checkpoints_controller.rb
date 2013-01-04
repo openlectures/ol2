@@ -58,7 +58,7 @@ class CheckpointsController < ApplicationController
         @ws[row,4] = @checkpoint.description
         @ws[row,5] = @checkpoint.videourl
         @ws[row,6] = @checkpoint.objective
-        @ws.save!
+        @ws.save()
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
         format.json { render json: @checkpoint, status: :created, location: @checkpoint }
       else
@@ -80,7 +80,7 @@ class CheckpointsController < ApplicationController
         @ws[row,4] = @checkpoint.description
         @ws[row,5] = @checkpoint.videourl
         @ws[row,6] = @checkpoint.objective
-        @ws.save!
+        @ws.save()
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully updated.' }
         format.json { head :no_content }
       else

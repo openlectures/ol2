@@ -51,12 +51,12 @@ class QuestionanswersController < ApplicationController
     row = @ws.num_rows()+1
 
     respond_to do |format|
-      if @questionanswer.save!
+      if @questionanswer.save
         @ws[row,1] = @questionanswer.id
         @ws[row,2] = @questionanswer.question
         @ws[row,3] = @questionanswer.answer
         @ws[row,4] = @questionanswer.checkpoint_id
-        @ws.save!
+        @ws.save()
         format.html { redirect_to @questionanswer, notice: 'Questionanswer was successfully created.' }
         format.json { render json: @questionanswer, status: :created, location: @questionanswer }
       else
@@ -76,7 +76,7 @@ class QuestionanswersController < ApplicationController
         @ws[row,2] = @questionanswer.question
         @ws[row,3] = @questionanswer.answer
         @ws[row,4] = @questionanswer.checkpoint_id
-        @ws.save!
+        @ws.save()
         format.html { redirect_to @questionanswer, notice: 'Questionanswer was successfully updated.' }
         format.json { head :no_content }
       else
