@@ -1,11 +1,10 @@
 class Checkpoint < ActiveRecord::Base
-  attr_accessible :checkpoint, :description, :lesson_id, :objective, :position, :videourl
+  attr_accessible :checkpoint, :description, :lesson_id, :objective, :position, :videourl, :question, :answer
   #Validations
-  validates_presence_of :checkpoint, :description, :lesson_id, :objective, :videourl
+  validates_presence_of :checkpoint, :description, :lesson_id, :objective, :videourl, :question, :answer
 
   #Relations
   belongs_to :lesson
-  has_many :questionanswers
 
   #Friendly ID
   extend FriendlyId
@@ -29,10 +28,12 @@ class Checkpoint < ActiveRecord::Base
     for i in 1..rows-1 do
       checkpoint = find_by_id(i) || new
       checkpoint.checkpoint = ws[i+1,2]
-      checkpoint.lesson_id = ws[i+1,3]
+      checkpoint.lesson = Lesson.find_by_lesson(ws[i+1,3])
       checkpoint.description = ws[i+1,4]
       checkpoint.videourl = ws[i+1,5]
       checkpoint.objective = ws[i+1,6]
+      checkpoint.question = ws[i+1,7]
+      checkpoint.answer=ws[i+1,8]
       checkpoint.save!
     end
   end

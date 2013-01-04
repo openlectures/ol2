@@ -13,7 +13,7 @@ class SeabTopic < ActiveRecord::Base
     rows = ws.num_rows()
     for i in 1..rows-1 do
       seab_topic = find_by_id(i) || new
-      seab_topic.subject_id = ws[i+1,2]
+      seab_topic.subject = Subject.find_by_subject(ws[i+1,2])
       seab_topic.topic = ws[i+1,3]
       seab_topic.description = ws[i+1,4]
       seab_topic.save!

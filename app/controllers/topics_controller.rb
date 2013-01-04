@@ -55,7 +55,7 @@ class TopicsController < ApplicationController
         @ws[row,1] = @topic.id
         @ws[row,2] = @topic.topic
         @ws[row,3] = @topic.subject.subject
-        @ws[row,4] = @topic.seab_sub_topic_id
+        @ws[row,4] = @topic.seab_sub_topic.topic
         @ws[row,5] = @topic.description
         @ws.save()
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
@@ -76,7 +76,7 @@ class TopicsController < ApplicationController
       if @topic.update_attributes(params[:topic])
         @ws[row,2] = @topic.topic
         @ws[row,3] = @topic.subject.subject
-        @ws[row,4] = @topic.seab_sub_topic_id
+        @ws[row,4] = @topic.seab_sub_topic.topic
         @ws[row,5] = @topic.description
         @ws.save()
         format.html { redirect_to @topic, notice: 'Topic was successfully updated.' }

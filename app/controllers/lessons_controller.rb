@@ -55,7 +55,7 @@ class LessonsController < ApplicationController
       if @lesson.save
         @ws[row,1] = @lesson.id
         @ws[row,2] = @lesson.lesson
-        @ws[row,3] = @lesson.topic_id
+        @ws[row,3] = @lesson.topic.topic
         @ws[row,4] = @lesson.user_id
         @ws.save()
         format.html { redirect_to @lesson, notice: 'Lesson was successfully created.' }
@@ -75,7 +75,7 @@ class LessonsController < ApplicationController
     respond_to do |format|
       if @lesson.update_attributes(params[:lesson])
         @ws[row,2] = @lesson.lesson
-        @ws[row,3] = @lesson.topic_id
+        @ws[row,3] = @lesson.topic.topic
         @ws[row,4] = @lesson.user_id
         @ws.save()
         format.html { redirect_to @lesson, notice: 'Lesson was successfully updated.' }
