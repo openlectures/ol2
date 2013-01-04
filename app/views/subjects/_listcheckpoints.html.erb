@@ -17,7 +17,7 @@
       <tbody class="list">
       <%@subject.checkpoints.each do |checkpoint|%>
       <tr>
-        <td class="checkpoint"><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.gsub(' ', '').downcase%></td>
+        <td class="checkpoint"><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.parameterize%></td>
         <td class="lesson"><%=checkpoint.lesson.lesson%></td>
         <% if user_signed_in? %>
         <% if current_user.role = "admin"%>

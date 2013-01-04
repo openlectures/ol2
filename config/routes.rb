@@ -18,16 +18,14 @@ Ol2::Application.routes.draw do
              controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   #Resources
-  resources :questionanswers
-  resources :summaries
-  resources :checkpoints
-  resources :lessons do
+  resources :checkpoints, except: [:index,:show,:new]
+  resources :lessons, except: [:index, :new] do
     collection {post :sort}
   end
-  resources :topics do
+  resources :topics, except: [:index, :new] do
     collection {post :sort}
   end
-  resources :subjects
+  resources :subjects, except: :new
 
   match "subjects/actions/import" => "subjects#import", as: :import_subjects
   match "seab_topics/actions/import" => "seab_topics#import", as: :import_seab_topics
