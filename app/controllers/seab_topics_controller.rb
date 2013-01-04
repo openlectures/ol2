@@ -2,7 +2,7 @@ class SeabTopicsController < ApplicationController
   before_filter :google_login, only: ["create","update","import"]
   def google_login
     session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
-    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_SEAB_TOPICS_KEY"]).worksheets[0]
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[1]
   end
 
   # GET /seab_topics

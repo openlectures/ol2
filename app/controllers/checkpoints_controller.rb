@@ -3,7 +3,7 @@ class CheckpointsController < ApplicationController
 
   def google_login
     session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
-    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_CHECKPOINTS_KEY"]).worksheets[0]
+    @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[5]
   end
 
   # GET /checkpoints
