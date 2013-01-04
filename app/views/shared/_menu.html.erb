@@ -1,16 +1,13 @@
 <li><a href="<%=root_path%>"><i class="icon-home"></i> Home</a></li>
-<li><%=link_to('<i class="icon-sitemap"></i> Subjects'.html_safe,subjects_path)%></li>
 <li><%=link_to('<i class="icon-info-sign"></i> About Us'.html_safe,team_path)%></li>
+<li><%=link_to('<i class="icon-sitemap"></i> Subjects'.html_safe,subjects_path)%></li>
 <% if user_signed_in? %>
-<% if current_user.role = "admin"%>
 <li><%=link_to('<i class="icon-inbox"></i> Inbox'.html_safe,profile_path)%></li>
-<%end%>
-<% else %>
-<li><%=link_to('<i class="icon-key"></i> Log In'.html_safe,new_user_session_path)%>
-<li><%=link_to('<i class="icon-play-circle"></i> Sign Up'.html_safe,new_user_registration_path,)%></li>
-<% end %>
-<% if user_signed_in? %>
 <li><%=link_to('<i class="icon-group"></i> Manage'.html_safe,staff_path)%></li>
 <li><%=link_to('<i class="icon-plus-sign"></i> Create'.html_safe,create_item_path)%></li>
-<li><%= link_to('<i class="icon-off"></i> Log Out'.html_safe,destroy_user_session_path,:method=>:delete)%></li>
+<li><%=link_to('<i class="icon-refresh"></i> Update'.html_safe, import_subjects_path)%></li>
+<li><%= link_to('<i class="icon-signout"></i> Log Out'.html_safe,destroy_user_session_path,:method=>:delete)%></li>
+<% else %>
+<li><%=link_to('<i class="icon-signin"></i> Log In'.html_safe,new_user_session_path)%>
+<li><%=link_to('<i class="icon-play-circle"></i> Sign Up'.html_safe,new_user_registration_path,)%></li>
 <% end %>

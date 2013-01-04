@@ -18,7 +18,7 @@
             <%topic.seab_sub_topics.each do |sub_topic|%>
               <table class="table table-hover table-condensed marginbot-h2
               <% if user_signed_in? %>
-                <% if current_user.role = "admin" && sub_topic.topics.count !=0%>
+                <% if sub_topic.topics.count !=0%>
                   sortable
                 <%end%>
               <%end%>
@@ -32,7 +32,6 @@
                 <%sub_topic.topics.order("position").each do |sub_topic| %>
                   <%=content_tag_for :tr, sub_topic do%>
                   <% if user_signed_in? %>
-                    <% if current_user.role = "admin"%>
                       <td><span class="handle"><i class="icon-sort"></i></span></td>
                     <%end%>
                   <%end%>
@@ -51,7 +50,6 @@
                     <%end%>
                   </td>
                   <% if user_signed_in? %>
-                    <% if current_user.role = "admin"%>
                       <td class="align-right">
                         <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(sub_topic), :class => "gray")%>
                         <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
@@ -72,21 +70,19 @@
 </div><!--tabpane-->
 
 <%if user_signed_in?%>
-  <%if current_user.role = "admin"%>
-    <%content_for :javascripts do%>
-      <script>
-        $(document).ready(function() {
-          $('.sortable').sortable();
-        });
-        $('#expand').on("click",function() {
-          $('.collapse').not(".in").collapse('show');
-          return false;
-        });
-        $('#keep').on("click",function() {
-          $('.collapse.in').collapse('hide');
-          return false;
-        });
-      </script>
-    <%end%>
+  <%content_for :javascripts do%>
+    <script>
+      $(document).ready(function() {
+        $('.sortable').sortable();
+      });
+      $('#expand').on("click",function() {
+        $('.collapse').not(".in").collapse('show');
+        return false;
+      });
+      $('#keep').on("click",function() {
+        $('.collapse.in').collapse('hide');
+        return false;
+      });
+    </script>
   <%end%>
 <%end%>

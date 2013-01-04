@@ -9,10 +9,8 @@
     </small>
   </nav><!--element-center-->
   <% if user_signed_in? %>
-    <% if current_user.role = "admin"%>
       <small class="margintop0 muted">
         <span class="salmon">Administrator</span> on <abbr class="initialism">ol-verethragna</abbr> v1.0.0
       </small>
-    <%end%>
   <%end%>
 </footer>

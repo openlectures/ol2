@@ -25,7 +25,6 @@
       <td class="lessons"><%=subject.lessons.count%></td>
       <td class="checkpoints"><%=subject.checkpoints.count%></td>
       <% if user_signed_in? %>
-        <% if current_user.role = "admin"%>
         <td class="date">
           <%if subject.checkpoints.count != 0%>
             <%=subject.checkpoints.last.created_at.strftime("%d %b %y")%>
@@ -41,7 +40,5 @@
   </tbody>
 </table>
 <% if user_signed_in? %>
-  <% if current_user.role = "admin"%>
     <%=link_to '<i class="icon-plus-sign"></i> Create'.html_safe, create_item_path, :class => "btn btn-block margintop-p"%>
-  <%end%>
 <%end%>
