@@ -86,6 +86,6 @@ class TopicsController < ApplicationController
 
   def import
     Topic.import(@ws)
-    redirect_to topics_url, notice: "Imported!"
+    redirect_to subjects_url, notice: "Imported!"
   end
 end

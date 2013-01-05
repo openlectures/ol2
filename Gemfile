@@ -17,12 +17,11 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
-  gem 'select2-rails'
   gem 'garlicjs-rails'
+  gem 'localstorageshim-rails'
   gem 'modernizr-rails'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
-  # gem 'jquery-ui-rails-cdn'
   gem 'turbo-sprockets-rails3'
 end
 
