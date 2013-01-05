@@ -55,15 +55,27 @@
       </script>
   <%end%>
   <script>
+  var meny = Meny; //Back up Meany
+  var toggle = -1;
   enquire.register("screen and (max-width:767px)", {
         match : function() {
+          Meny = 0; //Get rid of Meany
           $('#nav').unwrap();
-          $(function () {
-            $('#nav').tinyNav();
-          });
+          if(toggle<0){ //Only add 2D menu once
+            $(function () {
+              $('#nav').tinyNav();
+            });
+            toggle++;
+          }
+          toggle++;
         }
     }).register("screen and (min-width:768px)", {
         match : function() {
+          if(toggle==1){
+            Meny = meny; //Restore Meny
+            $('#nav').wrap('<nav class="meny" role="navigation" />');
+            toggle--;
+          }
           Meny.create({
             menuElement: document.querySelector( '.meny' ),
             contentsElement: document.querySelector( '.container-fluid' ),
