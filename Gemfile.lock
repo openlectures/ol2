@@ -222,7 +222,7 @@ DEPENDENCIES
   pg_search
   quiet_assets
   rails (= 3.2.10)
-  sass-rails (~> 3.2.3)
+  sass-rails
   secretive
   simple_form
   thin
