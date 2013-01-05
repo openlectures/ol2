@@ -13,19 +13,17 @@ gem 'pg'
 gem 'pg_search'
 
 group :assets do
-  # gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'less-rails'
   gem 'libv8', '~> 3.11.8'
   gem 'therubyracer'
   gem 'twitter-bootstrap-rails'
   gem 'uglifier', '>= 1.0.3'
-  gem 'select2-rails'
   gem 'garlicjs-rails'
+  gem 'localstorageshim-rails'
   gem 'modernizr-rails'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
-  # gem 'jquery-ui-rails-cdn'
   gem 'turbo-sprockets-rails3'
 end
 
