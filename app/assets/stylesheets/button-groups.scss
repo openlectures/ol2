@@ -47,10 +47,10 @@
 
 // Give the line between buttons some depth
 .btn-group > .dropdown-toggle {
-  .box-shadow(none);
+  @include box-shadow(none);
 }
 .btn-group > .dropdown-toggle:hover {
-  .box-shadow(0 1px 1px rgba(0,0,0,0.1));
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.1));
 }
 .btn-group > .btn-primary.dropdown-toggle:hover,
 .btn-group > .btn-info.dropdown-toggle:hover,
@@ -58,11 +58,11 @@
 .btn-group > .btn-danger.dropdown-toggle:hover,
 .btn-group > .btn-success.dropdown-toggle:hover,
 .btn-group > .btn-inverse.dropdown-toggle:hover {
-  .box-shadow(0 1px 1px rgba(0,0,0,0.2));
+  @include box-shadow(0 1px 1px rgba(0,0,0,0.2));
 }
 .btn-group > .btn.dropdown-toggle:active,
 .btn-group > .btn.dropdown-toggle.active {
-  .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
+  @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
 }
 .btn-group > .btn-primary.dropdown-toggle:active,
 .btn-group > .btn-primary.dropdown-toggle.active,
@@ -76,7 +76,7 @@
 .btn-group > .btn-info.dropdown-toggle.active,
 .btn-group > .btn-inverse.dropdown-toggle:active,
 .btn-group > .btn-inverse.dropdown-toggle.active {
-  .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+  @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
 }
 .btn-group > .btn-mini.dropdown-toggle {
   padding: 2px 4px;
@@ -93,37 +93,37 @@
   // The clickable button for toggling the menu
   // Remove the gradient and set the same inset shadow as the :active state
   .dropdown-toggle {
-    .box-shadow(inset 0 1px 6px rgba(0, 0, 0, 0.15));
+    @include box-shadow(inset 0 1px 6px rgba(0, 0, 0, 0.15));
   }
 
   // Keep the hover's background when dropdown is open
   .btn.dropdown-toggle {
-    background-color: @btnBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
+    background-color: $btnBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.1));
   }
   .btn-primary.dropdown-toggle {
-    background-color: @btnPrimaryBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+    background-color: $btnPrimaryBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
   }
   .btn-warning.dropdown-toggle {
-    background-color: @btnWarningBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+    background-color: $btnWarningBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
   }
   .btn-danger.dropdown-toggle {
-    background-color: @btnDangerBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+    background-color: $btnDangerBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
   }
   .btn-success.dropdown-toggle {
-    background-color: @btnSuccessBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+    background-color: $btnSuccessBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
   }
   .btn-info.dropdown-toggle {
-    background-color: @btnInfoBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+    background-color: $btnInfoBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
   }
   .btn-inverse.dropdown-toggle {
-    background-color: @btnInverseBackground;
-    .box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
+    background-color: $btnInverseBackground;
+    @include box-shadow(inset 0 1px 2px rgba(0, 0, 0, 0.3));
   }
 }
 

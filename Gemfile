@@ -13,11 +13,9 @@ gem 'pg'
 gem 'pg_search'
 
 group :assets do
+  gem 'sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
-  gem 'less-rails'
-  gem 'libv8', '~> 3.11.8'
-  gem 'therubyracer'
-  gem 'twitter-bootstrap-rails'
+  gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
   gem 'garlicjs-rails'
   gem 'localstorageshim-rails'

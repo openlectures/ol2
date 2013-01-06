@@ -1,11 +1,11 @@
 /* Make colors accessible via CSS selectors */
 
-.olgreen 		{color:	@accent;}
-.salmon 		{color:	@salmon;}
-.honeydew 	{color:	@honeydew;}
-.cantaloupe {color:	@cantaloupe;}
-.white 			{color:	@white;}
-.gray 			{color:	@grayDark;}
+.olgreen 		{color:	$accent;}
+.salmon 		{color:	$salmon;}
+.honeydew 	{color:	$honeydew;}
+.cantaloupe {color:	$cantaloupe;}
+.white 			{color:	$white;}
+.gray 			{color:	$grayDark;}
 .fuckinglightgray { color: #999; }
 
 /* Font Settings */
@@ -207,8 +207,8 @@ body > .page-alert {
 
 input[type="text"].hover-border {
   border-color: transparent;
-  .box-shadow(inset 0px 0px 0px);
-  &:hover, &:focus { border-color: @grayLight; }
+  @include box-shadow(inset 0px 0px 0px);
+  &:hover, &:focus { border-color: $grayLight; }
 }
 
 html.lt-ie8 {
