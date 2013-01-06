@@ -64,6 +64,6 @@ class SeabSubTopicsController < ApplicationController
 
   def import
     SeabSubTopic.import(@ws)
-    redirect_to subjects_url, notice: "Imported!"
+    redirect_to update_url, notice: "Imported!"
   end
 end

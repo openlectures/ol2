@@ -4,7 +4,7 @@
 <% if user_signed_in? %>
 <li><%=link_to('<i class="icon-group"></i> Manage'.html_safe,staff_path)%></li>
 <li><%=link_to('<i class="icon-plus-sign"></i> Create'.html_safe,create_item_path)%></li>
-<li><%=link_to('<i class="icon-refresh"></i> Update'.html_safe, import_subjects_path)%></li>
+<li><%=link_to('<i class="icon-refresh"></i> Update'.html_safe, update_path)%></li>
 <li><%= link_to('<i class="icon-signout"></i> Log Out'.html_safe,destroy_user_session_path,:method=>:delete)%></li>
 <% else %>
 <li><%=link_to('<i class="icon-signin"></i> Log In'.html_safe,new_user_session_path)%>

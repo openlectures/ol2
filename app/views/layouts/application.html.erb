@@ -43,16 +43,18 @@
     </div><!--row-->
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
+  <%=localstorage_shim%>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
-  <% if user_signed_in? %>
-      <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.min.js"></script>
-      <script>
-        $(document).ready(function() { $(".el").select2(); });
-        $(".seab_topic").on("change", function(e) {
-          $("#h3_seab_header").text($("div.seab_topic span").text());
-        });
-      </script>
+  <% if current_page?(:action=>"create_item")%>
+    <script>
+      $(document).ready(function() {
+        $(".el").select2();
+      });
+      $(".seab_topic").on("change", function(e) {
+        $("#h3_seab_header").text($("div.seab_topic span").text());
+      });
+    </script>
   <%end%>
   <script>
   enquire.register("screen and (max-width:767px)", {

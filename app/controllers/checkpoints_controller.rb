@@ -76,6 +76,6 @@ class CheckpointsController < ApplicationController
 
   def import
     Checkpoint.import(@ws)
-    redirect_to subjects_url, notice: "Imported!"
+    redirect_to update_url, notice: "Imported!"
   end
 end
