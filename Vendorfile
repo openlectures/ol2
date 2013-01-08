@@ -10,6 +10,7 @@ folder 'vendor/assets/javascripts' do
   file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
   file 'enquire.min.js',    'https://raw.github.com/WickyNilliams/enquire.js/master/dist/enquire.min.js'
   file 'angular.min.js',    'http://code.angularjs.org/1.1.1/angular.min.js'
+  file 'analytics.min.js',  'https://raw.github.com/segmentio/analytics.js/master/analytics.min.js'
 end
 
 folder 'app/assets/fonts' do
