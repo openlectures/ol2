@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.10'
+gem 'rails', '3.2.11'
 
 group :development do
   gem 'quiet_assets'
@@ -35,7 +35,6 @@ gem 'paperclip'
 # Google Drive Sync
 gem 'google_drive'
 gem 'faraday'
-gem 'google-analytics-rails'
 
 # Web Server
 gem 'thin'

@@ -13,6 +13,7 @@
   <%= tag :meta, name: "viewport", content: "width=device-width, maximum-scale=1" %>
   <%= tag :meta, name: "apple-mobile-web-app-capable", content: "yes" %>
   <%= tag :meta, name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" %>
+  <%= tag :meta, name: "apple-itunes-app", content: "app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL" %>
   <%= tag :meta, property: "og:site_name", content: "openlectures" %>
   <%= tag :meta, property: "og:url", content: request.url %>
   <%= tag :meta, property: "og:title", content: content_for(:title) + ' | ' + "openlectures" %>
@@ -51,5 +52,4 @@
   <% if controller.controller_name == 'lessons'%>
     <%=stylesheet_link_tag "reveal", :media => "screen"%>
   <%end%>
-  <%= analytics_init if Rails.env.production? %>
 </head>
