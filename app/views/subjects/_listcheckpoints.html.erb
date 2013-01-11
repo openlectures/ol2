@@ -6,9 +6,6 @@
         <tr>
           <th><i class="icon-checkpoint"></i> Checkpoint</th>
           <th><i class="icon-lesson"></i> Lesson</th>
-          <% if user_signed_in? %>
-          <th><i class="icon-calendar-date"></i> Date</th>
-          <%end%>
         </tr>
       </thead>
       <tbody class="list">
@@ -17,7 +14,6 @@
         <td class="checkpoint"><%=link_to checkpoint.checkpoint, lesson_path(checkpoint.lesson)+"#/"+checkpoint.checkpoint.parameterize%></td>
         <td class="lesson"><%=checkpoint.lesson.lesson%></td>
         <% if user_signed_in? %>
-        <td class="date"><%=checkpoint.created_at.strftime("%d %b %y")%></td>
         <td class="alignright">
           <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_checkpoint_path(checkpoint), class: "gray")%>
           <%=link_to('<i class="icon-trash"></i>'.html_safe, checkpoint_path(checkpoint), method: :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'",class: "salmon")%>
@@ -30,7 +26,7 @@
 <%-content_for :javascripts do%>
 <script>
 var options = {
-    valueNames: ['checkpoint', 'lesson', 'date']
+    valueNames: ['checkpoint', 'lesson']
 };
 
 var checkpointList = new List('checkpoint-list', options);
