@@ -2,7 +2,7 @@ Ol2::Application.routes.draw do
   resources :seab_sub_topics, :except => [:new, :show, :index]
   resources :seab_topics, :except=> [:new, :show, :index]
 
-  #Usr Controller
+  #User Controller
   match "/manage" => "usr#manage", as: :manage
   match "/manage/create" => "usr#create_item", as: :create_item
   match "/profile" => "usr#profile", as: :profile

@@ -46,7 +46,7 @@
   <%=localstorage_shim%>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
-  <% if current_page?(:action=>"create_item")%>
+  <% if user_signed_in? %>
     <script>
       $(document).ready(function() {
         $(".el").select2();

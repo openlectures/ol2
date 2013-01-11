@@ -34,7 +34,6 @@
                   <% if user_signed_in? %>
                     <td><span class="handle"><i class="icon-sort"></i></span></td>
                     <%end%>
-                  <%end%>
                   <td style="width:400px;" <%if sub_topic.lessons.count == 0%>class="muted"<%end%>>
                     <%if sub_topic.lessons.count !=0%>
                       <%=link_to sub_topic.topic, topic_path(sub_topic)%>
@@ -54,6 +53,7 @@
                       <%=link_to('<i class="icon-edit"></i>'.html_safe, edit_topic_path(sub_topic), :class => "gray")%>
                       <%=link_to('<i class="icon-trash"></i>'.html_safe, topic_path(sub_topic), :method => :delete, :confirm => "CONFIRM DELETE: 'Do or do not. There is no try.'", :class => "salmon")%>
                     </td>
+                  <%end%>
                   <%end%>
                 <%end%>
               </tbody>
