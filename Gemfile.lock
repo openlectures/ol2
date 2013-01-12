@@ -29,7 +29,6 @@ GEM
       i18n (~> 0.6)
       multi_json (~> 1.0)
     acts_as_list (0.1.9)
-    addressable (2.3.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
     better_errors (0.3.2)
@@ -59,7 +58,6 @@ GEM
       warden (~> 1.2.1)
     erubis (2.7.0)
     eventmachine (1.0.0)
-    excon (0.16.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faraday (0.8.4)
@@ -72,14 +70,6 @@ GEM
       oauth (>= 0.3.6)
       oauth2 (>= 0.5.0)
     hashie (1.2.0)
-    heroku (2.34.0)
-      heroku-api (~> 0.3.7)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.7)
-      excon (~> 0.16.10)
     hike (1.2.1)
     httpauth (0.2.0)
     i18n (0.6.1)
@@ -93,8 +83,6 @@ GEM
     json (1.7.6)
     jwt (0.1.5)
       multi_json (>= 1.0)
-    launchy (2.1.2)
-      addressable (~> 2.3)
     localstorageshim-rails (1.0.2)
     mail (2.4.4)
       i18n (>= 0.4.0)
@@ -103,7 +91,6 @@ GEM
     mime-types (1.19)
     multi_json (1.5.0)
     multipart-post (1.1.5)
-    netrc (0.7.7)
     nokogiri (1.5.6)
     oauth (0.4.7)
     oauth2 (0.8.0)
@@ -159,17 +146,11 @@ GEM
     rake (10.0.3)
     rdoc (3.12)
       json (~> 1.4)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
-    rubyzip (0.9.9)
     sass (3.2.5)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    secretive (0.0.9)
-      activesupport (~> 3.2.0)
-      heroku (~> 2.0)
     simple_form (2.0.4)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
@@ -223,7 +204,6 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.11)
   sass-rails
-  secretive
   simple_form
   thin
   turbo-sprockets-rails3

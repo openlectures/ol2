@@ -29,7 +29,6 @@ end
 # Authentication and Authorization
 gem 'omniauth-facebook'
 gem 'devise'
-gem 'secretive'
 
 # Avatar File Upload Solution
 gem 'paperclip'

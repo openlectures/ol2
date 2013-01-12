@@ -2,6 +2,12 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 
+config = YAML.load(File.read(File.expand_path('../secrets.yml', __FILE__)))
+config.merge! config.fetch(Rails.env, {})
+config.each do |key, value|
+  ENV[key] = value unless value.kind_of? Hash
+end
+
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
   Bundler.require(*Rails.groups(:assets => %w(development test)))
@@ -11,7 +17,7 @@ end
 
 module Ol2
   class Application < Rails::Application
-    config.assets.precompile += ['classList.js','reveal.css','jquery.js','jquery-ui.js']
+    config.assets.precompile += ['classList.js','reveal.css','jquery.js']
     config.autoload_paths += %W(#{config.root}/lib)
 
     # Settings in config/environments/* take precedence over those specified here.
