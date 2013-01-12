@@ -9,6 +9,8 @@ group :development do
   gem 'vendorer'
 end
 
+gem 'localstorageshim-rails'
+
 gem 'pg'
 gem 'pg_search'
 
@@ -18,7 +20,6 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
   gem 'garlicjs-rails'
-  gem 'localstorageshim-rails'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'turbo-sprockets-rails3'
