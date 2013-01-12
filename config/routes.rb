@@ -27,6 +27,7 @@ Ol2::Application.routes.draw do
   match "lessons/import" => "lessons#import", as: :import_lessons
   match "checkpoints/import" => "checkpoints#import", as: :import_checkpoints
   match "summaries/import" => "summaries#import", as: :import_summaries
+  match "subjects/import" => "subjects#import", as: :import_subjects
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 
