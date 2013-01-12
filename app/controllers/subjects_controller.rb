@@ -81,8 +81,8 @@ class SubjectsController < ApplicationController
     end
   end
 
-  def import
-    Subject.import(@ws)
-    redirect_to update_url, notice: "Imported!"
-  end
+  # def import
+  #   Subject.import(@ws)
+  #   redirect_to update_url, notice: "Imported!"
+  # end
 end

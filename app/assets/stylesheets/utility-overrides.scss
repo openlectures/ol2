@@ -18,6 +18,10 @@ html {
   font-smoothing: 				antialiased;
 }
 
+small {
+  font-size: 75%;
+}
+
 h6, p, pre {
   font-size: 		0.667em; /* 16.005px */
 }
@@ -117,6 +121,7 @@ h1 {
   padding-bottom: 56.25%; // 16:9
   padding-top: 35px;      // Size of YouTube Player Bar
   height: 0;
+  overflow: hidden;
 }
 
 .videoWrapper>iframe {

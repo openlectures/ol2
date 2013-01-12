@@ -24,7 +24,6 @@
         <td class="date">
           <%if subject.checkpoints.count != 0%>
             <%=subject.checkpoints.last.created_at.strftime("%d %b %y")%>
-            <%=link_to "Update", import_subjects_path%>
           <%else%>
             N/A
           <%end%>

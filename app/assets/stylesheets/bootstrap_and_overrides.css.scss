@@ -80,6 +80,7 @@ $headingsFontWeight:    normal;
 @import "button-groups";
 @import "icons";
 @import "utility-overrides";
+@import "bourbon";
 
 /* Tweak muted colour */
 
@@ -107,27 +108,30 @@ $headingsFontWeight:    normal;
 [class^="navigate-"],
 [class*=" navigate-"] {
 	display:  none;
-  position: absolute;
 }
 
 .navigate-right {
-  right: 1em;
-  top:50%;
+  right:  1em;
+  top:    50%;
+  position: absolute;
 }
 
 .navigate-left {
-  left: 1em;
-  top:50%;
+  left:   1em;
+  top:    50%;
+  position: absolute;
 }
 
 .navigate-down {
   bottom: 1em;
-  left:50%;
+  left:   50%;
+  position: absolute;
 }
 
 .navigate-up {
-  top: 1em;
-  left:50%;
+  top:    1em;
+  left:   50%;
+  position: absolute;
 }
 
 .enabled { display:block; }

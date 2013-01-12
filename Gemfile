@@ -22,6 +22,7 @@ group :assets do
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'turbo-sprockets-rails3'
+  gem 'bourbon'
 end
 
 # Authentication and Authorization

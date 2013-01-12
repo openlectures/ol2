@@ -2,14 +2,6 @@ Ol2::Application.routes.draw do
   resources :seab_sub_topics, :except => [:new, :show, :index]
   resources :seab_topics, :except=> [:new, :show, :index]
 
-  #User Controller
-  match "/manage" => "usr#manage", as: :manage
-  match "/manage/create" => "usr#create_item", as: :create_item
-  match "/profile" => "usr#profile", as: :profile
-  match "/staff" => "usr#staff", as: :staff
-  match "manage/:id" => "subjects#edit", as: :edit_subject
-  match "/update" => "usr#update", as: :update
-
   #Root Page
   root to: "pages#index"
 
@@ -27,7 +19,8 @@ Ol2::Application.routes.draw do
   end
   resources :subjects, except: :new
 
-  match "subjects/import" => "subjects#import", as: :import_subjects
+  # Update Actions
+  # match "subjects/import" => "subjects#import", as: :import_subjects
   match "seab_topics/import" => "seab_topics#import", as: :import_seab_topics
   match "seab_sub_topics/import" => "seab_sub_topics#import", as: :import_seab_sub_topics
   match "topics/import" => "topics#import", as: :import_topics
@@ -36,6 +29,14 @@ Ol2::Application.routes.draw do
   match "summaries/import" => "summaries#import", as: :import_summaries
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
+
+  #User Controller
+  match "/manage" => "usr#manage", as: :manage
+  match "/manage/create" => "usr#create_item", as: :create_item
+  match "/profile" => "usr#profile", as: :profile
+  match "/staff" => "usr#staff", as: :staff
+  match "manage/:id" => "subjects#edit", as: :edit_subject
+  match "/update" => "usr#update", as: :update
 
   #Pages Controller
   match "/contact" => "pages#contact", as: :contact
