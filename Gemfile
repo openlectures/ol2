@@ -9,6 +9,8 @@ group :development do
   gem 'vendorer'
 end
 
+gem 'localstorageshim-rails'
+
 gem 'pg'
 gem 'pg_search'
 
@@ -18,7 +20,6 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
   gem 'garlicjs-rails'
-  gem 'localstorageshim-rails'
   gem 'jquery-rails'
   gem 'jquery-ui-rails'
   gem 'turbo-sprockets-rails3'
@@ -28,7 +29,6 @@ end
 # Authentication and Authorization
 gem 'omniauth-facebook'
 gem 'devise'
-gem 'secretive'
 
 # Avatar File Upload Solution
 gem 'paperclip'
@@ -36,6 +36,8 @@ gem 'paperclip'
 # Google Drive Sync
 gem 'google_drive'
 gem 'faraday'
+
+gem 'figaro'
 
 # Web Server
 gem 'thin'

@@ -62,7 +62,7 @@ $RECYCLE.BIN/
 Desktop.ini
 ehthumbs.db
 Thumbs.db
+/config/secrets.yml
 
-# Sensitive API and password information.
-# Keep it secret. Keep it safe.
-config/secrets.yml
+# Ignore application configuration
+/config/application.yml
