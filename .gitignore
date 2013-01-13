@@ -62,4 +62,4 @@ $RECYCLE.BIN/
 Desktop.ini
 ehthumbs.db
 Thumbs.db
-/config/application.yml
+/config/secrets.yml
