@@ -37,6 +37,8 @@ gem 'paperclip'
 gem 'google_drive'
 gem 'faraday'
 
+gem 'figaro'
+
 # Web Server
 gem 'thin'
 

@@ -63,3 +63,6 @@ Desktop.ini
 ehthumbs.db
 Thumbs.db
 /config/secrets.yml
+
+# Ignore application configuration
+/config/application.yml

@@ -62,6 +62,8 @@ GEM
       multi_json (~> 1.0)
     faraday (0.8.4)
       multipart-post (~> 1.1)
+    figaro (0.5.3)
+      rails (~> 3.0)
     friendly_id (4.0.9)
     garlicjs-rails (1.1.2)
       railties (>= 3.1)
@@ -191,6 +193,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   faraday
+  figaro
   friendly_id
   garlicjs-rails
   google_drive
