@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- The icon can be used freely in both personal and commercial projects with no attribution required, but always appreciated. 
+You may NOT sub-license, resell, rent, redistribute or otherwise transfer the icon without express written permission from iconmonstr.com -->
+
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+<path id="webcam-icon" d="M350.218,389.229L412.746,462H99.254l62.528-72.771C221.56,421.764,292.624,420.575,350.218,389.229z
+	 M422.095,216.094c0,91.732-74.362,166.095-166.094,166.095c-91.732,0-166.096-74.363-166.096-166.095
+	C89.905,124.363,164.269,50,256.001,50C347.732,50,422.095,124.363,422.095,216.094z M333.443,216.094
+	c0-42.702-34.74-77.443-77.443-77.443c-42.702,0-77.443,34.741-77.443,77.443c0,42.703,34.741,77.445,77.443,77.445
+	C298.703,293.539,333.443,258.797,333.443,216.094z M256,179.954c-19.928,0-36.141,16.212-36.141,36.14
+	c0,19.929,16.213,36.142,36.141,36.142s36.141-16.213,36.141-36.142C292.141,196.166,275.928,179.954,256,179.954z"/>
+</svg>
