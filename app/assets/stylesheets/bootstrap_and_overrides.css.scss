@@ -271,3 +271,10 @@ label input[type="radio"] {
   border-style: solid;
   border-width: 0;
 }
+
+div#breadcrumb {
+  position:absolute;
+  top: 0;
+  left: 1em;
+  z-index:100;
+}

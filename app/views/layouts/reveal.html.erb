@@ -8,6 +8,13 @@
       </div>
     <![endif]-->
   </div><!--page-alert-->
+  <div id="breadcrumb">
+    <ul class="breadcrumb">
+      <li><%=link_to @lesson.subject.subject, subject_path(@lesson.subject.subject)%> <span class="divider">/</span></li>
+      <li><%=link_to @lesson.topic.topic, subject_path(@lesson.topic.topic)%>  <span class="divider">/</span></li>
+      <li class="active">Data</li>
+    </ul>
+  </div>
   <div class="reveal">
       <div class="state-background"></div>
       <div class="slides">

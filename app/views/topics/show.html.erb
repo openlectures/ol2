@@ -10,6 +10,10 @@
   <%=@topic.description%>
   <%end%>
 <%end%>
+<ul class="breadcrumb">
+  <li><a href="#"><%=@topic.subject.subject%></a> <span class="divider">/</span></li>
+  <li><a href="#"><%=@topic.topic%></a> <span class="divider">/</span></li>
+</ul>
 <%@topic.lessons.each do |lesson|%>
   <%if lesson.checkpoints.count == 0%>
     <h3 class="margintop0 marginbot0"><%=lesson.lesson%> - Coming Soon!</h3>

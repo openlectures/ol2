@@ -9,6 +9,8 @@ class Lesson < ActiveRecord::Base
   has_many :checkpoints
   has_many :summaries
 
+  delegate :subject, :to => :topic, :allow_nil => true
+
   #Friendly ID
   extend FriendlyId
   friendly_id :lesson, :use => :slugged
