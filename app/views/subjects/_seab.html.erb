@@ -13,7 +13,7 @@
         </a>
       </div><!--accordionheading-->
       <div id="<%=topic.id%>" class="accordion-body collapse">
-        <div class="accordion-inner" role>
+        <div class="accordion-inner">
             <p class="muted"><%=topic.description%></p>
             <%topic.seab_sub_topics.each do |sub_topic|%>
               <table class="table table-hover table-condensed marginbot-h2
@@ -34,7 +34,7 @@
                   <% if user_signed_in? %>
                     <td><span class="handle"><i class="icon-sort"></i></span></td>
                   <%end%>
-                  <td style="width:400px;" <%if sub_topic.lessons.count == 0%>class="muted"<%end%>>
+                  <td style="min-width:400px" <%if sub_topic.lessons.count == 0%>class="muted"<%end%>>
                   <%if sub_topic.lessons.count !=0%>
                     <%=link_to sub_topic.topic, topic_path(sub_topic)%>
                   <%else%>

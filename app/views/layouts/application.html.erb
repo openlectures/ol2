@@ -46,7 +46,7 @@
   <%=localstorage_shim%>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
-  <% if user_signed_in? %>
+  <% if controller.controller_name == 'usr'%>
     <script>
       $(document).ready(function() {
         $(".el").select2();
@@ -57,11 +57,11 @@
     </script>
   <%end%>
   <script>
-  var meny = Meny; // Back up Meany
+  var meny = Meny; // Back up Meny
   var toggle = -1;
   enquire.register("screen and (max-width:767px)", {
         match : function() {
-          Meny = 0; // Get rid of Meany
+          Meny = 0; // Get rid of Meny
           $('#nav').unwrap();
           if(toggle<0){ // Only add 2D menu once
             $(function () {

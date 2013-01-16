@@ -37,9 +37,6 @@ GEM
     binding_of_caller (0.6.8)
     bootstrap-sass (2.2.2.0)
       sass (~> 3.2)
-    bourbon (3.0.1)
-      sass (>= 3.2.0)
-      thor
     builder (3.0.4)
     cocaine (0.4.2)
     coderay (1.0.8)
@@ -189,7 +186,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass
-  bourbon
   coffee-rails (~> 3.2.1)
   devise
   faraday

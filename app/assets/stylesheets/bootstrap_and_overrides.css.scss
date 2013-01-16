@@ -80,7 +80,10 @@ $headingsFontWeight:    normal;
 @import "button-groups";
 @import "icons";
 @import "utility-overrides";
-@import "bourbon";
+
+.accordion-inner table:last-child{
+  margin-bottom:0 !important;
+}
 
 /* Tweak muted colour */
 
