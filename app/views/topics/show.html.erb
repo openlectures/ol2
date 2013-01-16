@@ -5,7 +5,6 @@
 <%=link_to @topic.subject.subject, @topic.subject%><br/>
 <span class="lead"><%=@topic.topic%></span>
 <%end%>
-<%=render 'shared/breadcrumb'%>
 <%if @topic.description != ""%>
   <%content_for :description do%>
   <%=@topic.description%>

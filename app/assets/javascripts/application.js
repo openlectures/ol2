@@ -9,6 +9,6 @@
 //= require bootstrap-collapse
 //= require bootstrap-typeahead
 //= require garlic
-//= require analytics
+//= require analytics-info
 //= require_tree ../../../vendor/assets/javascripts/
 //= require_tree .

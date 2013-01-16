@@ -11,7 +11,7 @@ folder 'vendor/assets/javascripts' do
   file 'enquire.min.js',    'https://raw.github.com/WickyNilliams/enquire.js/master/dist/enquire.min.js'
   file 'angular.min.js',    'http://code.angularjs.org/1.1.1/angular.min.js'
   file 'gas.min.js',        'https://github.com/downloads/CardinalPath/gas/gas-1.10.1.min.js'
-  file 'typogr.min.js',     'https://raw.github.com/ekalinin/typogr.js/master/typogr.min.js'
+  file 'accessifyhtml5.min.js',     'https://raw.github.com/yatil/accessifyhtml5.js/master/accessifyhtml5.min.js'
 end
 
 folder 'app/assets/fonts' do
