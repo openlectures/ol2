@@ -1,22 +1,14 @@
 @font-face {
   font-family: 'FontAwesome';
-  src:  font-url('fontawesome-webfont.eot');
-  src:  font-url('fontawesome-webfont.eot?#iefix')       format('embedded-opentype'),
-        font-url('fontawesome-webfont.woff')             format('woff'),
-        font-url('fontawesome-webfont.ttf')              format('truetype');
+  src:  font-url('fontawesome-webfont.eot?v=3.0.1');
+  src:  font-url('fontawesome-webfont.eot?#iefix&v=3.0.1')       format('embedded-opentype'),
+        font-url('fontawesome-webfont.svg?v=3.0.1')              format('svg'),
+        font-url('fontawesome-webfont.woff?v=3.0.1')             format('woff'),
+        font-url('fontawesome-webfont.ttf?v=3.0.1')              format('truetype');
   font-weight:  normal;
   font-style:   normal;
 }
-@font-face {
-  font-family: 'cmun';
-  src:  font-url('cmunoti-webfont.eot');
-  src:  font-url('cmunoti-webfont.eot?#iefix')  format('embedded-opentype'),
-        font-url('cmunoti-webfont.svg#cmunoti') format('svg'),
-        font-url('cmunoti-webfont.woff')        format('woff'),
-        font-url('cmunoti-webfont.ttf')         format('truetype');
-  font-weight:  normal;
-  font-style:   italic;
-}
+
 @font-face {
   font-family: 'cmun';
   src:  font-url('cmunorm-webfont.eot');
@@ -27,16 +19,7 @@
   font-weight:  normal;
   font-style:   normal;
 }
-@font-face {
-  font-family: 'cmun';
-  src:  font-url('cmunobx-webfont.eot');
-  src:  font-url('cmunobx-webfont.eot?#iefix')  format('embedded-opentype'),
-        font-url('cmunobx-webfont.svg#cmunobx') format('svg'),
-        font-url('cmunobx-webfont.woff')        format('woff'),
-        font-url('cmunobx-webfont.ttf')         format('truetype');
-  font-weight:  bold;
-  font-style:   normal;
-}
+
 @font-face {
   font-family: 'miso';
   src:  font-url('miso-regular.eot');

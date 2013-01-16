@@ -3,11 +3,13 @@
   font-family: FontAwesome;
   font-weight: normal;
   font-style: normal;
-  display: inline;
   text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+
+  display: inline;
   line-height: normal;
   vertical-align: baseline;
-  background-image: none !important;
+  background-image: none;
   background-position: 0% 0%;
   background-repeat: repeat;
   width: auto;
@@ -37,7 +39,7 @@ li a [class*=" icon-"] {
 
 .icon-large:before {
   vertical-align: -10%;
-  font-size: 4/3em;
+  font-size: 1.3333333333333333em;
 }
 
 .icon-2x {
@@ -62,20 +64,22 @@ li a [class*=" icon-"] {
   }
 }
 
-.btn {
+.btn, .nav {
   [class^="icon-"],
   [class*=" icon-"] {
     display: inline;
-    /* keeps button heights with and without icons the same */
-    line-height: 0.9em;
-    &.icon-spin {
-      display: inline-block;
-    }
-  }
-
+    &.icon-large { line-height: .9em; }  }
 }
 
-li {
+.nav-tabs, .nav-pills {
+  [class^="icon-"],
+  [class*=" icon-"] {
+    /* keeps button heights with and without icons the same */
+    &, &.icon-large { line-height: .9em; }
+  }
+}
+
+li, .nav li {
   a [class^="icon-"],
   a [class*=" icon-"] {
     display: inline-block;
@@ -83,7 +87,7 @@ li {
     text-align: center;
     &.icon-large {
       /* increased font size for icon-large */
-      width: 1.25*1.25em;
+      width: 1.5625em;
     }
   }
 }
@@ -100,13 +104,23 @@ ul.icons {
   }
 }
 
+[class^="icon-"],
+[class*=" icon-"] {
+  &.pull-left {
+    margin-right: .3em;
+  }
+  &.pull-right {
+    margin-left: .3em;
+  }
+}
+
 .btn {
   [class^="icon-"],
   [class*=" icon-"] {
     &.pull-left, &.pull-right {
-      &.icon-2x { margin-top: .35em; }
+      &.icon-2x { margin-top: .18em; }
     }
-    &.icon-spin.icon-large { height: .75em; }
+    &.icon-spin.icon-large { line-height: .8em; }
   }
 }
 
@@ -114,7 +128,7 @@ ul.icons {
   [class^="icon-"],
   [class*=" icon-"] {
     &.pull-left, &.pull-right {
-      &.icon-2x { margin-top: .45em; }
+      &.icon-2x { margin-top: .25em; }
     }
   }
 }
@@ -122,20 +136,12 @@ ul.icons {
 .btn.btn-large {
   [class^="icon-"],
   [class*=" icon-"] {
+    margin-top: 0; // overrides bootstrap default
     &.pull-left, &.pull-right {
-      &.icon-2x { margin-top: .2em; }
+      &.icon-2x { margin-top: .05em; }
     }
-  }
-}
-
-[class^="icon-"],
-[class*=" icon-"] {
-    line-height: 1;
-  &.pull-left {
-    margin-right: .35em;
-  }
-  &.pull-right {
-    margin-left: .35em;
+    &.pull-left.icon-2x { margin-right: .2em; }
+    &.pull-right.icon-2x { margin-left: .2em; }
   }
 }
 

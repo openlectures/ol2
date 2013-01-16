@@ -39,6 +39,7 @@
   <% if controller.controller_name == 'lessons'%>
   <link rel="dns-prefetch" href="//youtube.com">
   <%end%>
+  <link rel="logo" type="image/svg" href="<%=asset_path('logo.svg')%>">
   <%= favicon_link_tag 'favicon.ico', :rel =>"shortcut icon", :type=> 'image/ico'%>
   <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel=>"apple-touch-icon-precomposed", :sizes=>"144x144", :type => 'image/png'%>
   <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel=>"apple-touch-icon-precomposed", :sizes=>"114x114", :type => 'image/png'%>
