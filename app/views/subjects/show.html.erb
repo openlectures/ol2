@@ -17,4 +17,6 @@
   <%= render 'seab' %>
   <%= render 'listcheckpoints' %>
 </div><!--tabcontent-->
+<% if user_signed_in? %>
 <%=link_to "<i class='icon-refresh'></i> Update".html_safe, import_subjects_path, :class => "btn btn-block margintop-p"%>
+<%end%>
