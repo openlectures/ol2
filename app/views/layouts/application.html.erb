@@ -44,6 +44,18 @@
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
   <%=localstorage_shim%>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/assets/jquery.js?body=1' type='text/javascript'%3E%3C/script%3E"));
+    }
+  </script>
+  <script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script>
+  <script type="text/javascript">
+    if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/assets/jquery-ui.js?body=1' type='text/javascript'%3E%3C/script%3E"));
+    }
+  </script>
   <%=javascript_include_tag 'application'%>
   <%= yield :javascripts %>
   <% if controller.controller_name == 'usr'%>
