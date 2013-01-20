@@ -1,19 +1,7 @@
 <%- title "Opportunities" %>
-<%content_for :fbog do%>
-  <%= tag :meta, property: "og:description", content: "" %>
-<%end%>
 
 <%content_for :header do%>
-	<svg version="1.1" id="Header_x26_Timeline" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" width="204.55px" height="307.937px" viewBox="-52.628 -104.5 204.55 307.937"
-	 enable-background="new -52.628 -104.5 204.55 307.937" xml:space="preserve">
-	<polygon fill="#333333" points="142.505,54.903 151.922,11.243 -52.628,11.243 -43.209,54.903 0.759,54.903 8.497,181.449
-		-18.077,181.449 -18.077,203.437 117.37,203.437 117.37,181.449 90.793,181.449 98.53,54.903 "/>
-	<path fill="#333333" d="M49.637-104.5c19.52,0,35.325,15.819,35.325,35.327c0,19.499-15.805,35.312-35.325,35.312
-		c-19.504,0-35.303-15.813-35.303-35.312C14.334-88.684,30.133-104.5,49.637-104.5"/>
-	<path fill="#333333" d="M78.488-36.948c-7.654,6.864-17.771,11.053-28.851,11.053c-11.068,0-21.178-4.189-28.833-11.053
-		C0.237-26.017-13.891-22.622-14.046,3.091h127.385C113.181-22.622,99.062-26.023,78.488-36.948z"/>
-	</svg>
+	<%=image_tag 'pirate.png'%>
 <%end%>
 
 <%content_for :slogan do%>
@@ -24,4 +12,57 @@
 <%content_for :description do%>
   It's never about what you have to do. When you join us, we ask you <span class="olgreen">what you feel you can do for us</span>. Lecturing's just one small part of the equation. You can help us spread the word, or make our content look good. What are you waiting for?
 <%end%>
-
+<p>We're looking for the crazy, the masochistic, and the passionate. The kind who do something over and over until it can't get any better. The kind who don't take "no" for an answer. The kind who make the impossible happen. Find out what it's like to work with us.</p>
+<p>Got an opportunity to offer us instead? <%= mail_to("hello@openlectures.org", 'Drop us a note', :encode => "javascript") %>, and we'll reply pronto.</p>
+<div id="controls" style="margin:0 20px; bottom: 0px; right:0px; position:fixed;">
+  <a href="#" id="expand" class="gray"><i class="icon-plus"></i></a>
+  <a href="#" id="keep" class="salmon"><i class="icon-minus"></i></a>
+</div>
+<div class="accordion" role="tab">
+  <div class="accordion-group marginbot-p" role="tabpanel">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse"  href="#content">
+        <h5 class="marginbot0 margintop0"><i class="icon-angle-right" style="margin-right:0.2em; line-height:0.45em;"></i>Content Creation</h5>
+      </a>
+    </div><!--accordionheading-->
+    <div id="content" class="accordion-body collapse">
+      <div class="accordion-inner">
+      </div><!--accordioninner-->
+    </div><!--accordionbody-->
+  </div><!--accordiongroup-->
+  <div class="accordion-group marginbot-p" role="tabpanel">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse"  href="#admin">
+        <h5 class="marginbot0 margintop0"><i class="icon-angle-right" style="margin-right:0.2em; line-height:0.45em;"></i>Administration</h5>
+      </a>
+    </div><!--accordionheading-->
+    <div id="admin" class="accordion-body collapse">
+      <div class="accordion-inner">
+      </div><!--accordioninner-->
+    </div><!--accordionbody-->
+  </div><!--accordiongroup-->
+  <div class="accordion-group marginbot-p" role="tabpanel">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse"  href="#tech">
+        <h5 class="marginbot0 margintop0"><i class="icon-angle-right" style="margin-right:0.2em; line-height:0.45em;"></i>Tech Development</h5>
+      </a>
+    </div><!--accordionheading-->
+    <div id="tech" class="accordion-body collapse">
+      <div class="accordion-inner">
+      </div><!--accordioninner-->
+    </div><!--accordionbody-->
+  </div><!--accordiongroup-->
+  <div class="accordion-group marginbot-p" role="tabpanel">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse"  href="#outreach">
+        <h5 class="marginbot0 margintop0"><i class="icon-angle-right" style="margin-right:0.2em; line-height:0.45em;"></i>Outreach</h5>
+      </a>
+    </div><!--accordionheading-->
+    <div id="outreach" class="accordion-body collapse">
+      <div class="accordion-inner">
+      </div><!--accordioninner-->
+    </div><!--accordionbody-->
+  </div><!--accordiongroup-->
+</div><!--accordion-->
+<p>Not what you're looking for? <%= mail_to("hello@openlectures.org", "Let's talk!", :encode => "javascript") %>. We'll work things out for you.</p>
+<h3>Working With Us</h3>
