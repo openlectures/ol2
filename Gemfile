@@ -13,6 +13,7 @@ gem 'localstorageshim-rails'
 
 gem 'pg'
 gem 'pg_search'
+gem 'rack-protection'
 
 group :assets do
   gem 'sass-rails'
