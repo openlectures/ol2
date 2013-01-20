@@ -1,21 +1,6 @@
-<%- title "The Team" %>
-<%content_for :fbog do%>
-  <%= tag :meta, property: "og:description", content: "" %>
-<%end%>
-
+<%- title "About Us" %>
 <%content_for :header do%>
-	<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="271.515px" height="309px" viewBox="120.243 101.5 271.515 309" enable-background="new 120.243 101.5 271.515 309"
-	 xml:space="preserve">
-	<path id="video-camera-7-icon" fill="#333333" d="M211.048,145.848c0-24.492-19.856-44.348-44.347-44.348
-		c-24.493,0-44.347,19.855-44.347,44.348c0,24.49,19.854,44.345,44.347,44.345C191.192,190.192,211.048,170.338,211.048,145.848z
-		 M275.673,210.067c7.483,0,14.667-1.291,21.351-3.653v61.852c0,13.691-11.1,24.792-24.793,24.792H169.483
-		c-13.692,0-24.792-11.101-24.792-24.792v-62.087c6.868,2.516,14.283,3.889,22.013,3.889c22.953,0,43.128-12.106,54.484-30.265
-		C232.547,197.96,252.722,210.067,275.673,210.067z M275.673,101.5c-24.492,0-44.347,19.855-44.347,44.348
-		c0,24.49,19.855,44.345,44.347,44.345c24.491,0,44.347-19.854,44.347-44.345C320.02,121.355,300.165,101.5,275.673,101.5z
-		 M391.758,175.798v117.259l-74.861-38.092v-40.412L391.758,175.798z M320.058,390.604L300.082,410.5l-66.068-66.067V410.5H205.99
-		v-65.689L140.117,410.5l-19.874-19.757l78.313-78.286h43.258L320.058,390.604z"/>
-	</svg>
+<%=image_tag 'exhibitionist.png'%>
 <%end%>
 
 <%content_for :slogan do%>
@@ -24,7 +9,28 @@
 <%end%>
 
 <%content_for :description do%>
-  openlectures provides free online lectures based on the Singapore syllabus. It was founded in 2011 by Linan Qiu, a student who strongly believed in making quality education free and accessible to every one.
+  openlectures provides <span class="olgreen">free online lectures</span> based on the Singapore syllabus. It was founded in 2011 by Linan Qiu, a student who strongly believed in making quality education available for anyone who wants to learn.
 <%end%>
 
 <p>Today, over a hundred staff and lecturers across the globe contribute their time and expertise to this effort. Everyone works for free, at nights, and on weekends, because we love what we do.</p>
+<h2 class="margin-reset">No, really. Why are you doing this?</h2>
+<p>Some students want to learn, but lack the resources to do so. Sometimes we're unlucky, sometimes it's a financial problem, and sometimes we're shy and afraid to ask simple questions. That shouldn't stop anyone.</p>
+<p>Everyone in openlectures does what they do best, for no remuneration other than the joy of creating something you can use when you need help. It's our way of giving back to the community. </p>
+<h2 class="marginbot0 align-center">The Monkeys</h2>
+<div class="row-fluid">
+<div class="span4">
+  <%=image_tag 'monkey.png', :class=> 'margintop-h1'%>
+</div><!--span4-->
+<div class="span7 offset1">
+<p>We're normal people. We're writers, cosplayers, singers and photographers. Some of us have lesser hair than others because we're enlistees. We've also all had a quarter-life crisis of some sort just making it through school.</p>
+<p>We waste the day on Facebook (<%=link_to 'check us out!', 'http://facebook.com/openlectures'%>), Twitter and Tumblr. We watch anime and read manga (READ: Pikachus). Along the way we manage to take suggestive and compromising pictures of our founder. We're kids at heart, and we believe in having fun.</p>
+<small><%=link_to 'Browse Staff Directory', ''%></small>
+</div><!--span7-->
+</div><!--rowfluid-->
+<h2 class="marginbot0 align-center">Mission, Vision and Motto</h2>
+<p>Every organization's supposed to have one of these things. Apparently there's a habit of using big words to say simple things. We disagree, so when we're asked, we simply say:</p>
+<div class="align-center">
+<%=image_tag 'rocket.png', :class=>'margintop-h3 marginbot-h3'%>
+<h2 class="margin-reset">One day, we'll deliver a lecture on the moon</h2>
+<p class="margin-reset"><small>NASA, you reading this?</small></p>
+</div><!--aligncenter-->

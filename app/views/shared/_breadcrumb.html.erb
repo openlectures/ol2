@@ -6,6 +6,6 @@
   <%end%>
   <% if controller.controller_name == 'lessons'%>
   <li> <span class="divider">/</span> <%=link_to @lesson.subject.subject, subject_path(@lesson.subject.subject.parameterize)%></li>
-  <li> <span class="divider">/</span> <%=link_to @lesson.topic.topic, topic_path(@lesson.topic.topic.parameterize)%></li>
+  <li> <span class="divider">/</span> <%=link_to truncate(@lesson.topic.topic,:length=>25), topic_path(@lesson.topic.topic.parameterize)%></li>
   <%end%>
 </ul>
