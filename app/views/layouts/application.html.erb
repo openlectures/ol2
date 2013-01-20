@@ -58,6 +58,7 @@
       $(".seab_topic").on("change", function(e) {
         $("#h3_seab_header").text($("div.seab_topic span").text());
       });
+      $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
     </script>
   <%end%>
   <script>
@@ -91,7 +92,6 @@
           });
         }
     }).listen();
-    $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
   </script>
 </body>
 </html>
