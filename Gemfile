@@ -13,7 +13,6 @@ gem 'localstorageshim-rails'
 
 gem 'pg'
 gem 'pg_search'
-gem 'rack-protection'
 
 group :assets do
   gem 'sass-rails'
@@ -42,11 +41,9 @@ gem 'figaro'
 
 # Web Server
 gem 'thin'
+gem 'rack-protection'
 
 gem 'simple_form'
 gem 'acts_as_list'
 
 gem 'friendly_id'
-
-# gem 'turbolinks'
-# gem 'jquery-turbolinks'
