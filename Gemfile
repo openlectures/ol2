@@ -20,7 +20,6 @@ group :assets do
   gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
   gem 'garlicjs-rails'
-  gem 'jquery-rails'
   gem 'turbo-sprockets-rails3'
   gem 'newrelic_rpm'
 end

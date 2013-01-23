@@ -73,9 +73,6 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
-    jquery-rails (2.2.0)
-      railties (>= 3.0, < 5.0)
-      thor (>= 0.14, < 2.0)
     json (1.7.6)
     jwt (0.1.5)
       multi_json (>= 1.0)
@@ -193,7 +190,6 @@ DEPENDENCIES
   friendly_id
   garlicjs-rails
   google_drive
-  jquery-rails
   localstorageshim-rails
   newrelic_rpm
   omniauth-facebook

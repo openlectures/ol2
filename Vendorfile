@@ -6,6 +6,7 @@ folder 'vendor/assets/javascripts/compiled' do
   file 'meny.min.js',       'https://raw.github.com/hakimel/Meny/master/js/meny.min.js'
   file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
   file 'review.min.js',     'http://responsiveviewport.com/js/ReView0.65b.js'
+  file 'rails.js',          'https://raw.github.com/rails/jquery-ujs/master/src/rails.js'
 end
 
 folder 'vendor/assets/javascripts/fallback' do
