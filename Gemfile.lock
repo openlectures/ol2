@@ -76,9 +76,6 @@ GEM
     jquery-rails (2.2.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (3.0.1)
-      jquery-rails
-      railties (>= 3.1.0)
     json (1.7.6)
     jwt (0.1.5)
       multi_json (>= 1.0)
@@ -197,7 +194,6 @@ DEPENDENCIES
   garlicjs-rails
   google_drive
   jquery-rails
-  jquery-ui-rails
   localstorageshim-rails
   newrelic_rpm
   omniauth-facebook

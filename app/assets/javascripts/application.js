@@ -7,6 +7,5 @@
 //= require bootstrap-collapse
 //= require bootstrap-typeahead
 //= require garlic
-//= require analytics-info
-//= require_tree ../../../vendor/assets/javascripts/
+//= require_tree ../../../vendor/assets/javascripts/compiled
 //= require_tree .

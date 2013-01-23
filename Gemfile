@@ -21,7 +21,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
   gem 'garlicjs-rails'
   gem 'jquery-rails'
-  gem 'jquery-ui-rails'
   gem 'turbo-sprockets-rails3'
   gem 'newrelic_rpm'
 end

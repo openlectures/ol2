@@ -1,22 +1,25 @@
-folder 'vendor/assets/javascripts' do
+folder 'vendor/assets/javascripts/compiled' do
   file 'chroma-hash.js',    'https://raw.github.com/mattt/Chroma-Hash/master/jquery.chroma-hash.js'
-  file 'select2.js',        'https://raw.github.com/ivaynberg/select2/master/select2.js'
   file 'list.min.js',       'https://raw.github.com/javve/list/master/list.min.js'
   file 'tinynav.min.js',    'https://raw.github.com/viljamis/TinyNav.js/master/tinynav.min.js'
   file 'piecon.min.js',     'https://raw.github.com/lipka/piecon/master/piecon.min.js'
   file 'meny.min.js',       'https://raw.github.com/hakimel/Meny/master/js/meny.min.js'
+  file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
+  file 'review.min.js',     'http://responsiveviewport.com/js/ReView0.65b.js'
+end
+
+folder 'vendor/assets/javascripts/fallback' do
+  file 'chroma-hash.js',    'https://raw.github.com/mattt/Chroma-Hash/master/jquery.chroma-hash.js'
+  file 'select2.js',        'https://raw.github.com/ivaynberg/select2/master/select2.js'
   file 'reveal.min.js',     'https://raw.github.com/hakimel/reveal.js/master/js/reveal.min.js'
   file 'head.min.js',       'https://raw.github.com/hakimel/reveal.js/master/lib/js/head.min.js'
-  file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
   file 'enquire.min.js',    'https://raw.github.com/WickyNilliams/enquire.js/master/dist/enquire.min.js'
   file 'angular.min.js',    'http://code.angularjs.org/1.1.1/angular.min.js'
-  file 'gas.min.js',        'https://github.com/downloads/CardinalPath/gas/gas-1.10.1.min.js'
-  file 'accessifyhtml5.min.js',     'https://raw.github.com/yatil/accessifyhtml5.js/master/accessifyhtml5.min.js'
 end
 
 folder 'app/assets/fonts' do
-  file 'fontawesome-webfont.eot', 'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.eot'
-  file 'fontawesome-webfont.ttf', 'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.ttf'
-  file 'fontawesome-webfont.woff','https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.woff'
-  file 'fontawesome-webfont.svg','https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.svg'
+  file 'fontawesome-webfont.eot',   'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.eot'
+  file 'fontawesome-webfont.ttf',   'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.ttf'
+  file 'fontawesome-webfont.woff',  'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.woff'
+  file 'fontawesome-webfont.svg',   'https://github.com/FortAwesome/Font-Awesome/raw/master/font/fontawesome-webfont.svg'
 end

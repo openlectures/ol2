@@ -44,26 +44,34 @@
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
   <%=localstorage_shim%>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/assets/jquery.js?body=1"><\/script>')</script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/enquire.js/1.5.4/enquire.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/assets/enquire.min.js?body=1"><\/script>')</script>
+  <%if controller.controller_name == 'subjects'%>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>
   <script>window.jQuery || document.write('<script src="/assets/jquery-ui.js?body=1"><\/script>')</script>
-  <%=javascript_include_tag 'application'%>
-  <%= yield :javascripts %>
-  <% if controller.controller_name == 'usr'%>
-    <script>
-      $(document).ready(function() {
-        $(".el").select2();
-      });
-      $(".seab_topic").on("change", function(e) {
-        $("#h3_seab_header").text($("div.seab_topic span").text());
-      });
-      $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
-    </script>
   <%end%>
+  <%if controller.controller_name == 'usr'%>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/assets/angular.min.js?body=1"><\/script>')</script>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/select2/3.2/select2.min.js"></script>
+  <script>window.jQuery || document.write('<script src="/assets/select2.min.js?body=1"><\/script>')</script>
+  <script>
+    $(document).ready(function() {
+      $(".el").select2();
+      $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
+    });
+    $(".seab_topic").on("change", function(e) {
+      $("#h3_seab_header").text($("div.seab_topic span").text());
+    });
+  </script>
+  <%end%>
+  <%=javascript_include_tag 'application'%>
   <script>
   var meny = Meny; // Back up Meny
   var toggle = -1;
+  $(window).load(function() {
   enquire.register("screen and (max-width:767px)", {
         match : function() {
           Meny = 0; // Get rid of Meny
@@ -92,6 +100,7 @@
           });
         }
     }).listen();
+    });
   </script>
 </body>
 </html>

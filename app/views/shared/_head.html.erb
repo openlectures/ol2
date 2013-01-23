@@ -11,6 +11,7 @@
   <%= tag :meta, name: "description", content: "Free, online lectures for anyone who wants to learn - because effort should decide success" %>
   <%= tag :meta, name: "author", content: "The Cookie Monster, hello@openlectures.org" %>
   <%= tag :meta, name: "viewport", content: "width=device-width, maximum-scale=1" %>
+  <%= tag :meta, name: "apple-mobile-web-app-title", content: "openlectures" %>
   <%= tag :meta, name: "apple-mobile-web-app-capable", content: "yes" %>
   <%= tag :meta, name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" %>
   <%= tag :meta, name: "apple-itunes-app", content: "app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL" %>
@@ -21,13 +22,16 @@
   <%= tag :meta, property: "og:email", content: "hello@openlectures.org" %>
   <%= tag :meta, property: "twitter:card", content: "summary" %>
   <%= tag :meta, property: "twitter:site", content: "@openlecturessg" %>
+  <% if controller.controller_name == 'usr'%>
+  <%= tag :meta, name: "robots", content: "noindex" %>
+  <%end%>
   <%= yield :fbog %>
   <%= csrf_meta_tags %>
   <!-- end universal meta -->
 
   <!-- windows meta -->
   <!--[if lt IE 7]>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1,requiresActiveX=true"">
   <meta http-equiv="cleartype" content="on">
   <meta name="application-name" content="openlectures">
   <meta name="msapplication-tooltip" content="Free, online lectures for anyone who wants to learn">
@@ -35,10 +39,21 @@
   <![endif]-->
   <!-- end windows meta -->
 
-  <!-- icons and humans.txt -->
-  <% if controller.controller_name == 'lessons'%>
+  <!-- prefetch the fuck out of everything -->
+  <link rel="dns-prefetch" href="//www.google-analytics.com">
+  <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+  <link rel="prefetch" href="<%=asset_path('miso-regular.svg')%>">
+  <link rel="prefetch" href="<%=asset_path('miso-regular.woff')%>">
+  <link rel="prefetch" href="<%=asset_path('cmunorm-webfont.svg')%>">
+  <link rel="prefetch" href="<%=asset_path('cmunorm-webfont.woff')%>">
+  <link rel="prefetch" href="<%=asset_path('fontawesome-webfont.svg')%>">
+  <link rel="prefetch" href="<%=asset_path('fontawesome-webfont.woff')%>">
+  <%if controller.controller_name == 'lessons'%>
   <link rel="dns-prefetch" href="//youtube.com">
   <%end%>
+  <!-- end prefetch -->
+
+  <!-- icons and humans.txt -->
   <link rel="logo" type="image/svg" href="<%=asset_path('logo.svg')%>">
   <%= favicon_link_tag 'favicon.ico', :rel =>"shortcut icon", :type=> 'image/ico'%>
   <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel=>"apple-touch-icon-precomposed", :sizes=>"144x144", :type => 'image/png'%>
@@ -49,8 +64,8 @@
   <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel=>"fluid-icon", :title=>"openlectures", :type => 'image/png'%>
   <!-- end icons and humans.txt -->
   <%= stylesheet_link_tag "application", :media => "all" %>
-  <%= yield :styles%>
-  <% if controller.controller_name == 'lessons'%>
+  <%=yield :styles%>
+  <%if controller.controller_name == 'lessons'%>
     <%=stylesheet_link_tag "reveal", :media => "screen"%>
   <%end%>
 </head>

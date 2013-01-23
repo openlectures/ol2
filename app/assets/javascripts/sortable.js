@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(window).load(function() {
   return $('.sortable').sortable({
     axis: 'y',
     // handle: '.handle',
