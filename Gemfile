@@ -14,6 +14,9 @@ gem 'localstorageshim-rails'
 gem 'pg'
 gem 'pg_search'
 
+gem 'memcachier'
+gem 'dalli'
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
