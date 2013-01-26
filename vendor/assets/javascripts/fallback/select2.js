@@ -102,39 +102,18 @@ the specific language governing permissions and limitations under the Apache Lic
     nextUid=(function() { var counter=1; return function() { return counter++; }; }());
 
     function indexOf(value, array) {
-        var i = 0, l = array.length, v;
-
-        if (typeof value === "undefined") {
-          return -1;
-        }
-
-        if (value.constructor === String) {
-            for (; i < l; i = i + 1) if (value.localeCompare(array[i]) === 0) return i;
-        } else {
-            for (; i < l; i = i + 1) {
-                v = array[i];
-                if (v.constructor === String) {
-                    if (v.localeCompare(value) === 0) return i;
-                } else {
-                    if (v === value) return i;
-                }
-            }
-        }
+        var i = 0, l = array.length;
+        for (; i < l; i = i + 1) if (value === array[i]) return i;
         return -1;
     }
 
     /**
-     * Compares equality of a and b taking into account that a and b may be strings, in which case localeCompare is used
+     * Compares equality of a and b
      * @param a
      * @param b
      */
     function equal(a, b) {
-        if (a === b) return true;
-        if (a === undefined || b === undefined) return false;
-        if (a === null || b === null) return false;
-        if (a.constructor === String) return a.localeCompare(b) === 0;
-        if (b.constructor === String) return b.localeCompare(a) === 0;
-        return false;
+        return a===b;
     }
 
     /**
@@ -311,7 +290,7 @@ the specific language governing permissions and limitations under the Apache Lic
                     traditional = options.traditional || false,
                     type = options.type || 'GET'; // set type of request (GET or POST)
 
-                data = data.call(this, query.term, query.page, query.context);
+                data = data ? data.call(this, query.term, query.page, query.context) : null;
 
                 if( null !== handler) { handler.abort(); }
 
@@ -397,17 +376,10 @@ the specific language governing permissions and limitations under the Apache Lic
 
     // TODO javadoc
     function tags(data) {
-        // TODO even for a function we should probably return a wrapper that does the same object/string check as
-        // the function for arrays. otherwise only functions that return objects are supported.
-        if ($.isFunction(data)) {
-            return data;
-        }
-
-        // if not a function we assume it to be an array
-
+        var isFunc = $.isFunction(data);
         return function (query) {
             var t = query.term, filtered = {results: []};
-            $(data).each(function () {
+            $(isFunc ? data() : data).each(function () {
                 var isObject = this.text !== undefined,
                     text = isObject ? this.text : this;
                 if (t === "" || query.matcher(t, text)) {
@@ -498,7 +470,7 @@ the specific language governing permissions and limitations under the Apache Lic
             }
         }
 
-        if (original.localeCompare(input) != 0) return input;
+        if (original!==input) return input;
     }
 
     /**
@@ -529,7 +501,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 attr = attr.replace(/([\[\].])/g,'\\$1'); /* escapes [, ], and . so properly selects the id */
                 target = $("#"+attr);
                 target = target.data("select2");
-                if (target !== undefined) { target.focus(); e.preventDefault();}
+                if (target !== undefined && target !== null) { target.focus(); e.preventDefault();}
             }
         });
     });
@@ -640,7 +612,7 @@ the specific language governing permissions and limitations under the Apache Lic
             search.bind("blur", function () { search.removeClass("select2-focused");});
 
             this.dropdown.delegate(resultsSelector, "mouseup", this.bind(function (e) {
-                if ($(e.target).closest(".select2-result-selectable:not(.select2-disabled)").length > 0) {
+                if ($(e.target).closest(".select2-result-selectable:visible").length > 0) {
                     this.highlightUnderEvent(e);
                     this.selectHighlighted(e);
                 } else {
@@ -1086,7 +1058,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 return;
             }
 
-            children = results.find(".select2-result-selectable");
+            children = results.find(".select2-result:visible");
 
             child = $(children[index]);
 
@@ -1114,13 +1086,13 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         moveHighlight: function (delta) {
-            var choices = this.results.find(".select2-result-selectable"),
+            var choices = this.results.find(".select2-result:visible"),
                 index = this.highlight();
 
             while (index > -1 && index < choices.length) {
                 index += delta;
                 var choice = $(choices[index]);
-                if (choice.hasClass("select2-result-selectable") && !choice.hasClass("select2-disabled")) {
+                if (choice.hasClass("select2-result-selectable") && !choice.hasClass("select2-disabled") && !choice.hasClass("select2-selected")) {
                     this.highlight(index);
                     break;
                 }
@@ -1129,7 +1101,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         highlight: function (index) {
-            var choices = this.results.find(".select2-result-selectable").not(".select2-disabled");
+            var choices = this.results.find(".select2-result:visible");
 
             if (arguments.length === 0) {
                 return indexOf(choices.filter(".select2-highlighted")[0], choices.get());
@@ -1147,14 +1119,14 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         countSelectableResults: function() {
-            return this.results.find(".select2-result-selectable").not(".select2-disabled").length;
+            return this.results.find(".select2-result-selectable").not(".select2-disabled").not(".select2-selected").length;
         },
 
         // abstract
         highlightUnderEvent: function (event) {
             var el = $(event.target).closest(".select2-result-selectable");
             if (el.length > 0 && !el.is(".select2-highlighted")) {
-        		var choices = this.results.find('.select2-result-selectable');
+        		var choices = this.results.find('.select2-result');
                 this.highlight(choices.index(el));
             } else if (el.length == 0) {
                 // if we are over an unselectable item remove al highlights
@@ -1357,10 +1329,10 @@ the specific language governing permissions and limitations under the Apache Lic
         // abstract
         selectHighlighted: function (options) {
             var index=this.highlight(),
-                highlighted=this.results.find(".select2-highlighted").not(".select2-disabled"),
-                data = highlighted.closest('.select2-result-selectable').data("select2-data");
+                highlighted=this.results.find(".select2-highlighted:visible"),
+                data = highlighted.closest('.select2-result:visible').data("select2-data");
             if (data) {
-                highlighted.addClass("select2-disabled");
+                highlighted.addClass("select2-selected");
                 this.highlight(index);
                 this.onSelect(data, options);
             }
@@ -1432,7 +1404,7 @@ the specific language governing permissions and limitations under the Apache Lic
         // single
 
 		createContainer: function () {
-            var container = $(document.createElement("div").attr({
+            var container = $(document.createElement("div")).attr({
                 "class": "select2-container"
             }).html([
                 "    <a href='javascript:void(0)' onclick='return false;' class='select2-choice'>",
@@ -1667,11 +1639,11 @@ the specific language governing permissions and limitations under the Apache Lic
                 // install default initSelection when applied to hidden input and data is local
                 opts.initSelection = opts.initSelection || function (element, callback) {
                     var id = element.val();
-                    //search in data by id 
+                    //search in data by id
                     opts.query({
                         matcher: function(term, text, el){
                             return equal(id, opts.id(el));
-                        }, 
+                        },
                         callback: !$.isFunction(callback) ? $.noop : function(filtered) {
                             callback(filtered.results.length ? filtered.results[0] : null);
                         }
@@ -1705,7 +1677,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             // find the selected element in the result list
 
-            this.results.find(".select2-result-selectable").each2(function (i, elm) {
+            this.results.find(".select2-result:visible").each2(function (i, elm) {
                 if (equal(self.id(elm.data("select2-data")), self.opts.element.val())) {
                     selected = i;
                     return false;
@@ -1830,7 +1802,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // multi
         createContainer: function () {
-            var container = $(document.createElement("div").attr({
+            var container = $(document.createElement("div")).attr({
                 "class": "select2-container select2-container-multi"
             }).html([
                 "    <ul class='select2-choices'>",
@@ -1871,10 +1843,10 @@ the specific language governing permissions and limitations under the Apache Lic
                     //search in data by array of ids
                     opts.query({
                         matcher: function(term, text, el){
-                            return $.grep(ids, function(id) { 
+                            return $.grep(ids, function(id) {
                                 return equal(id, opts.id(el));
                             }).length;
-                        }, 
+                        },
                         callback: !$.isFunction(callback) ? $.noop : function(filtered) {
                             callback(filtered.results);
                         }
@@ -2216,30 +2188,30 @@ the specific language governing permissions and limitations under the Apache Lic
         // multi
         postprocessResults: function () {
             var val = this.getVal(),
-                choices = this.results.find(".select2-result-selectable"),
+                choices = this.results.find(".select2-result:visible"),
                 compound = this.results.find(".select2-result-with-children"),
                 self = this;
 
             choices.each2(function (i, choice) {
                 var id = self.id(choice.data("select2-data"));
                 if (indexOf(id, val) >= 0) {
-                    choice.addClass("select2-disabled").removeClass("select2-result-selectable");
+                    choice.addClass("select2-selected").removeClass("select2-result-selectable");
                 } else {
-                    choice.removeClass("select2-disabled").addClass("select2-result-selectable");
+                    choice.removeClass("select2-selected").addClass("select2-result-selectable");
                 }
             });
 
             compound.each2(function(i, e) {
                 if (!e.is('.select2-result-selectable') && e.find(".select2-result-selectable").length==0) {  // FIX FOR HIERARCHICAL DATA
-                    e.addClass("select2-disabled");
+                    e.addClass("select2-selected");
                 } else {
-                    e.removeClass("select2-disabled");
+                    e.removeClass("select2-selected");
                 }
             });
 
             if (this.highlight() == -1){
                 choices.each2(function (i, choice) {
-                    if (!choice.hasClass("select2-disabled") && choice.hasClass("select2-result-selectable")) {
+                    if (!choice.hasClass("select2-selected") &&!choice.hasClass("select2-disabled") && choice.hasClass("select2-result-selectable")) {
                         self.highlight(0);
                         return false;
                     }
