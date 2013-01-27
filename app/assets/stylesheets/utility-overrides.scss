@@ -10,12 +10,15 @@
 
 /* Font Settings */
 
-html {
+* {
   -webkit-font-smoothing: antialiased;
-  -moz-font-smoothing: 		antialiased;
   -ms-font-smoothing: 		antialiased;
   -o-font-smoothing: 			antialiased;
   font-smoothing: 				antialiased;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  text-rendering: optimizeLegibility;
 }
 
 small {
@@ -23,7 +26,7 @@ small {
 }
 
 h6, p, pre {
-  font-size: 		0.667em; /* 16.005px */
+  font-size: 		0.67em; /* Actually 0.667em, 16.005px */
 }
 
 h5 {
@@ -31,27 +34,27 @@ h5 {
 }
 
 h4 {
-  font-size:    1.333em; /* 32px */
+  font-size:    1.33em; /* Actually 1.333em, 32px */
   line-height:  1.5;
 }
 
 h3, caption {
-  font-size:    1.414em; /* 33.936px */
+  font-size:    1.41em; /* Actually 1.414em, 33.936px */
   line-height:	1.4;
 }
 
 h2 {
-  font-size: 		1.999em; /* 47.986px */
+  font-size: 		2em; /* Actually 1.999em, 47.986px */
   line-height:	1.3;
 }
 
 h1 {
-  font-size: 		2.666em; /* 63.981px */
+  font-size: 		2.67em; /* Actually 2.666em, 63.981px */
   line-height:	1;
 }
 
 .fuckingbig {
-  font-size:    3.998em; /* 95.943px */
+  font-size:    4em; /* Actually 3.998em, 95.943px */
   line-height:  1;
 }
 
