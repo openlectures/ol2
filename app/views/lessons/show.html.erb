@@ -19,12 +19,12 @@
           <br/>
           <br/>
           <small>
-          <p class="muted"><a href="#" class="muted hidden-phone"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#report_error" class="muted" role="button" data-toggle="modal" data-backdrop="false"><i class="icon-exclamation-sign"></i> Report Error</a></p>
+          <p class="muted"><a href="#" class="muted" role="button" data-toggle="modal" data-backdrop="false" data-target="#mobile"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted" role="button" data-toggle="modal" data-target="#report_error"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </small>
 	      </div><!--span3-->
 	      <div class="span6 offset1">
 	        <div class="videoWrapper">
-	          <iframe id="player<%=checkpoint.position-1%>" seamless src="<%=checkpoint.parsed_url%>" frameborder="0"></iframe>
+	          <iframe id="player<%=checkpoint.position-1%>" seamless src="<%=checkpoint.parsed_url.html_safe%>" frameborder="0"></iframe>
 	        </div><!--videoWrapper-->
 	      </div><!--span6-->
 	      <div class="span1">
@@ -57,7 +57,7 @@
           <br/>
           <br/>
           <small>
-          <p class="muted"><a href="#" class="muted hidden-phone"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted"><i class="icon-exclamation-sign"></i> Report Error</a></p>
+          <p class="muted"><a href="#mobile" class="muted" role="button" data-toggle="modal" data-backdrop="false"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#report_error" class="muted" role="button" data-toggle="modal" data-backdrop="false"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </small>
         </div><!--span3-->
         <div class="span6 offset1 align-left">
@@ -74,18 +74,3 @@
     </section>
   </section>
 <%end%>
-<div id="report_error" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="report_error" aria-hidden="true" style="position:absolute; left:0; top:0;">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-    <h3>Report Error</h3>
-  </div>
-  <div class="modal-body">
-    <form>
-      <textarea rows="6" class="input-block-level" placeholder="What's the problem?" required autofocus style="font-size:75%;"></textarea>
-      <input type="email" class="input-block-level"  placeholder="Your Email Address (optional)" style="font-size:75%;">
-    </form>
-  </div>
-  <div class="modal-footer align-center">
-    <button class="btn btn-mini" style="width:50%; font-size:75%;">Submit</button>
-  </div>
-</div>
