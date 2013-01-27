@@ -9,7 +9,7 @@
     <![endif]-->
   </div><!--page-alert-->
   <div id="breadcrumb">
-    <small>
+    <small style="font-size:55%;">
       <%=render 'shared/breadcrumb'%>
     </small>
   </div><!--breadcrumb-->
@@ -71,6 +71,9 @@
   });
   Reveal.getIndices();
   $('#qrcode').qrcode($('#qrcode').data("url"));
+  $(".objective").on("click", function(e) {
+    return $(".objective").find("i").toggleClass("icon-check-empty icon-check");
+  });
   </script>
 </body>
 </html>

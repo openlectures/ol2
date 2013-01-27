@@ -11,7 +11,7 @@
             <a href="#" class="navigate-left" rel="tooltip" title="PREVIOUS CHECKPOINT" data-placement="right"><i class="icon-caret-left line-04"></i></a>
           </h3>
       	</div><!--span1-->
-	      <div class="span3 align-right">
+	      <div class="span3 align-right" style="margin-left:6%">
 	        <h5 class="muted margintop0 marginbot0 line-10">CHECKPOINT <%=checkpoint.position%></h5>
           <h3 class="margintop0 hidden-phone line-10"><%=checkpoint.checkpoint.titlecase%></h3>
 	        <p class="margintop0 line-14"><%=checkpoint.description%></p>
@@ -22,7 +22,7 @@
           <p class="muted"><a href="#" class="muted" role="button" data-toggle="modal" data-backdrop="false" data-target="#mobile"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted" role="button" data-toggle="modal" data-target="#report_error"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </small>
 	      </div><!--span3-->
-	      <div class="span6 offset1">
+	      <div class="span6">
 	        <div class="videoWrapper">
 	          <iframe id="player<%=checkpoint.position-1%>" seamless src="<%=checkpoint.parsed_url.html_safe%>" frameborder="0"></iframe>
 	        </div><!--videoWrapper-->
@@ -76,12 +76,16 @@
   </section>
 <%end%>
 <section>
+  <%=image_tag 'medal.png', :class=>'margintop-h1'%>
   <h3 class="marginbot0"><span class="salmon">anddd you're done!</span> Here's what we did in this lesson:</h3>
-  <p class="margin-reset"><small>Click on any objective to go back to that checkpoint if you need to check your understanding.</small></p>
-  <ul class="unstyled">
-    <%@lesson.checkpoints.order("position").each do |checkpoint|%>
-      <li><%=checkpoint.objective%></li>
-    <%end%>
-  </ul>
-  <%=link_to '<i class="icon-arrow-up"></i> Back to Lesson Overview <i class="icon-arrow-up"></i> '.html_safe, topic_path(@lesson.topic)%>
+  <div class="row-fluid marginbot-h3">
+    <div class="span8 offset2 align-left">
+      <ul class="icons cmun">
+        <%@lesson.checkpoints.order("position").each do |checkpoint|%>
+          <li class="objective"><i class="icon-check-empty"></i> <%=checkpoint.objective%></li>
+        <%end%>
+      </ul><!--icons-->
+    </div><!--span8-->
+  </div><!--rowfluid-->
+   <%=link_to '<i class="icon-arrow-up"></i> Back to Lesson Overview <i class="icon-arrow-up"></i> '.html_safe, topic_path(@lesson.topic)%>
 </section>
