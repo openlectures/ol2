@@ -4,18 +4,18 @@ folder 'vendor/assets/javascripts/compiled' do
   file 'tinynav.min.js',    'https://raw.github.com/viljamis/TinyNav.js/master/tinynav.min.js'
   file 'piecon.min.js',     'https://raw.github.com/lipka/piecon/master/piecon.min.js'
   file 'meny.min.js',       'https://raw.github.com/hakimel/Meny/master/js/meny.min.js'
-  file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
   file 'review.min.js',     'http://responsiveviewport.com/js/ReView0.65b.js'
   file 'rails.js',          'https://raw.github.com/rails/jquery-ujs/master/src/rails.js'
+  file 'reveal.min.js',     'https://raw.github.com/hakimel/reveal.js/master/js/reveal.min.js'
 end
 
 folder 'vendor/assets/javascripts/fallback' do
   file 'chroma-hash.js',    'https://raw.github.com/mattt/Chroma-Hash/master/jquery.chroma-hash.js'
   file 'select2.js',        'https://raw.github.com/ivaynberg/select2/master/select2.js'
-  file 'reveal.min.js',     'https://raw.github.com/hakimel/reveal.js/master/js/reveal.min.js'
   file 'head.min.js',       'https://raw.github.com/hakimel/reveal.js/master/lib/js/head.min.js'
   file 'enquire.min.js',    'https://raw.github.com/WickyNilliams/enquire.js/master/dist/enquire.min.js'
   file 'angular.min.js',    'http://code.angularjs.org/1.1.1/angular.min.js'
+  file 'classList.min.js',  'https://raw.github.com/eligrey/classList.js/master/classList.min.js'
 end
 
 folder 'app/assets/fonts' do

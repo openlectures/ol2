@@ -33,13 +33,13 @@ $headingsFontWeight:    normal;
 @import "bootstrap/type";
 @import "bootstrap/forms";
 @import "bootstrap/tables";
-// @import "twitter/bootstrap/code.less";
+// @import "bootstrap/code";
 
 // Components: Common
 @import "bootstrap/dropdowns";
 @import "bootstrap/component-animations";
 @import "bootstrap/close";
-// @import "twitter/bootstrap/wells.less";
+// @import "bootstrap/wells.less";
 
 // Components: Buttons & Alerts
 @import "bootstrap/buttons";
@@ -50,21 +50,21 @@ $headingsFontWeight:    normal;
 @import "bootstrap/navs";
 @import "bootstrap/navbar";
 @import "bootstrap/breadcrumbs";
-// @import "twitter/bootstrap/pagination.less";
-// @import "twitter/bootstrap/pager.less";
+// @import "bootstrap/pagination";
+// @import "bootstrap/pager";
 
 // Components: Popovers
 @import "bootstrap/popovers";
-// @import "twitter/bootstrap/modals.less";
+@import "bootstrap/modals";
 @import "bootstrap/tooltip";
 
 // Components: Misc
 @import "bootstrap/accordion";
 @import "bootstrap/thumbnails";
-// @import "twitter/bootstrap/labels-badges.less";
+// @import "bootstrap/labels-badges";
 @import "bootstrap/progress-bars";
-// @import "twitter/bootstrap/carousel.less";
-// @import "twitter/bootstrap/hero-unit.less";
+// @import "bootstrap/carousel";
+// @import "bootstrap/hero-unit";
 
 // Components: Responsive Layout
 @import "bootstrap/responsive-utilities";
@@ -197,13 +197,6 @@ input[type="color"],
     outline: thin dotted \9; /* IE6-9 */
     // .box-shadow(0 0 4px @accent);
   }
-}
-
-/* Unfuck skimpy horizontal list */
-
-.dl-horizontal dt {
-  margin-right: 20px;
-  width: 200px;
 }
 
 /* Fix Input Block Overflow */

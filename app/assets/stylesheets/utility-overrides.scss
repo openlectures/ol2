@@ -15,6 +15,7 @@
   -ms-font-smoothing: 		antialiased;
   -o-font-smoothing: 			antialiased;
   font-smoothing: 				antialiased;
+  text-rendering:         geometricPrecision;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -99,14 +100,14 @@ h1 {
 .align-justify {text-align:justify !important;}
 
 /* Line Height Reset Classes */
-.line-04 {line-height:0.4;}
-.line-06 {line-height:0.6;}
-.line-08 {line-height:0.8;}
-.line-10 {line-height:1;}
-.line-12 {line-height:1.2;}
-.line-14 {line-height:1.4;}
-.line-16 {line-height:1.6;}
-.line-18 {line-height:1.8;}
+.line-04 {line-height:0.4 !important;}
+.line-06 {line-height:0.6 !important;}
+.line-08 {line-height:0.8 !important;}
+.line-10 {line-height:1   !important;}
+.line-12 {line-height:1.2 !important;}
+.line-14 {line-height:1.4 !important;}
+.line-16 {line-height:1.6 !important;}
+.line-18 {line-height:1.8 !important;}
 
 /* Element Centering */
 .element-center {

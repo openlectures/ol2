@@ -19,7 +19,7 @@
           <br/>
           <br/>
           <small>
-          <p class="muted"><a href="#" class="muted hidden-phone"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted"><i class="icon-exclamation-sign"></i> Report Error</a></p>
+          <p class="muted"><a href="#" class="muted hidden-phone"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#report_error" class="muted" role="button" data-toggle="modal" data-backdrop="false"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </small>
 	      </div><!--span3-->
 	      <div class="span6 offset1">
@@ -53,6 +53,12 @@
           <h5 class="muted margintop0 marginbot0 line-10" style="line-height:1">QUESTION <%=checkpoint.position%></h5>
           <h3 class="margintop0 line-10"><%=checkpoint.checkpoint%></h3>
           <p class="margintop0 line-14"><%=checkpoint.question%></p>
+          <p><a href="#" class="navigate-next">Next <i class="icon-angle-right"></i></a></p>
+          <br/>
+          <br/>
+          <small>
+          <p class="muted"><a href="#" class="muted hidden-phone"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted"><i class="icon-exclamation-sign"></i> Report Error</a></p>
+          </small>
         </div><!--span3-->
         <div class="span6 offset1 align-left">
           <p class="line14"><%=checkpoint.answer%></p>
@@ -68,3 +74,18 @@
     </section>
   </section>
 <%end%>
+<div id="report_error" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="report_error" aria-hidden="true" style="position:absolute; left:0; top:0;">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
+    <h3>Report Error</h3>
+  </div>
+  <div class="modal-body">
+    <form>
+      <textarea rows="6" class="input-block-level" placeholder="What's the problem?" required autofocus style="font-size:75%;"></textarea>
+      <input type="email" class="input-block-level"  placeholder="Your Email Address (optional)" style="font-size:75%;">
+    </form>
+  </div>
+  <div class="modal-footer align-center">
+    <button class="btn btn-mini" style="width:50%; font-size:75%;">Submit</button>
+  </div>
+</div>

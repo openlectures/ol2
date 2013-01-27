@@ -43,7 +43,6 @@
     </div><!--row-->
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
-  <%=localstorage_shim%>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/assets/jquery.js?body=1"><\/script>')</script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/enquire.js/1.5.4/enquire.min.js"></script>
@@ -76,13 +75,13 @@
     });
   </script>
   <%end%>
-  <%if controller.controller_name == 'usr' && controller.action_name == 'create'%>
+  <%if controller.controller_name == 'usr' && controller.action_name == 'create_item'%>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js"></script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/select2/3.2/select2.min.js"></script>
   <script>
     window.jQuery || document.write('<script src="/assets/angular.min.js?body=1"><\/script>')
     window.jQuery || document.write('<script src="/assets/select2.min.js?body=1"><\/script>')
-    $(document).ready(function() {
+    $(window).load(function() {
       $(".el").select2();
       $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
     });

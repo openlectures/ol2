@@ -11,7 +11,7 @@
     The Tesseract Headquarters<br/>
     <span class="fn org hidden" itemprop="name">openlectures</span>
     <span class="adr" itemprop="address" itemscope itemtype="http://data-vocabulary.org/Address">
-      <a href="http://en.wikipedia.org/wiki/The_Hitchhiker's_Guide_to_the_Galaxy" class="locality" target="_blank" itemprop="locality">ZZ9 Plural Z Alpha</a>
+      <a href="http://en.wikipedia.org/wiki/The_Hitchhiker's_Guide_to_the_Galaxy" class="locality salmon" target="_blank" itemprop="locality">ZZ9 Plural Z Alpha</a>
     </span><br/>
     <small class="geo">
       <span class="latitutde">
@@ -24,14 +24,11 @@
       103.7500° E
     </small>
 <%end%>
-<hr>
-<dl class="dl-horizontal">
-  <dt>General Enquiries</dt>
-  <dd><%= mail_to("hello@openlectures.org", nil, :encode => "javascript") %></dd>
-  <dt>Corporate Services</dt>
-  <dd><%= mail_to("corporate@openlectures.org", nil, :encode => "javascript") %></dd>
-  <dt>Press and Media</dt>
-  <dd><%= mail_to("samantha.ting@openlectures.org", nil, :encode => "javascript") %></dd>
-  <dt>Twitter</dt>
-  <dd><a href="http://twitter.com/openlecturessg">@openlecturessg</a></dd>
-</dl>
+<div class="row-fluid">
+<div class="span7">
+<p>We're here to help with any questions or comments. If you just want to say hi, or pet a monkey, that's cool too!</p>
+<p>Feel free to email us at <%= mail_to("hello@openlectures.org", nil, :encode => "javascript") %></p>
+<p>For press and corporate enquires, drop Samantha a note at <%= mail_to("samantha.ting@openlectures.org", nil, :encode => "javascript") %></p>
+<p>And if you're shy but still hanging around, look for us on Twitter at <%=link_to '@openlecturessg', 'http://twitter.com/openlecturessg'%></p>
+<small><%=link_to 'Prefer to use a form?',''%></small>
+</div><!--span7-->

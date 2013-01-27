@@ -40,12 +40,54 @@
   <span class="salmon">Help us achieve this dream.</span>
 <%end%>
 <%content_for :description do%>
-  If there's a place for us in your organization's <abbr class="initialism" title="Corporate Social Responsibility">CSR</abbr> programme, or you'd just like to help, <a href='m&#97;&#105;lt&#111;&#58;%6&#56;e&#108;lo%40o%&#55;0&#37;6&#53;n&#108;&#101;c&#116;%&#55;5r&#101;%7&#51;&#46;&#111;rg'>we'd love to hear from you.</a>
+  openlectures works with leading organizations to keep education free and accessible. If there's a place for us in your organization's <abbr class="initialism" title="Corporate Social Responsibility">CSR</abbr> programme, or you'd just like to help, <%= mail_to("hello@openlectures.org", "we'd love to hear from you!", :encode => "javascript") %>
 <%end%>
-<ul class="nav nav-pills nav-stacked margintop0">
-  <li><a href="http://www.edb.gov.sg/content/edb/en.html?cmpid=edb_en38">EDB Singapore</a></li>
-  <li><a href="http://www.northeastcdc.org.sg/">Northeast CDC</a></li>
-  <li><a href="http://www.nyc.pa.gov.sg/">National Youth Council</a></li>
-  <li><a href="http://www.scape.com.sg/">*Scape</a></li>
-  <li><a href="http://www.mediacorp.sg/">Mediacorp</a></li>
-</ul>
+<h3>Partner Organizations</h3>
+<div class="row-fluid">
+  <div class="span6">
+<dl class=" margintop0 dl-horizontal">
+  <dt>2011</dt>
+  <dd><%=link_to 'Singapore EDB', 'http://www.edb.gov.sg/content/edb/en.html?cmpid=edb_en38'%></dd>
+  <dt>2011</dt>
+  <dd><%=link_to 'Northeast CDC', 'http://www.northeastcdc.org.sg/'%></dd>
+  <dt>2011</dt>
+  <dd><%=link_to 'National Youth Council', 'http://www.nyc.pa.gov.sg/'%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'REActor Singapore', 'http://www.nyc.pa.gov.sg/'%></dd>
+  <dt>2013</dt>
+  <dd><%=link_to '*Scape', 'http://www.scape.com.sg/'%></dd>
+  <dt>2013</dt>
+  <dd><%=link_to 'Mediacorp', 'http://www.mediacorp.sg/'%></dd>
+</dl>
+</div><!--span8-->
+<div class="span5 offset1 margintop-h3">
+  <p>Organizations whose contributions have been crucial to the development and continued sustainability of the openlectures effort. If you can offer us product sponsorship, a filming venue, or assistance in kind, <%= mail_to("hello@openlectures.org", "drop us a note!", :encode => "javascript") %></p>
+</div><!--span6-->
+</div><!--rowfluid-->
+<h3>Schools Reached</h3>
+<div class="row-fluid">
+<div class="span6">
+<dl class=" margintop0 dl-horizontal">
+  <dt>2012</dt>
+  <dd><%=link_to 'Raffles Institution', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Raffles Girls School', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'NUS High School', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Hwa Chong Institution', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Meridian Junior College', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Tampines Junior College', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Innova Junior College', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Tradeschool', ''%></dd>
+  <dt>2012</dt>
+  <dd><%=link_to 'Milenia Institute', ''%></dd>
+</dl>
+</div><!--span6-->
+<div class="span5 offset1 margintop-h3">
+  <p>Our team visits schools and institutions at request, delivering a wide range of <%=link_to 'outreach programmes', ''%> to thousands. We believe that everything we've done will only be useful if people actually know about it. If you'd like us to drop by, <%= mail_to("hello@openlectures.org", "give us a holler", :encode => "javascript") %> and we'll fix something up!</p>
+</div><!--span5-->

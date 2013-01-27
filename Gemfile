@@ -9,20 +9,11 @@ group :development do
   gem 'vendorer'
 end
 
-gem 'localstorageshim-rails'
-
-gem 'pg'
-gem 'pg_search'
-
-gem 'memcachier'
-gem 'dalli'
-
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'bootstrap-sass'
   gem 'uglifier', '>= 1.0.3'
-  gem 'garlicjs-rails'
   gem 'turbo-sprockets-rails3'
   gem 'newrelic_rpm'
 end
@@ -42,7 +33,14 @@ gem 'figaro'
 
 # Web Server
 gem 'thin'
-gem 'rack-protection'
+
+# Caching Solutions
+gem 'memcachier'
+gem 'dalli'
+
+# Database and Search
+gem 'pg'
+gem 'pg_search'
 
 gem 'simple_form'
 gem 'acts_as_list'

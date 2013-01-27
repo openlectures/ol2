@@ -4,7 +4,6 @@
 //= require bootstrap-tooltip
 //= require bootstrap-transition
 //= require bootstrap-collapse
-//= require bootstrap-typeahead
-//= require garlic
+//= require bootstrap-modal
 //= require_tree ../../../vendor/assets/javascripts/compiled
 //= require_tree .
