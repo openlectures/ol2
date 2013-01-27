@@ -3,7 +3,7 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app class="no-js" lang="en" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html <%if controller.controller_name == 'usr' && controller.action_name == 'create'%>ng-app<%end%> class="no-js" lang="en" xmlns:og="http://ogp.me/ns#"> <!--<![endif]-->
 <head>
   <!-- universal meta -->
   <%= tag :meta, charset: "utf-8" %>
@@ -42,11 +42,8 @@
   <!-- prefetch the fuck out of everything -->
   <link rel="dns-prefetch" href="//www.google-analytics.com">
   <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
-  <link rel="prefetch" href="<%=asset_path('miso-regular.svg')%>">
   <link rel="prefetch" href="<%=asset_path('miso-regular.woff')%>">
-  <link rel="prefetch" href="<%=asset_path('cmunorm-webfont.svg')%>">
   <link rel="prefetch" href="<%=asset_path('cmunorm-webfont.woff')%>">
-  <link rel="prefetch" href="<%=asset_path('fontawesome-webfont.svg')%>">
   <link rel="prefetch" href="<%=asset_path('fontawesome-webfont.woff')%>">
   <%if controller.controller_name == 'lessons'%>
   <link rel="dns-prefetch" href="//youtube.com">

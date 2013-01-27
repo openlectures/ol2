@@ -2,9 +2,9 @@
   font-family: 'FontAwesome';
   src:  font-url('fontawesome-webfont.eot?v=3.0.1');
   src:  font-url('fontawesome-webfont.eot?#iefix&v=3.0.1')       format('embedded-opentype'),
-        font-url('fontawesome-webfont.svg?#FontAwesome&v=3.0.1') format('svg'),
         font-url('fontawesome-webfont.woff?v=3.0.1')             format('woff'),
-        font-url('fontawesome-webfont.ttf?v=3.0.1')              format('truetype');
+        font-url('fontawesome-webfont.ttf?v=3.0.1')              format('truetype'),
+        font-url('fontawesome-webfont.svg?#FontAwesome&v=3.0.1') format('svg');
   font-weight:  normal;
   font-style:   normal;
 }
@@ -13,9 +13,9 @@
   font-family: 'cmun';
   src:  font-url('cmunorm-webfont.eot');
   src:  font-url('cmunorm-webfont.eot?#iefix')  format('embedded-opentype'),
-        font-url('cmunorm-webfont.svg#cmunorm') format('svg'),
         font-url('cmunorm-webfont.woff')        format('woff'),
-        font-url('cmunorm-webfont.ttf')         format('truetype');
+        font-url('cmunorm-webfont.ttf')         format('truetype'),
+        font-url('cmunorm-webfont.svg#cmunorm') format('svg');
   font-weight:  normal;
   font-style:   normal;
 }
@@ -24,9 +24,9 @@
   font-family: 'miso';
   src:  font-url('miso-regular.eot');
   src:  font-url('miso-regular.eot?#iefix')       format('embedded-opentype'),
-        font-url('miso-regular.svg#misoregular')  format('svg'),
         font-url('miso-regular.woff')             format('woff'),
-        font-url('miso-regular.ttf')              format('truetype');
+        font-url('miso-regular.ttf')              format('truetype'),
+        font-url('miso-regular.svg#misoregular')  format('svg');
   font-weight:  normal;
   font-style:   normal;
 }
@@ -34,9 +34,9 @@
   font-family: 'miso';
   src:  font-url('miso-light.eot');
   src:  font-url('miso-light.eot?#iefix')     format('embedded-opentype'),
-        font-url('miso-light.svg#misolight')  format('svg'),
         font-url('miso-light.woff')           format('woff'),
-        font-url('miso-light.ttf')            format('truetype');
+        font-url('miso-light.ttf')            format('truetype'),
+        font-url('miso-light.svg#misolight')  format('svg');
   font-weight:  100;
   font-style:   normal;
 }

@@ -78,10 +78,10 @@
   <%end%>
   <%if controller.controller_name == 'usr' && controller.action_name == 'create'%>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.1.1/angular.min.js"></script>
-  <script>window.jQuery || document.write('<script src="/assets/angular.min.js?body=1"><\/script>')</script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/select2/3.2/select2.min.js"></script>
-  <script>window.jQuery || document.write('<script src="/assets/select2.min.js?body=1"><\/script>')</script>
   <script>
+    window.jQuery || document.write('<script src="/assets/angular.min.js?body=1"><\/script>')
+    window.jQuery || document.write('<script src="/assets/select2.min.js?body=1"><\/script>')
     $(document).ready(function() {
       $(".el").select2();
       $("input:password").chromaHash({bars: 3, salt:"7be82b35cb0199120eea35a4507c9acf", minimum:6});
