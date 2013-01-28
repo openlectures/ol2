@@ -1,10 +1,7 @@
 <%- title "Contact Us" %>
-<%content_for :fbog do%>
-  <%= tag :meta, property: "og:description", content: "" %>
-<%end%>
 <div class="vcard" itemscope itemtype="http://data-vocabulary.org/Organization">
-
 <%content_for :header do%>
+  <%=image_tag 'tesseract.png'%>
 <%end%>
 
 <%content_for :slogan do%>
@@ -32,3 +29,7 @@
 <p>And if you're shy but still hanging around, look for us on Twitter at <%=link_to '@openlecturessg', 'http://twitter.com/openlecturessg'%></p>
 <small><%=link_to 'Prefer to use a form?',''%></small>
 </div><!--span7-->
+<div class="span4 offset1 align-center margintop-h2">
+  <%=image_tag 'suit.png'%>
+</div><!--span4-->
+</div><!--rowfluid-->

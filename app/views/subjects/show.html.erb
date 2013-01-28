@@ -7,7 +7,7 @@
   <div class="span12">
     <ul class="nav nav-pills marginbot0 element-center" role="tablist">
       <li class="active"><a href="#seab" data-toggle="tab">GCE A-Level Syllabus</a></li>
-      <li><a href="#" data-toggle="tab">Subway Map</a></li>
+      <li><a href="#subway" data-toggle="tab">Subway Map</a></li>
       <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
     </ul>
   </div>
@@ -15,6 +15,7 @@
 
 <div class="tab-content" role="tab">
   <%= render 'seab' %>
+  <%= render 'subway' %>
   <%= render 'listcheckpoints' %>
 </div><!--tabcontent-->
 <% if user_signed_in? %>
