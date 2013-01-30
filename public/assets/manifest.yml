@@ -277,6 +277,8 @@ select2x2.png: select2x2-4cf32b2d5c97eb241907b5215fdde989.png
 select2x2/index.png: select2x2-4cf32b2d5c97eb241907b5215fdde989.png
 spd.svg: spd-2f05c0d768b2a022f2b69ae6c7365c8d.svg
 spd/index.svg: spd-2f05c0d768b2a022f2b69ae6c7365c8d.svg
+subjects.png: subjects-046326f9e1079562e726cf428a7efa63.png
+subjects/index.png: subjects-046326f9e1079562e726cf428a7efa63.png
 suit.png: suit-8402dc7b46bfd5f9dc6e202d1abc19bb.png
 suit/index.png: suit-8402dc7b46bfd5f9dc6e202d1abc19bb.png
 tesseract.png: tesseract-a9ef29ac81b9a074d5c08ff2f76c6be4.png
@@ -289,10 +291,14 @@ application.js: application-72afef7a4c41a1f293b1272ae53c7369.js
 application/index.js: application-72afef7a4c41a1f293b1272ae53c7369.js
 schools.json: schools-2373b2409ff70950c242b231819fa022.json
 schools/index.json: schools-2373b2409ff70950c242b231819fa022.json
-application.css: application-0af6f6f6632115f4997c25f38004adad.css
-application/index.css: application-0af6f6f6632115f4997c25f38004adad.css
+application.css: application-d90d221d742a11a378692d17b6500d26.css
+application/index.css: application-d90d221d742a11a378692d17b6500d26.css
 reveal.css: reveal-f7829109f1de2d6977785908a404c896.css
 reveal/index.css: reveal-f7829109f1de2d6977785908a404c896.css
+jquery.js: jquery-aaba7df15741e77437ec7e0b979eef9d.js
+jquery/index.js: jquery-aaba7df15741e77437ec7e0b979eef9d.js
+jquery.min.map: jquery.min-959a5819c76e1508f5a8655c289c0de8.map
+jquery/index.min.map: jquery.min-959a5819c76e1508f5a8655c289c0de8.map
 glyphicons-halflings-white.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
 glyphicons-halflings-white/index.png: glyphicons-halflings-white-6cccd17a7aed91dbc0157d343c68c0d9.png
 glyphicons-halflings.png: glyphicons-halflings-2851b489e8c39f8fad44fc10efb99c3e.png

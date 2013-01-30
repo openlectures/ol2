@@ -81,6 +81,10 @@ $headingsFontWeight:    normal;
 @import "icons";
 @import "utility-overrides";
 
+.tabbable {
+  font-size: 1em;
+}
+
 .accordion-inner table:last-child{
   margin-bottom:0 !important;
 }

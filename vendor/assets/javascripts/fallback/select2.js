@@ -482,7 +482,7 @@ the specific language governing permissions and limitations under the Apache Lic
         $document.bind("mousedown touchend", function (e) {
             var target = $(e.target).closest("div.select2-container").get(0), attr;
             var targetDropdown = null;
-            if (target) {
+            if (target && $(target).data("select2") ) {
                 $document.find("div.select2-container-active").each(function () {
                     if (this !== target) $(this).data("select2").blur();
                 });
@@ -1126,7 +1126,7 @@ the specific language governing permissions and limitations under the Apache Lic
         highlightUnderEvent: function (event) {
             var el = $(event.target).closest(".select2-result-selectable");
             if (el.length > 0 && !el.is(".select2-highlighted")) {
-        		var choices = this.results.find('.select2-result');
+        		var choices = this.results.find('.select2-result:visible');
                 this.highlight(choices.index(el));
             } else if (el.length == 0) {
                 // if we are over an unselectable item remove al highlights

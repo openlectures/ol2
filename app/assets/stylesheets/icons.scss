@@ -8,7 +8,7 @@
 
   display: inline;
   line-height: normal;
-  vertical-align: baseline;
+  vertical-align: middle;
   background-image: none;
   background-position: 0% 0%;
   background-repeat: repeat;
@@ -44,6 +44,8 @@ li a [class*=" icon-"] {
 
 .icon-2x {
   font-size: 2em;
+  vertical-align: middle;
+  line-height: 1;
   &.icon-border {
     border-width: 2px;
     @include border-radius(4px);
@@ -51,6 +53,8 @@ li a [class*=" icon-"] {
 }
 .icon-3x {
   font-size: 3em;
+  vertical-align: middle;
+  line-height: 1;
   &.icon-border {
     border-width: 3px;
     @include border-radius(5px);
@@ -58,6 +62,8 @@ li a [class*=" icon-"] {
 }
 .icon-4x {
   font-size: 4em;
+  vertical-align: middle;
+  line-height: 1;
   &.icon-border {
     border-width: 4px;
     @include border-radius(6px);

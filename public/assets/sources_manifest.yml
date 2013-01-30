@@ -138,13 +138,16 @@ scales.png: 75723e5d18a867d2b6995a23c9f7412c
 select2.png: dd52d2a9fb1c9fa4a36a773d90c1a549
 select2x2.png: 4cf32b2d5c97eb241907b5215fdde989
 spd.svg: 2f05c0d768b2a022f2b69ae6c7365c8d
+subjects.png: 046326f9e1079562e726cf428a7efa63
 suit.png: 8402dc7b46bfd5f9dc6e202d1abc19bb
 tesseract.png: a9ef29ac81b9a074d5c08ff2f76c6be4
 user.svg: 989981b3c4f6cbb52f0910305ae8f253
 work.png: 8bf01b5516b3ead17c1d2ef07b0f9e1d
 application.js: 53b6ed9f0e9bad251bc6225adb1c15e8
 schools.json: 2373b2409ff70950c242b231819fa022
-application.css: 3d316c61c50cc665dc445f598682216d
+application.css: 03fd74b6632c8abdbf50d3ba95fdfc28
 reveal.css: 4d9d44ae01388379d7ced824b2e7893c
+jquery.js: ceff30d8c1dd1b22d0e181f9e9deeb76
+jquery.min.map: 959a5819c76e1508f5a8655c289c0de8
 glyphicons-halflings-white.png: 6cccd17a7aed91dbc0157d343c68c0d9
 glyphicons-halflings.png: 2851b489e8c39f8fad44fc10efb99c3e

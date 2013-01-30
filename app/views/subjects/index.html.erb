@@ -1,4 +1,7 @@
 <%title "Subjects"%>
+<%content_for :header do%>
+  <%=image_tag 'subjects.png'%>
+<%end%>
 <%content_for :slogan do%>
   Subjects<br/>
   <span class="lead"><span class="salmon"><%=Checkpoint.all.count%></span> checkpoints in <span class="salmon"><%=Lesson.all.count%></span> lessons</span>
