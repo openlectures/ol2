@@ -1,4 +1,7 @@
 <%title @subject.subject%>
+<%content_for :header do%>
+  <%=image_tag 'economics.png'%>
+<%end%>
 <%content_for :slogan do%>
   <%=@subject.subject%><br/>
   <span class="lead"><span class="salmon"><%=@subject.checkpoints.count%></span> checkpoints in <span class="salmon"><%=@subject.lessons.count%></span> lessons</span>

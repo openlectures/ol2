@@ -1,39 +1,47 @@
 <%title @topic.topic%>
+<%content_for :header do%>
+  <%=link_to image_tag('economics.png'), subject_path(@topic.subject)%>
+<%end%>
 <%content_for :slogan do%>
 <%=@topic.topic%>
 <%end%>
-<div class="align-center">
-<h3 class="margin-reset">
-  <%=link_to '<i class="icon-play-circle icon-3x"></i> '.html_safe+@topic.lessons[0].lesson+'<br/>START LESSON'.html_safe,@topic.lessons[0]%>
-</h3>
-<small>or <a href="#" class="muted">read the lesson transcript</a></small>
-</div><!--aligncenter-->
-<div class="margintop-h3 tabbable tabs-left">
-  <ul class="nav nav-tabs">
+<small>
+  <%=render 'shared/breadcrumb'%>
+</small>
+<div class="margintop-p tabbable tabs-left">
+  <ul class="nav nav-tabs" style="font-size:.8em">
     <%@topic.lessons.each_with_index do |lesson,k|%>
       <%if lesson.checkpoints.count != 0%>
         <li <%='class=active' if k==0%>>
-          <%=link_to lesson.lesson.titleize,'#'+lesson.lesson.parameterize, :'data-toggle'=>'tab'%>
+          <%=link_to truncate(lesson.lesson.titleize),'#'+lesson.slug, :'data-toggle'=>'tab'%>
         </li>
       <%end%>
     <%end%>
   </ul><!--navtabs-->
-  <div class="tab-content padtop0" style="padding-left:0.5em; font-size:0.75em;">
+  <div class="tab-content padtop0" style="padding-left:0.5em; font-size:0.7em;">
     <%@topic.lessons.each_with_index do |lesson,i|%>
       <%if lesson.checkpoints.count != 0%>
-        <div class="tab-pane<%=' active' if i==0%>" id="<%=lesson.lesson.parameterize%>">
+        <div class="tab-pane<%=' active' if i==0%>" id="<%=lesson.slug%>">
           <div class="tabbable tabs-left">
             <ul class="nav nav-tabs">
              <%lesson.checkpoints.each_with_index do |checkpoint,j|%>
               <li <%='class=active' if j==0%>>
-                <%=link_to checkpoint.checkpoint.titleize, '#'+checkpoint.checkpoint.parameterize, :'data-toggle'=>'tab'%>
+                <%=link_to checkpoint.position, '#'+checkpoint.slug, :'data-toggle'=>'tab'%>
               </li>
               <%end%>
             </ul><!--navtabs-->
             <div class="tab-content padtop0" style="padding-left:0.5em;">
               <%lesson.checkpoints.each_with_index do |checkpoint,m|%>
-                <div class="tab-pane<%=' active' if m==0%>" id="<%=checkpoint.checkpoint.parameterize%>">
-                  Lorem Ipsum
+                <div class="tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
+                  <ul class="thumbnails margintop0">
+                    <li class="span12">
+                      <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s,:class=>'thumbnail'%>
+                    </li><!--span12-->
+                  </ul><!--thumbnails-->
+                  <h3 class="marginbot0"><%=link_to checkpoint.checkpoint.titleize, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%></h3>
+                  <p style="font-size:0.8em;"><%=checkpoint.description%></p>
+                  <br/>
+                  <%=link_to 'Start Lesson <i class="icon-angle-right"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s,:class=>'salmon'%>
                 </div><!--tabpane-->
               <%end%>
             </div><!--tabcontent-->
@@ -43,5 +51,3 @@
     <%end%>
   </div><!--tabcontent-->
 </div><!--tabbable-->
-<%#=lesson.checkpoints.count%>
-<%#=link_to lesson.lesson, lesson_path(lesson)%>

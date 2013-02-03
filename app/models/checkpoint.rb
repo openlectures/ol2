@@ -13,15 +13,19 @@ class Checkpoint < ActiveRecord::Base
   #Listing
   acts_as_list :scope => :lesson
 
-  def parsed_url
-    @@video_regexp =/[v=|\/]([\w-]+)(&.+)?$/
+  def youtubeID
+    @@video_regexp = /[v=|\/]([\w-]+)(&.+)?$/
     youtubeID = @@video_regexp.match(videourl)[1]
+    return youtubeID
+  end
+
+  def parsed_url
     return "https://www.youtube.com/embed/"+youtubeID+"?rel=0&amp;theme=light&amp;color=white&amp;autoplay=0&amp;showinfo=0&amp;autohide=3&amp;vq=hd1080&?enablejsapi=1"
   end
 
-  # def thumb_url
-  #   return "http://img.youtube.com/vi/"+youtubeID+"/mqdefault.jpg"
-  # end
+  def thumb_url
+    return "https://img.youtube.com/vi/"+youtubeID+"/maxresdefault.jpg"
+  end
 
   def self.import(ws)
     rows = ws.num_rows()

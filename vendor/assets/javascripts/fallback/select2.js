@@ -236,6 +236,7 @@ the specific language governing permissions and limitations under the Apache Lic
 	            textTransform: style.textTransform,
 	            whiteSpace: "nowrap"
 	        });
+            sizer.attr("class","select2-sizer");
         	$("body").append(sizer);
         }
         sizer.text(e.val());
@@ -286,16 +287,18 @@ the specific language governing permissions and limitations under the Apache Lic
                 requestSequence += 1; // increment the sequence
                 var requestNumber = requestSequence, // this request's sequence number
                     data = options.data, // ajax data function
+                    url = options.url, // ajax url string or function
                     transport = options.transport || $.ajax,
                     traditional = options.traditional || false,
                     type = options.type || 'GET'; // set type of request (GET or POST)
 
                 data = data ? data.call(this, query.term, query.page, query.context) : null;
+                url = (typeof url === 'function') ? url.call(this, query.term, query.page, query.context) : url;
 
                 if( null !== handler) { handler.abort(); }
 
                 handler = transport.call(null, {
-                    url: ((typeof options.url === 'function')?options.url():options.url),
+                    url: url,
                     dataType: options.dataType,
                     data: data,
                     type: type,
@@ -474,39 +477,6 @@ the specific language governing permissions and limitations under the Apache Lic
     }
 
     /**
-     * blurs any Select2 container that has focus when an element outside them was clicked or received focus
-     *
-     * also takes care of clicks on label tags that point to the source element
-     */
-    $document.ready(function () {
-        $document.bind("mousedown touchend", function (e) {
-            var target = $(e.target).closest("div.select2-container").get(0), attr;
-            var targetDropdown = null;
-            if (target && $(target).data("select2") ) {
-                $document.find("div.select2-container-active").each(function () {
-                    if (this !== target) $(this).data("select2").blur();
-                });
-                targetDropdown = $(target).data('select2').dropdown.get(0);
-            }
-
-            // close any other active dropdowns
-            target = targetDropdown || $(e.target).closest("div.select2-drop").get(0);
-            $document.find("div.select2-drop-active").each(function () {
-                if (this !== target) $(this).data("select2").blur();
-            });
-
-            target=$(e.target);
-            attr = target.attr("for");
-            if ("LABEL" === e.target.tagName && attr && attr.length > 0) {
-                attr = attr.replace(/([\[\].])/g,'\\$1'); /* escapes [, ], and . so properly selects the id */
-                target = $("#"+attr);
-                target = target.data("select2");
-                if (target !== undefined && target !== null) { target.focus(); e.preventDefault();}
-            }
-        });
-    });
-
-    /**
      * Creates a new class
      *
      * @param superClass
@@ -533,7 +503,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         init: function (opts) {
-            var results, search, resultsSelector = ".select2-results";
+            var results, search, resultsSelector = ".select2-results", mask;
 
             // prepare options
             this.opts = opts = this.prepareOpts(opts);
@@ -556,6 +526,25 @@ the specific language governing permissions and limitations under the Apache Lic
             // cache the body so future lookups are cheap
             this.body = thunk(function() { return opts.element.closest("body"); });
 
+            // create the dropdown mask if doesnt already exist
+            mask = $("#select2-drop-mask");
+            if (mask.length == 0) {
+                mask = $(document.createElement("div"));
+                mask.attr("id","select2-drop-mask").attr("class","select2-drop-mask");
+                mask.hide();
+                mask.appendTo(this.body());
+                mask.bind("mousedown touchstart", function (e) {
+                    var dropdown = $("#select2-drop"), self;
+                    if (dropdown.length > 0) {
+                        self=dropdown.data("select2");
+                        if (self.opts.selectOnBlur) {
+                            self.selectHighlighted({noFocus: true});
+                        }
+                        self.close();
+                    }
+                });
+            }
+
             if (opts.element.attr("class") !== undefined) {
                 this.container.addClass(opts.element.attr("class").replace(/validate\[[\S ]+] ?/, ''));
             }
@@ -563,10 +552,14 @@ the specific language governing permissions and limitations under the Apache Lic
             this.container.css(evaluate(opts.containerCss));
             this.container.addClass(evaluate(opts.containerCssClass));
 
+            this.elementTabIndex = this.opts.element.attr("tabIndex");
+
             // swap container for the element
             this.opts.element
                 .data("select2", this)
-                .hide()
+                .addClass("select2-offscreen")
+                .bind("focus.select2", function() { $(this).select2("focus")})
+                .attr("tabIndex", "-1")
                 .before(this.container);
             this.container.data("select2", this);
 
@@ -577,7 +570,7 @@ the specific language governing permissions and limitations under the Apache Lic
             this.results = results = this.container.find(resultsSelector);
             this.search = search = this.container.find("input.select2-input");
 
-            search.attr("tabIndex", this.opts.element.attr("tabIndex"));
+            search.attr("tabIndex", this.elementTabIndex);
 
             this.resultsPage = 0;
             this.context = null;
@@ -612,7 +605,7 @@ the specific language governing permissions and limitations under the Apache Lic
             search.bind("blur", function () { search.removeClass("select2-focused");});
 
             this.dropdown.delegate(resultsSelector, "mouseup", this.bind(function (e) {
-                if ($(e.target).closest(".select2-result-selectable:visible").length > 0) {
+                if ($(e.target).closest(".select2-result-selectable").length > 0) {
                     this.highlightUnderEvent(e);
                     this.selectHighlighted(e);
                 } else {
@@ -641,12 +634,17 @@ the specific language governing permissions and limitations under the Apache Lic
         // abstract
         destroy: function () {
             var select2 = this.opts.element.data("select2");
+
+            if (this.propertyObserver) { delete this.propertyObserver; this.propertyObserver = null; }
+
             if (select2 !== undefined) {
+
                 select2.container.remove();
                 select2.dropdown.remove();
                 select2.opts.element
                     .removeData("select2")
                     .unbind(".select2")
+                    .attr("tabIndex", this.elementTabIndex)
                     .show();
             }
         },
@@ -729,6 +727,13 @@ the specific language governing permissions and limitations under the Apache Lic
                 opts.id = function (e) { return e[idKey]; };
             }
 
+            if ($.isArray(opts.element.data("select2Tags"))) {
+                if ("tags" in opts) {
+                    throw "tags specified as both an attribute 'data-select2-tags' and in options of Select2 " + opts.element.attr("id");
+                }
+                opts.tags=opts.element.attr("data-select2-tags");
+            }
+
             if (select) {
                 opts.query = this.bind(function (query) {
                     var data = { results: [], more: false },
@@ -769,6 +774,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 opts.formatResultCssClass = function(data) { return data.css; }
             } else {
                 if (!("query" in opts)) {
+
                     if ("ajax" in opts) {
                         ajaxUrl = opts.element.data("ajax-url");
                         if (ajaxUrl && ajaxUrl.length > 0) {
@@ -808,11 +814,39 @@ the specific language governing permissions and limitations under the Apache Lic
          */
         // abstract
         monitorSource: function () {
-            this.opts.element.bind("change.select2", this.bind(function (e) {
+            var el = this.opts.element, sync;
+
+            el.bind("change.select2", this.bind(function (e) {
                 if (this.opts.element.data("select2-change-triggered") !== true) {
                     this.initSelection();
                 }
             }));
+
+            sync = this.bind(function () {
+                var enabled = this.opts.element.attr("disabled") !== "disabled";
+                var readonly = this.opts.element.attr("readonly") === "readonly";
+
+                enabled = enabled && !readonly;
+
+                if (this.enabled !== enabled) {
+                    if (enabled) {
+                        this.enable();
+                    } else {
+                        this.disable();
+                    }
+                }
+            });
+
+            // mozilla and IE
+            el.bind("propertychange.select2 DOMAttrModified.select2", sync);
+            // safari and chrome
+            if (typeof WebKitMutationObserver !== "undefined") {
+                if (this.propertyObserver) { delete this.propertyObserver; this.propertyObserver = null; }
+                this.propertyObserver = new WebKitMutationObserver(function (mutations) {
+                    mutations.forEach(sync);
+                });
+                this.propertyObserver.observe(el.get(0), { attributes:true, subtree:false });
+            }
         },
 
         /**
@@ -837,7 +871,6 @@ the specific language governing permissions and limitations under the Apache Lic
             if (this.opts.blurOnChange)
                 this.opts.element.blur();
         },
-
 
         // abstract
         enable: function() {
@@ -966,31 +999,11 @@ the specific language governing permissions and limitations under the Apache Lic
          */
         // abstract
         opening: function() {
-            var cid = this.containerId, selector = this.containerSelector,
-                scroll = "scroll." + cid, resize = "resize." + cid;
-
-            this.container.parents().each(function() {
-                $(this).bind(scroll, function() {
-                    var s2 = $(selector);
-                    if (s2.length == 0) {
-                        $(this).unbind(scroll);
-                    }
-                    s2.select2("close");
-                });
-            });
-
-            window.setTimeout(function() {
-                // this is done inside a timeout because IE will sometimes fire a resize event while opening
-                // the dropdown and that causes this handler to immediately close it. this way the dropdown
-                // has a chance to fully open before we start listening to resize events
-                $(window).bind(resize, function() {
-                    var s2 = $(selector);
-                    if (s2.length == 0) {
-                        $(window).unbind(resize);
-                    }
-                    s2.select2("close");
-                })
-            }, 10);
+            var cid = this.containerId,
+                scroll = "scroll." + cid,
+                resize = "resize."+cid,
+                orient = "orientationchange."+cid,
+                mask;
 
             this.clearDropdownAlignmentPreference();
 
@@ -998,18 +1011,45 @@ the specific language governing permissions and limitations under the Apache Lic
 
             this.container.addClass("select2-dropdown-open").addClass("select2-container-active");
 
-            this.updateResults(true);
 
             if(this.dropdown[0] !== this.body().children().last()[0]) {
                 this.dropdown.detach().appendTo(this.body());
             }
 
+            this.updateResults(true);
+
+            mask = $("#select2-drop-mask");
+
+            // ensure the mask is always right before the dropdown
+            if (this.dropdown.prev()[0] !== mask[0]) {
+                this.dropdown.before(mask);
+            }
+
+            // move the global id to the correct dropdown
+            $("#select2-drop").removeAttr("id");
+            this.dropdown.attr("id", "select2-drop");
+
+            // show the elements
+            mask.css({
+                width: document.documentElement.scrollWidth,
+                height: document.documentElement.scrollHeight});
+            mask.show();
             this.dropdown.show();
-
             this.positionDropdown();
-            this.dropdown.addClass("select2-drop-active");
 
+            this.dropdown.addClass("select2-drop-active");
             this.ensureHighlightVisible();
+
+            // attach listeners to events that can change the position of the container and thus require
+            // the position of the dropdown to be updated as well so it does not come unglued from the container
+            this.container.parents().add(window).each(function () {
+                $(this).bind(resize+" "+scroll+" "+orient, function (e) {
+                    $("#select2-drop-mask").css({
+                        width:document.documentElement.scrollWidth,
+                        height:document.documentElement.scrollHeight});
+                    $("#select2-drop").data("select2").positionDropdown();
+                });
+            });
 
             this.focusSearch();
         },
@@ -1018,15 +1058,18 @@ the specific language governing permissions and limitations under the Apache Lic
         close: function () {
             if (!this.opened()) return;
 
-            var self = this;
+            var cid = this.containerId,
+                scroll = "scroll." + cid,
+                resize = "resize."+cid,
+                orient = "orientationchange."+cid;
 
-            this.container.parents().each(function() {
-                $(this).unbind("scroll." + self.containerId);
-            });
-            $(window).unbind("resize." + this.containerId);
+            // unbind event listeners
+            this.container.parents().add(window).each(function () { $(this).unbind(scroll).unbind(resize).unbind(orient); });
 
             this.clearDropdownAlignmentPreference();
 
+            $("#select2-drop-mask").hide();
+            this.dropdown.removeAttr("id"); // only the active dropdown has the select2-drop id
             this.dropdown.hide();
             this.container.removeClass("select2-dropdown-open").removeClass("select2-container-active");
             this.results.empty();
@@ -1058,7 +1101,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 return;
             }
 
-            children = results.find(".select2-result:visible");
+            children = this.findHighlightableChoices();
 
             child = $(children[index]);
 
@@ -1085,8 +1128,14 @@ the specific language governing permissions and limitations under the Apache Lic
         },
 
         // abstract
+        findHighlightableChoices: function() {
+            var h=this.results.find(".select2-result-selectable:not(.select2-selected):not(.select2-disabled)");
+            return this.results.find(".select2-result-selectable:not(.select2-selected):not(.select2-disabled)");
+        },
+
+        // abstract
         moveHighlight: function (delta) {
-            var choices = this.results.find(".select2-result:visible"),
+            var choices = this.findHighlightableChoices(),
                 index = this.highlight();
 
             while (index > -1 && index < choices.length) {
@@ -1101,7 +1150,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         highlight: function (index) {
-            var choices = this.results.find(".select2-result:visible");
+            var choices = this.findHighlightableChoices();
 
             if (arguments.length === 0) {
                 return indexOf(choices.filter(".select2-highlighted")[0], choices.get());
@@ -1110,23 +1159,22 @@ the specific language governing permissions and limitations under the Apache Lic
             if (index >= choices.length) index = choices.length - 1;
             if (index < 0) index = 0;
 
-            choices.removeClass("select2-highlighted");
+            this.results.find(".select2-highlighted").removeClass("select2-highlighted");
 
             $(choices[index]).addClass("select2-highlighted");
             this.ensureHighlightVisible();
-
         },
 
         // abstract
         countSelectableResults: function() {
-            return this.results.find(".select2-result-selectable").not(".select2-disabled").not(".select2-selected").length;
+            return this.findHighlightableChoices().length;
         },
 
         // abstract
         highlightUnderEvent: function (event) {
             var el = $(event.target).closest(".select2-result-selectable");
             if (el.length > 0 && !el.is(".select2-highlighted")) {
-        		var choices = this.results.find('.select2-result:visible');
+        		var choices = this.findHighlightableChoices();
                 this.highlight(choices.index(el));
             } else if (el.length == 0) {
                 // if we are over an unselectable item remove al highlights
@@ -1223,7 +1271,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 }
                 return;
             }
-            else if (opts.formatSearching()) {
+            else if (opts.formatSearching() && initial===true) {
                 render("<li class='select2-searching'>" + opts.formatSearching() + "</li>");
             }
 
@@ -1329,10 +1377,10 @@ the specific language governing permissions and limitations under the Apache Lic
         // abstract
         selectHighlighted: function (options) {
             var index=this.highlight(),
-                highlighted=this.results.find(".select2-highlighted:visible"),
-                data = highlighted.closest('.select2-result:visible').data("select2-data");
+                highlighted=this.results.find(".select2-highlighted"),
+                data = highlighted.closest('.select2-result').data("select2-data");
+
             if (data) {
-                highlighted.addClass("select2-selected");
                 this.highlight(index);
                 this.onSelect(data, options);
             }
@@ -1340,6 +1388,14 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // abstract
         getPlaceholder: function () {
+
+            // if a placeholder is specified on a select without the first empty option ignore it
+            if (this.select) {
+               if (this.select.find("option").first().text() !== "") {
+                   return undefined;
+               }
+            }
+
             return this.opts.element.attr("placeholder") ||
                 this.opts.element.attr("data-placeholder") || // jquery 1.4 compat
                 this.opts.element.data("placeholder") ||
@@ -1514,7 +1570,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 if (!this.opened()) this.container.removeClass("select2-container-active");
                 window.setTimeout(this.bind(function() {
                     // restore original tab index
-                    var ti=this.opts.element.attr("tabIndex") || 0;
+                    var ti=this.elementTabIndex || 0;
                     if (ti) {
                         this.selection.attr("tabIndex", ti);
                     } else {
@@ -1557,7 +1613,7 @@ the specific language governing permissions and limitations under the Apache Lic
                 if (!this.opened()) {
                     this.container.removeClass("select2-container-active");
                 }
-                window.setTimeout(this.bind(function() { this.search.attr("tabIndex", this.opts.element.attr("tabIndex") || 0); }), 10);
+                window.setTimeout(this.bind(function() { this.search.attr("tabIndex", this.elementTabIndex || 0); }), 10);
             }));
 
             selection.bind("keydown", this.bind(function(e) {
@@ -1677,7 +1733,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
             // find the selected element in the result list
 
-            this.results.find(".select2-result:visible").each2(function (i, elm) {
+            this.findHighlightableChoices().each2(function (i, elm) {
                 if (equal(self.id(elm.data("select2-data")), self.opts.element.val())) {
                     selected = i;
                     return false;
@@ -1736,13 +1792,17 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // single
         val: function () {
-            var val, data = null, self = this;
+            var val, triggerChange = false, data = null, self = this;
 
             if (arguments.length === 0) {
                 return this.opts.element.val();
             }
 
             val = arguments[0];
+
+            if (arguments.length > 1) {
+                triggerChange = arguments[1];
+            }
 
             if (this.select) {
                 this.select
@@ -1753,15 +1813,19 @@ the specific language governing permissions and limitations under the Apache Lic
                     });
                 this.updateSelection(data);
                 this.setPlaceholder();
-                this.triggerChange();
+                if (triggerChange) {
+                    this.triggerChange();
+                }
             } else {
                 if (this.opts.initSelection === undefined) {
                     throw new Error("cannot call val() if initSelection() is not defined");
                 }
-                // val is an id. !val is true for [undefined,null,'']
-                if (!val) {
+                // val is an id. !val is true for [undefined,null,'',0] - 0 is legal
+                if (!val && val !== 0) {
                     this.clear();
-                    this.triggerChange();
+                    if (triggerChange) {
+                        this.triggerChange();
+                    }
                     return;
                 }
                 this.opts.element.val(val);
@@ -2174,6 +2238,12 @@ the specific language governing permissions and limitations under the Apache Lic
 
             data = selected.data("select2-data");
 
+            if (!data) {
+                // prevent a race condition when the 'x' is clicked really fast repeatedly the event can be queued
+                // and invoked on an element already removed
+                return;
+            }
+
             index = indexOf(this.id(data), val);
 
             if (index >= 0) {
@@ -2188,34 +2258,29 @@ the specific language governing permissions and limitations under the Apache Lic
         // multi
         postprocessResults: function () {
             var val = this.getVal(),
-                choices = this.results.find(".select2-result:visible"),
+                choices = this.results.find(".select2-result"),
                 compound = this.results.find(".select2-result-with-children"),
                 self = this;
 
             choices.each2(function (i, choice) {
                 var id = self.id(choice.data("select2-data"));
                 if (indexOf(id, val) >= 0) {
-                    choice.addClass("select2-selected").removeClass("select2-result-selectable");
-                } else {
-                    choice.removeClass("select2-selected").addClass("select2-result-selectable");
+                    choice.addClass("select2-selected");
+                    // mark all children of the selected parent as selected
+                    choice.find(".select2-result-selectable").addClass("select2-selected");
                 }
             });
 
-            compound.each2(function(i, e) {
-                if (!e.is('.select2-result-selectable') && e.find(".select2-result-selectable").length==0) {  // FIX FOR HIERARCHICAL DATA
-                    e.addClass("select2-selected");
-                } else {
-                    e.removeClass("select2-selected");
+            compound.each2(function(i, choice) {
+                // hide an optgroup if it doesnt have any selectable children
+                if (!choice.is('.select2-result-selectable')
+                    && choice.find(".select2-result-selectable:not(.select2-selected)").length === 0) {
+                    choice.addClass("select2-selected");
                 }
             });
 
             if (this.highlight() == -1){
-                choices.each2(function (i, choice) {
-                    if (!choice.hasClass("select2-selected") &&!choice.hasClass("select2-disabled") && choice.hasClass("select2-result-selectable")) {
-                        self.highlight(0);
-                        return false;
-                    }
-                });
+                self.highlight(0);
             }
 
         },
@@ -2278,7 +2343,7 @@ the specific language governing permissions and limitations under the Apache Lic
 
         // multi
         val: function () {
-            var val, data = [], self=this;
+            var val, triggerChange = false, data = [], self=this;
 
             if (arguments.length === 0) {
                 return this.getVal();
@@ -2286,11 +2351,18 @@ the specific language governing permissions and limitations under the Apache Lic
 
             val = arguments[0];
 
-            if (!val) {
+            if (arguments.length > 1) {
+                triggerChange = arguments[1];
+            }
+
+            // val is an id. !val is true for [undefined,null,'',0] - 0 is legal
+            if (!val && val !== 0) {
                 this.opts.element.val("");
                 this.updateSelection([]);
                 this.clearSearch();
-                this.triggerChange();
+                if (triggerChange) {
+                    this.triggerChange();
+                }
                 return;
             }
 
@@ -2302,7 +2374,9 @@ the specific language governing permissions and limitations under the Apache Lic
                     data.push({id: $(this).attr("value"), text: $(this).text()});
                 });
                 this.updateSelection(data);
-                this.triggerChange();
+                if (triggerChange) {
+                    this.triggerChange();
+                }
             } else {
                 if (this.opts.initSelection === undefined) {
                     throw new Error("val() cannot be called if initSelection() is not defined")
@@ -2313,7 +2387,9 @@ the specific language governing permissions and limitations under the Apache Lic
                     self.setVal(ids);
                     self.updateSelection(data);
                     self.clearSearch();
-                    self.triggerChange();
+                    if (triggerChange) {
+                        self.triggerChange();
+                    }
                 });
             }
             this.clearSearch();
@@ -2466,8 +2542,6 @@ the specific language governing permissions and limitations under the Apache Lic
             return String(markup).replace(/[&<>"'/\\]/g, function (match) {
                     return replace_map[match[0]];
             });
-
-            return markup;
         },
         blurOnChange: false,
         selectOnBlur: false

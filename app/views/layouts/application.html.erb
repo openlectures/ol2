@@ -16,9 +16,9 @@
     </div><!--page-alert-->
     <div class="row-fluid">
     <div class="span2 fuckinglightgray margintop-p hidden-phone">
-      <div class="menu fade in" style="position:fixed">
+      <div class="menu" style="position:fixed">
       <i class="icon-reorder muted"></i> Menu
-      </div><!--fade-->
+      </div><!--menu-->
     </div><!--span2-->
     <div class="span8 margintop0 marginbot-h1">
     <% if content_for?(:header) %>
@@ -118,12 +118,16 @@
             menuElement: document.querySelector( '.meny' ),
             contentsElement: document.querySelector( '.container-fluid' ),
             position: 'left',
-            width: 170,
+            width: 200,
             threshold: 100
           });
         }
     }).listen();
     });
+    var _gaq=[['_setAccount','UA-26070822-1'],['_trackPageview']];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
   </script>
 </body>
 </html>

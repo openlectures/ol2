@@ -85,10 +85,6 @@ $headingsFontWeight:    normal;
   font-size: 1em;
 }
 
-.accordion-inner table:last-child{
-  margin-bottom:0 !important;
-}
-
 /* Tweak muted colour */
 .muted { color: #888; }
 
@@ -222,13 +218,7 @@ form .well > *:last-child {margin-bottom: 0;}
 
 .modal form { margin-bottom: 0; }
 
-/* Fix label height problem */
-
-label input[type="image"],
-label input[type="checkbox"],
-label input[type="radio"] {
-  vertical-align: middle;
-}
+.accordion-inner table:last-child{ margin-bottom:0 !important; }
 
 /* Motherload of Tabs Fixes */
 
@@ -271,7 +261,7 @@ label input[type="radio"] {
   border-width: 0;
 }
 
-div#breadcrumb {
+#breadcrumb {
   position:absolute;
   top: 0;
   left: 1em;

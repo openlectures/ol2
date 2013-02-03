@@ -69,13 +69,18 @@ h1 {
   body {font-size: 24px;}
 }
 
-/* Padding Reset Classes */
+/* Position Override Classes */
+.pos-fix  {position:fixed;}
+.pos-rel  {position:relative;}
+.pos-abs  {position:absolute;}
+
+/* Padding Override Classes */
 .pad-reset     {padding:       0 !important;}
 
 .padtop0       {padding-top:   0 !important;}
 .padbot0       {padding-bottom:0 !important;}
 
-/* Margin Reset Classes */
+/* Margin Override Classes */
 .margin-reset  {margin:       0 !important;}
 
 .margintop0    {margin-top:   0 !important;}
@@ -99,7 +104,7 @@ h1 {
 .align-center  {text-align:center  !important;}
 .align-justify {text-align:justify !important;}
 
-/* Line Height Reset Classes */
+/* Line Height Override Classes */
 .line-04 {line-height:0.4 !important;}
 .line-06 {line-height:0.6 !important;}
 .line-08 {line-height:0.8 !important;}
@@ -210,14 +215,6 @@ body > .page-alert {
       opacity: 1;
     }
   }
-}
-
-/* Show text field borders on hover */
-
-input[type="text"].hover-border {
-  border-color: transparent;
-  @include box-shadow(inset 0px 0px 0px);
-  &:hover, &:focus { border-color: $grayLight; }
 }
 
 html.lt-ie8 {
