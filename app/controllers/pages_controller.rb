@@ -20,7 +20,7 @@ class PagesController < ApplicationController
 
   def team
   end
-  
+
   def send_email
     UserMailer.welcome_message(current_user).deliver
 
