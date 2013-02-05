@@ -45,4 +45,6 @@ Ol2::Application.routes.draw do
   match "/partners"=> "pages#partners", as: :partners
   match "/presskit"=>"pages#presskit", as: :presskit
   match "/team"=> "pages#team", as: :team
+
+  get "pages/send_email"
 end

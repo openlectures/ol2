@@ -20,5 +20,10 @@ class PagesController < ApplicationController
 
   def team
   end
+  
+  def send_email
+    UserMailer.welcome_message(User.find(1)).deliver
 
+    render text: "Done"
+  end
 end

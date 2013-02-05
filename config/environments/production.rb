@@ -74,13 +74,17 @@ Ol2::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.static_cache_control = "public, max-age=2592000"
   #
-  #
-  ActionMailer::Base.smtp_settings = {
-    :address => "smtp.sendgrid.net",
-    :port => 25,
-    :domain => "openlectures.org",
-    :authentication => :plain,
-    :user_name => "openlectures",
-    :password => "tequilatequila"
-  }
+  config.action_mailer.delivery_method = :sendmail
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => 'openlectures.org',
+    :user_name            => 'openlecturessg@gmail.com',
+    :password             => 'tequilatequila',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
 end
