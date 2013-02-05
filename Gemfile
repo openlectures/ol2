@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.11'
 
+gem 'sendgrid'
+
 group :development do
   gem 'quiet_assets'
   gem 'better_errors'

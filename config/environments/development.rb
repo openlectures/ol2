@@ -34,4 +34,13 @@ Ol2::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  ActionMailer::Base.smtp_settings = {
+    :address => "smtp.sendgrid.net",
+    :port => 25,
+    :domain => "openlectures.org",
+    :authentication => :plain,
+    :user_name => "openlectures",
+    :password => "tequilatequila"
+  }
 end
