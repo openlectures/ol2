@@ -22,7 +22,7 @@ class PagesController < ApplicationController
   end
   
   def send_email
-    UserMailer.welcome_message(User.find(1)).deliver
+    UserMailer.welcome_message(current_user.email).deliver
 
     render text: "Done"
   end
