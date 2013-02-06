@@ -23,7 +23,7 @@
     <div class="span8 margintop0 marginbot-h1">
     <% if content_for?(:header) %>
       <div class="align-center margintop-h1">
-        <%=yield :header %>
+        <%#=yield :header %>
       </div>
     <%end%>
     <% if content_for?(:slogan) %>
@@ -43,7 +43,7 @@
     </div><!--row-->
     <%=render 'shared/footer' %>
   </div><!--containerfluid-->
-  <script async src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script async src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="/assets/jquery.js?body=1"><\/script>')</script>
   <script async src="//cdnjs.cloudflare.com/ajax/libs/enquire.js/1.5.4/enquire.min.js"></script>
   <script>window.jQuery || document.write('<script src="/assets/enquire.min.js?body=1"><\/script>')</script>
@@ -118,7 +118,7 @@
             menuElement: document.querySelector( '.meny' ),
             contentsElement: document.querySelector( '.container-fluid' ),
             position: 'left',
-            width: 200,
+            width: 250,
             threshold: 100
           });
         }

@@ -41,7 +41,7 @@
                   <h3 class="marginbot0"><%=link_to checkpoint.checkpoint.titleize, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%></h3>
                   <p style="font-size:0.8em;"><%=checkpoint.description%></p>
                   <br/>
-                  <%=link_to 'Start Lesson <i class="icon-angle-right"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s,:class=>'salmon'%>
+                  <%=link_to 'Start Lesson <i class="icon-angle-right"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
                 </div><!--tabpane-->
               <%end%>
             </div><!--tabcontent-->
