@@ -8,46 +8,54 @@
 <small>
   <%=render 'shared/breadcrumb'%>
 </small>
-<div class="margintop-p tabbable tabs-left">
-  <ul class="nav nav-tabs" style="font-size:.8em">
-    <%@topic.lessons.each_with_index do |lesson,k|%>
-      <%if lesson.checkpoints.count != 0%>
-        <li <%='class=active' if k==0%>>
-          <%=link_to truncate(lesson.lesson.titleize),'#'+lesson.slug, :'data-toggle'=>'tab'%>
-        </li>
-      <%end%>
+<div class="row-fluid">
+<div class="span4">
+  <ul class="nav nav-pills nav-stacked" style="font-size:.8em">
+  <%@topic.lessons.each_with_index do |lesson,k|%>
+    <%if lesson.checkpoints.count != 0%>
+      <li <%='class=active' if k==0%>>
+        <%=link_to truncate(lesson.lesson.titleize),'#'+lesson.slug,:class=>'muted',:'data-toggle'=>'tab'%>
+      </li>
     <%end%>
+  <%end%>
   </ul><!--navtabs-->
-  <div class="tab-content padtop0" style="padding-left:0.5em; font-size:0.7em;">
+</div><!--span4-->
+<div class="span8">
+  <div class="tab-content padtop0" style="font-size:.8em;">
     <%@topic.lessons.each_with_index do |lesson,i|%>
       <%if lesson.checkpoints.count != 0%>
-        <div class="tab-pane<%=' active' if i==0%>" id="<%=lesson.slug%>">
-          <div class="tabbable tabs-left">
-            <ul class="nav nav-tabs">
-             <%lesson.checkpoints.each_with_index do |checkpoint,j|%>
-              <li <%='class=active' if j==0%>>
-                <%=link_to checkpoint.position, '#'+checkpoint.slug, :'data-toggle'=>'tab'%>
-              </li>
-              <%end%>
-            </ul><!--navtabs-->
-            <div class="tab-content padtop0" style="padding-left:0.5em;">
-              <%lesson.checkpoints.each_with_index do |checkpoint,m|%>
-                <div class="tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
-                  <ul class="thumbnails margintop0">
-                    <li class="span12">
-                      <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s,:class=>'thumbnail'%>
-                    </li><!--span12-->
-                  </ul><!--thumbnails-->
-                  <h3 class="marginbot0"><%=link_to checkpoint.checkpoint.titleize, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%></h3>
-                  <p style="font-size:0.8em;"><%=checkpoint.description%></p>
-                  <br/>
-                  <%=link_to 'Start Lesson <i class="icon-angle-right"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
-                </div><!--tabpane-->
-              <%end%>
-            </div><!--tabcontent-->
-          </div><!--tabbable-->
-        </div><!--tabpane-->
+      <div class="tab-pane<%=' active' if i==0%>" id="<%=lesson.slug%>">
+      <div class="row-fluid">
+      <div class="span1">
+        <ul class="nav nav-pills nav-stacked align-center">
+        <%lesson.checkpoints.each_with_index do |checkpoint,j|%>
+          <li <%='class=active' if j==0%>>
+            <%=link_to checkpoint.position, '#'+checkpoint.slug,:class=>'muted',:'data-toggle'=>'tab'%>
+          </li>
+        <%end%>
+        </ul><!--navtabs-->
+      </div><!--span1-->
+      <div class="span11">
+        <div class="tab-content" style="font-size:.9em;">
+          <%lesson.checkpoints.each_with_index do |checkpoint,m|%>
+            <div class="tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
+              <ul class="thumbnails margintop0">
+              <li class="span12">
+                <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s,:class=>'thumbnail'%>
+              </li><!--span12-->
+              </ul><!--thumbnails-->
+              <h3 class="marginbot0"><%=link_to checkpoint.checkpoint.titleize, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%></h3>
+              <p style="font-size:0.8em;"><%=checkpoint.description%></p>
+              <br/>
+              <%=link_to 'Start Lesson <i class="icon-angle-right"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
+            </div><!--tabpane-->
+          <%end%>
+        </div><!--tabcontent-->
+      </div><!--span10-->
+      </div><!--rowfluid-->
+      </div><!--tabpane-->
       <%end%>
     <%end%>
   </div><!--tabcontent-->
-</div><!--tabbable-->
+</div><!--span8-->
+</div><!--rowfluid-->

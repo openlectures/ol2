@@ -7,6 +7,7 @@
 .white 			{color:	$white;}
 .gray 			{color:	$grayDark;}
 .fuckinglightgray { color: #999; }
+.muted      {color: #888;}
 
 /* Font Settings */
 
@@ -189,36 +190,5 @@ body > .page-alert {
   .page-alert .alert {
     width: 700px;
     margin-left: -375px;
-  }
-}
-
-/* Hover Buttons */
-
-.hover-grp {
-  .show-hover   { display: none; }
-  .cloak-hover  {
-    zoom: 1; // IE 7-
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-    filter: alpha(opacity=0);
-    -moz-opacity: 0;
-    -khtml-opacity: 0;
-    opacity: 0;
-  }
-  &:hover {
-    .hide-hover   { display: none; }
-    .show-hover   { display: inherit; }
-    .cloak-hover  {
-      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=1)";
-      filter: alpha(opacity=1);
-      -moz-opacity: 1;
-      -khtml-opacity: 1;
-      opacity: 1;
-    }
-  }
-}
-
-html.lt-ie8 {
-  .hover-grp {
-    &:hover { .show-hover   { display: inline-block; } }
   }
 }

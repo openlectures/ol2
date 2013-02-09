@@ -81,13 +81,6 @@ $headingsFontWeight:    normal;
 @import "icons";
 @import "utility-overrides";
 
-.tabbable {
-  font-size: 1em;
-}
-
-/* Tweak muted colour */
-.muted { color: #888; }
-
 /* TinyNav Logic */
 .tinynav { display: none }
 
@@ -195,6 +188,13 @@ input[type="color"],
     outline: 0;
     outline: thin dotted \9; /* IE6-9 */
     // .box-shadow(0 0 4px @accent);
+  }
+}
+
+.nav-list>li>a {
+  color: #888;
+  &:hover {
+    color: $accent;
   }
 }
 
