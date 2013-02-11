@@ -87,6 +87,9 @@ $headingsFontWeight:    normal;
 
 .nav-list > .active > a {
   text-shadow: none;
+  &:hover {
+    text-shadow:none;
+  }
 }
 
 /* TinyNav Logic */

@@ -339,8 +339,8 @@ application.js: application-e4be9b04df84cad78edee0e31985ac68.js
 application/index.js: application-e4be9b04df84cad78edee0e31985ac68.js
 schools.json: schools-2373b2409ff70950c242b231819fa022.json
 schools/index.json: schools-2373b2409ff70950c242b231819fa022.json
-application.css: application-380b8e7c89068d6e61bf8dae9bdc5a3c.css
-application/index.css: application-380b8e7c89068d6e61bf8dae9bdc5a3c.css
+application.css: application-2f56639443cbbcee22687d949d68eb19.css
+application/index.css: application-2f56639443cbbcee22687d949d68eb19.css
 reveal.css: reveal-f7829109f1de2d6977785908a404c896.css
 reveal/index.css: reveal-f7829109f1de2d6977785908a404c896.css
 jquery.js: jquery-08bbde0e2625ba65b3f4d03e5cf1c05d.js
