@@ -1,11 +1,11 @@
 <ul class="breadcrumb">
   <li><a href="<%=root_path%>" class="muted"><i class="icon-home"></i></a></li>
-  <li> <span class="divider">/</span> <%=link_to 'Subjects', subjects_path, :class=> "muted"%></li>
+  <li> <span class="divider">&gt;</span> <%=link_to 'Subjects', subjects_path, :class=> "muted"%></li>
   <% if controller.controller_name == 'topics'%>
-  <li> <span class="divider">/</span> <%=link_to @topic.subject.subject, subject_path(@topic.subject), :class=> "muted"%></li>
+  <li> <span class="divider">&gt;</span> <%=link_to @topic.subject.subject, subject_path(@topic.subject), :class=> "muted"%></li>
   <%end%>
   <% if controller.controller_name == 'lessons'%>
-  <li> <span class="divider">/</span> <%=link_to @lesson.subject.subject, subject_path(@lesson.subject), :class=> "muted"%></li>
-  <li> <span class="divider">/</span> <%=link_to truncate(@lesson.topic.topic,:length=>1000), topic_path(@lesson.topic), :class=> "muted"%></li>
+  <li> <span class="divider">&gt;</span> <%=link_to @lesson.subject.subject, subject_path(@lesson.subject), :class=> "muted"%></li>
+  <li> <span class="divider">&gt;</span> <%=link_to truncate(@lesson.topic.topic,:length=>1000), topic_path(@lesson.topic), :class=> "muted"%></li>
   <%end%>
 </ul>
