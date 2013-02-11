@@ -21,6 +21,7 @@ Ol2::Application.routes.draw do
 
   # Update Actions
   # match "subjects/actions/import" => "subjects#import", as: :import_subjects
+  match "checkpoints/actions/upload" => "checkpoints#upload", as: :upload_checkpoints
   match "seab_topics/actions/import" => "seab_topics#import", as: :import_seab_topics
   match "seab_sub_topics/actions/import" => "seab_sub_topics#import", as: :import_seab_sub_topics
   match "topics/actions/import" => "topics#import", as: :import_topics

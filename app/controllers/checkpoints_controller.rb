@@ -1,6 +1,6 @@
 class CheckpointsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :google_login, only: ["create", "update", "import"]
+  before_filter :google_login, only: ["create", "update", "import", "upload"]
 
   def google_login
     session = GoogleDrive.login(ENV["OL_GMAIL_USERNAME"],ENV["OL_GMAIL_PASSWORD"])
@@ -28,6 +28,7 @@ class CheckpointsController < ApplicationController
         @ws[row,6] = @checkpoint.objective
         @ws[row,7] = @checkpoint.question
         @ws[row,8] = @checkpoint.answer
+        @ws[row,9] = @checkpoint.position
         @ws.save()
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully created.' }
         format.json { render json: @checkpoint, status: :created, location: @checkpoint }
@@ -52,6 +53,7 @@ class CheckpointsController < ApplicationController
         @ws[row,6] = @checkpoint.objective
         @ws[row,7] = @checkpoint.question
         @ws[row,8] = @checkpoint.answer
+        @ws[row,9] = @checkpoint.position
         @ws.save()
         format.html { redirect_to @checkpoint, notice: 'Checkpoint was successfully updated.' }
         format.json { head :no_content }
@@ -77,5 +79,13 @@ class CheckpointsController < ApplicationController
   def import
     Checkpoint.import(@ws)
     redirect_to update_url, notice: "Imported!"
+  end
+
+  def upload
+    Checkpoint.all.each do |checkpoint|
+      row = checkpoint.id + 1
+      @ws[row,9] = checkpoint.position
+    end
+    @ws.save()
   end
 end

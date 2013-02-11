@@ -38,6 +38,7 @@ class Checkpoint < ActiveRecord::Base
       checkpoint.objective = ws[i+1,6]
       checkpoint.question = ws[i+1,7]
       checkpoint.answer=ws[i+1,8]
+      checkpoint.position=ws[i+1,9]
       checkpoint.save!
     end
   end
