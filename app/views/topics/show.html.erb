@@ -17,7 +17,7 @@
   <%@topic.lessons.each_with_index do |lesson,k|%>
     <%if lesson.checkpoints.count != 0%>
       <li <%='class=active' if k==0%>>
-        <%=link_to truncate(lesson.lesson.titleize),'#'+lesson.slug,:class=>'muted',:'data-toggle'=>'tab'%>
+        <%=link_to truncate(lesson.lesson),'#'+lesson.slug,:class=>'muted',:'data-toggle'=>'tab'%>
       </li>
     <%end%>
   <%end%>
@@ -51,7 +51,7 @@
               <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
               <div style="padding: 0 1em;">
               <h3 class="marginbot0">
-                <%=link_to checkpoint.checkpoint.titleize, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
+                <%=link_to checkpoint.checkpoint, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
               </h3>
               <p style="font-size:.85em; line-height:1.5;"><%=checkpoint.description%></p>
               </div><!--padding-->

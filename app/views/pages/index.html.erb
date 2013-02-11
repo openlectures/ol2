@@ -1,4 +1,35 @@
 <%- title "Welcome" %>
-<%content_for :fbog do%>
-<%= tag :meta, property: "og:description", content: "" %>
+<%content_for :header do%>
+  <%=image_tag 'logo.png'%>
 <%end%>
+<h3 class="lead align-center margintop-p"><%=Checkpoint.all.count%> <span class="olgreen">bite-sized</span> lectures in</h3>
+<div class="row-fluid">
+  <div class="span3 align-center">
+    <%=link_to(@subjects[0]) do%>
+    <%=image_tag 'economics-small.png'%>
+    <h5>Economics</h5>
+    <%end%>
+  </div><!--span3-->
+  <div class="span3 align-center">
+    <%=link_to(@subjects[1]) do%>
+    <%=image_tag 'chemistry-small.png'%>
+    <h5>Chemistry</h5>
+    <%end%>
+  </div><!--span3-->
+  <div class="span3 align-center">
+    <%=link_to(@subjects[6]) do%>
+    <%=image_tag 'mathematics-small.png'%>
+    <h5>Mathematics</h5>
+    <%end%>
+  </div><!--span3-->
+  <div class="span3 align-center">
+    <%=link_to(subjects_path) do%>
+    <%=image_tag 'more.png'%>
+    <h5>and more...</h5>
+    <%end%>
+  </div><!--span3-->
+</div><!--rowfluid-->
+<div class="align-center">
+<p style="font-size:1em;">Free online education for <span class="salmon">anyone who wants to learn,</span><br/><span class="muted">custom-made for the Singapore curriculum</span></p>
+<h3 class="margin-reset"><%=link_to 'Read More',team_path%></h3>
+</div>
