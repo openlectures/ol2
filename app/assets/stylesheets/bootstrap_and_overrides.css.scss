@@ -64,7 +64,7 @@ $headingsFontWeight:    normal;
 // @import "bootstrap/labels-badges";
 @import "bootstrap/progress-bars";
 // @import "bootstrap/carousel";
-// @import "bootstrap/hero-unit";
+@import "bootstrap/hero-unit";
 
 // Components: Responsive Layout
 @import "bootstrap/responsive-utilities";
@@ -80,6 +80,14 @@ $headingsFontWeight:    normal;
 @import "button-groups";
 @import "icons";
 @import "utility-overrides";
+
+.hero-unit {
+  background-color: #f5f5f5;
+}
+
+.nav-list > .active > a {
+  text-shadow: none;
+}
 
 /* TinyNav Logic */
 .tinynav { display: none }
