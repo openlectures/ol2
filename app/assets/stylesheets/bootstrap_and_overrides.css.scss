@@ -85,6 +85,16 @@ $headingsFontWeight:    normal;
   background-color: #f5f5f5;
 }
 
+#lesson-start {
+  background-color: $grayLighter;
+  -webkit-border-radius: 0 0 6px 6px;
+  & a:hover {
+    background-color: $accent;
+    color: $gray;
+    -webkit-border-radius: 0 0 6px 6px;
+  }
+}
+
 .nav-list > .active > a {
   text-shadow: none;
   &:hover {

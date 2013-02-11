@@ -49,13 +49,13 @@
           <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,m|%>
             <div class="margintop0 tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
               <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
-              <div style="padding: 0 0.5em;">
+              <div style="padding: 0 1em;">
               <h3 class="marginbot0">
                 <%=link_to checkpoint.checkpoint.titleize, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
               </h3>
-              <p style="font-size:.85em;"><%=checkpoint.description%></p>
+              <p style="font-size:.85em; line-height:1.5;"><%=checkpoint.description%></p>
               </div><!--padding-->
-              <ul class="nav nav-list align-center">
+              <ul id="lesson-start" class="nav nav-list align-center">
               <li><%=link_to '<i class="icon-angle-down"></i> Start Lesson <i class="icon-angle-down"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%></li>
               </ul><!--nav-->
             </div><!--tabpane-->
