@@ -5,8 +5,8 @@ folder 'vendor/assets/javascripts/compiled' do
   file 'meny.min.js',       'https://raw.github.com/hakimel/Meny/master/js/meny.min.js'
   file 'review.min.js',     'http://responsiveviewport.com/js/ReView0.65b.js'
   file 'rails.js',          'https://raw.github.com/rails/jquery-ujs/master/src/rails.js'
-  file 'reveal.min.js',     'https://raw.github.com/hakimel/reveal.js/master/js/reveal.min.js'
   file 'qrcode.min.js',     'https://raw.github.com/jeromeetienne/jquery-qrcode/master/jquery.qrcode.min.js'
+  file 'balancetext.js',    'https://raw.github.com/adobe-webplatform/balance-text/master/jquery.balancetext.js'
 end
 
 folder 'vendor/assets/javascripts/fallback' do

@@ -13,13 +13,13 @@
       	</div><!--span1-->
 	      <div class="span3 align-right" style="margin-left:6%">
 	        <h5 class="muted margintop0 marginbot0 line-10">CHECKPOINT <%=checkpoint.position%></h5>
-          <h3 class="margintop0 hidden-phone line-10"><%=checkpoint.checkpoint.titlecase%></h3>
-	        <p class="margintop0 line-14"><%=checkpoint.description%></p>
+          <h3 class="margintop0 line-10 balance-text"><%=checkpoint.checkpoint.titlecase%></h3>
+	        <p class="margintop0 line-14 balance-text"><%=checkpoint.description%></p>
+          <div class="align-right">
           <p><a href="#" class="navigate-next">Next <i class="icon-angle-right"></i></a></p>
-          <br/>
-          <br/>
+          </div><!--alignright-->
           <small>
-          <p class="muted"><a href="#" class="muted" role="button" data-toggle="modal" data-target="#mobile"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted" role="button" data-toggle="modal" data-target="#report_error"><i class="icon-exclamation-sign"></i> Report Error</a></p>
+          <p class="muted"><a href="#" class="muted mobile" role="button"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted report_error" role="button"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </small>
 	      </div><!--span3-->
 	      <div class="span6">
@@ -51,18 +51,17 @@
       	</div><!--span1-->
         <div class="span3 align-right">
           <h5 class="muted margintop0 marginbot0 line-10" style="line-height:1">QUESTION <%=checkpoint.position%></h5>
-          <h3 class="margintop0 line-10"><%=checkpoint.checkpoint.titlecase%></h3>
-          <p class="margintop0 line-14"><%=checkpoint.question%></p>
-          <br/>
+          <h3 class="margintop0 line-10 balance-text"><%=checkpoint.checkpoint.titlecase%></h3>
+          <p class="margintop0 line-14 balance-text"><%=checkpoint.question%></p>
+          <div class="align-right">
           <p><a href="#" class="navigate-next">Next <i class="icon-angle-right"></i></a></p>
-          <br/>
-          <br/>
+          </div><!--align-right-->
           <small>
-          <p class="muted"><a href="#mobile" class="muted" role="button" data-toggle="modal" data-backdrop="false"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#report_error" class="muted" role="button" data-toggle="modal" data-backdrop="false"><i class="icon-exclamation-sign"></i> Report Error</a></p>
+          <p class="muted"><a href="#" class="muted mobile" role="button"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted report_error" role="button"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </small>
         </div><!--span3-->
         <div class="span6 offset1 align-left">
-          <p class="line14"><%=checkpoint.answer%></p>
+          <p class="line-16"><%=checkpoint.answer%></p>
         </div><!--span6-->
         <div class="span1">
       		<h3>
