@@ -5,7 +5,7 @@
     <a href="#" id="keep" class="salmon"><i class="icon-minus"></i></a>
   </div>
   <div class="accordion" id="syllabus" role="tab">
-  <%@subject.seab_topics.each do |topic|%>
+  <%@subject.seab_topics.order("position").each do |topic|%>
     <div class="accordion-group marginbot-p" role="tabpanel">
       <div class="accordion-heading">
         <a class="accordion-toggle" data-toggle="collapse"  href="#<%=topic.id%>">

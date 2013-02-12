@@ -85,12 +85,12 @@ $headingsFontWeight:    normal;
   background-color: #f5f5f5;
 }
 
-#lesson-start {
+.action-link {
   background-color: $grayLighter;
   -webkit-border-radius: 0 0 6px 6px;
   & a:hover {
-    background-color: $accent;
-    color: $gray;
+    background-color: $accent !important;
+    color: $gray !important;
     -webkit-border-radius: 0 0 6px 6px;
   }
 }
