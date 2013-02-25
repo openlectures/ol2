@@ -1,7 +1,4 @@
 <%title @topic.topic%>
-<%content_for :header do%>
-  <%=link_to image_tag('economics.png'), subject_path(@topic.subject)%>
-<%end%>
 <%content_for :slogan do%>
 <%=@topic.topic%>
 <%end%>
@@ -55,7 +52,7 @@
               </h3>
               <p style="font-size:.85em; line-height:1.5;"><%=checkpoint.description%></p>
               </div><!--padding-->
-              <ul class="action-link nav nav-list align-center">
+              <ul class="action-link nav nav-list align-center" style="font-size:1.3em;">
               <li><%=link_to '<i class="icon-angle-down"></i> Start Lesson <i class="icon-angle-down"></i>'.html_safe,lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%></li>
               </ul><!--nav-->
             </div><!--tabpane-->

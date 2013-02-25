@@ -1,17 +1,13 @@
 <%title @subject.subject%>
-<%content_for :header do%>
-  <%=image_tag 'economics.png'%>
-<%end%>
 <%content_for :slogan do%>
-  <%=@subject.subject%><br/>
-  <span class="lead"><span class="salmon"><%=@subject.checkpoints.count%></span> checkpoints in <span class="salmon"><%=@subject.lessons.count%></span> lessons</span>
+  <%=@subject.subject%>
 <%end%>
 <div class="row-fluid">
   <div class="span12">
     <ul class="nav nav-pills marginbot0 element-center" role="tablist">
       <li class="active"><a href="#seab" data-toggle="tab">GCE A-Level Syllabus</a></li>
       <li><a href="#subway" data-toggle="tab">Subway Map</a></li>
-      <li><a href="#listcheckpoints" data-toggle="tab">All Checkpoints</a></li>
+      <li><a href="#listcheckpoints" data-toggle="tab">Search All Checkpoints</a></li>
     </ul>
   </div>
 </div>

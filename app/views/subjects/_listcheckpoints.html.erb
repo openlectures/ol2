@@ -1,11 +1,11 @@
 <div class="tab-pane fade" id="listcheckpoints">
   <div id="checkpoint-list">
-    <input type="search" class="search span10 offset1 aligncenter marginbot-h3" placeholder="Filter List">
+    <input type="search" class="search span10 offset1 align-center marginbot-h3" placeholder="Search e.g. 'Consumer Expenditure' or 'Demand'">
     <table class="table table-hover table-condensed">
       <thead>
         <tr>
-          <th><i class="icon-checkpoint"></i> Checkpoint</th>
-          <th><i class="icon-lesson"></i> Lesson</th>
+          <th><i class="icon-checkpoint"></i> Checkpoint <small><a href="#" class="sort" data-sort="checkpoint">Sort A-Z</a></small></th>
+          <th><i class="icon-lesson"></i> Lesson <small><a href="#" class="sort" data-sort="lesson">Sort A-Z</a></small></th>
         </tr>
       </thead>
       <tbody class="list">
@@ -23,12 +23,3 @@
       </tbody>
     </table>
 </div><!--tabpane-->
-<%-content_for :javascripts do%>
-<script>
-var options = {
-    valueNames: ['checkpoint', 'lesson']
-};
-
-var checkpointList = new List('checkpoint-list', options);
-</script>
-<%end%>

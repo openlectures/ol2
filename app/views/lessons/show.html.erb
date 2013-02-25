@@ -21,7 +21,7 @@
           <p class="muted"><a href="#" class="muted mobile" role="button"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted report_error" role="button"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </div><!--padding-->
           <ul class="nav nav-list align-center action-link" style="font-size:0.8em;">
-          <li><a href="#" class="navigate-next"><i class="icon-angle-down"></i> Next <i class="icon-angle-down"></i></a></li>
+          <li><a href="#" class="navigate-next"><i class="icon-angle-down"></i>Try a Question <i class="icon-angle-down"></i></a></li>
           </ul><!--nav-->
 	      </div><!--span3-->
 	      <div class="span6">
@@ -55,13 +55,13 @@
           <div class="align-center muted">
             <small>QUESTION <%=checkpoint.position%></small>
           </div><!--aligncenter-->
-          <h3 class="margintop0 line-10 balance-text"><%=checkpoint.checkpoint.titlecase%></h3>
+          <h3 class="margintop0 line-10 balance-text"><%=checkpoint.checkpoint%></h3>
           <div style="padding: 0 1em;">
           <p class="margintop0 line-14 balance-text"><%=checkpoint.question%></p>
           <p class="muted"><a href="#" class="muted mobile" role="button"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted report_error" role="button"><i class="icon-exclamation-sign"></i> Report Error</a></p>
           </div><!--padding-->
           <ul class="nav nav-list align-center action-link" style="font-size:0.8em;">
-          <li><a href="#" class="navigate-next"><i class="icon-angle-right"></i> Next <i class="icon-angle-right"></i></a></li>
+          <li><a href="#" class="navigate-next">Next Checkpoint<i class="icon-angle-right"></i></a></li>
           </ul><!--nav-->
         </div><!--span3-->
         <div class="span6 align-left">
@@ -69,7 +69,7 @@
         </div><!--span6-->
         <div class="span1">
       		<h3>
-            <a href="#" class="navigate-right" rel="tooltip" title="NEXT QUESTION" data-placement="left">
+            <a href="#" class="navigate-right" rel="tooltip" title="NEXT" data-placement="left">
               <i class="icon-caret-right line-04"></i>
             </a>
           </h3>
@@ -79,16 +79,16 @@
   </section>
 <%end%>
 <section>
-  <%=image_tag 'medal.png', :class=>'margintop-h1'%>
-  <h3 class="marginbot0"><span class="salmon">anddd you're done!</span> Here's what we did in this lesson:</h3>
+  <%=image_tag 'medal.png', :class=>'margintop-h1',:width=>'80px'%>
+  <h5 class="marginbot0"><span class="salmon">anddd you're done!</span> Here's what we did in this lesson:</h5>
   <div class="row-fluid marginbot-h3">
     <div class="span8 offset2 align-left">
-      <ul class="icons cmun">
+      <ul class="icons cmun" style="font-size:0.8em;">
         <%@lesson.checkpoints.order("position").each do |checkpoint|%>
-          <li class="objective"><i class="icon-check-empty"></i> <%=checkpoint.objective%></li>
+          <li class="objective"><i class="icon-check-empty"></i> <%=checkpoint.objective%> <small><a href="#/<%=checkpoint.position%>">Review</a></small></li>
         <%end%>
       </ul><!--icons-->
     </div><!--span8-->
   </div><!--rowfluid-->
-   <%=link_to '<i class="icon-arrow-up"></i> Back to Lesson Overview <i class="icon-arrow-up"></i> '.html_safe, topic_path(@lesson.topic)%>
+   <%=link_to 'Back to Lesson Overview', topic_path(@lesson.topic)%>
 </section>

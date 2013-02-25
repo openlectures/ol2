@@ -16,7 +16,7 @@
     </div><!--page-alert-->
     <div class="row-fluid">
     <div class="span2 fuckinglightgray margintop-p hidden-phone">
-      <div class="menu" style="position:fixed">
+      <div class="menu" style="position:fixed;font-size:0.85em;">
       <i class="icon-reorder muted"></i> Menu
       </div><!--menu-->
     </div><!--span2-->
@@ -28,7 +28,7 @@
     <%end%>
     <% if content_for?(:slogan) %>
       <heading class="align-center">
-        <h1 role="banner"><%=yield :slogan %></h1>
+        <h2 role="banner"><%=yield :slogan %></h2>
       </heading>
     <%end%>
     <% if content_for?(:description) %>
@@ -91,6 +91,12 @@
   </script>
   <%end%>
   <%=javascript_include_tag 'application'%>
+  <%if controller.controller_name == 'subjects'%>
+  <script>
+    var options = {valueNames: ['checkpoint', 'lesson']};
+    var checkpointList = new List('checkpoint-list', options);
+  </script>
+  <%end%>
   <script>
   var meny = Meny; // Back up Meny
   var toggle = -1;
