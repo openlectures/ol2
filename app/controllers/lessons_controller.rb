@@ -9,7 +9,7 @@ class LessonsController < ApplicationController
 
   def show
     @lesson = Lesson.find(params[:id])
-
+    @email = @lesson.user.email
     respond_to do |format|
       format.html {render layout: "reveal"}
       # format.html {render layout: "reveal"}
@@ -88,5 +88,11 @@ class LessonsController < ApplicationController
   def import
     Lesson.import(@ws)
     redirect_to update_url, notice: "Imported!"
+  end
+
+  def report_error
+  UserMailer.welcome_message("jethrokuan95@gmail.com").deliver()
+    # UserMailer.report_error(params[:error],params[:email]).deliver()
+    redirect_to(:back)
   end
 end

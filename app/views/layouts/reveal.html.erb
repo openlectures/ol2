@@ -25,10 +25,11 @@
       <h3>Report Error</h3>
     </div><!--header-->
     <div class="modal-body">
-      <form>
-        <textarea rows="6" class="input-block-level" placeholder="What's the problem?" required autofocus style="font-size:75%;"></textarea>
-        <input type="email" class="input-block-level"  placeholder="Your Email Address (optional)" style="font-size:75%;">
-      </form>
+      <%=form_tag(:controller => "lessons", :action => "report_error") do |f|%>
+        <%=f.text_area_tag 'error', nil, rows: "6", class: "input-block-level", placeholder: "What's the problem?", style:"font-size:75%;"%>
+        <%=f.text_field_tag 'email', nil, class: "input-block-level", placeholder: "Your Email Address (optional)", style:"font-size:75%;"%>
+        <%=f.submit_tag%>
+      <%end%>
     </div><!--body-->
     <div class="modal-footer align-center">
       <button class="btn btn-mini" style="width:50%; font-size:75%;">Submit</button>

@@ -21,9 +21,8 @@ class PagesController < ApplicationController
   def team
   end
 
-  def send_email
-    UserMailer.welcome_message(current_user).deliver
-
-    render text: "Done"
+  def report_error
+    UserMailer.report_error(current_user).deliver
+    redirect_to(:back)
   end
 end

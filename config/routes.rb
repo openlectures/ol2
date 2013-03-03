@@ -29,6 +29,7 @@ Ol2::Application.routes.draw do
   match "checkpoints/actions/import" => "checkpoints#import", as: :import_checkpoints
   match "summaries/actions/import" => "summaries#import", as: :import_summaries
   match "subjects/actions/import" => "subjects#import", as: :import_subjects
+  match "/report_error" => "lessons#report_error", as: :report_error
 
   match "/seab_topics/display/:id" => "seab_topics#display_topic", as: :display_topic
 
