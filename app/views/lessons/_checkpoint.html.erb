@@ -1,0 +1,38 @@
+  <section>
+    <h3>
+      <a href="#" class="navigate-up" rel="tooltip" title="BACK TO LECTURE" data-placement="bottom"><i class="icon-caret-up"></i></a>
+    </h3>
+    <div class="row-fluid" style="margin-top:6em">
+      <div class="span1">
+        <h3>
+          <a href="#" class="navigate-left" rel="tooltip" title="PREVIOUS QUESTION" data-placement="right">
+            <i class="icon-caret-left line-04"></i>
+          </a>
+        </h3>
+      </div><!--span1-->
+      <div class="span3 hero-unit pad-reset" style="font-size:.8em;margin-left:5em;">
+        <div class="align-center muted">
+          <small>QUESTION 1</small>
+        </div><!--aligncenter-->
+        <h3 class="margintop0 line-10 balance-text"><%=@checkpoint.checkpoint%></h3>
+        <div style="padding: 0 1em;">
+        <p class="margintop0 line-14 balance-text"><%=@checkpoint.question%></p>
+        <!-- <p class="muted"><a href="#" class="muted mobile" role="button"><i class="icon-qrcode"></i> Send to Phone</a> | <a href="#" class="muted report_error" role="button"><i class="icon-exclamation-sign"></i> Report Error</a></p> -->
+        </div><!--padding-->
+        <ul class="nav nav-list align-center action-link" style="font-size:0.8em;">
+        <li><a href="#" class="navigate-next">Next Checkpoint<i class="icon-angle-right"></i></a></li>
+        </ul><!--nav-->
+      </div><!--span3-->
+      <div class="span6 align-left">
+        <p class="line-16"><%=@checkpoint.answer%></p>
+      </div><!--span6-->
+      <div class="span1">
+        <h3>
+          <a href="#" class="navigate-right" rel="tooltip" title="NEXT" data-placement="left">
+            <i class="icon-caret-right line-04"></i>
+          </a>
+        </h3>
+      </div><!--span1-->
+    </div><!--rowfluid-->
+  </section>
+
