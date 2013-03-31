@@ -26,7 +26,7 @@
           </ul><!--nav-->
 	      </div><!--span3-->
         <div class="span6">
-          <%if checkpoint.videourl=="http://youtu.be/dummyvar10"%>
+          <%if checkpoint.videourl != "http://youtu.be/dummyvar10"%>
 	        <div class="videoWrapper">
 	          <iframe id="player<%=checkpoint.position-1%>" seamless src="<%=checkpoint.parsed_url.html_safe%>" frameborder="0"></iframe>
           </div><!--videoWrapper-->

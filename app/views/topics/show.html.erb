@@ -13,9 +13,11 @@
   <ul class="nav nav-list margintop0 marginbot-p">
   <%@topic.lessons.each_with_index do |lesson,k|%>
     <%if lesson.checkpoints.count != 0%>
+      <%if lesson.checkpoints.first.videourl != "http://youtu.be/dummyvar10"%>
       <li <%='class=active' if k==0%>>
         <%=link_to truncate(lesson.lesson),'#'+lesson.slug,:class=>'muted',:'data-toggle'=>'tab'%>
       </li>
+      <%end%>
     <%end%>
   <%end%>
   </ul><!--navtabs-->
@@ -32,9 +34,11 @@
         </div><!--aligncenter-->
         <ul class="nav nav-list align-center margintop0 marginbot-p">
         <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,j|%>
+          <%if checkpoint.videourl != "http://youtu.be/dummyvar10"%>
           <li <%='class=active' if j==0%>>
             <%=link_to checkpoint.position, '#'+checkpoint.slug,:class=>'muted',:'data-toggle'=>'tab'%>
           </li>
+          <%end%>
         <%end%>
         </ul><!--navtabs-->
       </div><!--span1-->

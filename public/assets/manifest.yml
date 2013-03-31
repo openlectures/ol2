@@ -31,8 +31,6 @@ miso-regular.ttf: miso-regular-abb470570210c05b5b979bdf533500a9.ttf
 miso-regular/index.ttf: miso-regular-abb470570210c05b5b979bdf533500a9.ttf
 miso-regular.woff: miso-regular-b3d69732ae76db8ad49671cd06fb4d95.woff
 miso-regular/index.woff: miso-regular-b3d69732ae76db8ad49671cd06fb4d95.woff
-ambassador.svg: ambassador-1b7c6b8fa77edd68d5292dbcc1914663.svg
-ambassador/index.svg: ambassador-1b7c6b8fa77edd68d5292dbcc1914663.svg
 apple-touch-icon-114x114-precomposed.png: apple-touch-icon-114x114-precomposed-8d756eb9339582066a31380ab0be4674.png
 apple-touch-icon-114x114-precomposed/index.png: apple-touch-icon-114x114-precomposed-8d756eb9339582066a31380ab0be4674.png
 apple-touch-icon-144x144-precomposed.png: apple-touch-icon-144x144-precomposed-7a3e478d2da345d2eb3ddbb25f0765a2.png
@@ -61,8 +59,6 @@ chemistry.png: chemistry-ca042d8877f9a56d4e8c3343e957fd54.png
 chemistry/index.png: chemistry-ca042d8877f9a56d4e8c3343e957fd54.png
 chemistry.svg: chemistry-78a9cadd4bb954616264e15e0111353c.svg
 chemistry/index.svg: chemistry-78a9cadd4bb954616264e15e0111353c.svg
-codemonkey.svg: codemonkey-e83c8d5e67a5378ba8a83c5827b855fc.svg
-codemonkey/index.svg: codemonkey-e83c8d5e67a5378ba8a83c5827b855fc.svg
 dslr.svg: dslr-58d73e6a09fd7dfa582c620aedb675fd.svg
 dslr/index.svg: dslr-58d73e6a09fd7dfa582c620aedb675fd.svg
 economics-small.png: economics-small-82f49499bc1271ff27b4ee759a66a5a2.png
@@ -113,8 +109,6 @@ more.png: more-c703eeb58c3dc34dc3553d4a699070e2.png
 more/index.png: more-c703eeb58c3dc34dc3553d4a699070e2.png
 more.svg: more-d46cd1d93b3985828d8318a7c4ef9246.svg
 more/index.svg: more-d46cd1d93b3985828d8318a7c4ef9246.svg
-octopus.svg: octopus-4627ce7d4ad99d709950a6301d32bc0d.svg
-octopus/index.svg: octopus-4627ce7d4ad99d709950a6301d32bc0d.svg
 organization.png: organization-125a36567d5429b310125f65237dfc14.png
 organization/index.png: organization-125a36567d5429b310125f65237dfc14.png
 organization.svg: organization-95f6d76bb803ffdf288cdabc57624d72.svg
@@ -147,8 +141,6 @@ select2.png: select2-dd52d2a9fb1c9fa4a36a773d90c1a549.png
 select2/index.png: select2-dd52d2a9fb1c9fa4a36a773d90c1a549.png
 select2x2.png: select2x2-1a4897c7f449c5e69df6e1dd6e91b369.png
 select2x2/index.png: select2x2-1a4897c7f449c5e69df6e1dd6e91b369.png
-spd.svg: spd-2f05c0d768b2a022f2b69ae6c7365c8d.svg
-spd/index.svg: spd-2f05c0d768b2a022f2b69ae6c7365c8d.svg
 subjects.png: subjects-2c89aad01b9f78f8269bfef566ff5601.png
 subjects/index.png: subjects-2c89aad01b9f78f8269bfef566ff5601.png
 subjects.svg: subjects-cdec15272476214dd0cb5ef134a2dc29.svg
@@ -165,8 +157,6 @@ tesseract.svg: tesseract-539b67a81c9de2a3c3726d6996a752c2.svg
 tesseract/index.svg: tesseract-539b67a81c9de2a3c3726d6996a752c2.svg
 translation.svg: translation-2870e4182a4848eef43ee286ddce600d.svg
 translation/index.svg: translation-2870e4182a4848eef43ee286ddce600d.svg
-user.svg: user-989981b3c4f6cbb52f0910305ae8f253.svg
-user/index.svg: user-989981b3c4f6cbb52f0910305ae8f253.svg
 work.png: work-2c7bb7db3fa2de297217fe7260d11993.png
 work/index.png: work-2c7bb7db3fa2de297217fe7260d11993.png
 work.svg: work-89ed0cbb2ea9d8f61d5ae0993d310184.svg
