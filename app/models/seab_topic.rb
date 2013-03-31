@@ -1,7 +1,7 @@
 class SeabTopic < ActiveRecord::Base
   attr_accessible :description, :position, :topic, :subject_id
   #Validations
-  validates_presence_of :topic, :description, :subject_id
+  # validates_presence_of :topic, :description, :subject_id
 
   #Relations
   belongs_to :subject
