@@ -11,9 +11,9 @@
     <small>LESSON</small>
   </div><!--aligncenter-->
   <ul class="nav nav-list margintop0 marginbot-p">
-  <%@topic.lessons.each_with_index do |lesson,k|%>
+  <%@topic.lessons.order(:position).each_with_index do |lesson,k|%>
     <%if lesson.checkpoints.count != 0%>
-      <%if lesson.checkpoints.first.videourl != "http://youtu.be/dummyvar10"%>
+      <%if lesson.checkpoints[0].videourl != "http://youtu.be/dummyvar10"%>
       <li <%='class=active' if k==0%>>
         <%=link_to truncate(lesson.lesson),'#'+lesson.slug,:class=>'muted',:'data-toggle'=>'tab'%>
       </li>
