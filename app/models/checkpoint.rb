@@ -1,7 +1,7 @@
 class Checkpoint < ActiveRecord::Base
   attr_accessible :checkpoint, :description, :lesson_id, :objective, :position, :videourl, :question, :answer
   #Validations
-  validates_presence_of :checkpoint, :description, :lesson_id, :objective, :videourl, :question, :answer
+  # validates_presence_of :checkpoint, :description, :lesson_id, :objective, :videourl, :question, :answer
 
   #Relations
   belongs_to :lesson
