@@ -19,38 +19,6 @@
       <%=yield%>
       </div><!--slides-->
   </div><!--reveal-->
-  <div id="report_error" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="report_error" aria-hidden="true">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-      <h3>Report Error</h3>
-    </div><!--header-->
-    <div class="modal-body">
-      <%=form_tag(:controller => "lessons", :action => "report_error") do |f|%>
-        <%=text_area_tag 'error', nil, rows: "6", class: "input-block-level", placeholder: "What's the problem?", style:"font-size:75%;", required: "required"%>
-        <%=email_field_tag 'email', nil, class: "input-block-level", placeholder: "Your Email Address (optional)", style:"font-size:75%;"%>
-      <%end%>
-    </div><!--body-->
-    <div class="modal-footer align-center">
-      <%=form_tag(:controller => "lessons", :action => "report_error") do |f|%>
-       <%=submit_tag 'Submit', disable_with: "Submitting...", class: "btn btn-mini", style: "width:50%;font-size:75%"%>
-       <%end%>
-    </div><!--footer-->
-  </div><!--modal-->
-  <div id="mobile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mobile" aria-hidden="true">
-    <div class="modal-header align-center">
-      <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="icon-remove"></i></button>
-      <h3>Send to Phone</h3>
-    </div><!--header-->
-    <div class="modal-body align-center padtop0">
-      <div id="qrcode" class="margintop-p marginbot-p" style="margin:0 auto;" data-url="<%=url_for(:only_path => false)%>"></div>
-      <form>
-        <input type="url" class="input-block-level align-center" value="<%=url_for(:only_path => false)%>" onClick="this.select()" style="font-size:75%;">
-      </form>
-    </div><!--body-->
-    <div class="modal-footer align-center">
-      <button class="btn btn-mini" data-dismiss="modal" style="width:50%; font-size:75%;">Close</button>
-    </div><!--footer-->
-  </div><!--modal-->
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <%=javascript_include_tag "application"%>
   <script>
