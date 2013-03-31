@@ -18,6 +18,7 @@
   </thead>
   <tbody class="list" role="rowgroup">
   <%Subject.all.each do |subject|%>
+  <% if subject.lessons.count != 0 %>
     <tr role="row">
       <td class="subject"><%=link_to subject.subject, subject_path(subject)%></td>
       <td class="lessons"><%=subject.lessons.count%></td>
@@ -32,6 +33,7 @@
         </td>
       <%end%>
     </tr>
+  <%end%>
   <%end%>
   </tbody>
 </table>
