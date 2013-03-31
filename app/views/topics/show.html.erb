@@ -11,7 +11,7 @@
     <small>LESSON</small>
   </div><!--aligncenter-->
   <ul class="nav nav-list margintop0 marginbot-p">
-  <%@topic.lessons.order(:position).each_with_index do |lesson,k|%>
+  <%@topic.lessons.order(:position ASC).each_with_index do |lesson,k|%>
     <%if lesson.checkpoints.count != 0%>
       <%if lesson.checkpoints[0].videourl != "http://youtu.be/dummyvar10"%>
       <li <%='class=active' if k==0%>>
@@ -33,7 +33,7 @@
           <small>NO.</small>
         </div><!--aligncenter-->
         <ul class="nav nav-list align-center margintop0 marginbot-p">
-        <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,j|%>
+        <%lesson.checkpoints.order(:position ASC).each_with_index do |checkpoint,j|%>
           <%if checkpoint.videourl != "http://youtu.be/dummyvar10"%>
           <li <%='class=active' if j==0%>>
             <%=link_to checkpoint.position, '#'+checkpoint.slug,:class=>'muted',:'data-toggle'=>'tab'%>
@@ -47,7 +47,7 @@
           <small>DETAILS</small>
         </div><!--aligncenter-->
         <div class="tab-content pad-reset">
-          <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,m|%>
+          <%lesson.checkpoints.order(:position ASC).each_with_index do |checkpoint,m|%>
             <div class="margintop0 tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
               <%if checkpoint.videourl=="http://youtu.be/dummyvar10"%>
                 Coming Soon!
