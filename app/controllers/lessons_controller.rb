@@ -8,7 +8,7 @@ class LessonsController < ApplicationController
   end
 
   def index
-    @lessons = Lesson.text_search(params[:query])
+    @items = PgSearch.multisearch(params[:query])
 
     respond_to do |format|
       format.html # index.html.erb

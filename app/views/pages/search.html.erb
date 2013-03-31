@@ -1,0 +1,40 @@
+<%title "Search Results"%>
+<%content_for :header do%>
+  <%=image_tag 'subjects.png'%>
+<%end%>
+<%content_for :slogan do%>
+  Search Results
+<%end%>
+<%if @items.count == 0%>
+  <%content_for :description do%>
+    Oh noes, it looks like we don't have what you're looking for :(Give it another go, or drop us a <%= mail_to("hello@openlectures.org", "note", :encode => "javascript") %>?
+  <%end%>
+<%end%>
+<%=form_tag search_path, method: :get do%>
+<%=search_field_tag :query, params[:query], class: "input-block-level marginbot-p align-center", id: "Search",placeholder: "Search Lectures"%>
+<%=submit_tag nil, class: "hidden"%>
+<%end%>
+<%if @items.count != 0%>
+<table class="table table-hover table-condensed">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Title</th>
+    </tr>
+  </thead>
+<%@items.order(:searchable_type).each do |item| %>
+  <tbody class="lesson-list">
+        <tr>
+          <%if item.searchable_type == "Lesson"%>
+            <td>Lesson</td>
+            <td class="lesson"><%=link_to item.content, root_path+"lessons/"+item.content.parameterize%></td>
+          <%end%>
+        </tr>
+          <%if item.searchable_type == "Topic"%>
+            <td>Topic</td>
+            <td class="lesson"><%=link_to item.content, root_path+"topics/"+item.content.parameterize%></td>
+          <%end%>
+  <%end%>
+  </tbody>
+</table>
+<%end%>

@@ -13,6 +13,10 @@ class Topic < ActiveRecord::Base
   extend FriendlyId
   friendly_id :topic, use: :slugged
 
+  include PgSearch
+  multisearchable :against => [:topic],
+  using: {tsearch: {dictionary: "english"}}
+
   #Listing
   acts_as_list :scope => :seab_sub_topic
 

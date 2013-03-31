@@ -1,4 +1,12 @@
 class PagesController < ApplicationController
+  def search
+    @items = PgSearch.multisearch(params[:query])
+
+    respond_to do |format|
+      format.html # index.html.erb
+    end
+  end
+
   def index
     if user_signed_in?
         redirect_to manage_path
