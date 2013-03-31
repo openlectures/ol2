@@ -10,7 +10,7 @@
     Oh noes, it looks like we don't have what you're looking for :(Give it another go, or drop us a <%= mail_to("hello@openlectures.org", "note", :encode => "javascript") %>?
   <%end%>
 <%end%>
-<%=form_tag lessons_path, method: :get do%>
+<%=form_tag search_path, method: :get do%>
 <%=search_field_tag :query, params[:query], class: "input-block-level marginbot-p align-center", id: "Search",placeholder: "Search Lectures"%>
 <%=submit_tag nil, class: "hidden"%>
 <%end%>
