@@ -11,7 +11,7 @@ Ol2::Application.routes.draw do
 
   #Resources
   resources :checkpoints, except: [:index,:show,:new]
-  resources :lessons, except: [:new] do
+  resources :lessons, except: [:new, :index] do
     collection {post :sort}
   end
   resources :topics, except: [:index, :new] do
@@ -42,6 +42,7 @@ Ol2::Application.routes.draw do
   match "/update" => "usr#update", as: :update
 
   #Pages Controller
+  match "/search" => "pages#search", as: :search
   match "/contact" => "pages#contact", as: :contact
   match "/opportunities"=>"pages#opportunities", as: :opportunities
   match "/partners"=> "pages#partners", as: :partners
