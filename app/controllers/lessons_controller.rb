@@ -7,6 +7,15 @@ class LessonsController < ApplicationController
     @ws = session.spreadsheet_by_key(ENV["SPREADSHEET_KEY"]).worksheets[4]
   end
 
+  def index
+    @lessons = Lesson.text_search(params[:query])
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @lessons }
+    end
+  end
+
   def show
     @lesson = Lesson.find(params[:id])
     @email = @lesson.user.email

@@ -1,41 +1,34 @@
-<%title "Lessons"%>
-<h1>Lessons</h1>
-<hr>
-<div id="lesson-list">
-<input type="search" class="search input-block-level" placeholder="Filter List">
+<%title "Search Results"%>
+<%content_for :header do%>
+  <%=image_tag 'subjects.png'%>
+<%end%>
+<%content_for :slogan do%>
+  Search Results
+<%end%>
+<%if @lessons.count == 0%>
+<%content_for :description do%>
+Oh noes, it looks like we don't have what you're looking for :(Give it another go, or drop us a <%= mail_to("hello@openlectures.org", "note", :encode => "javascript") %>?
+  <%end%>
+<%end%>
+<%=form_tag lessons_path, method: :get do%>
+<%=search_field_tag :query, params[:query], class: "input-block-level marginbot-p align-center", id: "Search",placeholder: "Search Lectures"%>
+<%=submit_tag nil, class: "hidden"%>
+<%end%>
+<%if @lessons.count != 0%>
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
-      <th><a href="#" data-sort="title">Lesson</a></th>
-      <th><a href="#" data-sort="topic">Topic</a></th>
-      <th><a href="#" data-sort="lecturer">Lecturer</a></th>
-      <th>Functions</th>
+      <th>Lesson</th>
+      <th>Topic</th>
     </tr>
   </thead>
-  <tbody class="list">
-    <%@lessons.each do |lesson| %>
-      <tr>
-        <td class="title"><%=link_to(lesson.lesson,lesson)%></td>
-        <td class="topic"><%= lesson.topic.topic %></td>
-        <td class="lecturer"><%= lesson.user.fullname %></td>
-        <td>
-          <div class="btn-group">
-          <%=link_to("Edit",edit_lesson_path(lesson), class: "btn btn-mini")%>
-          <%=link_to("Delete", lesson, method: :delete, class: "btn btn-mini btn-danger")%>
-          </div>
-        </td>
-      </tr>
-    <%end%>
+  <tbody class="lesson-list">
+  <%@lessons.each do |lesson| %>
+  <tr>
+    <td class="lesson"><%=link_to(lesson.lesson,lesson)%></td>
+    <td class="topic"><%= lesson.topic.topic %></td>
+  </tr>
+  <%end%>
   </tbody>
 </table>
-</div><!--lessonlist-->
-
-<%content_for :javascripts do%>
-<script>
-var options = {
-    valueNames: ['title','topic','lecturer']
-};
-
-var lessonList = new List('lesson-list', options);
-</script>
 <%end%>

@@ -11,7 +11,7 @@ Ol2::Application.routes.draw do
 
   #Resources
   resources :checkpoints, except: [:index,:show,:new]
-  resources :lessons, except: [:index, :new] do
+  resources :lessons, except: [:new] do
     collection {post :sort}
   end
   resources :topics, except: [:index, :new] do

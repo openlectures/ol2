@@ -93,8 +93,8 @@
   <%=javascript_include_tag 'application'%>
   <%if controller.controller_name == 'subjects'%>
   <script>
-    var options = {valueNames: ['checkpoint', 'lesson']};
-    var checkpointList = new List('checkpoint-list', options);
+    var checkpoint_options = {valueNames: ['checkpoint', 'lesson']};
+    var checkpointList = new List('checkpoint-list', checkpoint_options);
   </script>
   <%end%>
   <script>

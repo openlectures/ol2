@@ -26,13 +26,14 @@
     </div><!--header-->
     <div class="modal-body">
       <%=form_tag(:controller => "lessons", :action => "report_error") do |f|%>
-        <%=f.text_area_tag 'error', nil, rows: "6", class: "input-block-level", placeholder: "What's the problem?", style:"font-size:75%;"%>
-        <%=f.text_field_tag 'email', nil, class: "input-block-level", placeholder: "Your Email Address (optional)", style:"font-size:75%;"%>
-        <%=f.submit_tag%>
+        <%=text_area_tag 'error', nil, rows: "6", class: "input-block-level", placeholder: "What's the problem?", style:"font-size:75%;", required: "required"%>
+        <%=email_field_tag 'email', nil, class: "input-block-level", placeholder: "Your Email Address (optional)", style:"font-size:75%;"%>
       <%end%>
     </div><!--body-->
     <div class="modal-footer align-center">
-      <button class="btn btn-mini" style="width:50%; font-size:75%;">Submit</button>
+      <%=form_tag(:controller => "lessons", :action => "report_error") do |f|%>
+       <%=submit_tag 'Submit', disable_with: "Submitting...", class: "btn btn-mini", style: "width:50%;font-size:75%"%>
+       <%end%>
     </div><!--footer-->
   </div><!--modal-->
   <div id="mobile" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mobile" aria-hidden="true">
@@ -41,7 +42,7 @@
       <h3>Send to Phone</h3>
     </div><!--header-->
     <div class="modal-body align-center padtop0">
-      <div id="qrcode" class="margintop-p marginbot-p" data-url="<%=url_for(:only_path => false)%>"></div>
+      <div id="qrcode" class="margintop-p marginbot-p" style="margin:0 auto;" data-url="<%=url_for(:only_path => false)%>"></div>
       <form>
         <input type="url" class="input-block-level align-center" value="<%=url_for(:only_path => false)%>" onClick="this.select()" style="font-size:75%;">
       </form>
@@ -76,7 +77,12 @@
     selector: "a[rel=tooltip]",
     delay: {hide: 500}
   });
-  $('#qrcode').qrcode($('#qrcode').data("url"));
+  $('#qrcode').qrcode({
+    render: 'canvas',
+    width:200,
+    height:200,
+    text: $('#qrcode').data("url")
+  });
   $('.mobile').on("click", function(event) {
     return $('#mobile').modal();
   });
