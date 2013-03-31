@@ -45,7 +45,11 @@
         <div class="tab-content pad-reset">
           <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,m|%>
             <div class="margintop0 tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
-              <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
+              <%if checkpoint.videourl=="http://youtu.be/dummyvar10"%>
+                Coming Soon!
+              <%else%>
+                <%=link_to image_tag(checkpoint.thumb_url),lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
+                <%end%>
               <div style="padding: 0 1em;">
               <h3 class="marginbot0">
                 <%=link_to checkpoint.checkpoint, lesson_path(lesson)+'#/'+(checkpoint.position-1).to_s%>
