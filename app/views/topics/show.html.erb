@@ -32,9 +32,11 @@
         </div><!--aligncenter-->
         <ul class="nav nav-list align-center margintop0 marginbot-p">
         <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,j|%>
+          <%if checkpoint.videourl!= "http://youtu.be/dummyvar10"%>
           <li <%='class=active' if j==0%>>
             <%=link_to checkpoint.position, '#'+checkpoint.slug,:class=>'muted',:'data-toggle'=>'tab'%>
           </li>
+          <%end%>
         <%end%>
         </ul><!--navtabs-->
       </div><!--span1-->
