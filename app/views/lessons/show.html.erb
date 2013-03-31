@@ -25,10 +25,14 @@
           <li><a href="#" class="navigate-next"><i class="icon-angle-down"></i>Try a Question <i class="icon-angle-down"></i></a></li>
           </ul><!--nav-->
 	      </div><!--span3-->
-	      <div class="span6">
+        <div class="span6">
+          <%if checkpoint.videourl="http://youtu.be/dummyvar10"%>
 	        <div class="videoWrapper">
 	          <iframe id="player<%=checkpoint.position-1%>" seamless src="<%=checkpoint.parsed_url.html_safe%>" frameborder="0"></iframe>
-	        </div><!--videoWrapper-->
+          </div><!--videoWrapper-->
+          <%else%>
+            Coming Soon!
+          <%end%>
 	      </div><!--span6-->
 	      <div class="span1">
       		<h3>
