@@ -24,7 +24,7 @@
 </div><!--span4-->
 <div class="span8">
   <div class="tab-content padtop0">
-    <%@topic.lessons.each_with_index do |lesson,i|%>
+    <%@topic.lessons.order(:position).each_with_index do |lesson,i|%>
       <%if lesson.checkpoints.count != 0%>
       <div class="tab-pane<%=' active' if i==0%>" id="<%=lesson.slug%>">
       <div class="row-fluid">
@@ -47,7 +47,7 @@
           <small>DETAILS</small>
         </div><!--aligncenter-->
         <div class="tab-content pad-reset">
-          <%lesson.checkpoints.each_with_index do |checkpoint,m|%>
+          <%lesson.checkpoints.order(:position).each_with_index do |checkpoint,m|%>
             <div class="margintop0 tab-pane<%=' active' if m==0%>" id="<%=checkpoint.slug%>">
               <%if checkpoint.videourl=="http://youtu.be/dummyvar10"%>
                 Coming Soon!
