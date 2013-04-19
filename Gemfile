@@ -42,7 +42,7 @@ gem 'dalli'
 
 # Database and Search
 gem 'pg'
-gem 'pg_search'
+gem "pg_search", :github => "Casecommons/pg_search"
 
 gem 'simple_form'
 gem 'acts_as_list'
