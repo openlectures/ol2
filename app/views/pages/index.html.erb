@@ -2,6 +2,11 @@
 <%content_for :header do%>
   <%=image_tag 'logo.png'%>
 <%end%>
+<%=form_tag search_path, method: :get do%>
+<%=search_field_tag :query, params[:query], class: "input-block-level marginbot-p", id: "Search", style: "font-size:0.7em;", placeholder: "Search Lectures"%>
+<%=submit_tag nil, class: "hidden"%>
+<%end%>
+  
 <h3 class="lead align-center margintop-p"><%=Checkpoint.all.count%> <span class="olgreen">bite-sized</span> lectures in</h3>
 <div class="row-fluid">
   <div class="span3 align-center">
@@ -29,10 +34,3 @@
     <%end%>
   </div><!--span3-->
 </div><!--rowfluid-->
-<div class="align-center">
-<hr>
-<p><a href="https://ol.typeform.com/to/IsXjPl" target="_blank">Help us improve openlectures!</a><br/><small>It'll only take a minute.</small></p>
-<hr>
-<p style="font-size:1em;">Free online education for <span class="salmon">anyone who wants to learn,</span><br/><span class="muted">custom-made for the Singapore curriculum</span></p>
-<h3 class="margin-reset"><%=link_to 'Read More',team_path%></h3>
-</div>

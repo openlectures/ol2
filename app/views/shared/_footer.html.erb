@@ -1,13 +1,15 @@
-<footer class="container align-center">
-  <nav class="element-center" role="navigation" style="font-size:0.65em;">
-    <ul class="nav nav-pills margin-reset" role="menubar">
-      <%=render 'shared/pages'%>
-      <li><a class="reView fuckinglightgray" href="<%=root_path%>">Switch View</a></li>
-    </ul><br/>
-    <% if user_signed_in? %>
-    <div class="muted marginbot-p">
-      <span class="salmon">Administrator</span> on <abbr class="initialism">ol-verethragna</abbr> v1.0.0
-    </div>
-    <%end%>
-  </nav><!--element-center-->
-</footer>
+<div class="container">
+  <footer class="container align-center footer">
+    <nav class="element-center" role="navigation" style="font-size:0.65em;">
+      <ul class="nav nav-pills margin-reset" role="menubar">
+        <%=render 'shared/pages'%>
+        <li><a class="reView fuckinglightgray" href="<%=root_path%>">Switch View</a></li>
+      </ul><br/>
+      <% if user_signed_in? %>
+      <div class="muted marginbot-p">
+        <span class="salmon">Administrator</span> on <abbr class="initialism">ol-verethragna</abbr> v1.0.0
+      </div>
+      <%end%>
+    </nav><!--element-center-->
+  </footer>
+</div>

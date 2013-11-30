@@ -1,11 +1,11 @@
 <%=render 'shared/head'%>
 <body>
-  <nav class="meny" role="navigation">
-    <ul id="nav" class="marginbot0 margintop-p nav nav-list" role="menu">
-    <%=render 'shared/menu'%>
-    </ul>
-  </nav><!--meny-->
-  <div class="container-fluid">
+  <!-- <nav class="meny" role="navigation"> -->
+  <!--   <ul id="nav" class="marginbot0 margintop&#45;p nav nav&#45;list" role="menu"> -->
+    <%# <%=render 'shared/menu'%>
+  <!--   </ul> -->
+  <!-- </nav><!&#45;&#45;meny&#45;&#45;> -->
+  <div class="container">
     <div class="page-alert">
       <%= bootstrap_flash %>
       <!--[if lt IE 7]>
@@ -15,12 +15,12 @@
       <![endif]-->
     </div><!--page-alert-->
     <div class="row-fluid">
-    <div class="span2 fuckinglightgray margintop-p hidden-phone">
-      <div class="menu" style="position:fixed;font-size:0.85em;">
-      <i class="icon-reorder muted"></i> Menu
-      </div><!--menu-->
-    </div><!--span2-->
-    <div class="span8 margintop0 marginbot-h1">
+    <!-- <div class="span2 fuckinglightgray margintop&#45;p hidden&#45;phone"> -->
+    <!--   <div class="menu" style="position:fixed;font&#45;size:0.85em;"> -->
+    <!--   <i class="icon&#45;reorder muted"></i> Menu -->
+    <!--   </div><!&#45;&#45;menu&#45;&#45;> -->
+    <!-- </div><!&#45;&#45;span2&#45;&#45;> -->
+    <div class="span12 margintop0 marginbot-h1">
     <% if content_for?(:header) %>
       <div class="align-center margintop-h3">
         <%=yield :header %>
