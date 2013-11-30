@@ -8,6 +8,7 @@
       <% if user_signed_in? %>
       <div class="muted marginbot-p">
         <span class="salmon">Administrator</span> on <abbr class="initialism">ol-verethragna</abbr> v1.0.0
+        <span class="salmon"><%= link_to('<i class="icon-signout"></i> Log Out'.html_safe,destroy_user_session_path,:method=>:delete)%></span>
       </div>
       <%end%>
     </nav><!--element-center-->

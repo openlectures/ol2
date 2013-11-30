@@ -1,4 +1,11 @@
 /* Bootstrap Override Variables */
+$container-desktop:     1000px;
+$container-md:          900px;
+$container-sm:          800px;
+
+$gridColumnWidth:       60px;
+$gridGutterWidth:       20px;
+
 $use-font-awesome:      false;
 $bodyBackground:        #F2F2F2;
 $accent:                #33CCCC;
@@ -300,6 +307,10 @@ footer {
  // z-index: 99;
  padding-top: 5px;
  padding-bottom: 20px;
- height: 34px;
+ height: 50px;
  background-color: #f2f2f2;
+}
+
+.container{
+  width: 920px;
 }
