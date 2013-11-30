@@ -1,10 +1,5 @@
 <%=render 'shared/head'%>
 <body>
-  <!-- <nav class="meny" role="navigation"> -->
-  <!--   <ul id="nav" class="marginbot0 margintop&#45;p nav nav&#45;list" role="menu"> -->
-    <%# <%=render 'shared/menu'%>
-  <!--   </ul> -->
-  <!-- </nav><!&#45;&#45;meny&#45;&#45;> -->
   <div class="container">
     <div class="page-alert">
       <%= bootstrap_flash %>
@@ -98,38 +93,6 @@
   </script>
   <%end%>
   <script>
-  var meny = Meny; // Back up Meny
-  var toggle = -1;
-  $(window).load(function() {
-  enquire.register("screen and (max-width:767px)", {
-        match : function() {
-          Meny = 0; // Get rid of Meny
-          $('#nav').unwrap();
-          if(toggle<0){ // Only add 2D menu once
-            $(function () {
-              $('#nav').tinyNav();
-            });
-            toggle++;
-          }
-          toggle++;
-        }
-    }).register("screen and (min-width:768px)", {
-        match : function() {
-          if(toggle==1){
-            Meny = meny; //Restore Meny
-            $('#nav').wrap('<nav class="meny" role="navigation" />');
-            toggle--;
-          }
-          Meny.create({
-            menuElement: document.querySelector( '.meny' ),
-            contentsElement: document.querySelector( '.container-fluid' ),
-            position: 'left',
-            width: 250,
-            threshold: 100
-          });
-        }
-    }).listen();
-    });
     var _gaq=[['_setAccount','UA-26070822-1'],['_trackPageview']];
     (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
     g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
